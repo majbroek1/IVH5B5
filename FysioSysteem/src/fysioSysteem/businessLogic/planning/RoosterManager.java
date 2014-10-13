@@ -28,6 +28,12 @@ public class RoosterManager implements IRoosterManager {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public Rooster getRooster(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public ArrayList<Rooster> getWeekRooster(Fysiotherapeut fysio) {

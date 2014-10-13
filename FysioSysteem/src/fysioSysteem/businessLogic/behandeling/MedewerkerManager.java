@@ -10,6 +10,8 @@ import fysioSysteem.domain.Medewerker;
  */
 public class MedewerkerManager implements IMedewerkerManager {
 
+	private ArrayList<Medewerker> medewerkers;
+	
 	public MedewerkerManager() {
 		// TODO
 	}
@@ -26,6 +28,12 @@ public class MedewerkerManager implements IMedewerkerManager {
 		return false;
 	}
 
+	@Override
+	public Medewerker getMedewerker(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public ArrayList<Medewerker> getMedewerkers() {
 		// TODO Auto-generated method stub

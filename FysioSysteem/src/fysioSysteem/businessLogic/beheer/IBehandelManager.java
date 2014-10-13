@@ -23,6 +23,12 @@ public interface IBehandelManager {
 	public void setBehandeling(Behandeling behandeling);
 	
 	/**
+	 * @param id
+	 * @return
+	 */
+	public Behandeling getBehandeling(int id);
+	
+	/**
 	 * @param klant
 	 * @return
 	 */

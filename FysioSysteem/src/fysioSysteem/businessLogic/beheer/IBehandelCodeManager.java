@@ -17,6 +17,12 @@ public interface IBehandelCodeManager {
 	public void setBehandelCode(BehandelCode behandelCode);
 	
 	/**
+	 * @param id
+	 * @return
+	 */
+	public BehandelCode getBehandelCode(int id);
+	
+	/**
 	 * @return
 	 */
 	public ArrayList<BehandelCode> getBehandelCodes();

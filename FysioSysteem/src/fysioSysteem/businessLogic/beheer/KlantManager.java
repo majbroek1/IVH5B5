@@ -10,6 +10,8 @@ import fysioSysteem.domain.Klant;
  */
 public class KlantManager implements IKlantManager {
 
+	private ArrayList<Klant> klanten;
+	
 	public KlantManager() {
 		// TODO
 	}
@@ -24,6 +26,12 @@ public class KlantManager implements IKlantManager {
 	public void setKlant(Klant klant) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public Klant getKlant(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

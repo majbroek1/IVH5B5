@@ -12,6 +12,8 @@ import fysioSysteem.domain.Klant;
  */
 public class BehandelingManager implements IBehandelManager {
 
+	private ArrayList<Behandeling> behandelingen;
+	
 	public BehandelingManager() {
 		// TODO
 	}
@@ -34,6 +36,12 @@ public class BehandelingManager implements IBehandelManager {
 		return null;
 	}
 
+	@Override
+	public Behandeling getBehandeling(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public ArrayList<Behandeling> getBehandelingen(BehandelCode behandelCode) {
 		// TODO Auto-generated method stub

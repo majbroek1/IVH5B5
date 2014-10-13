@@ -38,6 +38,12 @@ public class AfspraakManager implements IAfspraakManager {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public Afspraak getAfspraak(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public ArrayList<Afspraak> getAfspraken(Klant klant) {

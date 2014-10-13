@@ -10,6 +10,8 @@ import fysioSysteem.domain.BehandelCode;
  */
 public class BehandelCodeManager implements IBehandelCodeManager {
 
+	private ArrayList<BehandelCode> behandelCodes;
+	
 	public BehandelCodeManager() {
 		// TODO
 	}
@@ -26,6 +28,12 @@ public class BehandelCodeManager implements IBehandelCodeManager {
 
 	}
 
+	@Override
+	public BehandelCode getBehandelCode(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public ArrayList<BehandelCode> getBehandelCodes() {
 		// TODO Auto-generated method stub

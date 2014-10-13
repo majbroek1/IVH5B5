@@ -23,6 +23,12 @@ public interface IMedewerkerManager {
 	public boolean setMedewerker(Medewerker medewerker);
 	
 	/**
+	 * @param id
+	 * @return
+	 */
+	public Medewerker getMedewerker(int id);
+	
+	/**
 	 * @return
 	 */
 	public ArrayList<Medewerker> getMedewerkers();

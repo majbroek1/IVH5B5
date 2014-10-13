@@ -24,6 +24,12 @@ public interface IRoosterManager {
 	public boolean setRooster(Rooster rooster);
 	
 	/**
+	 * @param id
+	 * @return
+	 */
+	public Rooster getRooster(int id);
+	
+	/**
 	 * @param fysio
 	 * @return
 	 */

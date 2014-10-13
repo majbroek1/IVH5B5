@@ -25,6 +25,12 @@ public interface IAfspraakManager {
 	public boolean setAfspraak(Afspraak afspraak);
 	
 	/**
+	 * @param id
+	 * @return
+	 */
+	public Afspraak getAfspraak(int id);
+	
+	/**
 	 * @param klant
 	 * @return
 	 */
