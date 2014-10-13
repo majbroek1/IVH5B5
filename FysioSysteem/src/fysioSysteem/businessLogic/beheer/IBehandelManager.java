@@ -1,0 +1,37 @@
+package fysioSysteem.businessLogic.beheer;
+
+import java.util.ArrayList;
+
+import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.domain.Behandeling;
+import fysioSysteem.domain.Klant;
+
+/**
+ * @author Bob
+ *
+ */
+public interface IBehandelManager {
+
+	/**
+	 * @param behandeling
+	 */
+	public void addBehandeling(Behandeling behandeling);
+	
+	/**
+	 * @param behandeling
+	 */
+	public void setBehandeling(Behandeling behandeling);
+	
+	/**
+	 * @param klant
+	 * @return
+	 */
+	public ArrayList<Behandeling> getBehandelingen(Klant klant);
+	
+	/**
+	 * @param behandelCode
+	 * @return
+	 */
+	public ArrayList<Behandeling> getBehandelingen(BehandelCode behandelCode);
+	
+}
