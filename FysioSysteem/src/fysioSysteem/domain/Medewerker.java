@@ -16,6 +16,9 @@ public class Medewerker {
 	 * @param wachtwoord
 	 * @param status
 	 */
+	public Medewerker(){
+		
+	}
 	public Medewerker(int id, String naam, String wachtwoord, Enum<?> status) {
 		this.id = id;
 		this.naam = naam;
@@ -77,6 +80,5 @@ public class Medewerker {
 	 */
 	public void setStatus(Enum<?> status) {
 		this.status = status;
-	}
-	
+	}	
 }
