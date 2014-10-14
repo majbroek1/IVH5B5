@@ -89,7 +89,7 @@ public class MedewerkerDAO {
 
 			Element functie = document.createElement("functie");
 			if (medewerker instanceof Fysiotherapeut)
-				functie.appendChild(document.createTextNode("fysio"));
+				functie.appendChild(document.createTextNode("fysiotherapeut"));
 			else
 				functie.appendChild(document.createTextNode("secretaresse"));
 
@@ -118,9 +118,11 @@ public class MedewerkerDAO {
 					String _id = child.getElementsByTagName("id").item(0)
 							.getTextContent();
 					if (Integer.parseInt(_id) == medewerker.getId()) {
-						Node naam = child.getElementsByTagName("naam").item(0).getFirstChild();
-						Node wachtwoord = child.getElementsByTagName(
-								"wachtwoord").item(0).getFirstChild();
+						Node naam = child.getElementsByTagName("naam").item(0)
+								.getFirstChild();
+						Node wachtwoord = child
+								.getElementsByTagName("wachtwoord").item(0)
+								.getFirstChild();
 						Node status = child.getElementsByTagName("status")
 								.item(0).getFirstChild();
 
@@ -136,24 +138,128 @@ public class MedewerkerDAO {
 					document);
 		} else
 			System.out.println("XML document is null");
-		
-		if(!edited)
+
+		if (!edited)
 			System.out.println("Medewerker niet gevonden");
 	}
 
 	public static ArrayList<Medewerker> getMedewerkers() {
-		// TODO
-		return null;
+		XmlDOMDocument domdocument = new XmlDOMDocument();
+		Document document = domdocument.getDocument("medewerkers.xml",
+				"medewerkers.xsd");
+
+		ArrayList<Medewerker> medewerkers = new ArrayList<Medewerker>();
+		if (document != null) {
+			NodeList list = document.getElementsByTagName("medewerker");
+
+			for (int i = 0; i < list.getLength(); i++) {
+				Node node = list.item(i);
+				if (node instanceof Element) {
+					Element child = (Element) node;
+
+					int id = Integer.parseInt(child.getElementsByTagName("id")
+							.item(0).getTextContent());
+					String naam = child.getElementsByTagName("naam").item(0)
+							.getTextContent();
+					String wachtwoord = child
+							.getElementsByTagName("wachtwoord").item(0)
+							.getTextContent();
+					Status status = Status.valueOf(child
+							.getElementsByTagName("status").item(0)
+							.getTextContent());
+					medewerkers
+							.add(new Medewerker(id, naam, wachtwoord, status));
+				}
+			}
+		} else
+			System.out.println("XML document is null");
+
+		if (medewerkers.size() < 1)
+			System.out.println("Medewerker niet gevonden");
+
+		return medewerkers;
 	}
 
 	public static ArrayList<Fysiotherapeut> getFysiotherapeuten() {
-		// TODO
-		return null;
+		XmlDOMDocument domdocument = new XmlDOMDocument();
+		Document document = domdocument.getDocument("medewerkers.xml",
+				"medewerkers.xsd");
+
+		ArrayList<Fysiotherapeut> therapeuten = new ArrayList<Fysiotherapeut>();
+		if (document != null) {
+			NodeList list = document.getElementsByTagName("medewerker");
+
+			for (int i = 0; i < list.getLength(); i++) {
+				Node node = list.item(i);
+				if (node instanceof Element) {
+					Element child = (Element) node;
+					String functie = child.getElementsByTagName("functie")
+							.item(0).getTextContent();
+					if (functie.equals("fysiotherapeut")) {
+						int id = Integer.parseInt(child
+								.getElementsByTagName("id").item(0)
+								.getTextContent());
+						String naam = child.getElementsByTagName("naam")
+								.item(0).getTextContent();
+						String wachtwoord = child
+								.getElementsByTagName("wachtwoord").item(0)
+								.getTextContent();
+						Status status = Status.valueOf(child
+								.getElementsByTagName("status").item(0)
+								.getTextContent());
+						therapeuten.add(new Fysiotherapeut(id, naam,
+								wachtwoord, status));
+					}
+				}
+			}
+		} else
+			System.out.println("XML document is null");
+
+		if (therapeuten.size() < 1)
+			System.out.println("Medewerker niet gevonden");
+
+		return therapeuten;
 	}
 
 	public static ArrayList<Secretaresse> getSecretaressen() {
-		// TODO
-		return null;
+		XmlDOMDocument domdocument = new XmlDOMDocument();
+		Document document = domdocument.getDocument("medewerkers.xml",
+				"medewerkers.xsd");
+
+		ArrayList<Secretaresse> secretaressen = new ArrayList<Secretaresse>();
+		if (document != null) {
+			NodeList list = document.getElementsByTagName("medewerker");
+
+			for (int i = 0; i < list.getLength(); i++) {
+				Node node = list.item(i);
+				if (node instanceof Element) {
+					Element child = (Element) node;
+					String functie = child.getElementsByTagName("secretaresse")
+							.item(0).getTextContent();
+					if (functie.equals("fysiotherapeut")) {
+						int id = Integer.parseInt(child
+								.getElementsByTagName("id").item(0)
+								.getTextContent());
+						String naam = child.getElementsByTagName("naam")
+								.item(0).getTextContent();
+						String wachtwoord = child
+								.getElementsByTagName("wachtwoord").item(0)
+								.getTextContent();
+						Status status = Status.valueOf(child
+								.getElementsByTagName("status").item(0)
+								.getTextContent());
+						secretaressen.add(new Secretaresse(id, naam,
+								wachtwoord, status));
+					}
+				}
+			}
+		} else
+			System.out.println("XML document is null");
+
+		if (secretaressen.size() < 1)
+			System.out.println("Medewerker niet gevonden");
+
+		return secretaressen;
 	}
 
 }
