@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.apache.log4j.BasicConfigurator;
 
 import fysioSysteem.dataStorage.MedewerkerDAO;
+import fysioSysteem.dataStorage.PraktijkDAO;
 import fysioSysteem.domain.Medewerker;
+import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Status;
 
 public class Main {
@@ -21,6 +23,10 @@ public class Main {
 		temp.add("Bob");
 
 		//MedewerkerDAO dao = new MedewerkerDAO();
-		MedewerkerDAO.setMedewerker(medewerkers.get(0));
+		//MedewerkerDAO.addMedewerker(medewerkers.get(1));
+		Medewerker medewerker = MedewerkerDAO.getMedewerker(1);
+		Praktijk prakkie = PraktijkDAO.getPraktijk(1);
+		ArrayList<Praktijk> praktijken = PraktijkDAO.getPraktijken();
+		int i = 0;
 	}
 }

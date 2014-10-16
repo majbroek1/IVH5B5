@@ -3,7 +3,7 @@
 	<xs:element name="medewerkers">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="medewerker">
+				<xs:element name="medewerker" maxOccurs="unbounded" minOccurs="0">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element type="xs:string" name="naam"/>
