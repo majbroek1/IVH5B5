@@ -54,6 +54,43 @@ public class MedewerkerDAO {
 
 		return medewerker;
 	}
+	
+	public static Fysiotherapeut getFysio(int id) {
+		XmlDOMDocument domdocument = new XmlDOMDocument();
+		Document document = domdocument.getDocument("medewerkers.xml",
+				"medewerkers.xsd");
+
+		Fysiotherapeut fysio = null;
+		if (document != null) {
+			NodeList list = document.getElementsByTagName("medewerker");
+
+			for (int i = 0; i < list.getLength(); i++) {
+				Node node = list.item(i);
+				if (node instanceof Element) {
+					Element child = (Element) node;
+					String _id = child.getAttribute("id");
+					if (Integer.parseInt(_id) == id) {
+						String naam = child.getElementsByTagName("naam")
+								.item(0).getTextContent();
+						String wachtwoord = child
+								.getElementsByTagName("wachtwoord").item(0)
+								.getTextContent();
+						Status status = Status.valueOf(child
+								.getElementsByTagName("status").item(0)
+								.getTextContent());
+						fysio = new Fysiotherapeut(id, naam, wachtwoord,
+								status);
+					}
+				}
+			}
+		} else
+			System.out.println("XML document is null");
+
+		if (fysio == null)
+			System.out.println("Medewerker niet gevonden");
+
+		return fysio;
+	}
 
 	public static void addMedewerker(Medewerker medewerker) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
