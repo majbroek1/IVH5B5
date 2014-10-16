@@ -7,9 +7,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
-import fysioSysteem.domain.Status;
 
 /**
  * @author Bob

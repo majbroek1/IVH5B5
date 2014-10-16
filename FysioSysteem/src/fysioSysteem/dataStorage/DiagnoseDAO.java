@@ -11,9 +11,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.Diagnose;
-import fysioSysteem.domain.Fysiotherapeut;
-import fysioSysteem.domain.Medewerker;
-import fysioSysteem.domain.Status;
 
 /**
  * @author Bob
