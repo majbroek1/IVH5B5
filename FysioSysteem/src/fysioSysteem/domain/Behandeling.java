@@ -23,6 +23,11 @@ public class Behandeling {
 		this.status = status;
 	}
 
+	public Behandeling(int id2, String status2, Klant klant2,
+			BehandelCode behandelCode2, ArrayList<Afspraak> afspraken2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @return
 	 */
