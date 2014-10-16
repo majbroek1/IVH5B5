@@ -3,12 +3,13 @@
 <diagnoses>
 	<diagnose code="1">
 		<omschrijving>Hoop tekst</omschrijving>
+		<klantBsn>1</klantBsn>
 	</diagnose>
-	<diagnose id="2">
+	<diagnose code="2">
 		<omschrijving>Hoop tekst</omschrijving>
 		<klantBsn>1</klantBsn>
 	</diagnose>
-	<diagnose id="3">
+	<diagnose code="3">
 		<omschrijving>Hoop tekst</omschrijving>	
 		<klantBsn>2</klantBsn>
 	</diagnose>

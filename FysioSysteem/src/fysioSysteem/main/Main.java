@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import org.apache.log4j.BasicConfigurator;
 
+import fysioSysteem.dataStorage.BehandelCodeDAO;
 import fysioSysteem.dataStorage.DiagnoseDAO;
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.dataStorage.PraktijkDAO;
 import fysioSysteem.dataStorage.RoosterDAO;
+import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Diagnose;
 import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
@@ -32,9 +34,10 @@ public class Main {
 		Praktijk prakkie = PraktijkDAO.getPraktijk(1);
 		ArrayList<Praktijk> praktijken = PraktijkDAO.getPraktijken();
 		Rooster rooster = RoosterDAO.getRooster(1);
-		ArrayList<Diagnose> diagnoses = DiagnoseDAO.getDiagnoses();
-		DiagnoseDAO.setDiagnose(new Diagnose(1, "Meer text dan een hoop"));
-		Diagnose diagnose = DiagnoseDAO.getDiagnose(1);
+		//ArrayList<Diagnose> diagnoses = DiagnoseDAO.getDiagnoses();
+		//DiagnoseDAO.setDiagnose(new Diagnose(1, "Meer text dan een hoop"));
+		//Diagnose diagnose = DiagnoseDAO.getDiagnose(1);
+		BehandelCode code = BehandelCodeDAO.getBehandelCode(1);
 		int i = 0;
 	}
 }
