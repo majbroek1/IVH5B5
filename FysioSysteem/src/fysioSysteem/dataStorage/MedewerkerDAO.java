@@ -31,8 +31,7 @@ public class MedewerkerDAO {
 				Node node = list.item(i);
 				if (node instanceof Element) {
 					Element child = (Element) node;
-					String _id = child.getElementsByTagName("id").item(0)
-							.getTextContent();
+					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == id) {
 						String naam = child.getElementsByTagName("naam")
 								.item(0).getTextContent();
@@ -66,12 +65,8 @@ public class MedewerkerDAO {
 					.item(0);
 
 			Element newMedewerker = document.createElement("medewerker");
+			newMedewerker.setAttribute("id", Integer.toString(medewerker.getId()));
 			rootElement.appendChild(newMedewerker);
-
-			Element id = document.createElement("id");
-			id.appendChild(document.createTextNode(Integer.toString(medewerker
-					.getId())));
-			newMedewerker.appendChild(id);
 
 			Element naam = document.createElement("naam");
 			naam.appendChild(document.createTextNode(medewerker.getNaam()));
@@ -115,8 +110,7 @@ public class MedewerkerDAO {
 				Node node = list.item(i);
 				if (node instanceof Element) {
 					Element child = (Element) node;
-					String _id = child.getElementsByTagName("id").item(0)
-							.getTextContent();
+					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == medewerker.getId()) {
 						Node naam = child.getElementsByTagName("naam").item(0)
 								.getFirstChild();
@@ -157,8 +151,7 @@ public class MedewerkerDAO {
 				if (node instanceof Element) {
 					Element child = (Element) node;
 
-					int id = Integer.parseInt(child.getElementsByTagName("id")
-							.item(0).getTextContent());
+					int id = Integer.parseInt(child.getAttribute("id"));
 					String naam = child.getElementsByTagName("naam").item(0)
 							.getTextContent();
 					String wachtwoord = child
@@ -196,9 +189,7 @@ public class MedewerkerDAO {
 					String functie = child.getElementsByTagName("functie")
 							.item(0).getTextContent();
 					if (functie.equals("fysiotherapeut")) {
-						int id = Integer.parseInt(child
-								.getElementsByTagName("id").item(0)
-								.getTextContent());
+						int id = Integer.parseInt(child.getAttribute("id"));
 						String naam = child.getElementsByTagName("naam")
 								.item(0).getTextContent();
 						String wachtwoord = child

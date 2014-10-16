@@ -6,12 +6,12 @@
 				<xs:element name="medewerker">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element type="xs:byte" name="id"/>
 							<xs:element type="xs:string" name="naam"/>
 							<xs:element type="xs:string" name="wachtwoord"/>
 							<xs:element type="xs:string" name="status"/>
 							<xs:element type="xs:string" name="functie"/>
-						</xs:sequence>
+						</xs:sequence>							
+					<xs:attribute type="xs:byte" name="id"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
