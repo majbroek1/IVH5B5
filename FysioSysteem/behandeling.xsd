@@ -13,15 +13,8 @@
 									<xs:enumeration value="stat3"/>
 								</xs:simpleType>
 							</xs:element>
-							<xs:element name="klant" type="xs:string"/>
+							<xs:element name="klantBsn" type="xs:string"/>
 							<xs:element name="behandelcode" type="xs:string"/>
-							<xs:element name="afspraken">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="afspraak"></xs:element>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:sequence>

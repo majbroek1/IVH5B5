@@ -31,4 +31,9 @@ public class AfspraakDAO {
 		return null;
 	}
 	
+	public static ArrayList<Afspraak> getAfspraken(int behandelingId){
+		// TODO
+		return null;
+	}
+	
 }
