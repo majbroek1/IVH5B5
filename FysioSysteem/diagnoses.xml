@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><diagnoses>
+	<diagnose code="1">
+		<omschrijving>Meer text dan een hoop</omschrijving>
+	</diagnose>
+	<diagnose code="2">
+		<omschrijving>Hoop tekst</omschrijving>
+	</diagnose>
+	<diagnose code="3">
+		<omschrijving>Hoop tekst</omschrijving>
+	</diagnose>
+</diagnoses>

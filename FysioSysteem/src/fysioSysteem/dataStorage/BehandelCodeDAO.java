@@ -11,7 +11,7 @@ import fysioSysteem.domain.Behandeling;
  * @author Bob
  *
  */
-public class BehandelDAO {
+public class BehandelCodeDAO {
 
 	public static Behandeling getBehandeling(int id) {
 		// TODO
