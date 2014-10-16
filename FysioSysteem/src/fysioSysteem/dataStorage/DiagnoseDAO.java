@@ -36,8 +36,11 @@ public class DiagnoseDAO {
 						String omschrijving = child
 								.getElementsByTagName("omschrijving").item(0)
 								.getTextContent();
-
-						diagnose = new Diagnose(diagnoseCode, omschrijving);
+						String klantBsn = child
+								.getElementsByTagName("klantBsn").item(0)
+								.getTextContent();
+						diagnose = new Diagnose(diagnoseCode, omschrijving,
+								KlantDAO.getKlant(klantBsn));
 					}
 				}
 			}
@@ -69,7 +72,11 @@ public class DiagnoseDAO {
 								.getElementsByTagName("omschrijving").item(0)
 								.getFirstChild();
 
+						Node klantBsn = child.getElementsByTagName("klantBsn")
+								.item(0).getFirstChild();
+
 						omschrijving.setNodeValue(diagnose.getOmschrijving());
+						klantBsn.setNodeValue(diagnose.getKlant().getBsn());
 					}
 				}
 			}
@@ -97,9 +104,15 @@ public class DiagnoseDAO {
 					Integer.toString(diagnose.getCode()));
 			rootElement.appendChild(newdiagnose);
 
-			Element naam = document.createElement("omschrijving");
-			naam.appendChild(document.createTextNode(diagnose.getOmschrijving()));
-			newdiagnose.appendChild(naam);
+			Element omschrijving = document.createElement("omschrijving");
+			omschrijving.appendChild(document.createTextNode(diagnose
+					.getOmschrijving()));
+			newdiagnose.appendChild(omschrijving);
+
+			Element klantBsn = document.createElement("klantBsn");
+			klantBsn.appendChild(document.createTextNode(diagnose.getKlant()
+					.getBsn()));
+			newdiagnose.appendChild(klantBsn);
 
 			domdocument.writeDocument("diagnoses.xml", "diagnoses.xsd",
 					document);
@@ -121,13 +134,14 @@ public class DiagnoseDAO {
 				Node node = list.item(i);
 				if (node instanceof Element) {
 					Element child = (Element) node;
-					int code = Integer.parseInt(child
-							.getAttribute("code"));
+					int code = Integer.parseInt(child.getAttribute("code"));
 					String omschrijving = child
 							.getElementsByTagName("omschrijving").item(0)
 							.getTextContent();
-
-					diagnoses.add(new Diagnose(code, omschrijving));
+					String klantBsn = child.getElementsByTagName("klantBsn")
+							.item(0).getTextContent();
+					diagnoses.add(new Diagnose(code, omschrijving, KlantDAO
+							.getKlant(klantBsn)));
 				}
 			}
 		} else

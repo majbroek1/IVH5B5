@@ -13,7 +13,7 @@ import fysioSysteem.domain.Klant;
  */
 public class KlantDAO {
 
-	public static Klant getKlant(int id) {
+	public static Klant getKlant(String	bsn) {
 		// TODO
 		return null;
 	}

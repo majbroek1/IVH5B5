@@ -7,6 +7,7 @@
 					<xs:complexType>
 						<xs:sequence>			
 							<xs:element name="omschrijving" type="xs:string"/>			
+							<xs:element name="klantBsn" type="xs:string"/>
 						</xs:sequence>
 						<xs:attribute name="code" type="xs:integer"/>
 					</xs:complexType>

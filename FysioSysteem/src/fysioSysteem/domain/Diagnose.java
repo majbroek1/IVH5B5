@@ -1,6 +1,5 @@
 package fysioSysteem.domain;
 
-import java.util.ArrayList;
 
 /**
  * @author Bob
@@ -10,7 +9,7 @@ public class Diagnose {
 
 	private int code;
 	private String omschrijving;
-	private ArrayList<Klant> klanten;
+	private Klant klant;
 	
 	/**
 	 * @param code
@@ -26,9 +25,9 @@ public class Diagnose {
 	 * @param omschrijving
 	 * @param klanten
 	 */
-	public Diagnose(int code, String omschrijving, ArrayList<Klant> klanten) {
+	public Diagnose(int code, String omschrijving, Klant klant) {
 		this(code, omschrijving);
-		this.klanten = klanten;
+		this.klant = klant;
 	}
 
 	/**
@@ -62,15 +61,15 @@ public class Diagnose {
 	/**
 	 * @return
 	 */
-	public ArrayList<Klant> getKlanten() {
-		return klanten;
+	public Klant getKlant() {
+		return klant;
 	}
 
 	/**
 	 * @param klanten
 	 */
-	public void setKlanten(ArrayList<Klant> klanten) {
-		this.klanten = klanten;
+	public void setKlant(Klant klant) {
+		this.klant = klant;
 	}
 	
 }
