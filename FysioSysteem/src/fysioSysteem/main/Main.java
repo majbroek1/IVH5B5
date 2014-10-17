@@ -5,18 +5,12 @@ import java.util.ArrayList;
 import org.apache.log4j.BasicConfigurator;
 
 import fysioSysteem.dataStorage.BehandelCodeDAO;
-<<<<<<< HEAD
-=======
 import fysioSysteem.dataStorage.BehandelingDAO;
->>>>>>> 28f05c74ee5519c5ac7bafb7180ceff65a36a987
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.dataStorage.PraktijkDAO;
 import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.BehandelCode;
-<<<<<<< HEAD
-=======
 import fysioSysteem.domain.Behandeling;
->>>>>>> 28f05c74ee5519c5ac7bafb7180ceff65a36a987
 import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Rooster;
