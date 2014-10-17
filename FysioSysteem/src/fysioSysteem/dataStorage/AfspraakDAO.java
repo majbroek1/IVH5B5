@@ -13,6 +13,9 @@ import fysioSysteem.domain.Afspraak;
  */
 public class AfspraakDAO {
 
+	private static final String FILE_XML = "Data/afspraken.xml";
+	private static final String FILE_XSD = "Data/afspraken.xsd";
+	
 	public static Afspraak getAfspraak(int id) {
 		// TODO
 		return null;

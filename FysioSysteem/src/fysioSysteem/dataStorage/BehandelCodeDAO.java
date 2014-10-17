@@ -11,9 +11,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.BehandelCode;
-import fysioSysteem.domain.Behandeling;
-import fysioSysteem.domain.Fysiotherapeut;
-import fysioSysteem.domain.Status;
 
 /**
  * @author Bob
@@ -21,10 +18,13 @@ import fysioSysteem.domain.Status;
  */
 public class BehandelCodeDAO {
 
+	private static final String FILE_XML = "Data/behandelCodes.xml";
+	private static final String FILE_XSD = "Data/behandelCodes.xsd";
+
 	public static BehandelCode getBehandelCode(int code) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelCodes.xml",
-				"behandelCodes.xsd");
+		Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
+				BehandelCodeDAO.FILE_XSD);
 
 		BehandelCode behandelCode = null;
 		if (document != null) {
@@ -64,8 +64,8 @@ public class BehandelCodeDAO {
 
 	public static void setBehandeling(BehandelCode behandelCode) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelCodes.xml",
-				"behandelCodes.xsd");
+		Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
+				BehandelCodeDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -102,8 +102,8 @@ public class BehandelCodeDAO {
 				}
 			}
 
-			domdocument.writeDocument("behandelCodes.xml", "behandelCodes.xsd",
-					document);
+			domdocument.writeDocument(BehandelCodeDAO.FILE_XML,
+					BehandelCodeDAO.FILE_XSD, document);
 		} else
 			System.out.println("XML document is null");
 
@@ -113,8 +113,8 @@ public class BehandelCodeDAO {
 
 	public static void addBehandeling(BehandelCode behandelCode) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelCodes.xml",
-				"behandelCodes.xsd");
+		Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
+				BehandelCodeDAO.FILE_XSD);
 
 		if (getBehandelCode(behandelCode.getCode()) == null) {
 			Node rootElement = document.getElementsByTagName("behandelCodes")
@@ -146,8 +146,8 @@ public class BehandelCodeDAO {
 					.toString(behandelCode.getTariefBehandeling())));
 			newbehandelCode.appendChild(tariefBehandeling);
 
-			domdocument.writeDocument("behandelCodes.xml", "behandelCodes.xsd",
-					document);
+			domdocument.writeDocument(BehandelCodeDAO.FILE_XML,
+					BehandelCodeDAO.FILE_XSD, document);
 		} else {
 			System.out.println("behandelCode bestaat al");
 		}
@@ -155,8 +155,8 @@ public class BehandelCodeDAO {
 
 	public static ArrayList<BehandelCode> getBehandelingen() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelCodes.xml",
-				"behandelCodes.xsd");
+		Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
+				BehandelCodeDAO.FILE_XSD);
 
 		ArrayList<BehandelCode> behandelCodes = new ArrayList<BehandelCode>();
 		if (document != null) {

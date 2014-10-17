@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import org.apache.log4j.BasicConfigurator;
 
 import fysioSysteem.dataStorage.BehandelCodeDAO;
-import fysioSysteem.dataStorage.DiagnoseDAO;
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.dataStorage.PraktijkDAO;
 import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.BehandelCode;
-import fysioSysteem.domain.Diagnose;
 import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Rooster;
@@ -20,6 +18,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
+		
 		ArrayList<Medewerker> medewerkers = new ArrayList<Medewerker>();
 		medewerkers.add(new Medewerker(1, "Mark", "Test", Status.ACTIEF));
 		medewerkers.add(new Medewerker(2, "Bob", "2", Status.INACTIEF));

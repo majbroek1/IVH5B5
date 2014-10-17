@@ -18,10 +18,13 @@ import fysioSysteem.domain.Status;
  */
 public class MedewerkerDAO {
 
+	private static final String FILE_XML = "Data/medewerkers.xml";
+	private static final String FILE_XSD = "Data/medewerkers.xsd";
+
 	public static Medewerker getMedewerker(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("medewerkers.xml",
-				"medewerkers.xsd");
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
+				MedewerkerDAO.FILE_XSD);
 
 		Medewerker medewerker = null;
 		if (document != null) {
@@ -54,11 +57,11 @@ public class MedewerkerDAO {
 
 		return medewerker;
 	}
-	
+
 	public static Fysiotherapeut getFysio(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("medewerkers.xml",
-				"medewerkers.xsd");
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
+				MedewerkerDAO.FILE_XSD);
 
 		Fysiotherapeut fysio = null;
 		if (document != null) {
@@ -78,8 +81,7 @@ public class MedewerkerDAO {
 						Status status = Status.valueOf(child
 								.getElementsByTagName("status").item(0)
 								.getTextContent());
-						fysio = new Fysiotherapeut(id, naam, wachtwoord,
-								status);
+						fysio = new Fysiotherapeut(id, naam, wachtwoord, status);
 					}
 				}
 			}
@@ -94,15 +96,16 @@ public class MedewerkerDAO {
 
 	public static void addMedewerker(Medewerker medewerker) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("medewerkers.xml",
-				"medewerkers.xsd");
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
+				MedewerkerDAO.FILE_XSD);
 
 		if (getMedewerker(medewerker.getId()) == null) {
 			Node rootElement = document.getElementsByTagName("medewerkers")
 					.item(0);
 
 			Element newMedewerker = document.createElement("medewerker");
-			newMedewerker.setAttribute("id", Integer.toString(medewerker.getId()));
+			newMedewerker.setAttribute("id",
+					Integer.toString(medewerker.getId()));
 			rootElement.appendChild(newMedewerker);
 
 			Element naam = document.createElement("naam");
@@ -127,8 +130,8 @@ public class MedewerkerDAO {
 
 			newMedewerker.appendChild(functie);
 
-			domdocument.writeDocument("medewerkers.xml", "medewerkers.xsd",
-					document);
+			domdocument.writeDocument(MedewerkerDAO.FILE_XML,
+					MedewerkerDAO.FILE_XSD, document);
 		} else {
 			System.out.println("Medewerker bestaat al");
 		}
@@ -136,8 +139,8 @@ public class MedewerkerDAO {
 
 	public static void setMedewerker(Medewerker medewerker) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("medewerkers.xml",
-				"medewerkers.xsd");
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
+				MedewerkerDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -165,8 +168,8 @@ public class MedewerkerDAO {
 				}
 			}
 
-			domdocument.writeDocument("medewerkers.xml", "medewerkers.xsd",
-					document);
+			domdocument.writeDocument(MedewerkerDAO.FILE_XML,
+					MedewerkerDAO.FILE_XSD, document);
 		} else
 			System.out.println("XML document is null");
 
@@ -176,8 +179,8 @@ public class MedewerkerDAO {
 
 	public static ArrayList<Medewerker> getMedewerkers() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("medewerkers.xml",
-				"medewerkers.xsd");
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
+				MedewerkerDAO.FILE_XSD);
 
 		ArrayList<Medewerker> medewerkers = new ArrayList<Medewerker>();
 		if (document != null) {
@@ -212,8 +215,8 @@ public class MedewerkerDAO {
 
 	public static ArrayList<Fysiotherapeut> getFysiotherapeuten() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("medewerkers.xml",
-				"medewerkers.xsd");
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
+				MedewerkerDAO.FILE_XSD);
 
 		ArrayList<Fysiotherapeut> therapeuten = new ArrayList<Fysiotherapeut>();
 		if (document != null) {
@@ -251,8 +254,8 @@ public class MedewerkerDAO {
 
 	public static ArrayList<Secretaresse> getSecretaressen() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("medewerkers.xml",
-				"medewerkers.xsd");
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
+				MedewerkerDAO.FILE_XSD);
 
 		ArrayList<Secretaresse> secretaressen = new ArrayList<Secretaresse>();
 		if (document != null) {

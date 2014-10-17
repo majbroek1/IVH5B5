@@ -19,13 +19,17 @@ import fysioSysteem.domain.Rooster;
  *
  */
 public class RoosterDAO {
+
+	private static final String FILE_XML = "Data/roosters.xml";
+	private static final String FILE_XSD = "Data/roosters.xsd";
+
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss");
 
 	public static Rooster getRooster(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("roosters.xml",
-				"roosters.xsd");
+		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+				RoosterDAO.FILE_XSD);
 
 		Rooster rooster = null;
 		if (document != null) {
@@ -69,8 +73,8 @@ public class RoosterDAO {
 
 	public static void setRooster(Rooster rooster) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("roosters.xml",
-				"roosters.xsd");
+		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+				RoosterDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -98,7 +102,8 @@ public class RoosterDAO {
 				}
 			}
 
-			domdocument.writeDocument("roosters.xml", "roosters.xsd", document);
+			domdocument.writeDocument(RoosterDAO.FILE_XML, RoosterDAO.FILE_XSD,
+					document);
 		} else
 			System.out.println("XML document is null");
 
@@ -108,8 +113,8 @@ public class RoosterDAO {
 
 	public static void addRooster(Rooster rooster) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("roosters.xml",
-				"roosters.xsd");
+		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+				RoosterDAO.FILE_XSD);
 
 		if (getRooster(rooster.getId()) == null) {
 			Node rootElement = document.getElementsByTagName("roosters")
@@ -134,7 +139,8 @@ public class RoosterDAO {
 					.toString(rooster.getFysiotherapeut().getId())));
 			newrooster.appendChild(fysioId);
 
-			domdocument.writeDocument("roosters.xml", "roosters.xsd", document);
+			domdocument.writeDocument(RoosterDAO.FILE_XML, RoosterDAO.FILE_XSD,
+					document);
 		} else {
 			System.out.println("Rooster bestaat al");
 		}
@@ -142,8 +148,8 @@ public class RoosterDAO {
 
 	public static void removeRooster(Rooster rooster) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("roosters.xml",
-				"roosters.xsd");
+		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+				RoosterDAO.FILE_XSD);
 
 		if (document != null) {
 			NodeList list = document.getElementsByTagName("rooster");
@@ -155,8 +161,9 @@ public class RoosterDAO {
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == rooster.getId()) {
 						child.getParentNode().removeChild(child);
-						domdocument.writeDocument("roosters.xml",
-								"roosters.xsd", document);
+						
+						domdocument.writeDocument(RoosterDAO.FILE_XML,
+								RoosterDAO.FILE_XSD, document);
 					}
 				}
 			}
@@ -169,8 +176,8 @@ public class RoosterDAO {
 
 	public static ArrayList<Rooster> getRoosters() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("roosters.xml",
-				"roosters.xsd");
+		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+				RoosterDAO.FILE_XSD);
 
 		ArrayList<Rooster> roosters = new ArrayList<Rooster>();
 		if (document != null) {

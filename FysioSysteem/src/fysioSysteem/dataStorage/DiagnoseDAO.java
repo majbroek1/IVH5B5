@@ -18,10 +18,13 @@ import fysioSysteem.domain.Diagnose;
  */
 public class DiagnoseDAO {
 
+	private static final String FILE_XML = "Data/diagnoses.xml";
+	private static final String FILE_XSD = "Data/diagnoses.xsd";
+
 	public static Diagnose getDiagnose(int diagnoseCode) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("diagnoses.xml",
-				"diagnoses.xsd");
+		Document document = domdocument.getDocument(DiagnoseDAO.FILE_XML,
+				DiagnoseDAO.FILE_XSD);
 
 		Diagnose diagnose = null;
 		if (document != null) {
@@ -55,8 +58,8 @@ public class DiagnoseDAO {
 
 	public static void setDiagnose(Diagnose diagnose) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("diagnoses.xml",
-				"diagnoses.xsd");
+		Document document = domdocument.getDocument(DiagnoseDAO.FILE_XML,
+				DiagnoseDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -81,8 +84,8 @@ public class DiagnoseDAO {
 				}
 			}
 
-			domdocument.writeDocument("diagnoses.xml", "diagnoses.xsd",
-					document);
+			domdocument.writeDocument(DiagnoseDAO.FILE_XML,
+					DiagnoseDAO.FILE_XSD, document);
 		} else
 			System.out.println("XML document is null");
 
@@ -92,8 +95,8 @@ public class DiagnoseDAO {
 
 	public static void addDiagnose(Diagnose diagnose) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("diagnoses.xml",
-				"diagnoses.xsd");
+		Document document = domdocument.getDocument(DiagnoseDAO.FILE_XML,
+				DiagnoseDAO.FILE_XSD);
 
 		if (getDiagnose(diagnose.getCode()) == null) {
 			Node rootElement = document.getElementsByTagName("diagnoses").item(
@@ -114,8 +117,8 @@ public class DiagnoseDAO {
 					.getBsn()));
 			newdiagnose.appendChild(klantBsn);
 
-			domdocument.writeDocument("diagnoses.xml", "diagnoses.xsd",
-					document);
+			domdocument.writeDocument(DiagnoseDAO.FILE_XML,
+					DiagnoseDAO.FILE_XSD, document);
 		} else {
 			System.out.println("diagnose bestaat al");
 		}
@@ -123,8 +126,8 @@ public class DiagnoseDAO {
 
 	public static ArrayList<Diagnose> getDiagnoses() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("diagnoses.xml",
-				"diagnoses.xsd");
+		Document document = domdocument.getDocument(DiagnoseDAO.FILE_XML,
+				DiagnoseDAO.FILE_XSD);
 
 		ArrayList<Diagnose> diagnoses = new ArrayList<Diagnose>();
 		if (document != null) {
