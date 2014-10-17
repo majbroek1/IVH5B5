@@ -13,19 +13,23 @@ public class Behandeling {
 	private Klant klant;
 	private BehandelCode behandelCode;
 	private ArrayList<Afspraak> afspraken;
-	
+
 	/**
 	 * @param id
 	 * @param status
 	 */
-	public Behandeling(int id, String status) {		
+	public Behandeling(int id, String status) {
 		this.id = id;
 		this.status = status;
 	}
 
-	public Behandeling(int id2, String status2, Klant klant2,
-			BehandelCode behandelCode2, ArrayList<Afspraak> afspraken2) {
-		// TODO Auto-generated constructor stub
+	public Behandeling(int id, String status, Klant klant,
+			BehandelCode behandelCode, ArrayList<Afspraak> afspraken) {
+		this.id = id;
+		this.status = status;
+		this.klant = klant;
+		this.behandelCode = behandelCode;
+		this.afspraken = afspraken;
 	}
 
 	/**
@@ -97,5 +101,5 @@ public class Behandeling {
 	public void setKlant(Klant klant) {
 		this.klant = klant;
 	}
-	
+
 }

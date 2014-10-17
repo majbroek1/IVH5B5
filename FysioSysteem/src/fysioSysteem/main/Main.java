@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import org.apache.log4j.BasicConfigurator;
 
 import fysioSysteem.dataStorage.BehandelCodeDAO;
-import fysioSysteem.dataStorage.DiagnoseDAO;
+import fysioSysteem.dataStorage.BehandelingDAO;
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.dataStorage.PraktijkDAO;
 import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.BehandelCode;
-import fysioSysteem.domain.Diagnose;
+import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Rooster;
@@ -38,6 +38,7 @@ public class Main {
 		//DiagnoseDAO.setDiagnose(new Diagnose(1, "Meer text dan een hoop"));
 		//Diagnose diagnose = DiagnoseDAO.getDiagnose(1);
 		BehandelCode code = BehandelCodeDAO.getBehandelCode(1);
+		Behandeling behandeling = BehandelingDAO.getBehandeling(1);
 		int i = 0;
 	}
 }
