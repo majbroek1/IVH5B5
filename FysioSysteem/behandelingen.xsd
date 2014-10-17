@@ -3,19 +3,14 @@
 	<xs:element name="behandelingen">
 		<xs:complexType>
 			<xs:sequence>		
-				<xs:element name="behandeling">
+				<xs:element name="behandeling"  maxOccurs="unbounded" minOccurs="0">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="status">
-								<xs:simpleType>
-									<xs:enumeration value="stat1"/>
-									<xs:enumeration value="stat2"/>
-									<xs:enumeration value="stat3"/>
-								</xs:simpleType>
-							</xs:element>
+							<xs:element name="status"/>
 							<xs:element name="klantBsn" type="xs:string"/>
-							<xs:element name="behandelcode" type="xs:string"/>
-						</xs:sequence>
+							<xs:element name="behandelCode" type="xs:string"/>
+						</xs:sequence>						
+						<xs:attribute name="id" type="xs:integer"/>
 					</xs:complexType>
 				</xs:sequence>
 			</xs:complexType>
