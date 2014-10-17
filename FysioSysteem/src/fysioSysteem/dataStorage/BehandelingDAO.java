@@ -10,10 +10,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import fysioSysteem.domain.Afspraak;
-import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Behandeling;
-import fysioSysteem.domain.Klant;
 
 /**
  * @author Bob
@@ -21,12 +18,12 @@ import fysioSysteem.domain.Klant;
  */
 public class BehandelingDAO {
 
-	public static Behandeling getBehandeling(Behandeling behandeling) {
+	public static Behandeling getBehandeling(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
 		Document document = domdocument.getDocument("behandelingen.xml",
 				"behandelingen.xsd");
 
-		Behandeling defBehandeling = null;
+		Behandeling behandeling = null;
 		if (document != null) {
 			NodeList list = document.getElementsByTagName("behandeling");
 
@@ -35,50 +32,29 @@ public class BehandelingDAO {
 				if (node instanceof Element) {
 					Element child = (Element) node;
 					String _id = child.getAttribute("id");
-					if (Integer.parseInt(_id) == behandeling.getId()) {
+					if (Integer.parseInt(_id) == id) {
 						String status = child.getElementsByTagName("status")
 								.item(0).getTextContent();
-						Klant klant = KlantDAO.getKlant(child
-								.getElementsByTagName("klantBsn").item(0)
+						int behandelCode = Integer.parseInt(child
+								.getElementsByTagName("behandelCode").item(0)
 								.getTextContent());
-						BehandelCode behandelCode = BehandelCodeDAO
-								.getBehandelCode(Integer.parseInt(child
-										.getElementsByTagName("behandelCode")
-										.item(0).getTextContent()));
-
-						/*
-						 * NodeList afsprakenList = ((Element) node)
-						 * .getElementsByTagName("afspraak");
-						 * 
-						 * 
-						 * ArrayList<Afspraak> afspraken = new ArrayList<>();
-						 * for (int a = 0; a < afsprakenList.getLength(); a++) {
-						 * Node childNode = list.item(i); if (childNode
-						 * instanceof Element) { Element childElement =
-						 * (Element) childNode; String afspraakId = childElement
-						 * .getElementsByTagName("afspraak")
-						 * .item(0).getTextContent();
-						 * 
-						 * Afspraak afspraak = AfspraakDAO
-						 * .getAfspraak(afspraakId);
-						 * 
-						 * if (afspraak != null) { afspraken.add(afspraak); } }
-						 * }
-						 */
-
-						defBehandeling = new Behandeling(behandeling.getId(),
-								status, klant, behandelCode,
-								AfspraakDAO.getAfspraken(behandeling.getId()));
+						String klantBsn = child
+								.getElementsByTagName("klantBsn").item(0)
+								.getTextContent();
+						behandeling = new Behandeling(id, status,
+								KlantDAO.getKlant(klantBsn),
+								BehandelCodeDAO.getBehandelCode(behandelCode),
+								AfspraakDAO.getAfspraken(id));
 					}
 				}
 			}
 		} else
 			System.out.println("XML document is null");
 
-		if (defBehandeling == null)
+		if (behandeling == null)
 			System.out.println("Behandeling niet gevonden");
 
-		return defBehandeling;
+		return behandeling;
 	}
 
 	public static void setBehandeling(Behandeling behandeling) {
@@ -119,7 +95,7 @@ public class BehandelingDAO {
 		Document document = domdocument.getDocument("behandelingen.xml",
 				"behandelingen.xsd");
 
-		if (getBehandeling(behandeling) == null) {
+		if (getBehandeling(behandeling.getId()) == null) {
 			Node rootElement = document.getElementsByTagName("behandelingen")
 					.item(0);
 
@@ -137,9 +113,7 @@ public class BehandelingDAO {
 			behandelCode.appendChild(document.createTextNode(Integer
 					.toString(behandeling.getBehandelCode().getCode())));
 			newbehandeling.appendChild(behandelCode);
-
-			// TODO afspraken array wegschrijven?
-
+			
 			domdocument.writeDocument("behandelingen.xml", "behandelingen.xsd",
 					document);
 		} else {
@@ -152,7 +126,7 @@ public class BehandelingDAO {
 		Document document = domdocument.getDocument("behandelingen.xml",
 				"behandelingen.xsd");
 
-		ArrayList<Behandeling> behandelingen = new ArrayList<>();
+		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
 		if (document != null) {
 			NodeList list = document.getElementsByTagName("behandeling");
 
@@ -160,33 +134,18 @@ public class BehandelingDAO {
 				Node node = list.item(i);
 				if (node instanceof Element) {
 					Element child = (Element) node;
-					int id = Integer.parseInt(child.getElementsByTagName("id")
-							.item(0).getTextContent());
+					int id = Integer.parseInt(child.getAttribute("id"));
 					String status = child.getElementsByTagName("status")
 							.item(0).getTextContent();
-					Klant klant = KlantDAO.getKlant(child
-							.getElementsByTagName("klantBsn").item(0)
+					int behandelCode = Integer.parseInt(child
+							.getElementsByTagName("behandelCode").item(0)
 							.getTextContent());
-					BehandelCode behandelCode = BehandelCodeDAO
-							.getBehandelCode(Integer.parseInt(child
-									.getElementsByTagName("behandelCode")
-									.item(0).getTextContent()));
-					/*
-					 * NodeList afsprakenList = ((Element) node)
-					 * .getElementsByTagName("afspraak"); ArrayList<Afspraak>
-					 * afspraken = new ArrayList<>(); for (int a = 0; a <
-					 * afsprakenList.getLength(); a++) { Node childNode =
-					 * list.item(i); if (childNode instanceof Element) { Element
-					 * childElement = (Element) childNode; String afspraakId =
-					 * childElement .getElementsByTagName("afspraak").item(0)
-					 * .getTextContent();
-					 * 
-					 * Afspraak afspraak = AfspraakDAO .getAfspraak(afspraakId);
-					 * 
-					 * if (afspraak != null) { afspraken.add(afspraak); } } }
-					 */
-					behandelingen.add(new Behandeling(id, status, klant,
-							behandelCode, AfspraakDAO.getAfspraken(id)));
+					String klantBsn = child.getElementsByTagName("klantBsn")
+							.item(0).getTextContent();
+					behandelingen.add(new Behandeling(id, status, KlantDAO
+							.getKlant(klantBsn), BehandelCodeDAO
+							.getBehandelCode(behandelCode), AfspraakDAO
+							.getAfspraken(id)));
 				}
 			}
 		} else
