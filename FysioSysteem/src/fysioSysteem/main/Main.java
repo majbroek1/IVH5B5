@@ -5,18 +5,12 @@ import java.util.ArrayList;
 import org.apache.log4j.BasicConfigurator;
 
 import fysioSysteem.dataStorage.BehandelCodeDAO;
-<<<<<<< HEAD
-=======
 import fysioSysteem.dataStorage.BehandelingDAO;
->>>>>>> 28f05c74ee5519c5ac7bafb7180ceff65a36a987
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.dataStorage.PraktijkDAO;
 import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.BehandelCode;
-<<<<<<< HEAD
-=======
 import fysioSysteem.domain.Behandeling;
->>>>>>> 28f05c74ee5519c5ac7bafb7180ceff65a36a987
 import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Rooster;
@@ -38,14 +32,18 @@ public class Main {
 		//MedewerkerDAO dao = new MedewerkerDAO();
 		//MedewerkerDAO.addMedewerker(medewerkers.get(1));
 		Medewerker medewerker = MedewerkerDAO.getMedewerker(1);
+		
 		Praktijk prakkie = PraktijkDAO.getPraktijk(1);
 		ArrayList<Praktijk> praktijken = PraktijkDAO.getPraktijken();
 		Rooster rooster = RoosterDAO.getRooster(1);
+		
 		//ArrayList<Diagnose> diagnoses = DiagnoseDAO.getDiagnoses();
 		//DiagnoseDAO.setDiagnose(new Diagnose(1, "Meer text dan een hoop"));
 		//Diagnose diagnose = DiagnoseDAO.getDiagnose(1);
+		
 		BehandelCode code = BehandelCodeDAO.getBehandelCode(1);
 		Behandeling behandeling = BehandelingDAO.getBehandeling(1);
+		
 		int i = 0;
 	}
 }

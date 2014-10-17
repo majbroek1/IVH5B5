@@ -1,11 +1,15 @@
 package fysioSysteem.businessLogic.login;
 
+import fysioSysteem.domain.Medewerker;
+
 /**
  * @author Bob
  *
  */
 public class LoginManager implements ILoginManager {
 
+	private Medewerker logged;
+	
 	public LoginManager() {
 		// TODO
 	}

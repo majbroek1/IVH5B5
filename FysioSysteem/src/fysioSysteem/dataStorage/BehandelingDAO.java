@@ -18,10 +18,13 @@ import fysioSysteem.domain.Behandeling;
  */
 public class BehandelingDAO {
 
+	private static final String FILE_XML = "Data/behandelingen.xml";
+	private static final String FILE_XSD = "Data/behandelingen.xsd";
+
 	public static Behandeling getBehandeling(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelingen.xml",
-				"behandelingen.xsd");
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
+				BehandelingDAO.FILE_XSD);
 
 		Behandeling behandeling = null;
 		if (document != null) {
@@ -59,8 +62,8 @@ public class BehandelingDAO {
 
 	public static void setBehandeling(Behandeling behandeling) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelingen.xml",
-				"behandelingen.xsd");
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
+				BehandelingDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -81,8 +84,8 @@ public class BehandelingDAO {
 				}
 			}
 
-			domdocument.writeDocument("behandelingen.xml", "behandelingen.xsd",
-					document);
+			domdocument.writeDocument(BehandelingDAO.FILE_XML,
+					BehandelingDAO.FILE_XSD, document);
 		} else
 			System.out.println("XML document is null");
 
@@ -92,8 +95,8 @@ public class BehandelingDAO {
 
 	public static void addBehandeling(Behandeling behandeling) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelingen.xml",
-				"behandelingen.xsd");
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
+				BehandelingDAO.FILE_XSD);
 
 		if (getBehandeling(behandeling.getId()) == null) {
 			Node rootElement = document.getElementsByTagName("behandelingen")
@@ -113,9 +116,9 @@ public class BehandelingDAO {
 			behandelCode.appendChild(document.createTextNode(Integer
 					.toString(behandeling.getBehandelCode().getCode())));
 			newbehandeling.appendChild(behandelCode);
-			
-			domdocument.writeDocument("behandelingen.xml", "behandelingen.xsd",
-					document);
+
+			domdocument.writeDocument(BehandelingDAO.FILE_XML,
+					BehandelingDAO.FILE_XSD, document);
 		} else {
 			System.out.println("behandelCode bestaat al");
 		}
@@ -123,8 +126,8 @@ public class BehandelingDAO {
 
 	public static ArrayList<Behandeling> getBehandelingen() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument("behandelingen.xml",
-				"behandelingen.xsd");
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
+				BehandelingDAO.FILE_XSD);
 
 		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
 		if (document != null) {
