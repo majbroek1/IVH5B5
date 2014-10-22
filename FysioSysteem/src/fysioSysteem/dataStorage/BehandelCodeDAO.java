@@ -42,7 +42,7 @@ public class BehandelCodeDAO {
 						int aantalSessies = Integer.parseInt(child
 								.getElementsByTagName("aantalSessies").item(0)
 								.getTextContent());
-						Double sessieDuur = Double.parseDouble(child
+						int sessieDuur = Integer.parseInt(child
 								.getElementsByTagName("sessieDuur").item(0)
 								.getTextContent());
 						Double tariefBehandeling = Double.parseDouble(child
@@ -172,7 +172,7 @@ public class BehandelCodeDAO {
 					int aantalSessies = Integer.parseInt(child
 							.getElementsByTagName("aantalSessies").item(0)
 							.getTextContent());
-					Double sessieDuur = Double.parseDouble(child
+					int sessieDuur = Integer.parseInt(child
 							.getElementsByTagName("sessieDuur").item(0)
 							.getTextContent());
 					Double tariefBehandeling = Double.parseDouble(child

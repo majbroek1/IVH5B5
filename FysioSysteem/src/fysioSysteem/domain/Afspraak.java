@@ -1,5 +1,6 @@
 package fysioSysteem.domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -11,6 +12,7 @@ public class Afspraak {
 	private int id;
 	private Date datumTijd;
 	private Fysiotherapeut fysiotherapeut;
+	private Behandeling behandeling;
 	
 	/**
 	 * @param id
@@ -26,9 +28,10 @@ public class Afspraak {
 	 * @param datumTijd
 	 * @param fysiotherapeut
 	 */
-	public Afspraak(int id, Date datumTijd, Fysiotherapeut fysiotherapeut) {
+	public Afspraak(int id, Date datumTijd, Fysiotherapeut fysiotherapeut, Behandeling behandeling) {
 		this(id, datumTijd);
 		this.fysiotherapeut = fysiotherapeut;
+		this.behandeling = behandeling;
 	}
 
 	/**
@@ -71,6 +74,28 @@ public class Afspraak {
 	 */
 	public void setFysiotherapeut(Fysiotherapeut fysiotherapeut) {
 		this.fysiotherapeut = fysiotherapeut;
+	}
+	
+	/**
+	 * @param behandeling
+	 */
+	public Behandeling getBehandeling() {
+		return behandeling;
+	}
+
+	public void setBehandeling(Behandeling behandeling) {
+		this.behandeling = behandeling;
+	}
+
+	/**
+	 * @return
+	 */
+	public Date getEindTijd(){
+		int sessieDuur = behandeling.getBehandelCode().getSessieDuur();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(datumTijd);
+		cal.add(Calendar.MINUTE, sessieDuur);
+		return cal.getTime();
 	}
 	
 }
