@@ -1,4 +1,4 @@
-package fysioSysteem.businessLogic.beheer;
+package fysioSysteem.businessLogic.behanding;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import fysioSysteem.domain.Klant;
  * @author Bob
  *
  */
-public interface IBehandelManager {
+public interface IBehandelingManager {
 
 	/**
 	 * @param behandeling

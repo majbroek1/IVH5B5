@@ -10,7 +10,8 @@ public class BehandelCode {
 
 	private int code, aantalSessies;
 	private String behandelingNaam;
-	private double sessieDuur, tariefBehandeling;
+	private double tariefBehandeling;
+	private int sessieDuur;
 	private ArrayList<Behandeling> behandelingen;
 	
 	/**
@@ -21,7 +22,7 @@ public class BehandelCode {
 	 * @param tariefBehandeling
 	 */
 	public BehandelCode(int code, int aantalSessies, String behandelingNaam,
-			double sessieDuur, double tariefBehandeling) {
+			int sessieDuur, double tariefBehandeling) {
 		this.code = code;
 		this.aantalSessies = aantalSessies;
 		this.behandelingNaam = behandelingNaam;
@@ -38,7 +39,7 @@ public class BehandelCode {
 	 * @param behandelingen
 	 */
 	public BehandelCode(int code, int aantalSessies, String behandelingNaam,
-			double sessieDuur, double tariefBehandeling,
+			int sessieDuur, double tariefBehandeling,
 			ArrayList<Behandeling> behandelingen) {
 		this(code, aantalSessies, behandelingNaam, sessieDuur, tariefBehandeling);
 		this.behandelingen = behandelingen;
@@ -89,14 +90,14 @@ public class BehandelCode {
 	/**
 	 * @return
 	 */
-	public double getSessieDuur() {
+	public int getSessieDuur() {
 		return sessieDuur;
 	}
 
 	/**
 	 * @param sessieDuur
 	 */
-	public void setSessieDuur(double sessieDuur) {
+	public void setSessieDuur(int sessieDuur) {
 		this.sessieDuur = sessieDuur;
 	}
 
