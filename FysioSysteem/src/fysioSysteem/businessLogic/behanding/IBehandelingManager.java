@@ -10,7 +10,7 @@ import fysioSysteem.domain.Klant;
  * @author Bob
  *
  */
-public interface IBehandelManager {
+public interface IBehandelingManager {
 
 	/**
 	 * @param behandeling

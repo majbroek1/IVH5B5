@@ -10,7 +10,7 @@ import fysioSysteem.domain.Klant;
  * @author Bob
  *
  */
-public class BehandelingManager implements IBehandelManager {
+public class BehandelingManager implements IBehandelingManager {
 
 	private ArrayList<Behandeling> behandelingen;
 	
