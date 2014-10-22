@@ -73,4 +73,11 @@ public class Afspraak {
 		this.fysiotherapeut = fysiotherapeut;
 	}
 	
+	/**
+	 * @return
+	 */
+	public Date getEindTijd() {
+		return null;
+	}
+	
 }

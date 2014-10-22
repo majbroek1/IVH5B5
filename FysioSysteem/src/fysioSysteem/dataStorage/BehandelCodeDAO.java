@@ -153,7 +153,7 @@ public class BehandelCodeDAO {
 		}
 	}
 
-	public static ArrayList<BehandelCode> getBehandelingen() {
+	public static ArrayList<BehandelCode> getBehandelCodes() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
 		Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
 				BehandelCodeDAO.FILE_XSD);
