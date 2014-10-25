@@ -15,12 +15,18 @@ import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Rooster;
 import fysioSysteem.domain.Status;
+import fysioSysteem.presentation.frmLogin;
 
 public class Main {
 
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
 		
+		frmLogin lgn = new frmLogin();
+		lgn.show();
+	}
+	
+	private void debug() {
 		ArrayList<Medewerker> medewerkers = new ArrayList<Medewerker>();
 		medewerkers.add(new Medewerker(1, "Mark", "Test", Status.ACTIEF));
 		medewerkers.add(new Medewerker(2, "Bob", "2", Status.INACTIEF));
