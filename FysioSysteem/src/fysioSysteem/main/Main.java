@@ -21,9 +21,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
-		
-		frmLogin lgn = new frmLogin();
-		lgn.show();
+		new frmLogin().setVisible(true);
 	}
 	
 	private void debug() {

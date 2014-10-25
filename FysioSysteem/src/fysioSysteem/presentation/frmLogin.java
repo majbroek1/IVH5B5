@@ -74,7 +74,8 @@ public class frmLogin extends JFrame {
 				String medewerkerPass = new String(txtMedewerkerPass.getPassword());
 				
 				if(lgn.valideer(medewerkerId, medewerkerPass)) {
-					System.out.println("User is valid");
+					frmLogin.this.dispose();
+					new frmMain().setVisible(true);
 				}
 				else {
 					System.out.println("User invalid");
