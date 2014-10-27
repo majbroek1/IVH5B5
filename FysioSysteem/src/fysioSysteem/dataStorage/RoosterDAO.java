@@ -5,6 +5,7 @@ package fysioSysteem.dataStorage;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.w3c.dom.Document;
@@ -12,6 +13,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
 
 /**
@@ -74,16 +76,32 @@ public class RoosterDAO {
 		return rooster;
 	}
 	
-	public static ArrayList<Rooster> getRoosterFysio(int fysioId) {
+	public static ArrayList<Rooster> getRooster(Fysiotherapeut fysio) {
 		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
 		ArrayList<Rooster> rtnList = new ArrayList<>();
 		
 		for(Rooster r : roosters) {
-			if(r.getFysiotherapeut().getId() == fysioId)
+			if(r.getFysiotherapeut().getId() == fysio.getId())
 				rtnList.add(r);
 		}
 		
 		return rtnList;
+	}
+	
+	public static Rooster getRooster(Fysiotherapeut fysio, int weekNr) {
+		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
+		Calendar cal = Calendar.getInstance();
+		
+		for(Rooster r : roosters) {			
+			if(r.getFysiotherapeut().getId() == fysio.getId()) {
+				cal.setTime(r.getStart());
+				
+				if(cal.get(Calendar.WEEK_OF_YEAR) == weekNr)
+					return r;
+			}
+		}
+		
+		return null;
 	}
 
 	public static void setRooster(Rooster rooster) {

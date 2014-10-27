@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <afspraken>
 	<afspraak id="1">
@@ -15,4 +16,23 @@
 		<fysioId>3</fysioId>
 		<behandelingId>3</behandelingId>
 	</afspraak>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<afspraken>
+	<afspraak id="1">
+		<datumTijd>2014-10-30T09:30:10.5</datumTijd>
+		<fysioId>1</fysioId>
+		<behandelingId>1</behandelingId>
+	</afpsraak>
+	<afspraak id="2">
+		<datumTijd>2014-10-30T10:30:10.5</datumTijd>
+		<fysioId>2</fysioId>
+		<behandelingId>2</behandelingId>
+	</afpsraak>
+	<afspraak id="3">
+		<datumTijd>2014-10-30T09:00:10.5</datumTijd>
+		<fysioId>3</fysioId>
+		<behandelingId>3</behandelingId>
+	</afpsraak>
+>>>>>>> branch 'master' of https://github.com/fazed/IVH5B5
 </afspraken>

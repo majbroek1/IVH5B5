@@ -36,6 +36,13 @@ public interface IRoosterManager {
 	public ArrayList<Rooster> getWeekRooster(Fysiotherapeut fysio);
 	
 	/**
+	 * @param fysio
+	 * @param weekNr
+	 * @return
+	 */
+	public Rooster getWeekRooster(Fysiotherapeut fysio, int weekNr);
+	
+	/**
 	 * @param rooster
 	 */
 	public void removeRooster(Rooster rooster);

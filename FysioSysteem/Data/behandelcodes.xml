@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <behandelCodes>
 	<behandelCode code="1">
@@ -18,4 +19,3 @@
 		<sessieDuur>10</sessieDuur>
 		<tariefBehandeling>300.00</tariefBehandeling>
 	</behandelCode>
-</behandelCodes>
