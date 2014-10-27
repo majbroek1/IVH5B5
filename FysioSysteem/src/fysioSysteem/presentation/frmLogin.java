@@ -1,0 +1,97 @@
+package fysioSysteem.presentation;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import fysioSysteem.businessLogic.login.LoginManager;
+
+public class frmLogin extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtMedewerkerID;
+	private JPasswordField txtMedewerkerPass;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frmLogin frame = new frmLogin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public frmLogin() {
+		setTitle("Inloggen");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 200);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblMedewerkerid = new JLabel("MedewerkerID");
+		lblMedewerkerid.setBounds(10, 11, 414, 14);
+		contentPane.add(lblMedewerkerid);
+		
+		txtMedewerkerID = new JTextField();
+		txtMedewerkerID.setBounds(10, 36, 414, 20);
+		contentPane.add(txtMedewerkerID);
+		txtMedewerkerID.setColumns(10);
+		
+		JLabel lblWachtwoord = new JLabel("Wachtwoord");
+		lblWachtwoord.setBounds(10, 67, 414, 14);
+		contentPane.add(lblWachtwoord);
+		
+		txtMedewerkerPass = new JPasswordField();
+		txtMedewerkerPass.setBounds(10, 92, 414, 20);
+		contentPane.add(txtMedewerkerPass);
+		
+		JButton btnInloggen = new JButton("Inloggen");
+		btnInloggen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginManager lgn = new LoginManager();
+				
+				int medewerkerId = Integer.parseInt(txtMedewerkerID.getText());
+				String medewerkerPass = new String(txtMedewerkerPass.getPassword());
+				
+				if(lgn.valideer(medewerkerId, medewerkerPass)) {
+					frmLogin.this.dispose();
+					new frmMain().setVisible(true);
+				}
+				else {
+					System.out.println("User invalid");
+				}
+			}
+		});
+		btnInloggen.setBounds(299, 123, 125, 23);
+		contentPane.add(btnInloggen);
+		
+		JButton btnAnnuleren = new JButton("Annuleren");
+		btnAnnuleren.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnAnnuleren.setBounds(10, 123, 125, 23);
+		contentPane.add(btnAnnuleren);
+	}
+}
