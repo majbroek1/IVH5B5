@@ -2,7 +2,7 @@
 <incrementIds>
 	<incrementId class="Afspraak">
 		<currentId>1</currentId>
-	</behandelCode>
+	</incrementId>
 	<incrementId class="BehandelCode">
 		<currentId>1</currentId>
 	</incrementId>
