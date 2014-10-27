@@ -57,6 +57,18 @@ public class MedewerkerDAO {
 
 		return medewerker;
 	}
+	
+	public static ArrayList<Medewerker> getActieveMedewerkers() {
+		ArrayList<Medewerker> medewerkers = MedewerkerDAO.getMedewerkers();
+		ArrayList<Medewerker> rtnList = new ArrayList<>();
+		
+		for(Medewerker m : medewerkers) {
+			if(m.getStatus().equals("ACTIEF"))
+				rtnList.add(m);
+		}
+		
+		return rtnList;
+	}
 
 	public static Fysiotherapeut getFysio(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
