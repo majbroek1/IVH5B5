@@ -13,7 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import fysioSysteem.businessLogic.login.LoginManager;
+import fysioSysteem.businessLogic.login.*;
 
 public class frmLogin extends JFrame {
 
@@ -75,7 +75,7 @@ public class frmLogin extends JFrame {
 		JButton btnInloggen = new JButton("Inloggen");
 		btnInloggen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginManager lgn = new LoginManager();
+				ILoginManager lgn = new LoginManager();
 				
 				try {
 					int medewerkerId = Integer.parseInt(txtMedewerkerID.getText());
