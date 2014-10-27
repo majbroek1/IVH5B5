@@ -41,7 +41,6 @@ public class frmMain extends JFrame {
 	final static String FYSIOTHEROPEUTEN_ROOSTER_OVERZICHT = "Fysiotheropeuten Rooster Overzicht";
 	final static String FYSIOTHEROPEUTEN_ROOSTER_TOEVOEGEN_WIJZIGEN = "Fysiotheropeuten Rooster Toevoegen/ Wijzigen";
 	final static String PARKTIJK_GEGEVENS = "Praktijk Gegevens Toevoegen / Wijzigen";
-	private JTable tblAfspOvzTable;
 	
 	/**
 	 * Launch the application.
@@ -140,71 +139,33 @@ public class frmMain extends JFrame {
 		pnlMenu.add(btnUitloggen, gbc_btnUitloggen);
 		
 		/* Card Panel */
-		
-		
-		
-		
-		/*JPanel pnlContent = new JPanel();
-		pnlContent.setBackground(Color.WHITE);
-		pnlContent.setBounds(200, 0, 876, 656);
-		getContentPane().add(pnlContent);
-		pnlContent.setLayout(new CardLayout);
-		
-        JPanel pnlCardtest1 = new JPanel();
-		pnlContent.setBackground(Color.RED);
-		pnlContent.setBounds(200, 0, 876, 656);
-		getContentPane().add(pnlCardtest1);
-		
-		JPanel pnlCardtest2 = new JPanel();
-		pnlContent.setBackground(Color.YELLOW);
-		pnlContent.setBounds(200, 0, 876, 656);
-		getContentPane().add(pnlCardtest2);*/
-		
 		CardLayout cl = new CardLayout();
 
-		/*Afspraken Overzicht Panel*/
-		JPanel pnlAfspOvz = new JPanel();
+		JPanel pnlAfspOvz = new pnlAfspOvz();
 		pnlAfspOvz.setBounds(200, 0, 876, 656);
 		
-		JLabel lblAfspOvzTitel = new JLabel("Afspraak Overzicht");
-		lblAfspOvzTitel.setBounds(6, 6, 138, 33);
-		pnlAfspOvz.add(lblAfspOvzTitel);
-		
-		tblAfspOvzTable = new JTable();
-		tblAfspOvzTable.setBounds(6, 582, 864, -543);
-		pnlAfspOvz.add(tblAfspOvzTable);
-		
-		JButton btnAfspOvzToevoegen = new JButton("Afspraak Toevoegen");
-		btnAfspOvzToevoegen.setBounds(0, 0, 117, 29);
-		pnlAfspOvz.add(btnAfspOvzToevoegen);
-		
-		/*JButton btnAfspOvzWijzen = new JButton("Afspraak Wijzigen");
-		
-		btnAfspOvzWijzen.add(btnAfspOvzWijzen);*/
-		
-		/*Afspraken Overzicht Panel*/
-		JPanel pnlAfspToeWzg = new JPanel();
+		JPanel pnlAfspToeWzg = new pnlAfspToeWzg();
 		pnlAfspToeWzg.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlBhdlOvz = new JPanel();
+		JPanel pnlBhdlOvz = new pnlBhdlOvz();
 		pnlBhdlOvz.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlBhdlToeWzg = new JPanel();
+		JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg();
 		pnlBhdlToeWzg.setBounds(200, 0, 876, 656);
 
-		JPanel pnlFysOvz = new JPanel();
+		JPanel pnlFysOvz = new pnlFysOvz();
 		pnlFysOvz.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlFysToeWzg = new JPanel();
+		JPanel pnlFysToeWzg = new pnlFysToeWzg();
 		pnlFysToeWzg.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlFysRooOvz = new JPanel();
+		JPanel pnlFysRooOvz = new pnlFysRooOvz();
 		pnlFysRooOvz.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlFysRooToeWzg = new JPanel();
+		JPanel pnlFysRooToeWzg = new pnlFysRooToeWzg();
 		pnlFysRooToeWzg.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlPraGeg = new JPanel();
+		JPanel pnlPraGeg = new pnlPraGeg();
 		pnlPraGeg.setBounds(200, 0, 876, 656);
 		
 		JPanel pnlContent = new JPanel();
@@ -212,13 +173,6 @@ public class frmMain extends JFrame {
 		pnlContent.setBounds(200, 0, 876, 656);
 		
 		pnlContent.add(pnlAfspOvz, AFSPRAKEN_OVERZICHT);
-		pnlAfspOvz.setLayout(null);
-		
-		
-		
-		
-		
-		
 		pnlContent.add(pnlAfspToeWzg, AFSPRAKEN_TOEVOEGEN_WIJZIGEN);
 		pnlContent.add(pnlBhdlOvz, BEHANDELINGEN_OVERZICHT);
 		pnlContent.add(pnlBhdlToeWzg, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
