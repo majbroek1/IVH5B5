@@ -31,6 +31,14 @@ public class Behandeling {
 		this.behandelCode = behandelCode;
 		this.afspraken = afspraken;
 	}
+	
+	public Behandeling(int id, String status, Klant klant,
+			BehandelCode behandelCode) {
+		this.id = id;
+		this.status = status;
+		this.klant = klant;
+		this.behandelCode = behandelCode;
+	}
 
 	/**
 	 * @return

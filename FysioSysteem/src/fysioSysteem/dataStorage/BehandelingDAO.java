@@ -53,7 +53,6 @@ public class BehandelingDAO {
 								BehandelCodeDAO.getBehandelCode(behandelCode),
 								AfspraakDAO.getAfspraken(new Behandeling(id,
 										status)));
-
 					}
 				}
 			}
@@ -155,12 +154,9 @@ public class BehandelingDAO {
 					String klantBsn = child.getElementsByTagName("klantBsn")
 							.item(0).getTextContent();
 
-		
 					behandelingen.add(new Behandeling(id, status, KlantDAO
 							.getKlant(klantBsn), BehandelCodeDAO
-							.getBehandelCode(behandelCode), AfspraakDAO
-							.getAfspraken(new Behandeling(id, status))));
-
+							.getBehandelCode(behandelCode)));
 				}
 			}
 		} else
@@ -177,7 +173,8 @@ public class BehandelingDAO {
 		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
 
 		for (Behandeling b : _behandelingen) {
-			behandelingen.add(b);
+			if (b.getKlant().getBsn().equals(bsn))
+				behandelingen.add(b);
 		}
 
 		return behandelingen;
