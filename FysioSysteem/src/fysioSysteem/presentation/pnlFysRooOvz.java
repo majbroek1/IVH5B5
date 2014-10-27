@@ -4,6 +4,6 @@ import javax.swing.JPanel;
 
 public class pnlFysRooOvz extends JPanel{
 	public pnlFysRooOvz(){
-		
+		setLayout(null);
 	}
 }

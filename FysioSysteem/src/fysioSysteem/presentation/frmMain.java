@@ -32,14 +32,9 @@ import javax.swing.border.MatteBorder;
 
 public class frmMain extends JFrame {
 
-	final static String AFSPRAKEN_OVERZICHT = "Afspraken Overzicht";
-	final static String AFSPRAKEN_TOEVOEGEN_WIJZIGEN = "Afspraken Toevoegen/ Wijzigen";
-	final static String BEHANDELINGEN_OVERZICHT = "Behandelingen Overzicht";
-	final static String BEHANDELINGEN_TOEVOEGEN_WIJZIGEN = "Behandelingen Toevoegen/ Wijzigen";
-	final static String FYSIOTHEROPEUTEN_OVERZICHT = "Fysiotheropeuten Overzicht";
-	final static String FYSIOTHEROPEUTEN_TOEVOEGEN_WIJZIGEN = "Fysiotheropeuten Toevoegen/ Wijzigen";
-	final static String FYSIOTHEROPEUTEN_ROOSTER_OVERZICHT = "Fysiotheropeuten Rooster Overzicht";
-	final static String FYSIOTHEROPEUTEN_ROOSTER_TOEVOEGEN_WIJZIGEN = "Fysiotheropeuten Rooster Toevoegen/ Wijzigen";
+	final static String AFSPRAKEN_MAIN = "Afspraken Main";
+	final static String BEHANDELINGEN_MAIN = "Behandelingen Main";
+	final static String FYSIOTHEROPEUTEN_MAIN = "Fysiotheropeuten Main";
 	final static String PARKTIJK_GEGEVENS = "Praktijk Gegevens Toevoegen / Wijzigen";
 	
 	/**
@@ -62,14 +57,15 @@ public class frmMain extends JFrame {
 	 * Create the frame.
 	 */
 	public frmMain() {
+		setResizable(false);
 		setTitle("FysioSysteem");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1092, 695);
+		setBounds(100, 100, 1092, 696);
 		getContentPane().setLayout(null);
 		
 		JPanel pnlMenu = new JPanel();
 		pnlMenu.setBackground(new Color(204, 0, 0));
-		pnlMenu.setBounds(0, 0, 200, 656);
+		pnlMenu.setBounds(0, 0, 200, 674);
 		getContentPane().add(pnlMenu);
 		GridBagLayout gbl_pnlMenu = new GridBagLayout();
 		gbl_pnlMenu.columnWidths = new int[]{0, 0};
@@ -141,29 +137,14 @@ public class frmMain extends JFrame {
 		/* Card Panel */
 		CardLayout cl = new CardLayout();
 
-		JPanel pnlAfspOvz = new pnlAfspOvz();
-		pnlAfspOvz.setBounds(200, 0, 876, 656);
+		JPanel pnlAfspMain = new pnlAfspMain();
+		pnlAfspMain.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlAfspToeWzg = new pnlAfspToeWzg();
-		pnlAfspToeWzg.setBounds(200, 0, 876, 656);
+		JPanel pnlBhdlMain = new pnlBhdlMain();
+		pnlBhdlMain.setBounds(200, 0, 876, 656);
 		
-		JPanel pnlBhdlOvz = new pnlBhdlOvz();
-		pnlBhdlOvz.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg();
-		pnlBhdlToeWzg.setBounds(200, 0, 876, 656);
-
-		JPanel pnlFysOvz = new pnlFysOvz();
-		pnlFysOvz.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlFysToeWzg = new pnlFysToeWzg();
-		pnlFysToeWzg.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlFysRooOvz = new pnlFysRooOvz();
-		pnlFysRooOvz.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlFysRooToeWzg = new pnlFysRooToeWzg();
-		pnlFysRooToeWzg.setBounds(200, 0, 876, 656);
+		JPanel pnlFysMain = new pnlFysMain();
+		pnlFysMain.setBounds(200, 0, 876, 656);
 		
 		JPanel pnlPraGeg = new pnlPraGeg();
 		pnlPraGeg.setBounds(200, 0, 876, 656);
@@ -172,34 +153,29 @@ public class frmMain extends JFrame {
 		pnlContent.setLayout(cl);
 		pnlContent.setBounds(200, 0, 876, 656);
 		
-		pnlContent.add(pnlAfspOvz, AFSPRAKEN_OVERZICHT);
-		pnlContent.add(pnlAfspToeWzg, AFSPRAKEN_TOEVOEGEN_WIJZIGEN);
-		pnlContent.add(pnlBhdlOvz, BEHANDELINGEN_OVERZICHT);
-		pnlContent.add(pnlBhdlToeWzg, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
-		pnlContent.add(pnlFysOvz, FYSIOTHEROPEUTEN_OVERZICHT);
-		pnlContent.add(pnlFysToeWzg ,FYSIOTHEROPEUTEN_TOEVOEGEN_WIJZIGEN);
-		pnlContent.add(pnlFysRooOvz ,FYSIOTHEROPEUTEN_ROOSTER_OVERZICHT);
-		pnlContent.add(pnlFysRooToeWzg ,FYSIOTHEROPEUTEN_ROOSTER_TOEVOEGEN_WIJZIGEN);
-		pnlContent.add(pnlPraGeg ,PARKTIJK_GEGEVENS);
-
+		pnlContent.add(pnlAfspMain, AFSPRAKEN_MAIN);
+		pnlContent.add(pnlBhdlMain, BEHANDELINGEN_MAIN);
+		pnlContent.add(pnlFysMain, FYSIOTHEROPEUTEN_MAIN);
+		pnlContent.add(pnlPraGeg, PARKTIJK_GEGEVENS);
+		
 		getContentPane().add(pnlContent);
 
 		
 		btnAfspraken.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cl.show(pnlContent, AFSPRAKEN_OVERZICHT);
+				cl.show(pnlContent, AFSPRAKEN_MAIN);
 			}
 		});
 		
 		btnFysiotherapeuten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cl.show(pnlContent, FYSIOTHEROPEUTEN_OVERZICHT);
+				cl.show(pnlContent, FYSIOTHEROPEUTEN_MAIN);
 			}
 		});
 		
 		btnBehandelingen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cl.show(pnlContent, BEHANDELINGEN_OVERZICHT);
+				cl.show(pnlContent, BEHANDELINGEN_MAIN);
 			}
 		});
 		
