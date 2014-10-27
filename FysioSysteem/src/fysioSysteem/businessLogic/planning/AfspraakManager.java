@@ -14,10 +14,8 @@ import fysioSysteem.domain.Klant;
  */
 public class AfspraakManager implements IAfspraakManager {
 	
-	private ArrayList<Afspraak> afspraken;
-	
 	public AfspraakManager() {
-		this.afspraken = AfspraakDAO.getAfspraken();
+		// TOOD
 	}
 
 	/**
@@ -25,7 +23,7 @@ public class AfspraakManager implements IAfspraakManager {
 	 * @return
 	 */
 	private boolean controleerBeschikbaarheid(Afspraak afspraak) {
-		Iterator<Afspraak> afspraken = this.afspraken.iterator();
+		Iterator<Afspraak> afspraken = getAfspraken().iterator();
 		
 		while(afspraken.hasNext()) {
 			if(afspraken.next().getDatumTijd().before(afspraak.getDatumTijd())
@@ -74,13 +72,12 @@ public class AfspraakManager implements IAfspraakManager {
 
 	@Override
 	public ArrayList<Afspraak> getAfspraken(Fysiotherapeut fysio) {
-		// TODO Auto-generated method stub
-		return null;
+		return AfspraakDAO.getAfspraken(fysio);
 	}
 
 	@Override
 	public ArrayList<Afspraak> getAfspraken() {
-		return this.afspraken;
+		return AfspraakDAO.getAfspraken();
 	}
 
 }

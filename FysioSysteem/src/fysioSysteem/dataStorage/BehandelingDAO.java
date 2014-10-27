@@ -36,18 +36,22 @@ public class BehandelingDAO {
 					Element child = (Element) node;
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == id) {
+						
 						String status = child.getElementsByTagName("status")
 								.item(0).getTextContent();
+						
 						int behandelCode = Integer.parseInt(child
 								.getElementsByTagName("behandelCode").item(0)
 								.getTextContent());
+						
 						String klantBsn = child
 								.getElementsByTagName("klantBsn").item(0)
 								.getTextContent();
+						
 						behandeling = new Behandeling(id, status,
 								KlantDAO.getKlant(klantBsn),
 								BehandelCodeDAO.getBehandelCode(behandelCode),
-								AfspraakDAO.getAfspraken(id));
+								AfspraakDAO.getAfspraken(new Behandeling(id, status)));
 					}
 				}
 			}
@@ -138,17 +142,21 @@ public class BehandelingDAO {
 				if (node instanceof Element) {
 					Element child = (Element) node;
 					int id = Integer.parseInt(child.getAttribute("id"));
+					
 					String status = child.getElementsByTagName("status")
 							.item(0).getTextContent();
+					
 					int behandelCode = Integer.parseInt(child
 							.getElementsByTagName("behandelCode").item(0)
 							.getTextContent());
+					
 					String klantBsn = child.getElementsByTagName("klantBsn")
 							.item(0).getTextContent();
+					
 					behandelingen.add(new Behandeling(id, status, KlantDAO
 							.getKlant(klantBsn), BehandelCodeDAO
 							.getBehandelCode(behandelCode), AfspraakDAO
-							.getAfspraken(id)));
+							.getAfspraken(new Behandeling(id, status))));
 				}
 			}
 		} else

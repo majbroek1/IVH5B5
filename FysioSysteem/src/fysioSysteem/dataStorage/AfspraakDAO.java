@@ -175,12 +175,12 @@ public class AfspraakDAO {
 	 * @param behandelingId
 	 * @return
 	 */
-	public static ArrayList<Afspraak> getAfsprakenFysio(int fysioId){
+	public static ArrayList<Afspraak> getAfspraken(Fysiotherapeut fysio){
 		ArrayList<Afspraak> afspraken = AfspraakDAO.getAfspraken();
 		ArrayList<Afspraak> rtnAfspraken = new ArrayList<>();
 		
 		for(Afspraak afspraak : afspraken) {
-			if(afspraak.getFysiotherapeut().getId() == fysioId)
+			if(afspraak.getFysiotherapeut().getId() == fysio.getId())
 				rtnAfspraken.add(afspraak);
 		}
 		
@@ -193,12 +193,12 @@ public class AfspraakDAO {
 	 * @param behandelingId
 	 * @return
 	 */
-	public static ArrayList<Afspraak> getAfsprakenBehandeling(int behandelingId){
+	public static ArrayList<Afspraak> getAfspraken(Behandeling behandeling){
 		ArrayList<Afspraak> afspraken = AfspraakDAO.getAfspraken();
 		ArrayList<Afspraak> rtnAfspraken = new ArrayList<>();
 		
 		for(Afspraak afspraak : afspraken) {
-			if(afspraak.getBehandeling().getId() == behandelingId)
+			if(afspraak.getBehandeling().getId() == behandeling.getId())
 				rtnAfspraken.add(afspraak);
 		}
 		
