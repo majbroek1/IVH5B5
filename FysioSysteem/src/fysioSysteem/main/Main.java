@@ -24,6 +24,7 @@ public class Main {
 		new frmLogin().setVisible(true);
 	}
 	
+	@SuppressWarnings("unused")
 	private void debug() {
 		ArrayList<Medewerker> medewerkers = new ArrayList<Medewerker>();
 		medewerkers.add(new Medewerker(1, "Mark", "Test", Status.ACTIEF));

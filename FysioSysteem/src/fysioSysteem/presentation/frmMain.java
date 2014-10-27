@@ -1,25 +1,25 @@
 package fysioSysteem.presentation;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JDesktopPane;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class frmMain extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -724883528804552733L;
 
 	/**
 	 * Launch the application.
@@ -41,6 +41,7 @@ public class frmMain extends JFrame {
 	 * Create the frame.
 	 */
 	public frmMain() {
+		setResizable(false);
 		setTitle("FysioSysteem");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1092, 695);
@@ -48,7 +49,7 @@ public class frmMain extends JFrame {
 		
 		JPanel pnlMenu = new JPanel();
 		pnlMenu.setBackground(new Color(204, 0, 0));
-		pnlMenu.setBounds(0, 0, 200, 656);
+		pnlMenu.setBounds(0, 0, 200, 666);
 		getContentPane().add(pnlMenu);
 		GridBagLayout gbl_pnlMenu = new GridBagLayout();
 		gbl_pnlMenu.columnWidths = new int[]{0, 0};
@@ -119,7 +120,7 @@ public class frmMain extends JFrame {
 		
 		JPanel pnlContent = new JPanel();
 		pnlContent.setBackground(Color.WHITE);
-		pnlContent.setBounds(200, 0, 876, 656);
+		pnlContent.setBounds(200, 0, 886, 666);
 		getContentPane().add(pnlContent);
 		pnlContent.setLayout(null);
 	}

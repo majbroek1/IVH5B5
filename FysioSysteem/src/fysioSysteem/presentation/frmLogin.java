@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -16,6 +17,10 @@ import fysioSysteem.businessLogic.login.LoginManager;
 
 public class frmLogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6124993491429127842L;
 	private JPanel contentPane;
 	private JTextField txtMedewerkerID;
 	private JPasswordField txtMedewerkerPass;
@@ -40,9 +45,11 @@ public class frmLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public frmLogin() {
+		setResizable(false);
 		setTitle("Inloggen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 200);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,15 +77,23 @@ public class frmLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				LoginManager lgn = new LoginManager();
 				
-				int medewerkerId = Integer.parseInt(txtMedewerkerID.getText());
-				String medewerkerPass = new String(txtMedewerkerPass.getPassword());
-				
-				if(lgn.valideer(medewerkerId, medewerkerPass)) {
-					frmLogin.this.dispose();
-					new frmMain().setVisible(true);
+				try {
+					int medewerkerId = Integer.parseInt(txtMedewerkerID.getText());
+					String medewerkerPass = new String(txtMedewerkerPass.getPassword());
+					
+					if(lgn.valideer(medewerkerId, medewerkerPass)) {
+						frmLogin.this.dispose();
+						new frmMain().setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(frmLogin.this,
+							    "Ongeldige gebruikersnaam of wachtwoord",
+							    "Validatie error",
+							    JOptionPane.ERROR_MESSAGE);
+					}
 				}
-				else {
-					System.out.println("User invalid");
+				catch(Exception ex) {
+					ex.printStackTrace();
 				}
 			}
 		});
