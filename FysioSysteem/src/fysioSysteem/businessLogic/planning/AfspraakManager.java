@@ -43,10 +43,8 @@ public class AfspraakManager implements IAfspraakManager {
 	
 	@Override
 	public boolean addAfspraak(Afspraak afspraak) {
-		if(controleerBeschikbaarheid(afspraak)) {
-			AfspraakDAO.addAfspraak(afspraak);
-			return true;
-		}
+		if(controleerBeschikbaarheid(afspraak))
+			return AfspraakDAO.addAfspraak(afspraak);
 		
 		return false;
 	}
