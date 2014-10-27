@@ -12,6 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
 
 /**
@@ -74,12 +75,12 @@ public class RoosterDAO {
 		return rooster;
 	}
 	
-	public static ArrayList<Rooster> getRoosterFysio(int fysioId) {
+	public static ArrayList<Rooster> getRooster(Fysiotherapeut fysio) {
 		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
 		ArrayList<Rooster> rtnList = new ArrayList<>();
 		
 		for(Rooster r : roosters) {
-			if(r.getFysiotherapeut().getId() == fysioId)
+			if(r.getFysiotherapeut().getId() == fysio.getId())
 				rtnList.add(r);
 		}
 		
