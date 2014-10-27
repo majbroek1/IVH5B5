@@ -6,21 +6,43 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+
 import javax.swing.JDesktopPane;
 import javax.swing.BoxLayout;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
+
 import javax.swing.JButton;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.CardLayout;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.border.MatteBorder;
 
 public class frmMain extends JFrame {
 
+	final static String AFSPRAKEN_OVERZICHT = "Afspraken Overzicht";
+	final static String AFSPRAKEN_TOEVOEGEN_WIJZIGEN = "Afspraken Toevoegen/ Wijzigen";
+	final static String BEHANDELINGEN_OVERZICHT = "Behandelingen Overzicht";
+	final static String BEHANDELINGEN_TOEVOEGEN_WIJZIGEN = "Behandelingen Toevoegen/ Wijzigen";
+	final static String FYSIOTHEROPEUTEN_OVERZICHT = "Fysiotheropeuten Overzicht";
+	final static String FYSIOTHEROPEUTEN_TOEVOEGEN_WIJZIGEN = "Fysiotheropeuten Toevoegen/ Wijzigen";
+	final static String FYSIOTHEROPEUTEN_ROOSTER_OVERZICHT = "Fysiotheropeuten Rooster Overzicht";
+	final static String FYSIOTHEROPEUTEN_ROOSTER_TOEVOEGEN_WIJZIGEN = "Fysiotheropeuten Rooster Toevoegen/ Wijzigen";
+	final static String PARKTIJK_GEGEVENS = "Praktijk Gegevens Toevoegen / Wijzigen";
+	private JTable tblAfspOvzTable;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -117,10 +139,120 @@ public class frmMain extends JFrame {
 		gbc_btnUitloggen.gridy = 5;
 		pnlMenu.add(btnUitloggen, gbc_btnUitloggen);
 		
-		JPanel pnlContent = new JPanel();
+		/* Card Panel */
+		
+		
+		
+		
+		/*JPanel pnlContent = new JPanel();
 		pnlContent.setBackground(Color.WHITE);
 		pnlContent.setBounds(200, 0, 876, 656);
 		getContentPane().add(pnlContent);
-		pnlContent.setLayout(null);
+		pnlContent.setLayout(new CardLayout);
+		
+        JPanel pnlCardtest1 = new JPanel();
+		pnlContent.setBackground(Color.RED);
+		pnlContent.setBounds(200, 0, 876, 656);
+		getContentPane().add(pnlCardtest1);
+		
+		JPanel pnlCardtest2 = new JPanel();
+		pnlContent.setBackground(Color.YELLOW);
+		pnlContent.setBounds(200, 0, 876, 656);
+		getContentPane().add(pnlCardtest2);*/
+		
+		CardLayout cl = new CardLayout();
+
+		/*Afspraken Overzicht Panel*/
+		JPanel pnlAfspOvz = new JPanel();
+		pnlAfspOvz.setBounds(200, 0, 876, 656);
+		
+		JLabel lblAfspOvzTitel = new JLabel("Afspraak Overzicht");
+		lblAfspOvzTitel.setBounds(6, 6, 138, 33);
+		pnlAfspOvz.add(lblAfspOvzTitel);
+		
+		tblAfspOvzTable = new JTable();
+		tblAfspOvzTable.setBounds(6, 582, 864, -543);
+		pnlAfspOvz.add(tblAfspOvzTable);
+		
+		JButton btnAfspOvzToevoegen = new JButton("Afspraak Toevoegen");
+		btnAfspOvzToevoegen.setBounds(0, 0, 117, 29);
+		pnlAfspOvz.add(btnAfspOvzToevoegen);
+		
+		/*JButton btnAfspOvzWijzen = new JButton("Afspraak Wijzigen");
+		
+		btnAfspOvzWijzen.add(btnAfspOvzWijzen);*/
+		
+		/*Afspraken Overzicht Panel*/
+		JPanel pnlAfspToeWzg = new JPanel();
+		pnlAfspToeWzg.setBounds(200, 0, 876, 656);
+		
+		JPanel pnlBhdlOvz = new JPanel();
+		pnlBhdlOvz.setBounds(200, 0, 876, 656);
+		
+		JPanel pnlBhdlToeWzg = new JPanel();
+		pnlBhdlToeWzg.setBounds(200, 0, 876, 656);
+
+		JPanel pnlFysOvz = new JPanel();
+		pnlFysOvz.setBounds(200, 0, 876, 656);
+		
+		JPanel pnlFysToeWzg = new JPanel();
+		pnlFysToeWzg.setBounds(200, 0, 876, 656);
+		
+		JPanel pnlFysRooOvz = new JPanel();
+		pnlFysRooOvz.setBounds(200, 0, 876, 656);
+		
+		JPanel pnlFysRooToeWzg = new JPanel();
+		pnlFysRooToeWzg.setBounds(200, 0, 876, 656);
+		
+		JPanel pnlPraGeg = new JPanel();
+		pnlPraGeg.setBounds(200, 0, 876, 656);
+		
+		JPanel pnlContent = new JPanel();
+		pnlContent.setLayout(cl);
+		pnlContent.setBounds(200, 0, 876, 656);
+		
+		pnlContent.add(pnlAfspOvz, AFSPRAKEN_OVERZICHT);
+		pnlAfspOvz.setLayout(null);
+		
+		
+		
+		
+		
+		
+		pnlContent.add(pnlAfspToeWzg, AFSPRAKEN_TOEVOEGEN_WIJZIGEN);
+		pnlContent.add(pnlBhdlOvz, BEHANDELINGEN_OVERZICHT);
+		pnlContent.add(pnlBhdlToeWzg, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
+		pnlContent.add(pnlFysOvz, FYSIOTHEROPEUTEN_OVERZICHT);
+		pnlContent.add(pnlFysToeWzg ,FYSIOTHEROPEUTEN_TOEVOEGEN_WIJZIGEN);
+		pnlContent.add(pnlFysRooOvz ,FYSIOTHEROPEUTEN_ROOSTER_OVERZICHT);
+		pnlContent.add(pnlFysRooToeWzg ,FYSIOTHEROPEUTEN_ROOSTER_TOEVOEGEN_WIJZIGEN);
+		pnlContent.add(pnlPraGeg ,PARKTIJK_GEGEVENS);
+
+		getContentPane().add(pnlContent);
+
+		
+		btnAfspraken.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cl.show(pnlContent, AFSPRAKEN_OVERZICHT);
+			}
+		});
+		
+		btnFysiotherapeuten.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cl.show(pnlContent, FYSIOTHEROPEUTEN_OVERZICHT);
+			}
+		});
+		
+		btnBehandelingen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cl.show(pnlContent, BEHANDELINGEN_OVERZICHT);
+			}
+		});
+		
+		btnPraktijk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cl.show(pnlContent, PARKTIJK_GEGEVENS);
+			}
+		});
 	}
 }
