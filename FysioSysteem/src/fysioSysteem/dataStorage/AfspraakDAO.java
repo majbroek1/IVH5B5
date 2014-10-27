@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Fysiotherapeut;
+import fysioSysteem.domain.Klant;
 
 /**
  * @author Bob
@@ -120,7 +121,7 @@ public class AfspraakDAO {
 			System.out.println("Afspraak niet gevonden");
 	}
 	
-	public static void addAfspraak(Afspraak afspraak) {
+	public static boolean addAfspraak(Afspraak afspraak) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
 		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML,
 				AfspraakDAO.FILE_XSD);
@@ -147,9 +148,14 @@ public class AfspraakDAO {
 
 			domdocument.writeDocument(AfspraakDAO.FILE_XML,
 					AfspraakDAO.FILE_XSD, document);
+			
+			if(AfspraakDAO.getAfspraak(afspraak.getId()) != null)
+				return true;
 		} else {
 			System.out.println("behandelCode bestaat al");
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -170,17 +176,35 @@ public class AfspraakDAO {
 	}
 	
 	/**
-	 * Geeft een lijst met afspraken van een specifieke fysiotherapeut
+	 * Geeft een lijst met afspraken van een specifieke klant
 	 * 
-	 * @param behandelingId
+	 * @param klant
 	 * @return
 	 */
-	public static ArrayList<Afspraak> getAfsprakenFysio(int fysioId){
+	public static ArrayList<Afspraak> getAfspraken(Klant klant) {
 		ArrayList<Afspraak> afspraken = AfspraakDAO.getAfspraken();
 		ArrayList<Afspraak> rtnAfspraken = new ArrayList<>();
 		
 		for(Afspraak afspraak : afspraken) {
-			if(afspraak.getFysiotherapeut().getId() == fysioId)
+			if(afspraak.getBehandeling().getKlant().getBsn() == klant.getBsn())
+				rtnAfspraken.add(afspraak);
+		}
+		
+		return rtnAfspraken;		
+	}
+	
+	/**
+	 * Geeft een lijst met afspraken van een specifieke fysiotherapeut
+	 * 
+	 * @param fysio
+	 * @return
+	 */
+	public static ArrayList<Afspraak> getAfspraken(Fysiotherapeut fysio) {
+		ArrayList<Afspraak> afspraken = AfspraakDAO.getAfspraken();
+		ArrayList<Afspraak> rtnAfspraken = new ArrayList<>();
+		
+		for(Afspraak afspraak : afspraken) {
+			if(afspraak.getFysiotherapeut().getId() == fysio.getId())
 				rtnAfspraken.add(afspraak);
 		}
 		
@@ -190,15 +214,15 @@ public class AfspraakDAO {
 	/**
 	 * Geeft een lijst met afspraken van een specifieke behandeling
 	 * 
-	 * @param behandelingId
+	 * @param behandeling
 	 * @return
 	 */
-	public static ArrayList<Afspraak> getAfsprakenBehandeling(int behandelingId){
+	public static ArrayList<Afspraak> getAfspraken(Behandeling behandeling) {
 		ArrayList<Afspraak> afspraken = AfspraakDAO.getAfspraken();
 		ArrayList<Afspraak> rtnAfspraken = new ArrayList<>();
 		
 		for(Afspraak afspraak : afspraken) {
-			if(afspraak.getBehandeling().getId() == behandelingId)
+			if(afspraak.getBehandeling().getId() == behandeling.getId())
 				rtnAfspraken.add(afspraak);
 		}
 		
