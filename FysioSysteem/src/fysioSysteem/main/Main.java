@@ -35,7 +35,7 @@ public class Main {
 		
 		BehandelCode code = BehandelCodeDAO.getBehandelCode(1);
 		Behandeling behandeling = BehandelingDAO.getBehandeling(1);*/
-		ArrayList<Behandeling> behandelingen = BehandelingDAO.getBehandelingen("1");
+		ArrayList<Behandeling> behandelingen = BehandelingDAO.getBehandelingen();
 		//Klant klant = KlantDAO.getKlant("1");
 		int i = 0;
 		
