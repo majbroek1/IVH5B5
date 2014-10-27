@@ -1,13 +1,13 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
 //import org.apache.log4j.Logger;
 //import org.apache.log4j.PropertyConfigurator;
-
 import Interface.FysioServiceIF;
+import fysioSysteem.domain.Behandeling;
 
 public class Client {
 
@@ -64,7 +64,7 @@ public class Client {
     		//logger.info("Found '" + HelloIF.servicename + "' in registry");
             
     		//logger.trace("Calling sayhello()");
-            String response = stub.test();
+            ArrayList<Behandeling> response = stub.getBehandelingen("1");
             //logger.info("Response: " + response);
             System.out.println("Response:  " + response);
         } 
