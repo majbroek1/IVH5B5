@@ -47,7 +47,7 @@ public class BehandelingDAO {
 						behandeling = new Behandeling(id, status,
 								KlantDAO.getKlant(klantBsn),
 								BehandelCodeDAO.getBehandelCode(behandelCode),
-								AfspraakDAO.getAfspraken(id));
+								AfspraakDAO.getAfsprakenBehandeling(id));
 					}
 				}
 			}
@@ -148,7 +148,7 @@ public class BehandelingDAO {
 					behandelingen.add(new Behandeling(id, status, KlantDAO
 							.getKlant(klantBsn), BehandelCodeDAO
 							.getBehandelCode(behandelCode), AfspraakDAO
-							.getAfspraken(id)));
+							.getAfsprakenBehandeling(id)));
 				}
 			}
 		} else
@@ -160,4 +160,14 @@ public class BehandelingDAO {
 		return behandelingen;
 	}
 
+	public static ArrayList<Behandeling> getBehandelingen(String bsn) {
+		ArrayList<Behandeling> _behandelingen = getBehandelingen();
+		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
+
+		for (Behandeling b : _behandelingen) {
+			behandelingen.add(b);
+		}
+
+		return behandelingen;
+	}
 }
