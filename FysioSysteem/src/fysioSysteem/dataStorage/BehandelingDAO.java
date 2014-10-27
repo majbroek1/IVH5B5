@@ -173,7 +173,7 @@ public class BehandelingDAO {
 		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
 
 		for (Behandeling b : _behandelingen) {
-			if (b.getKlant().getBsn().equals(bsn))
+			if (b.getKlant() != null && b.getKlant().getBsn().equals(bsn))
 				behandelingen.add(b);
 		}
 

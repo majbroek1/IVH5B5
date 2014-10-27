@@ -1,5 +1,6 @@
 package fysioSysteem.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,8 +8,12 @@ import java.util.Date;
  * @author Bob
  *
  */
-public class Klant {
+public class Klant implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String bsn, adres, postcode, plaats, telNr, email;
 	private Date gebDatum;
 	private ArrayList<Diagnose> diagnoses;

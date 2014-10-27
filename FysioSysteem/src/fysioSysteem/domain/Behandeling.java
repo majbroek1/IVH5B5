@@ -1,13 +1,18 @@
 package fysioSysteem.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author Bob
  *
  */
-public class Behandeling {
+public class Behandeling implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String status;
 	private Klant klant;
