@@ -4,15 +4,15 @@
 		<datumTijd>2014-10-30T09:30:10.5</datumTijd>
 		<fysioId>1</fysioId>
 		<behandelingId>1</behandelingId>
-	</afpsraak>
+	</afspraak>
 	<afspraak id="2">
 		<datumTijd>2014-10-30T10:30:10.5</datumTijd>
 		<fysioId>2</fysioId>
 		<behandelingId>2</behandelingId>
-	</afpsraak>
+	</afspraak>
 	<afspraak id="3">
 		<datumTijd>2014-10-30T09:00:10.5</datumTijd>
 		<fysioId>3</fysioId>
 		<behandelingId>3</behandelingId>
-	</afpsraak>
+	</afspraak>
 </afspraken>
