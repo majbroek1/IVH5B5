@@ -71,7 +71,7 @@ public class AfspraakDAO {
 			System.out.println("XML document is null");
 
 		if (afspraken.size() < 1)
-			System.out.println("Geen afspraken gevonden");
+			System.out.println("Geen behandelingen gevonden");
 
 		return afspraken;
 	}
@@ -148,7 +148,7 @@ public class AfspraakDAO {
 			domdocument.writeDocument(AfspraakDAO.FILE_XML,
 					AfspraakDAO.FILE_XSD, document);
 		} else {
-			System.out.println("Afspraak bestaat al");
+			System.out.println("behandelCode bestaat al");
 		}
 	}
 	

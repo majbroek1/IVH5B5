@@ -2,6 +2,7 @@ package fysioSysteem.businessLogic.planning;
 
 import java.util.ArrayList;
 
+import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
 
@@ -10,8 +11,6 @@ import fysioSysteem.domain.Rooster;
  *
  */
 public class RoosterManager implements IRoosterManager {
-
-	private ArrayList<Rooster> roosters;
 	
 	public RoosterManager() {
 		// TODO
@@ -19,32 +18,29 @@ public class RoosterManager implements IRoosterManager {
 	
 	@Override
 	public boolean addRooster(Rooster rooster) {
-		// TODO Auto-generated method stub
-		return false;
+		RoosterDAO.addRooster(rooster);
+		return true;
 	}
 
 	@Override
 	public boolean setRooster(Rooster rooster) {
-		// TODO Auto-generated method stub
-		return false;
+		RoosterDAO.setRooster(rooster);
+		return true;
 	}
 	
 	@Override
 	public Rooster getRooster(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return RoosterDAO.getRooster(id);
 	}
 
 	@Override
 	public ArrayList<Rooster> getWeekRooster(Fysiotherapeut fysio) {
-		// TODO Auto-generated method stub
-		return null;
+		return RoosterDAO.getRoosterFysio(fysio.getId());
 	}
 
 	@Override
 	public void removeRooster(Rooster rooster) {
-		// TODO Auto-generated method stub
-
+		RoosterDAO.removeRooster(rooster);
 	}
 
 }

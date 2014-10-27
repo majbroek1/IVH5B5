@@ -43,6 +43,7 @@ public class RoosterDAO {
 					if (Integer.parseInt(_id) == id) {
 						Date start = null;
 						Date eind = null;
+						
 						try {
 							start = FORMAT.parse(child
 									.getElementsByTagName("start").item(0)
@@ -54,9 +55,11 @@ public class RoosterDAO {
 							System.out.println("Kan datum niet parsen");
 							e.printStackTrace();
 						}
+						
 						int fysioId = Integer.parseInt(child
 								.getElementsByTagName("fysioId").item(0)
 								.getTextContent());
+						
 						rooster = new Rooster(id, start, eind,
 								MedewerkerDAO.getFysio(fysioId));
 					}
@@ -69,6 +72,18 @@ public class RoosterDAO {
 			System.out.println("rooster niet gevonden");
 
 		return rooster;
+	}
+	
+	public static ArrayList<Rooster> getRoosterFysio(int fysioId) {
+		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
+		ArrayList<Rooster> rtnList = new ArrayList<>();
+		
+		for(Rooster r : roosters) {
+			if(r.getFysiotherapeut().getId() == fysioId)
+				rtnList.add(r);
+		}
+		
+		return rtnList;
 	}
 
 	public static void setRooster(Rooster rooster) {

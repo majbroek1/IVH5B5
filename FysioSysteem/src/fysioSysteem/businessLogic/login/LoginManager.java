@@ -11,6 +11,7 @@ import fysioSysteem.domain.Medewerker;
  */
 public class LoginManager implements ILoginManager {
 
+	@SuppressWarnings("unused")
 	private Medewerker ingelogdeMedewerker = null;
 	
 	public LoginManager() {
