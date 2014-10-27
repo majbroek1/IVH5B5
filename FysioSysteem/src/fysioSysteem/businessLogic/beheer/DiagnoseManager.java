@@ -5,44 +5,39 @@ package fysioSysteem.businessLogic.beheer;
 
 import java.util.ArrayList;
 
-import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.dataStorage.DiagnoseDAO;
 import fysioSysteem.domain.Diagnose;
-import fysioSysteem.domain.Klant;
 
 /**
  * @author Bob
  *
  */
 public class DiagnoseManager implements IDiagnoseManager {
-
-	private ArrayList<Diagnose> diagnoses;
 	
 	public DiagnoseManager() {
 		// TODO
 	}
 	
 	@Override
-	public void addDiagnose(int id, String omschrijving, BehandelCode code, Klant klant) {
-		// TODO Auto-generated method stub
-
+	public boolean addDiagnose(Diagnose diagnose) {
+		DiagnoseDAO.addDiagnose(diagnose);
+		return true;
 	}
 
 	@Override
-	public void setDiagnose(Diagnose diagnose) {
-		// TODO Auto-generated method stub
-
+	public boolean setDiagnose(Diagnose diagnose) {
+		DiagnoseDAO.setDiagnose(diagnose);
+		return true;
 	}
 
 	@Override
 	public Diagnose getDiagnose(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return DiagnoseDAO.getDiagnose(id);
 	}
 
 	@Override
 	public ArrayList<Diagnose> getDiagnoses() {
-		// TODO Auto-generated method stub
-		return null;
+		return DiagnoseDAO.getDiagnoses();
 	}
 
 }

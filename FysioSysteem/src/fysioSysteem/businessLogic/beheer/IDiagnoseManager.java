@@ -5,9 +5,7 @@ package fysioSysteem.businessLogic.beheer;
 
 import java.util.ArrayList;
 
-import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Diagnose;
-import fysioSysteem.domain.Klant;
 
 /**
  * @author Bob
@@ -16,17 +14,14 @@ import fysioSysteem.domain.Klant;
 public interface IDiagnoseManager {
 
 	/**
-	 * @param id
-	 * @param omschrijving
-	 * @param code
-	 * @param klant
+	 * @param diagnose
 	 */
-	public void addDiagnose(int id, String omschrijving, BehandelCode code, Klant klant);
+	public boolean addDiagnose(Diagnose diagnose);
 	
 	/**
 	 * @param diagnose
 	 */
-	public void setDiagnose(Diagnose diagnose);
+	public boolean setDiagnose(Diagnose diagnose);
 	
 	/**
 	 * @param id

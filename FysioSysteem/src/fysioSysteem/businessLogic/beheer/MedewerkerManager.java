@@ -2,6 +2,7 @@ package fysioSysteem.businessLogic.beheer;
 
 import java.util.ArrayList;
 
+import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Medewerker;
 
 /**
@@ -9,8 +10,6 @@ import fysioSysteem.domain.Medewerker;
  *
  */
 public class MedewerkerManager implements IMedewerkerManager {
-
-	private ArrayList<Medewerker> medewerkers;
 	
 	public MedewerkerManager() {
 		// TODO
@@ -18,32 +17,29 @@ public class MedewerkerManager implements IMedewerkerManager {
 	
 	@Override
 	public boolean addMedewerker(Medewerker medewerker) {
-		// TODO Auto-generated method stub
-		return false;
+		MedewerkerDAO.addMedewerker(medewerker);
+		return true;
 	}
 
 	@Override
 	public boolean setMedewerker(Medewerker medewerker) {
-		// TODO Auto-generated method stub
-		return false;
+		MedewerkerDAO.setMedewerker(medewerker);
+		return true;
 	}
 
 	@Override
 	public Medewerker getMedewerker(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return MedewerkerDAO.getMedewerker(id);
 	}
 	
 	@Override
 	public ArrayList<Medewerker> getMedewerkers() {
-		// TODO Auto-generated method stub
-		return null;
+		return MedewerkerDAO.getMedewerkers();
 	}
 
 	@Override
 	public ArrayList<Medewerker> getActieveMedewerkers() {
-		// TODO Auto-generated method stub
-		return null;
+		return MedewerkerDAO.getActieveMedewerkers();
 	}
 
 }

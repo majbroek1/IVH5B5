@@ -19,6 +19,8 @@ public class AfspraakManager implements IAfspraakManager {
 	}
 
 	/**
+	 * Controleert of het tijdstip van de afspraak haalbaar is
+	 * 
 	 * @param afspraak
 	 * @return
 	 */

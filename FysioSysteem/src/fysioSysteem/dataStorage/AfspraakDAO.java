@@ -172,7 +172,7 @@ public class AfspraakDAO {
 	/**
 	 * Geeft een lijst met afspraken van een specifieke fysiotherapeut
 	 * 
-	 * @param behandelingId
+	 * @param fysio
 	 * @return
 	 */
 	public static ArrayList<Afspraak> getAfspraken(Fysiotherapeut fysio){
@@ -190,7 +190,7 @@ public class AfspraakDAO {
 	/**
 	 * Geeft een lijst met afspraken van een specifieke behandeling
 	 * 
-	 * @param behandelingId
+	 * @param behandeling
 	 * @return
 	 */
 	public static ArrayList<Afspraak> getAfspraken(Behandeling behandeling){
