@@ -11,6 +11,7 @@ import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Secretaresse;
 import fysioSysteem.domain.Status;
+import general.Settings;
 
 /**
  * @author Bob
@@ -18,8 +19,8 @@ import fysioSysteem.domain.Status;
  */
 public class MedewerkerDAO {
 
-	private static final String FILE_XML = "Data/medewerkers.xml";
-	private static final String FILE_XSD = "Data/medewerkers.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/medewerkers.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/medewerkers.xsd";
 
 	public static Medewerker getMedewerker(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();

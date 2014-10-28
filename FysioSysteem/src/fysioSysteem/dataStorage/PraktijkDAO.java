@@ -8,6 +8,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.Praktijk;
+import general.Settings;
 
 /**
  * @author Bob
@@ -15,8 +16,8 @@ import fysioSysteem.domain.Praktijk;
  */
 public class PraktijkDAO {
 
-	private static final String FILE_XML = "Data/praktijken.xml";
-	private static final String FILE_XSD = "Data/praktijken.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/praktijken.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/praktijken.xsd";
 
 	public static Praktijk getPraktijk(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();

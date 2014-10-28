@@ -13,7 +13,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import fysioSysteem.businessLogic.login.*;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import fysioSysteem.businessLogic.login.ILoginManager;
+import general.AppInjector;
 
 public class frmLogin extends JFrame {
 
@@ -28,7 +32,7 @@ public class frmLogin extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {        
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,6 +49,9 @@ public class frmLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public frmLogin() {
+		Injector injector = Guice.createInjector(new AppInjector());        
+		ILoginManager lgn = injector.getInstance(ILoginManager.class);
+		
 		setResizable(false);
 		setTitle("Inloggen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +82,6 @@ public class frmLogin extends JFrame {
 		JButton btnInloggen = new JButton("Inloggen");
 		btnInloggen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ILoginManager lgn = new LoginManager();
 				
 				try {
 					int medewerkerId = Integer.parseInt(txtMedewerkerID.getText());

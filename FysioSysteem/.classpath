@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="Libs/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="lib" path="Libs/powermock-mockito-1.5.6-full.jar"/>
 	<classpathentry kind="lib" path="Libs/javassist-3.18.2-GA.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Guice"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
