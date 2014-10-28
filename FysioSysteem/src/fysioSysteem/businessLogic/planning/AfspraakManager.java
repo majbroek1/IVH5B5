@@ -66,8 +66,7 @@ public class AfspraakManager implements IAfspraakManager {
 
 	@Override
 	public ArrayList<Afspraak> getAfspraken(Klant klant) {
-		// TODO Auto-generated method stub
-		return null;
+		return AfspraakDAO.getAfspraken(klant);
 	}
 
 	@Override
