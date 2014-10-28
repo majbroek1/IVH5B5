@@ -24,8 +24,10 @@ import general.Settings;
  */
 public class AfspraakDAO {
 
-	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/afspraken.xml";
-	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/afspraken.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR)
+			+ "/afspraken.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR)
+			+ "/afspraken.xsd";
 
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss");
@@ -61,7 +63,7 @@ public class AfspraakDAO {
 					Behandeling behandeling = BehandelingDAO
 							.getBehandeling(Integer.parseInt(child
 									.getElementsByTagName("behandelingId")
-									.item(0).getTextContent()));
+									.item(0).getTextContent()),false);
 
 					afspraken.add(new Afspraak(id, datumTijd, fysio,
 							behandeling));
@@ -174,14 +176,51 @@ public class AfspraakDAO {
 	 * @return
 	 */
 	public static Afspraak getAfspraak(int id) {
-		ArrayList<Afspraak> afspraken = AfspraakDAO.getAfspraken();
+		XmlDOMDocument domdocument = new XmlDOMDocument();
+		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML,
+				AfspraakDAO.FILE_XSD);
 
-		for (Afspraak a : afspraken) {
-			if (a.getId() == id)
-				return a;
-		}
+		Afspraak afspraak = null;
+		if (document != null) {
+			NodeList list = document.getElementsByTagName("afspraak");
 
-		return null;
+			for (int i = 0; i < list.getLength(); i++) {
+				Node node = list.item(i);
+				if (node instanceof Element) {
+					Element child = (Element) node;
+					int _id = Integer.parseInt(child.getAttribute("id"));
+					if (id == _id) {
+						Date datumTijd = null;
+
+						try {
+							FORMAT.parse(child
+									.getElementsByTagName("datumTijd").item(0)
+									.getTextContent());
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+
+						Fysiotherapeut fysio = MedewerkerDAO.getFysio(Integer
+								.parseInt(child.getElementsByTagName("fysioId")
+										.item(0).getTextContent()));
+
+						Behandeling behandeling = BehandelingDAO
+								.getBehandeling(Integer.parseInt(child
+										.getElementsByTagName("behandelingId")
+										.item(0).getTextContent()),false);
+
+						afspraak = new Afspraak(id, datumTijd, fysio,
+								behandeling);
+					}
+				}
+			}
+		} else
+			System.out.println("XML document is null");
+
+		if (afspraak == null)
+			System.out.println("Geen behandeling gevonden");
+
+		return afspraak;
 	}
 
 	/**

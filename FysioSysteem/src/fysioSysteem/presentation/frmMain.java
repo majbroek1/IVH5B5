@@ -37,22 +37,6 @@ public class frmMain extends JFrame {
 	final static String BEHANDELINGEN_MAIN = "Behandelingen Main";
 	final static String FYSIOTHEROPEUTEN_MAIN = "Fysiotheropeuten Main";
 	final static String PARKTIJK_GEGEVENS = "Praktijk Gegevens Toevoegen / Wijzigen";
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmMain frame = new frmMain();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
