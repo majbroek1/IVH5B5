@@ -3,9 +3,6 @@
 	<incrementId class="Afspraak">
 		<currentId>1</currentId>
 	</incrementId>
-	<incrementId class="BehandelCode">
-		<currentId>1</currentId>
-	</incrementId>
 	<incrementId class="Behandeling">
 		<currentId>1</currentId>
 	</incrementId>	

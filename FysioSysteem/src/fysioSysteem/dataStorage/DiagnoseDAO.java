@@ -104,7 +104,7 @@ public class DiagnoseDAO {
 
 			Element newdiagnose = document.createElement("diagnose");
 			newdiagnose.setAttribute("code",
-					Integer.toString(diagnose.getCode()));
+					Integer.toString(IdManager.getId("Diagnose")));
 			rootElement.appendChild(newdiagnose);
 
 			Element omschrijving = document.createElement("omschrijving");

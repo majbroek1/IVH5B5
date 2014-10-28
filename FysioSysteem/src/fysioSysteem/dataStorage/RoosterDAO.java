@@ -45,7 +45,7 @@ public class RoosterDAO {
 					if (Integer.parseInt(_id) == id) {
 						Date start = null;
 						Date eind = null;
-						
+
 						try {
 							start = FORMAT.parse(child
 									.getElementsByTagName("start").item(0)
@@ -57,11 +57,11 @@ public class RoosterDAO {
 							System.out.println("Kan datum niet parsen");
 							e.printStackTrace();
 						}
-						
+
 						int fysioId = Integer.parseInt(child
 								.getElementsByTagName("fysioId").item(0)
 								.getTextContent());
-						
+
 						rooster = new Rooster(id, start, eind,
 								MedewerkerDAO.getFysio(fysioId));
 					}
@@ -75,32 +75,32 @@ public class RoosterDAO {
 
 		return rooster;
 	}
-	
+
 	public static ArrayList<Rooster> getRooster(Fysiotherapeut fysio) {
 		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
 		ArrayList<Rooster> rtnList = new ArrayList<>();
-		
-		for(Rooster r : roosters) {
-			if(r.getFysiotherapeut().getId() == fysio.getId())
+
+		for (Rooster r : roosters) {
+			if (r.getFysiotherapeut().getId() == fysio.getId())
 				rtnList.add(r);
 		}
-		
+
 		return rtnList;
 	}
-	
+
 	public static Rooster getRooster(Fysiotherapeut fysio, int weekNr) {
 		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
 		Calendar cal = Calendar.getInstance();
-		
-		for(Rooster r : roosters) {			
-			if(r.getFysiotherapeut().getId() == fysio.getId()) {
+
+		for (Rooster r : roosters) {
+			if (r.getFysiotherapeut().getId() == fysio.getId()) {
 				cal.setTime(r.getStart());
-				
-				if(cal.get(Calendar.WEEK_OF_YEAR) == weekNr)
+
+				if (cal.get(Calendar.WEEK_OF_YEAR) == weekNr)
 					return r;
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -154,7 +154,8 @@ public class RoosterDAO {
 					.item(0);
 
 			Element newrooster = document.createElement("rooster");
-			newrooster.setAttribute("id", Integer.toString(rooster.getId()));
+			newrooster.setAttribute("id",
+					Integer.toString(IdManager.getId("Rooster")));
 			rootElement.appendChild(newrooster);
 
 			Element start = document.createElement("start");
@@ -194,7 +195,7 @@ public class RoosterDAO {
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == rooster.getId()) {
 						child.getParentNode().removeChild(child);
-						
+
 						domdocument.writeDocument(RoosterDAO.FILE_XML,
 								RoosterDAO.FILE_XSD, document);
 					}
