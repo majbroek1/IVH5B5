@@ -25,6 +25,6 @@
 		<plaats>Haarlem</plaats>
 		<telnr>0739564712</telnr>
 		<email>bla@blabla.nl</email>
-		<gebDatum>1990-4-30T00:00:00.0</gebDatum>
+		<gebDatum>1990-04-30T00:00:00.0</gebDatum>
 	</klant>
 </klanten>
