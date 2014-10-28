@@ -18,7 +18,7 @@
 		<email>bla@blabla.nl</email>
 		<gebDatum>1994-18-30T00:00:00.0</gebDatum>
 	</klant>
-	<klant bsn="2">
+	<klant bsn="3">
 		<naam>Praktijk 1</naam>
 		<adres>Scholtenstraat 13</adres>
 		<postcode>8256AD</postcode>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Klant;
+import fysioSysteem.domain.Medewerker;
 
 /**
  * @author Bob
@@ -33,6 +34,12 @@ public interface IBehandelingManager {
 	 * @return
 	 */
 	public ArrayList<Behandeling> getBehandelingen(Klant klant);
+	
+	/**
+	 * @param 
+	 * @return Alle behandelingen
+	 */
+	public ArrayList<Behandeling> getBehandelingen();
 	
 	/**
 	 * @param behandelCode

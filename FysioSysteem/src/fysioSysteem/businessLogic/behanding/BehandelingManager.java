@@ -2,9 +2,11 @@ package fysioSysteem.businessLogic.behanding;
 
 import java.util.ArrayList;
 
+import fysioSysteem.dataStorage.BehandelingDAO;
 import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Klant;
+import fysioSysteem.domain.Medewerker;
 
 /**
  * @author Bob
@@ -36,6 +38,12 @@ public class BehandelingManager implements IBehandelingManager {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Behandeling> getBehandelingen() {
+		ArrayList<Behandeling> behandelingen = BehandelingDAO.getBehandelingen();
+		return behandelingen;
+	}
+	
 	@Override
 	public Behandeling getBehandeling(int id) {
 		// TODO Auto-generated method stub
