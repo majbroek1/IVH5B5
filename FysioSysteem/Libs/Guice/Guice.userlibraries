@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="Guice" systemlibrary="false">
+        <archive path="/FysioSysteem/Libs/Guice/aopalliance.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-assistedinject-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-grapher-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-jmx-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-jndi-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-multibindings-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-persist-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-servlet-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-spring-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-struts2-plugin-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/guice-throwingproviders-3.0.jar"/>
+        <archive path="/FysioSysteem/Libs/Guice/javax.inject.jar"/>
+    </library>
+</eclipse-userlibraries>
