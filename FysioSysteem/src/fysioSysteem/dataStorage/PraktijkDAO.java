@@ -1,7 +1,6 @@
 package fysioSysteem.dataStorage;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

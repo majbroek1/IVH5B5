@@ -14,7 +14,7 @@ public class Klant implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String bsn, adres, postcode, plaats, telNr, email;
+	private String bsn, naam, adres, postcode, plaats, telNr, email;
 	private Date gebDatum;
 	private ArrayList<Diagnose> diagnoses;
 	
@@ -27,9 +27,10 @@ public class Klant implements Serializable{
 	 * @param email
 	 * @param gebDatum
 	 */
-	public Klant(String bsn, String adres, String postcode, String plaats,
+	public Klant(String bsn, String naam, String adres, String postcode, String plaats,
 			String telNr, String email, Date gebDatum) {
 		this.bsn = bsn;
+		this.naam = naam;
 		this.adres = adres;
 		this.postcode = postcode;
 		this.plaats = plaats;
@@ -48,10 +49,10 @@ public class Klant implements Serializable{
 	 * @param gebDatum
 	 * @param diagnoses
 	 */
-	public Klant(String bsn, String adres, String postcode, String plaats,
+	public Klant(String bsn, String naam, String adres, String postcode, String plaats,
 			String telNr, String email, Date gebDatum,
 			ArrayList<Diagnose> diagnoses) {
-		this(bsn, adres, postcode, plaats, telNr, email, gebDatum);
+		this(bsn, naam, adres, postcode, plaats, telNr, email, gebDatum);
 		this.diagnoses = diagnoses;
 	}
 
@@ -67,6 +68,20 @@ public class Klant implements Serializable{
 	 */
 	public void setBsn(String bsn) {
 		this.bsn = bsn;
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getNaam() {
+		return naam;
+	}
+
+	/**
+	 * @param naam
+	 */
+	public void setNaam(String naam) {
+		this.naam = naam;
 	}
 
 	/**
