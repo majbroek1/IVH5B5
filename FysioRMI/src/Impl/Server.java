@@ -5,10 +5,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import Interface.FysioServiceIF;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
+import Interface.FysioServiceIF;
 
 public class Server {
 	// Get a logger instance for the current class
@@ -33,7 +33,8 @@ public class Server {
 
 		// Configure logging.
 		PropertyConfigurator.configure("./resources/FysioServer.logconf");
-
+		Settings.loadProperties("./resources/FysioServer.settings");
+		
 		logger.debug("Starting application ---------------------------------");
 
 		System.setProperty("java.rmi.server.hostname", hostname);

@@ -11,6 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.BehandelCode;
+import general.Settings;
 
 /**
  * @author Bob
@@ -18,8 +19,8 @@ import fysioSysteem.domain.BehandelCode;
  */
 public class BehandelCodeDAO {
 
-	private static final String FILE_XML = "Data/behandelCodes.xml";
-	private static final String FILE_XSD = "Data/behandelCodes.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/behandelCodes.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/behandelCodes.xsd";
 
 	public static BehandelCode getBehandelCode(int code) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();

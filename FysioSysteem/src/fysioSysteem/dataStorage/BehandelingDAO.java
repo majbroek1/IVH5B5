@@ -11,6 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.Behandeling;
+import general.Settings;
 
 /**
  * @author Bob
@@ -18,8 +19,8 @@ import fysioSysteem.domain.Behandeling;
  */
 public class BehandelingDAO {
 
-	private static final String FILE_XML = "Data/behandelingen.xml";
-	private static final String FILE_XSD = "Data/behandelingen.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/behandelingen.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/behandelingen.xsd";
 
 	public static Behandeling getBehandeling(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();

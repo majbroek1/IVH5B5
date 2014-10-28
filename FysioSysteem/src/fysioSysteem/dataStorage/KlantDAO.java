@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.Klant;
+import general.Settings;
 
 /**
  * @author Bob
@@ -20,8 +21,8 @@ import fysioSysteem.domain.Klant;
  */
 public class KlantDAO {
 
-	private static final String FILE_XML = "Data/klanten.xml";
-	private static final String FILE_XSD = "Data/klanten.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/klanten.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/klanten.xsd";
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss");
 

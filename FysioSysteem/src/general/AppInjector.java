@@ -1,4 +1,4 @@
-package AppInjector;
+package general;
 
 import com.google.inject.AbstractModule;
 

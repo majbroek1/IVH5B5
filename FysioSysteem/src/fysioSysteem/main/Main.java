@@ -1,18 +1,24 @@
 package fysioSysteem.main;
 
+import fysioSysteem.dataStorage.BehandelingDAO;
+import fysioSysteem.dataStorage.KlantDAO;
+import fysioSysteem.domain.Behandeling;
+import fysioSysteem.domain.Klant;
+import fysioSysteem.domain.Medewerker;
+import fysioSysteem.domain.Status;
+import fysioSysteem.presentation.frmLogin;
+import general.Settings;
+
 import java.util.ArrayList;
 
 import org.apache.log4j.BasicConfigurator;
 
-import fysioSysteem.dataStorage.BehandelingDAO;
-import fysioSysteem.domain.Behandeling;
-import fysioSysteem.domain.Medewerker;
-import fysioSysteem.domain.Status;
-import fysioSysteem.presentation.frmLogin;
-
 public class Main {
 
 	public static void main(String[] args) {
+		//BELANGRIJK
+		Settings.loadProperties("./resources/FysioSysteem.settings");
+		
 		ArrayList<Medewerker> medewerkers = new ArrayList<Medewerker>();
 		medewerkers.add(new Medewerker(1, "Mark", "Test", Status.ACTIEF));
 		medewerkers.add(new Medewerker(2, "Bob", "2", Status.INACTIEF));
@@ -35,6 +41,7 @@ public class Main {
 		
 		BehandelCode code = BehandelCodeDAO.getBehandelCode(1);
 		Behandeling behandeling = BehandelingDAO.getBehandeling(1);*/
+		Klant klant = KlantDAO.getKlant("1");
 		ArrayList<Behandeling> behandelingen = BehandelingDAO.getBehandelingen("1");
 		//Klant klant = KlantDAO.getKlant("1");
 		int i = 0;
