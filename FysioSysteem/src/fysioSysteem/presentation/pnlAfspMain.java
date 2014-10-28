@@ -4,7 +4,10 @@ import java.awt.CardLayout;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -69,7 +72,18 @@ public class pnlAfspMain extends JPanel{
 		
 		btnAfspraakVerwijderen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				JFrame frame = new JFrame();
+				
+				Object[] options = {"Annuleren", "Verwijderen"};
+				
+				int n = JOptionPane.showOptionDialog(frame, "Weet je zeker dat je het wilt verwijderen?", "Verwijder Waarschuwing", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]); 
+				
+				if (n == 1)
+				{
+					// verwijderen
+					
+				}
 			}
 		});
 	}

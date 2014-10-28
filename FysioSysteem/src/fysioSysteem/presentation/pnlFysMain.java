@@ -42,21 +42,21 @@ public class pnlFysMain extends JPanel{
 		pnlContent.add(pnlFysRooToeWzg ,FYSIOTHEROPEUTEN_ROOSTER_TOEVOEGEN_WIJZIGEN);
 		add(pnlContent);
 		
-		JButton btnFysioToevoegen = new JButton("Fysiotherapeut Toevoegen");
+		JButton btnFysioToevoegen = new JButton("Toevoegen");
 		btnFysioToevoegen.setBounds(107, 620, 172, 29);
 		add(btnFysioToevoegen);
 		
-		JButton btnFysioAanpassen = new JButton("Fysiotherapeut Aanpassen");
+		JButton btnFysioAanpassen = new JButton("Aanpassen");
 		btnFysioAanpassen.setBounds(358, 620, 172, 29);
 		add(btnFysioAanpassen);
 		
-		JButton btnFysioVerwijderen = new JButton("Fysiotherapeut Verwijderen");
+		JButton btnFysioVerwijderen = new JButton("Verwijderen");
 		btnFysioVerwijderen.setBounds(614, 620, 172, 29);
 		add(btnFysioVerwijderen);
 		
 		btnFysioToevoegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnFysioToevoegen.getText() == "Fysiotherapeut Toevoegen")
+				if (btnFysioToevoegen.getText() == "Toevoegen")
 				{	
 					cl.show(pnlContent, FYSIOTHEROPEUTEN_TOEVOEGEN_WIJZIGEN);
 					btnFysioToevoegen.setText("Annuleren");
@@ -64,7 +64,7 @@ public class pnlFysMain extends JPanel{
 				else
 				{
 					cl.show(pnlContent, FYSIOTHEROPEUTEN_OVERZICHT);
-					btnFysioToevoegen.setText("Fysiotherapeut Toevoegen");
+					btnFysioToevoegen.setText("Toevoegen");
 				}
 			}
 		});
