@@ -1,8 +1,13 @@
 package fysioSysteem.presentation;
 
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class pnlFysMain extends JPanel{
 	
@@ -37,6 +42,44 @@ public class pnlFysMain extends JPanel{
 		pnlContent.add(pnlFysRooToeWzg ,FYSIOTHEROPEUTEN_ROOSTER_TOEVOEGEN_WIJZIGEN);
 		add(pnlContent);
 		
-		//TODO
+		JButton btnFysioToevoegen = new JButton("Toevoegen");
+		btnFysioToevoegen.setBounds(107, 620, 172, 29);
+		add(btnFysioToevoegen);
+		
+		JButton btnFysioAanpassen = new JButton("Aanpassen");
+		btnFysioAanpassen.setBounds(358, 620, 172, 29);
+		add(btnFysioAanpassen);
+		
+		JButton btnFysioVerwijderen = new JButton("Verwijderen");
+		btnFysioVerwijderen.setBounds(614, 620, 172, 29);
+		add(btnFysioVerwijderen);
+		
+		btnFysioToevoegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnFysioToevoegen.getText() == "Toevoegen")
+				{	
+					cl.show(pnlContent, FYSIOTHEROPEUTEN_TOEVOEGEN_WIJZIGEN);
+					btnFysioToevoegen.setText("Annuleren");
+				}
+				else
+				{
+					cl.show(pnlContent, FYSIOTHEROPEUTEN_OVERZICHT);
+					btnFysioToevoegen.setText("Toevoegen");
+				}
+			}
+		});
+		
+		btnFysioAanpassen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+			}
+		});
+		
+		btnFysioVerwijderen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+			}
+		});
+
 	}
 }
