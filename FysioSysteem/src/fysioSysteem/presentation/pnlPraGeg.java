@@ -108,6 +108,7 @@ public class pnlPraGeg extends JPanel{
 		btnPraGegOpslaan.setBounds(74, 286, 117, 29);
 		add(btnPraGegOpslaan);
 		
+		/* Button Handling */
 		btnPraGegOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
