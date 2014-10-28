@@ -12,6 +12,15 @@ public class Fysiotherapeut extends Medewerker {
 	private ArrayList<Afspraak> afspraken;
 	
 	/**
+	 * @param naam
+	 * @param wachtwoord
+	 * @param status
+	 */
+	public Fysiotherapeut(String naam, String wachtwoord, Enum<?> status) {
+		super(naam, wachtwoord, status);
+	}
+	
+	/**
 	 * @param id
 	 * @param naam
 	 * @param wachtwoord

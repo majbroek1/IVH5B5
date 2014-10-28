@@ -7,6 +7,15 @@ package fysioSysteem.domain;
 public class Secretaresse extends Medewerker {
 
 	/**
+	 * @param naam
+	 * @param wachtwoord
+	 * @param status
+	 */
+	public Secretaresse(String naam, String wachtwoord, Enum<?> status) {
+		super(naam, wachtwoord, status);
+	}
+	
+	/**
 	 * @param id
 	 * @param naam
 	 * @param wachtwoord
