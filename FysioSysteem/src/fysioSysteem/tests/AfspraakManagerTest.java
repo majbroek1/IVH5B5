@@ -215,5 +215,4 @@ public class AfspraakManagerTest {
 		
 		Assert.assertEquals(result, false);
 	}
-
 }
