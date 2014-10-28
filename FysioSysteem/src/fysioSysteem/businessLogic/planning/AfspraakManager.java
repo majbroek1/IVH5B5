@@ -28,16 +28,16 @@ public class AfspraakManager implements IAfspraakManager {
 		Iterator<Afspraak> afspraken = getAfspraken().iterator();
 		
 		while(afspraken.hasNext()) {
-			if(afspraken.next().getDatumTijd().before(afspraak.getDatumTijd())
-				&& afspraken.next().getEindTijd().before(afspraak.getDatumTijd())) {
+			Afspraak a = afspraken.next();
+			if(a.getDatumTijd().before(afspraak.getDatumTijd())
+				&& a.getEindTijd().before(afspraak.getDatumTijd())) {
 				return true;
 			}
-			else if(afspraken.next().getDatumTijd().after(afspraak.getDatumTijd())
-				&& afspraken.next().getDatumTijd().after(afspraak.getEindTijd())) {
+			else if(a.getDatumTijd().after(afspraak.getDatumTijd())
+				&& a.getDatumTijd().after(afspraak.getEindTijd())) {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
@@ -66,8 +66,7 @@ public class AfspraakManager implements IAfspraakManager {
 
 	@Override
 	public ArrayList<Afspraak> getAfspraken(Klant klant) {
-		// TODO Auto-generated method stub
-		return null;
+		return AfspraakDAO.getAfspraken(klant);
 	}
 
 	@Override

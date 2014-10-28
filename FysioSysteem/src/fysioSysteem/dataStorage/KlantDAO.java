@@ -64,8 +64,8 @@ public class KlantDAO {
 							e.printStackTrace();
 						}
 
-						klant = new Klant(bsn, adres, postcode, plaats, telNr,
-								email, gebDatum);
+						return new Klant(bsn, naam, adres, postcode, plaats,
+								telNr, email, gebDatum);
 					}
 				}
 			}
