@@ -11,6 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.Diagnose;
+import general.Settings;
 
 /**
  * @author Bob
@@ -18,8 +19,8 @@ import fysioSysteem.domain.Diagnose;
  */
 public class DiagnoseDAO {
 
-	private static final String FILE_XML = "Data/diagnoses.xml";
-	private static final String FILE_XSD = "Data/diagnoses.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/diagnoses.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/diagnoses.xsd";
 
 	public static Diagnose getDiagnose(int diagnoseCode) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();

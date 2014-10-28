@@ -13,12 +13,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import AppInjector.AppInjector;
-
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import fysioSysteem.businessLogic.login.ILoginManager;
+import general.AppInjector;
 
 public class frmLogin extends JFrame {
 

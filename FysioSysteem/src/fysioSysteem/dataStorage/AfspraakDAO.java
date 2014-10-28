@@ -16,6 +16,7 @@ import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Klant;
+import general.Settings;
 
 /**
  * @author Bob
@@ -23,8 +24,8 @@ import fysioSysteem.domain.Klant;
  */
 public class AfspraakDAO {
 
-	private static final String FILE_XML = "Data/afspraken.xml";
-	private static final String FILE_XSD = "Data/afspraken.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/afspraken.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/afspraken.xsd";
 
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss");

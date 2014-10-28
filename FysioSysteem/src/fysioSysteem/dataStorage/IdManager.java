@@ -1,5 +1,7 @@
 package fysioSysteem.dataStorage;
 
+import general.Settings;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -7,8 +9,8 @@ import org.w3c.dom.NodeList;
 
 public class IdManager {
 
-	private static final String FILE_XML = "Data/autoIncrement.xml";
-	private static final String FILE_XSD = "Data/autoIncrement.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/autoIncrement.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/autoIncrement.xsd";
 
 	public static int getId(String className) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();

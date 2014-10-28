@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
+import general.Settings;
 
 /**
  * @author Bob
@@ -22,8 +23,8 @@ import fysioSysteem.domain.Rooster;
  */
 public class RoosterDAO {
 
-	private static final String FILE_XML = "Data/roosters.xml";
-	private static final String FILE_XSD = "Data/roosters.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/roosters.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/roosters.xsd";
 
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss");
