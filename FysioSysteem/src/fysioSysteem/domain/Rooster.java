@@ -13,6 +13,15 @@ public class Rooster {
 	private Fysiotherapeut fysiotherapeut;
 	
 	/**
+	 * @param start
+	 * @param eind
+	 */
+	public Rooster(Date start, Date eind) {
+		this.start = start;
+		this.eind = eind;
+	}
+	
+	/**
 	 * @param id
 	 * @param start
 	 * @param eind

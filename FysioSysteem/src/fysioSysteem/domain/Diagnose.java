@@ -12,6 +12,13 @@ public class Diagnose {
 	private Klant klant;
 	
 	/**
+	 * @param omschrijving
+	 */
+	public Diagnose(String omschrijving) {
+		this.omschrijving = omschrijving;
+	}
+	
+	/**
 	 * @param code
 	 * @param omschrijving
 	 */

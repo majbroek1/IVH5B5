@@ -13,6 +13,30 @@ public class Praktijk {
 	private ArrayList<Medewerker> medewerkers;
 	
 	/**
+	 * @param naam
+	 * @param adres
+	 * @param postcode
+	 * @param plaats
+	 * @param iban
+	 * @param telNr
+	 * @param email
+	 * @param website
+	 */
+	public Praktijk(String naam, String adres, String postcode,
+			String plaats, String iban, String telNr, String email,
+			String website) {
+		
+		this.naam = naam;
+		this.adres = adres;
+		this.postcode = postcode;
+		this.plaats = plaats;
+		this.iban = iban;
+		this.telNr = telNr;
+		this.email = email;
+		this.website = website;
+	}
+	
+	/**
 	 * @param id
 	 * @param naam
 	 * @param adres

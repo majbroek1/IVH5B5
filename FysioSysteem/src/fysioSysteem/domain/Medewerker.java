@@ -11,14 +11,22 @@ public class Medewerker {
 	private Enum<?> status;
 	
 	/**
+	 * @param naam
+	 * @param wachtwoord
+	 * @param status
+	 */
+	public Medewerker(String naam, String wachtwoord, Enum<?> status) {
+		this.naam = naam;
+		this.wachtwoord = wachtwoord;
+		this.status = status;
+	}
+	
+	/**
 	 * @param id
 	 * @param naam
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Medewerker(){
-		
-	}
 	public Medewerker(int id, String naam, String wachtwoord, Enum<?> status) {
 		this.id = id;
 		this.naam = naam;
