@@ -50,7 +50,7 @@ public class AfspraakDAO {
 					Date datumTijd = null;
 
 					try {
-						FORMAT.parse(child.getElementsByTagName("datumTijd")
+						datumTijd = FORMAT.parse(child.getElementsByTagName("datumTijd")
 								.item(0).getTextContent());
 					} catch (Exception ex) {
 						ex.printStackTrace();
@@ -193,7 +193,7 @@ public class AfspraakDAO {
 						Date datumTijd = null;
 
 						try {
-							FORMAT.parse(child
+							datumTijd = FORMAT.parse(child
 									.getElementsByTagName("datumTijd").item(0)
 									.getTextContent());
 						} catch (Exception ex) {

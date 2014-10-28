@@ -12,7 +12,7 @@
 							<xs:element name="plaats" type="xs:string"/>
 							<xs:element name="telnr" type="xs:string"/>
 							<xs:element name="email" type="xs:string"/>
-							<xs:element name="gebDatum" type="xs:dateTime"/>
+							<xs:element name="gebDatum" type="xs:date"/>
 						</xs:sequence>
 						<xs:attribute name="bsn" type="xs:string"/>
 					</xs:complexType>

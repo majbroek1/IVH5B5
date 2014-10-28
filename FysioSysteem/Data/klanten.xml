@@ -7,7 +7,7 @@
 		<plaats>Haarlem</plaats>
 		<telnr>0739564712</telnr>
 		<email>bla@blabla.nl</email>
-		<gebDatum>1994-11-30T00:00:00.0</gebDatum>
+		<gebDatum>1993-08-12</gebDatum>
 	</klant>
 	<klant bsn="2">
 		<naam>Praktijk 1</naam>
@@ -16,7 +16,7 @@
 		<plaats>Haarlem</plaats>
 		<telnr>0739564712</telnr>
 		<email>bla@blabla.nl</email>
-		<gebDatum>1994-18-30T00:00:00.0</gebDatum>
+		<gebDatum>1963-05-30</gebDatum>
 	</klant>
 	<klant bsn="2">
 		<naam>Praktijk 1</naam>
@@ -25,6 +25,6 @@
 		<plaats>Haarlem</plaats>
 		<telnr>0739564712</telnr>
 		<email>bla@blabla.nl</email>
-		<gebDatum>1990-04-30T00:00:00.0</gebDatum>
+		<gebDatum>2002-05-30</gebDatum>
 	</klant>
 </klanten>
