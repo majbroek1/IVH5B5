@@ -3,6 +3,11 @@ package fysioSysteem.presentation;
 import java.awt.CardLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JButton;
+
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class pnlBhdlMain extends JPanel{
 	
@@ -29,6 +34,32 @@ public class pnlBhdlMain extends JPanel{
 		
 		add(pnlContent);
 		
+		JButton btnBehandelingToevoegen = new JButton("Behandeling toevoegen");
+		btnBehandelingToevoegen.setBounds(107, 620, 172, 29);
+		add(btnBehandelingToevoegen);
+		
+		JButton btnBehandelingAanpassen = new JButton("Behandeling aanpassen");
+		btnBehandelingAanpassen.setBounds(358, 620, 172, 29);
+		add(btnBehandelingAanpassen);
+		
+		JButton btnBehandelingVerwijderen = new JButton("Behandeling verwijderen");
+		btnBehandelingVerwijderen.setBounds(614, 620, 172, 29);
+		add(btnBehandelingVerwijderen);
+		
+		btnBehandelingToevoegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnBehandelingToevoegen.getText() == "Behandeling toevoegen")
+				{	
+					cl.show(pnlContent, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
+					btnBehandelingToevoegen.setText("Terug naar het overzicht");
+				}
+				else
+				{
+					cl.show(pnlContent, BEHANDELINGEN_OVERZICHT);
+					btnBehandelingToevoegen.setText("Behandeling toevoegen");
+				}
+			}
+		});
 		//TODO
 	}
 }
