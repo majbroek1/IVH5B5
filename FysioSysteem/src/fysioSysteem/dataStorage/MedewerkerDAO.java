@@ -117,7 +117,7 @@ public class MedewerkerDAO {
 
 			Element newMedewerker = document.createElement("medewerker");
 			newMedewerker.setAttribute("id",
-					Integer.toString(medewerker.getId()));
+					Integer.toString(IdManager.getId("Medewerker")));
 			rootElement.appendChild(newMedewerker);
 
 			Element naam = document.createElement("naam");

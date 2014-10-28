@@ -15,6 +15,13 @@ public class Afspraak {
 	private Behandeling behandeling;
 	
 	/**
+	 * @param datumTijd
+	 */
+	public Afspraak(Date datumTijd) {
+		this.datumTijd = datumTijd;
+	}
+	
+	/**
 	 * @param id
 	 * @param datumTijd
 	 */

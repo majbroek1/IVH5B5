@@ -107,9 +107,9 @@ public class BehandelingDAO {
 			Node rootElement = document.getElementsByTagName("behandelingen")
 					.item(0);
 
-			Element newbehandeling = document.createElement("behandelCode");
+			Element newbehandeling = document.createElement("behandeling");
 			newbehandeling.setAttribute("id",
-					Integer.toString(behandeling.getId()));
+					Integer.toString(IdManager.getId("Behandeling")));
 			rootElement.appendChild(newbehandeling);
 
 			Element klant = document.createElement("klantBsn");

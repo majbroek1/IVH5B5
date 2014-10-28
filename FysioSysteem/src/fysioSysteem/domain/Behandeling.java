@@ -20,6 +20,13 @@ public class Behandeling implements Serializable{
 	private ArrayList<Afspraak> afspraken;
 
 	/**
+	 * @param status
+	 */
+	public Behandeling(String status) {
+		this.status = status;
+	}
+	
+	/**
 	 * @param id
 	 * @param status
 	 */
