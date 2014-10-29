@@ -14,10 +14,10 @@ import fysioSysteem.domain.Status;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(MedewerkerDAO.class)
-public class MedewerkerDAOTest {
+public class MedewerkerManagerTest {
 
 	@Test
-	public void testGetMedewerker() {
+	public void testGetMedewerkerPass() {
 		PowerMockito.mockStatic(MedewerkerDAO.class);
 
 		Mockito.when(MedewerkerDAO.getMedewerker(956)).thenReturn(
@@ -25,6 +25,15 @@ public class MedewerkerDAOTest {
 
 		Medewerker medewerker = MedewerkerDAO.getMedewerker(956);
 		Assert.assertEquals(medewerker.getId(), 956);
+	}
+	
+	@Test
+	public void testGetMedewerkerFail() {
+		PowerMockito.mockStatic(MedewerkerDAO.class);
+		
+		Mockito.when(MedewerkerDAO.getMedewerker(956)).thenReturn(null);
+		
+		Assert.assertNull(MedewerkerDAO.getMedewerker(956));
 	}
 
 }
