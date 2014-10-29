@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import fysioSysteem.domain.Behandeling;
+import shared.Behandeling;
 
 public interface FysioServiceIF extends Remote{
 	public static final String servicename = "FysioService";
