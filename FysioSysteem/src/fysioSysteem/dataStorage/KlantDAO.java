@@ -23,13 +23,11 @@ public class KlantDAO {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/klanten.xml";
 	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/klanten.xsd";
-	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss");
+	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	public static Klant getKlant(String bsn) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(KlantDAO.FILE_XML,
-				KlantDAO.FILE_XSD);
+		Document document = domdocument.getDocument(KlantDAO.FILE_XML, KlantDAO.FILE_XSD);
 
 		Klant klant = null;
 		if (document != null) {
@@ -41,32 +39,22 @@ public class KlantDAO {
 					Element child = (Element) node;
 					String _bsn = child.getAttribute("bsn");
 					if (_bsn.equals(bsn)) {
-						String naam = child.getElementsByTagName("naam")
-								.item(0).getTextContent();
-						String adres = child.getElementsByTagName("adres")
-								.item(0).getTextContent();
-						String postcode = child
-								.getElementsByTagName("postcode").item(0)
-								.getTextContent();
-						String plaats = child.getElementsByTagName("plaats")
-								.item(0).getTextContent();
-						String telNr = child.getElementsByTagName("telnr")
-								.item(0).getTextContent();
-						String email = child.getElementsByTagName("email")
-								.item(0).getTextContent();
+						String naam = child.getElementsByTagName("naam").item(0).getTextContent();
+						String adres = child.getElementsByTagName("adres").item(0).getTextContent();
+						String postcode = child.getElementsByTagName("postcode").item(0).getTextContent();
+						String plaats = child.getElementsByTagName("plaats").item(0).getTextContent();
+						String telNr = child.getElementsByTagName("telnr").item(0).getTextContent();
+						String email = child.getElementsByTagName("email").item(0).getTextContent();
 
 						Date gebDatum = null;
 						try {
-							gebDatum = FORMAT.parse(child
-									.getElementsByTagName("gebDatum").item(0)
-									.getTextContent());
+							gebDatum = FORMAT.parse(child.getElementsByTagName("gebDatum").item(0).getTextContent());
 						} catch (Exception e) {
 							System.out.println("Kan datum niet parsen");
 							e.printStackTrace();
 						}
 
-						return new Klant(bsn, naam, adres, postcode, plaats,
-								telNr, email, gebDatum);
+						return new Klant(bsn, naam, adres, postcode, plaats, telNr, email, gebDatum);
 					}
 				}
 			}
@@ -76,7 +64,7 @@ public class KlantDAO {
 		if (klant == null)
 			System.out.println("klant niet gevonden");
 
-		return klant;
+		return null;
 	}
 
 	public static void setKlant(Klant klant) {

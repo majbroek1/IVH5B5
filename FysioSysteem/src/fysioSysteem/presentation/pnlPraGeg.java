@@ -1,23 +1,23 @@
 package fysioSysteem.presentation;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import java.awt.Color;
-import java.awt.Label;
-
-import javax.swing.JButton;
 import javax.swing.border.Border;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import com.google.inject.Inject;
 
-import fysioSysteem.businessLogic.beheer.*;
+import fysioSysteem.businessLogic.beheer.IPraktijkManager;
+import fysioSysteem.businessLogic.beheer.PraktijkManager;
 import fysioSysteem.domain.Praktijk;
 
 public class pnlPraGeg extends JPanel{
@@ -29,12 +29,14 @@ public class pnlPraGeg extends JPanel{
 	private JTextField txtPraGegEmail;
 	private JTextField txtPraGegWebsite;
 	private JTextField txtPraGegPostcode;
+	private IPraktijkManager prakManager;
 	private int praktijkID = 1;
 	
-	public pnlPraGeg(){
-		setLayout(null);		
+	@Inject
+	public pnlPraGeg(IPraktijkManager prakManager){
+		this.prakManager = prakManager;
 		
-		IPraktijkManager prakManager = new PraktijkManager();
+		setLayout(null);		
 		
 		Praktijk p = prakManager.getPraktijk(praktijkID);
 		

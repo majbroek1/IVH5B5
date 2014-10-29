@@ -3,15 +3,16 @@
  */
 package fysioSysteem.dataStorage;
 
+import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.domain.Behandeling;
+import general.Settings;
+
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import fysioSysteem.domain.Behandeling;
-import general.Settings;
 
 /**
  * @author Bob
@@ -22,10 +23,9 @@ public class BehandelingDAO {
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/behandelingen.xml";
 	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/behandelingen.xsd";
 
-	public static Behandeling getBehandeling(int id) {
+	public static Behandeling getBehandeling(int id, boolean includeAfspraken) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
-				BehandelingDAO.FILE_XSD);
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML, BehandelingDAO.FILE_XSD);
 
 		Behandeling behandeling = null;
 		if (document != null) {
@@ -38,22 +38,21 @@ public class BehandelingDAO {
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == id) {
 
-						String status = child.getElementsByTagName("status")
-								.item(0).getTextContent();
+						String status = child.getElementsByTagName("status").item(0).getTextContent();
 
-						int behandelCode = Integer.parseInt(child
-								.getElementsByTagName("behandelCode").item(0)
+						int behandelCode = Integer.parseInt(child.getElementsByTagName("behandelCode").item(0)
 								.getTextContent());
 
-						String klantBsn = child
-								.getElementsByTagName("klantBsn").item(0)
-								.getTextContent();
+						String klantBsn = child.getElementsByTagName("klantBsn").item(0).getTextContent();
 
-						behandeling = new Behandeling(id, status,
-								KlantDAO.getKlant(klantBsn),
-								BehandelCodeDAO.getBehandelCode(behandelCode),
-								AfspraakDAO.getAfspraken(new Behandeling(id,
-										status)));
+						if (includeAfspraken) {
+							behandeling = new Behandeling(id, status, KlantDAO.getKlant(klantBsn),
+									BehandelCodeDAO.getBehandelCode(behandelCode),
+									AfspraakDAO.getAfspraken(new Behandeling(id, status)));
+						} else {
+							behandeling = new Behandeling(id, status, KlantDAO.getKlant(klantBsn),
+									BehandelCodeDAO.getBehandelCode(behandelCode));
+						}
 					}
 				}
 			}
@@ -68,8 +67,7 @@ public class BehandelingDAO {
 
 	public static void setBehandeling(Behandeling behandeling) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
-				BehandelingDAO.FILE_XSD);
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML, BehandelingDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -81,8 +79,7 @@ public class BehandelingDAO {
 					Element child = (Element) node;
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == behandeling.getId()) {
-						Node status = child.getElementsByTagName("status")
-								.item(0).getFirstChild();
+						Node status = child.getElementsByTagName("status").item(0).getFirstChild();
 
 						status.setNodeValue(behandeling.getStatus());
 						edited = true;
@@ -90,8 +87,7 @@ public class BehandelingDAO {
 				}
 			}
 
-			domdocument.writeDocument(BehandelingDAO.FILE_XML,
-					BehandelingDAO.FILE_XSD, document);
+			domdocument.writeDocument(BehandelingDAO.FILE_XML, BehandelingDAO.FILE_XSD, document);
 		} else
 			System.out.println("XML document is null");
 
@@ -101,30 +97,25 @@ public class BehandelingDAO {
 
 	public static void addBehandeling(Behandeling behandeling) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
-				BehandelingDAO.FILE_XSD);
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML, BehandelingDAO.FILE_XSD);
 
-		if (getBehandeling(behandeling.getId()) == null) {
-			Node rootElement = document.getElementsByTagName("behandelingen")
-					.item(0);
+		if (getBehandeling(behandeling.getId(), false) == null) {
+			Node rootElement = document.getElementsByTagName("behandelingen").item(0);
 
 			Element newbehandeling = document.createElement("behandeling");
-			newbehandeling.setAttribute("id",
-					Integer.toString(IdManager.getId("Behandeling")));
+			newbehandeling.setAttribute("id", Integer.toString(IdManager.getId("Behandeling")));
 			rootElement.appendChild(newbehandeling);
 
 			Element klant = document.createElement("klantBsn");
-			klant.appendChild(document.createTextNode(behandeling.getKlant()
-					.getBsn()));
+			klant.appendChild(document.createTextNode(behandeling.getKlant().getBsn()));
 			newbehandeling.appendChild(klant);
 
 			Element behandelCode = document.createElement("behandelcode");
-			behandelCode.appendChild(document.createTextNode(Integer
-					.toString(behandeling.getBehandelCode().getCode())));
+			behandelCode
+					.appendChild(document.createTextNode(Integer.toString(behandeling.getBehandelCode().getCode())));
 			newbehandeling.appendChild(behandelCode);
 
-			domdocument.writeDocument(BehandelingDAO.FILE_XML,
-					BehandelingDAO.FILE_XSD, document);
+			domdocument.writeDocument(BehandelingDAO.FILE_XML, BehandelingDAO.FILE_XSD, document);
 		} else {
 			System.out.println("behandelCode bestaat al");
 		}
@@ -132,8 +123,7 @@ public class BehandelingDAO {
 
 	public static ArrayList<Behandeling> getBehandelingen() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
-				BehandelingDAO.FILE_XSD);
+		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML, BehandelingDAO.FILE_XSD);
 
 		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
 		if (document != null) {
@@ -145,18 +135,14 @@ public class BehandelingDAO {
 					Element child = (Element) node;
 					int id = Integer.parseInt(child.getAttribute("id"));
 
-					String status = child.getElementsByTagName("status")
-							.item(0).getTextContent();
+					String status = child.getElementsByTagName("status").item(0).getTextContent();
 
-					int behandelCode = Integer.parseInt(child
-							.getElementsByTagName("behandelCode").item(0)
+					int behandelCode = Integer.parseInt(child.getElementsByTagName("behandelCode").item(0)
 							.getTextContent());
 
-					String klantBsn = child.getElementsByTagName("klantBsn")
-							.item(0).getTextContent();
+					String klantBsn = child.getElementsByTagName("klantBsn").item(0).getTextContent();
 
-					behandelingen.add(new Behandeling(id, status, KlantDAO
-							.getKlant(klantBsn), BehandelCodeDAO
+					behandelingen.add(new Behandeling(id, status, KlantDAO.getKlant(klantBsn), BehandelCodeDAO
 							.getBehandelCode(behandelCode)));
 				}
 			}
@@ -180,4 +166,17 @@ public class BehandelingDAO {
 
 		return behandelingen;
 	}
+	
+	public static ArrayList<Behandeling> getBehandelingen(BehandelCode bc) {
+		ArrayList<Behandeling> _behandelingen = getBehandelingen();
+		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
+
+		for (Behandeling b : _behandelingen) {
+			if (b.getBehandelCode().getCode() == bc.getCode())
+				behandelingen.add(b);
+		}
+
+		return behandelingen;
+	}
+	
 }

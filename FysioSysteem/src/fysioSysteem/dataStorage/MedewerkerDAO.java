@@ -24,8 +24,7 @@ public class MedewerkerDAO {
 
 	public static Medewerker getMedewerker(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
-				MedewerkerDAO.FILE_XSD);
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD);
 
 		Medewerker medewerker = null;
 		if (document != null) {
@@ -37,16 +36,11 @@ public class MedewerkerDAO {
 					Element child = (Element) node;
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == id) {
-						String naam = child.getElementsByTagName("naam")
-								.item(0).getTextContent();
-						String wachtwoord = child
-								.getElementsByTagName("wachtwoord").item(0)
-								.getTextContent();
-						Status status = Status.valueOf(child
-								.getElementsByTagName("status").item(0)
-								.getTextContent());
-						medewerker = new Medewerker(id, naam, wachtwoord,
-								status);
+						String naam = child.getElementsByTagName("naam").item(0).getTextContent();
+						String wachtwoord = child.getElementsByTagName("wachtwoord").item(0).getTextContent();
+						int praktijkId = Integer.parseInt(child.getElementsByTagName("praktijkId").item(0).getTextContent());
+						Status status = Status.valueOf(child.getElementsByTagName("status").item(0).getTextContent());
+						medewerker = new Medewerker(id, naam, wachtwoord, status, PraktijkDAO.getPraktijk(praktijkId));
 					}
 				}
 			}
@@ -58,23 +52,22 @@ public class MedewerkerDAO {
 
 		return medewerker;
 	}
-	
+
 	public static ArrayList<Medewerker> getActieveMedewerkers() {
 		ArrayList<Medewerker> medewerkers = MedewerkerDAO.getMedewerkers();
 		ArrayList<Medewerker> rtnList = new ArrayList<>();
-		
-		for(Medewerker m : medewerkers) {
-			if(m.getStatus().equals("ACTIEF"))
+
+		for (Medewerker m : medewerkers) {
+			if (m.getStatus().equals("ACTIEF"))
 				rtnList.add(m);
 		}
-		
+
 		return rtnList;
 	}
 
 	public static Fysiotherapeut getFysio(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
-				MedewerkerDAO.FILE_XSD);
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD);
 
 		Fysiotherapeut fysio = null;
 		if (document != null) {
@@ -86,15 +79,11 @@ public class MedewerkerDAO {
 					Element child = (Element) node;
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == id) {
-						String naam = child.getElementsByTagName("naam")
-								.item(0).getTextContent();
-						String wachtwoord = child
-								.getElementsByTagName("wachtwoord").item(0)
-								.getTextContent();
-						Status status = Status.valueOf(child
-								.getElementsByTagName("status").item(0)
-								.getTextContent());
-						fysio = new Fysiotherapeut(id, naam, wachtwoord, status);
+						String naam = child.getElementsByTagName("naam").item(0).getTextContent();
+						String wachtwoord = child.getElementsByTagName("wachtwoord").item(0).getTextContent();
+						int praktijkId = Integer.parseInt(child.getElementsByTagName("praktijkId").item(0).getTextContent());
+						Status status = Status.valueOf(child.getElementsByTagName("status").item(0).getTextContent());
+						fysio = new Fysiotherapeut(id, naam, wachtwoord, status, PraktijkDAO.getPraktijk(praktijkId));
 					}
 				}
 			}
@@ -109,16 +98,13 @@ public class MedewerkerDAO {
 
 	public static void addMedewerker(Medewerker medewerker) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
-				MedewerkerDAO.FILE_XSD);
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD);
 
 		if (getMedewerker(medewerker.getId()) == null) {
-			Node rootElement = document.getElementsByTagName("medewerkers")
-					.item(0);
+			Node rootElement = document.getElementsByTagName("medewerkers").item(0);
 
 			Element newMedewerker = document.createElement("medewerker");
-			newMedewerker.setAttribute("id",
-					Integer.toString(IdManager.getId("Medewerker")));
+			newMedewerker.setAttribute("id", Integer.toString(IdManager.getId("Medewerker")));
 			rootElement.appendChild(newMedewerker);
 
 			Element naam = document.createElement("naam");
@@ -126,13 +112,15 @@ public class MedewerkerDAO {
 			newMedewerker.appendChild(naam);
 
 			Element wachtwoord = document.createElement("wachtwoord");
-			wachtwoord.appendChild(document.createTextNode(medewerker
-					.getWachtwoord()));
+			wachtwoord.appendChild(document.createTextNode(medewerker.getWachtwoord()));
 			newMedewerker.appendChild(wachtwoord);
+			
+			Element praktijkId = document.createElement("praktijkId");
+			praktijkId.appendChild(document.createTextNode(Integer.toString(medewerker.getPraktijk().getId())));
+			newMedewerker.appendChild(praktijkId);
 
 			Element status = document.createElement("status");
-			status.appendChild(document.createTextNode(medewerker.getStatus()
-					.toString()));
+			status.appendChild(document.createTextNode(medewerker.getStatus().toString()));
 			newMedewerker.appendChild(status);
 
 			Element functie = document.createElement("functie");
@@ -143,8 +131,7 @@ public class MedewerkerDAO {
 
 			newMedewerker.appendChild(functie);
 
-			domdocument.writeDocument(MedewerkerDAO.FILE_XML,
-					MedewerkerDAO.FILE_XSD, document);
+			domdocument.writeDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD, document);
 		} else {
 			System.out.println("Medewerker bestaat al");
 		}
@@ -152,8 +139,7 @@ public class MedewerkerDAO {
 
 	public static void setMedewerker(Medewerker medewerker) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
-				MedewerkerDAO.FILE_XSD);
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -165,24 +151,21 @@ public class MedewerkerDAO {
 					Element child = (Element) node;
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == medewerker.getId()) {
-						Node naam = child.getElementsByTagName("naam").item(0)
-								.getFirstChild();
-						Node wachtwoord = child
-								.getElementsByTagName("wachtwoord").item(0)
-								.getFirstChild();
-						Node status = child.getElementsByTagName("status")
-								.item(0).getFirstChild();
+						Node naam = child.getElementsByTagName("naam").item(0).getFirstChild();
+						Node wachtwoord = child.getElementsByTagName("wachtwoord").item(0).getFirstChild();
+						Node praktijkId = child.getElementsByTagName("praktijkId").item(0).getFirstChild();
+						Node status = child.getElementsByTagName("status").item(0).getFirstChild();
 
 						naam.setNodeValue(medewerker.getNaam());
 						wachtwoord.setNodeValue(medewerker.getWachtwoord());
+						praktijkId.setNodeValue(Integer.toString(medewerker.getPraktijk().getId()));
 						status.setNodeValue(medewerker.getStatus().toString());
 						edited = true;
 					}
 				}
 			}
 
-			domdocument.writeDocument(MedewerkerDAO.FILE_XML,
-					MedewerkerDAO.FILE_XSD, document);
+			domdocument.writeDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD, document);
 		} else
 			System.out.println("XML document is null");
 
@@ -192,8 +175,7 @@ public class MedewerkerDAO {
 
 	public static ArrayList<Medewerker> getMedewerkers() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
-				MedewerkerDAO.FILE_XSD);
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD);
 
 		ArrayList<Medewerker> medewerkers = new ArrayList<Medewerker>();
 		if (document != null) {
@@ -205,16 +187,11 @@ public class MedewerkerDAO {
 					Element child = (Element) node;
 
 					int id = Integer.parseInt(child.getAttribute("id"));
-					String naam = child.getElementsByTagName("naam").item(0)
-							.getTextContent();
-					String wachtwoord = child
-							.getElementsByTagName("wachtwoord").item(0)
-							.getTextContent();
-					Status status = Status.valueOf(child
-							.getElementsByTagName("status").item(0)
-							.getTextContent());
-					medewerkers
-							.add(new Medewerker(id, naam, wachtwoord, status));
+					String naam = child.getElementsByTagName("naam").item(0).getTextContent();
+					String wachtwoord = child.getElementsByTagName("wachtwoord").item(0).getTextContent();
+					int praktijkId = Integer.parseInt(child.getElementsByTagName("praktijkId").item(0).getTextContent());
+					Status status = Status.valueOf(child.getElementsByTagName("status").item(0).getTextContent());
+					medewerkers.add(new Medewerker(id, naam, wachtwoord, status, PraktijkDAO.getPraktijk(praktijkId)));
 				}
 			}
 		} else
@@ -228,8 +205,7 @@ public class MedewerkerDAO {
 
 	public static ArrayList<Fysiotherapeut> getFysiotherapeuten() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
-				MedewerkerDAO.FILE_XSD);
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD);
 
 		ArrayList<Fysiotherapeut> therapeuten = new ArrayList<Fysiotherapeut>();
 		if (document != null) {
@@ -239,20 +215,14 @@ public class MedewerkerDAO {
 				Node node = list.item(i);
 				if (node instanceof Element) {
 					Element child = (Element) node;
-					String functie = child.getElementsByTagName("functie")
-							.item(0).getTextContent();
+					String functie = child.getElementsByTagName("functie").item(0).getTextContent();
 					if (functie.equals("fysiotherapeut")) {
 						int id = Integer.parseInt(child.getAttribute("id"));
-						String naam = child.getElementsByTagName("naam")
-								.item(0).getTextContent();
-						String wachtwoord = child
-								.getElementsByTagName("wachtwoord").item(0)
-								.getTextContent();
-						Status status = Status.valueOf(child
-								.getElementsByTagName("status").item(0)
-								.getTextContent());
-						therapeuten.add(new Fysiotherapeut(id, naam,
-								wachtwoord, status));
+						String naam = child.getElementsByTagName("naam").item(0).getTextContent();
+						String wachtwoord = child.getElementsByTagName("wachtwoord").item(0).getTextContent();
+						int praktijkId = Integer.parseInt(child.getElementsByTagName("praktijkId").item(0).getTextContent());
+						Status status = Status.valueOf(child.getElementsByTagName("status").item(0).getTextContent());
+						therapeuten.add(new Fysiotherapeut(id, naam, wachtwoord, status, PraktijkDAO.getPraktijk(praktijkId)));
 					}
 				}
 			}
@@ -267,8 +237,7 @@ public class MedewerkerDAO {
 
 	public static ArrayList<Secretaresse> getSecretaressen() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML,
-				MedewerkerDAO.FILE_XSD);
+		Document document = domdocument.getDocument(MedewerkerDAO.FILE_XML, MedewerkerDAO.FILE_XSD);
 
 		ArrayList<Secretaresse> secretaressen = new ArrayList<Secretaresse>();
 		if (document != null) {
@@ -278,22 +247,14 @@ public class MedewerkerDAO {
 				Node node = list.item(i);
 				if (node instanceof Element) {
 					Element child = (Element) node;
-					String functie = child.getElementsByTagName("secretaresse")
-							.item(0).getTextContent();
+					String functie = child.getElementsByTagName("secretaresse").item(0).getTextContent();
 					if (functie.equals("fysiotherapeut")) {
-						int id = Integer.parseInt(child
-								.getElementsByTagName("id").item(0)
-								.getTextContent());
-						String naam = child.getElementsByTagName("naam")
-								.item(0).getTextContent();
-						String wachtwoord = child
-								.getElementsByTagName("wachtwoord").item(0)
-								.getTextContent();
-						Status status = Status.valueOf(child
-								.getElementsByTagName("status").item(0)
-								.getTextContent());
-						secretaressen.add(new Secretaresse(id, naam,
-								wachtwoord, status));
+						int id = Integer.parseInt(child.getElementsByTagName("id").item(0).getTextContent());
+						String naam = child.getElementsByTagName("naam").item(0).getTextContent();
+						String wachtwoord = child.getElementsByTagName("wachtwoord").item(0).getTextContent();
+						int praktijkId = Integer.parseInt(child.getElementsByTagName("praktijkId").item(0).getTextContent());
+						Status status = Status.valueOf(child.getElementsByTagName("status").item(0).getTextContent());
+						secretaressen.add(new Secretaresse(id, naam, wachtwoord, status,PraktijkDAO.getPraktijk(praktijkId)));
 					}
 				}
 			}

@@ -11,8 +11,8 @@ public class Secretaresse extends Medewerker {
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Secretaresse(String naam, String wachtwoord, Enum<?> status) {
-		super(naam, wachtwoord, status);
+	public Secretaresse(String naam, String wachtwoord, Enum<?> status, Praktijk praktijk) {
+		super(naam, wachtwoord, status, praktijk);
 	}
 	
 	/**
@@ -21,8 +21,8 @@ public class Secretaresse extends Medewerker {
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Secretaresse(int id, String naam, String wachtwoord, Enum<?> status) {
-		super(id, naam, wachtwoord, status);
+	public Secretaresse(int id, String naam, String wachtwoord, Enum<?> status, Praktijk praktijk) {
+		super(id, naam, wachtwoord, status, praktijk);
 	}
 
 }

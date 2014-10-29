@@ -1,7 +1,10 @@
-package fysioSysteem.businessLogic.behanding;
+package fysioSysteem.businessLogic.behandeling;
 
 import java.util.ArrayList;
 
+import com.google.inject.Singleton;
+
+import fysioSysteem.dataStorage.BehandelingDAO;
 import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Klant;
@@ -10,42 +13,33 @@ import fysioSysteem.domain.Klant;
  * @author Bob
  *
  */
-public class BehandelingManager implements IBehandelingManager {
 
-	private ArrayList<Behandeling> behandelingen;
-	
-	public BehandelingManager() {
-		// TODO
-	}
+@Singleton
+public class BehandelingManager implements IBehandelingManager {
 	
 	@Override
 	public void addBehandeling(Behandeling behandeling) {
-		// TODO Auto-generated method stub
-
+		BehandelingDAO.addBehandeling(behandeling);
 	}
 
 	@Override
 	public void setBehandeling(Behandeling behandeling) {
-		// TODO Auto-generated method stub
-
+		BehandelingDAO.setBehandeling(behandeling);
 	}
 
 	@Override
 	public ArrayList<Behandeling> getBehandelingen(Klant klant) {
-		// TODO Auto-generated method stub
-		return null;
+		return BehandelingDAO.getBehandelingen(klant.getBsn());
 	}
 
 	@Override
 	public Behandeling getBehandeling(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return BehandelingDAO.getBehandeling(id, true);
 	}
 	
 	@Override
 	public ArrayList<Behandeling> getBehandelingen(BehandelCode behandelCode) {
-		// TODO Auto-generated method stub
-		return null;
+		return BehandelingDAO.getBehandelingen(behandelCode);
 	}
 
 }

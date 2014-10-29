@@ -10,8 +10,9 @@
 							<xs:element type="xs:string" name="wachtwoord"/>
 							<xs:element type="xs:string" name="status"/>
 							<xs:element type="xs:string" name="functie"/>
+							<xs:element type="xs:string" name="praktijkId"/>
 						</xs:sequence>							
-					<xs:attribute type="xs:byte" name="id"/>
+					<xs:attribute type="xs:integer" name="id"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

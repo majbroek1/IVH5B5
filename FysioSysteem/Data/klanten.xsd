@@ -10,12 +10,11 @@
 							<xs:element name="adres" type="xs:string"/>
 							<xs:element name="postcode" type="xs:string"/>
 							<xs:element name="plaats" type="xs:string"/>
-							<xs:element name="iban" type="xs:string"/>
 							<xs:element name="telnr" type="xs:string"/>
 							<xs:element name="email" type="xs:string"/>
-							<xs:element name="website" type="xs:string"/>
+							<xs:element name="gebDatum" type="xs:date"/>
 						</xs:sequence>
-						<xs:attribute name="id" type="xs:integer"/>
+						<xs:attribute name="bsn" type="xs:string"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

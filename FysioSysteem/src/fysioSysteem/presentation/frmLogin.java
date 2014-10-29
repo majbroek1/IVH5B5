@@ -1,6 +1,5 @@
 package fysioSysteem.presentation;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,11 +12,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.Inject;
 
 import fysioSysteem.businessLogic.login.ILoginManager;
-import general.AppInjector;
 
 public class frmLogin extends JFrame {
 
@@ -28,30 +25,14 @@ public class frmLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtMedewerkerID;
 	private JPasswordField txtMedewerkerPass;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {        
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmLogin frame = new frmLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private ILoginManager lgn;
 
 	/**
 	 * Create the frame.
 	 */
-	public frmLogin() {
-		Injector injector = Guice.createInjector(new AppInjector());        
-		ILoginManager lgn = injector.getInstance(ILoginManager.class);
-		
+	@Inject
+	public frmLogin(ILoginManager lgn) {
+		this.lgn = lgn;
 		setResizable(false);
 		setTitle("Inloggen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

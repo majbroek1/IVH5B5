@@ -1,23 +1,14 @@
 package fysioSysteem.presentation;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-
-import fysioSysteem.businessLogic.planning.*;
-import fysioSysteem.businessLogic.login.*;
-import fysioSysteem.businessLogic.beheer.*;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 
 public class pnlAfspOvz extends JPanel{
 	public pnlAfspOvz(){
-		//IAfspraakManager afsp = new AfspraakManager();
-		//ILoginManager lgn = new LoginManager();
-		//IMedewerkerManager mdwrk = new MedewerkerManager();
+		//IAfspraakManager afsp = AppInjector IAfspraakManager();
+		//ILoginManager lgn = new ILoginManager();
+		//IMedewerkerManager mdwrk = new IMedewerkerManager();
 		
 		setLayout(null);
 		

@@ -1,5 +1,7 @@
 package fysioSysteem.presentation;
 
+import general.AppInjector;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -31,28 +33,15 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 public class frmMain extends JFrame {
 
 	final static String AFSPRAKEN_MAIN = "Afspraken Main";
 	final static String BEHANDELINGEN_MAIN = "Behandelingen Main";
 	final static String FYSIOTHEROPEUTEN_MAIN = "Fysiotheropeuten Main";
 	final static String PARKTIJK_GEGEVENS = "Praktijk Gegevens Toevoegen / Wijzigen";
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmMain frame = new frmMain();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -125,7 +114,8 @@ public class frmMain extends JFrame {
 		btnUitloggen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain.this.dispose();
-				new frmLogin().setVisible(true);				
+				Injector injector = Guice.createInjector(new AppInjector());
+				injector.getInstance(frmLogin.class).setVisible(true);
 			}
 		});
 		btnUitloggen.setHorizontalAlignment(SwingConstants.LEFT);
@@ -138,6 +128,8 @@ public class frmMain extends JFrame {
 		/* Card Panel */
 		CardLayout cl = new CardLayout();
 
+		Injector injector = Guice.createInjector(new AppInjector());
+		
 		JPanel pnlAfspMain = new pnlAfspMain();
 		pnlAfspMain.setBounds(200, 0, 876, 656);
 		
@@ -146,8 +138,8 @@ public class frmMain extends JFrame {
 		
 		JPanel pnlFysMain = new pnlFysMain();
 		pnlFysMain.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlPraGeg = new pnlPraGeg();
+
+		JPanel pnlPraGeg = injector.getInstance(pnlPraGeg.class);
 		pnlPraGeg.setBounds(200, 0, 876, 656);
 		
 		JPanel pnlContent = new JPanel();
