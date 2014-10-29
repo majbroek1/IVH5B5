@@ -2,12 +2,16 @@ package fysioSysteem.businessLogic.behanding;
 
 import java.util.ArrayList;
 
+import com.google.inject.Singleton;
+
 import fysioSysteem.domain.Klant;
 
 /**
  * @author Bob
  *
  */
+
+@Singleton
 public class KlantManager implements IKlantManager {
 
 	private ArrayList<Klant> klanten;
