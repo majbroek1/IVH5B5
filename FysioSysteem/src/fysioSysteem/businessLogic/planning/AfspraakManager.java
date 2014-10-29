@@ -3,6 +3,8 @@ package fysioSysteem.businessLogic.planning;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.google.inject.Singleton;
+
 import fysioSysteem.dataStorage.AfspraakDAO;
 import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.Fysiotherapeut;
@@ -12,11 +14,9 @@ import fysioSysteem.domain.Klant;
  * @author Bob
  *
  */
-public class AfspraakManager implements IAfspraakManager {
 
-	public AfspraakManager() {
-		// TOOD
-	}
+@Singleton
+public class AfspraakManager implements IAfspraakManager {
 
 	/**
 	 * Controleert of het tijdstip van de afspraak haalbaar is
