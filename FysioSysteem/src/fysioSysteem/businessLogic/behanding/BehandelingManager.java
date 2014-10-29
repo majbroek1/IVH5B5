@@ -17,7 +17,7 @@ public class BehandelingManager implements IBehandelingManager {
 	private ArrayList<Behandeling> behandelingen;
 	
 	public BehandelingManager() {
-		// TODO
+		this.behandelingen = getBehandelingen();
 	}
 	
 	@Override
@@ -46,8 +46,8 @@ public class BehandelingManager implements IBehandelingManager {
 	
 	@Override
 	public Behandeling getBehandeling(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Behandeling behandeling = BehandelingDAO.getBehandeling(id, false);
+		return behandeling;
 	}
 	
 	@Override

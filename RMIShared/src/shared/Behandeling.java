@@ -1,12 +1,17 @@
 package shared;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * @author thom145
  */
-public class Behandeling {
+public class Behandeling implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer behandelNr;
 	private String BSN;
 	private Date startDatum;

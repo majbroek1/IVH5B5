@@ -1,11 +1,10 @@
 package fysioSysteem.businessLogic.login;
 
-import java.util.ArrayList;
-
 import com.google.inject.Singleton;
 
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Medewerker;
+import fysioSysteem.domain.Status;
 
 /**
  * @author Bob
@@ -17,17 +16,13 @@ public class LoginManager implements ILoginManager {
 
 	private Medewerker ingelogdeMedewerker = null;
 	
-	public LoginManager() {
-		// TODO
-	}
-	
 	@Override
 	public boolean valideer(int id, String wachtwoord) {
-		ArrayList<Medewerker> medewerkerList =
-				MedewerkerDAO.getMedewerkers();
+		Medewerker m = MedewerkerDAO.getMedewerker(id);
 		
-		for(Medewerker m : medewerkerList) {
-			if(m.getId() == id && m.getWachtwoord().equals(wachtwoord)) {
+		if(m != null) {
+			if(m.getWachtwoord().equals(wachtwoord)
+				&& m.getStatus() == Status.ACTIEF) {
 				ingelogdeMedewerker = m;
 				return true;
 			}

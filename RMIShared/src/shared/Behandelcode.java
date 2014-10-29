@@ -1,9 +1,16 @@
 package shared;
+
+import java.io.Serializable;
+
 /**
  * @author thom145
  */
-public class Behandelcode {
+public class Behandelcode implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer code;
 	private String naam;
 	private Integer aantalSessies;

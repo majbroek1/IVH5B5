@@ -1,4 +1,4 @@
-package fysioSysteem.businessLogic.behanding;
+package fysioSysteem.businessLogic.behandeling;
 
 import java.util.ArrayList;
 

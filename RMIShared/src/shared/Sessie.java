@@ -1,14 +1,20 @@
 package shared;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author thom145
  */
-public class Sessie {
+public class Sessie implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer sessieNr;
 	private Date datum;
 	private boolean voldaan;
+	private Zorgaanbieder zorgaanbieder;
 
 	public Sessie(Integer sessieNr, Date datum, boolean voldaan) {
 		this.sessieNr = sessieNr;
@@ -16,9 +22,10 @@ public class Sessie {
 		this.voldaan = voldaan;
 	}
 	
-	public Sessie(Integer sessieNr, Date datum) {
+	public Sessie(Integer sessieNr, Date datum, Zorgaanbieder zorgaanbieder) {
 		this.sessieNr = sessieNr;
 		this.datum = datum;
+		this.zorgaanbieder = zorgaanbieder;
 	}
 
 	public void setSessieNr(Integer sessieNr) {
@@ -43,5 +50,9 @@ public class Sessie {
 
 	public boolean getVoldaan() {
 		return this.voldaan;
+	}
+
+	public Zorgaanbieder getZorgaanbieder() {
+		return zorgaanbieder;
 	}
 }

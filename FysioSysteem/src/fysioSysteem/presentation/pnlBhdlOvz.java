@@ -14,7 +14,8 @@ import fysioSysteem.businessLogic.behanding.IBehandelingManager;
 import fysioSysteem.domain.Behandeling;
 
 public class pnlBhdlOvz extends JPanel{
-	private JTable table;
+	private JTable overzichtTabel;
+	
 	public pnlBhdlOvz(){
 		setLayout(null);
 		
@@ -29,15 +30,19 @@ public class pnlBhdlOvz extends JPanel{
 			rijData[i][1] = behandeling.getBehandelCode().getCode();
 			rijData[i][2] = behandeling.getStatus();
 		}
-	    
-	   /* Object rijData[][] = { { "Row1-Column1", "Row1-Column2", "Row1-Column3" },
-	    		{ "Row2-Column1", "Row1-Column2", "Row1-Column3" },
-	            { "Row3-Column1", "Row2-Column2", "Row2-Column3" } };*/
+	   
 	        Object kolomNamen[] = { "Klant BSN", "Behandelcode", "Status" };
-        JTable overzichtTabel = new JTable(rijData, kolomNamen);
+        overzichtTabel = new JTable(rijData, kolomNamen);
 
         JScrollPane scrllPnOverzichtTabel = new JScrollPane(overzichtTabel);
         scrllPnOverzichtTabel.setBounds(10, 10, 867, 590);
 		add(scrllPnOverzichtTabel);
+	}
+	
+	public int getSelectedIndex()
+	{
+		int selectedIndex = overzichtTabel.getSelectedRow();
+		selectedIndex = 3;
+		return selectedIndex;
 	}
 }
