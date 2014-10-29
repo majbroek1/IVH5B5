@@ -1,5 +1,9 @@
 package fysioSysteem.tests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +24,8 @@ public class MedewerkerDAOTest {
 	public void testGetMedewerker() {
 		PowerMockito.mockStatic(MedewerkerDAO.class);
 		
-		Mockito.when(MedewerkerDAO.getMedewerker(956)).thenReturn(new Medewerker(956,"Henk","welkom123",Status.ACTIEF));
+		Mockito.when(MedewerkerDAO.getMedewerker(956))
+			.thenReturn(new Medewerker(956,"Henk","welkom123",Status.ACTIEF));
 		
 		Medewerker medewerker = MedewerkerDAO.getMedewerker(956);
 		Assert.assertEquals(medewerker.getId(), 956);
