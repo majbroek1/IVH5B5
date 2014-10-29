@@ -1,5 +1,7 @@
 package fysioSysteem.presentation;
 
+import general.AppInjector;
+
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class pnlFysMain extends JPanel{
 	
@@ -21,10 +26,12 @@ public class pnlFysMain extends JPanel{
 		
 		CardLayout cl = new CardLayout();
 		
+		Injector injector = Guice.createInjector(new AppInjector());
+		
 		JPanel pnlFysOvz = new pnlFysOvz();
 		pnlFysOvz.setBounds(0, 0, 876, 600);
 		
-		JPanel pnlFysToeWzg = new pnlFysToeWzg(0);
+		JPanel pnlFysToeWzg = injector.getInstance(pnlFysToeWzg.class);
 		pnlFysToeWzg.setBounds(0, 0, 876, 600);
 		
 		JPanel pnlFysRooOvz = new pnlFysRooOvz();

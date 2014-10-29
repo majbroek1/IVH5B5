@@ -1,9 +1,14 @@
 package fysioSysteem.presentation;
 
+import general.AppInjector;
+
 import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -20,13 +25,16 @@ public class pnlBhdlMain extends JPanel{
 		
 		CardLayout cl = new CardLayout();
 		
-		JPanel pnlBhdlOvz = new pnlBhdlOvz();
+		Injector injector = Guice.createInjector(new AppInjector());
+		
+		JPanel pnlBhdlOvz = injector.getInstance(pnlBhdlOvz.class);
 		pnlBhdlOvz.setBounds(0, 0, 876, 600);
 		
-		JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg();
+		JPanel pnlBhdlToeWzg = injector.getInstance(pnlBhdlToeWzg.class);
 		pnlBhdlToeWzg.setBounds(0, 0, 876, 600);
 		
 		JPanel pnlContent = new JPanel();
+		
 		pnlContent.setLayout(cl);
 		pnlContent.setBounds(0, 0, 876, 600);
 		pnlContent.add(pnlBhdlOvz, BEHANDELINGEN_OVERZICHT);

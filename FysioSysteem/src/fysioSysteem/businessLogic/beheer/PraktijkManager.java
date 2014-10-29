@@ -3,9 +3,13 @@
  */
 package fysioSysteem.businessLogic.beheer;
 
+import java.util.ArrayList;
+
 import com.google.inject.Singleton;
 
+import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.dataStorage.PraktijkDAO;
+import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 
 /**
@@ -27,4 +31,8 @@ public class PraktijkManager implements IPraktijkManager {
 		return PraktijkDAO.getPraktijk(id);
 	}
 
+	@Override
+	public ArrayList<Praktijk> getPraktijken() {
+		return PraktijkDAO.getPraktijken();
+	}
 }

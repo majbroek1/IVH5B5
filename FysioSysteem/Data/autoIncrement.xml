@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<incrementIds>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><incrementIds>
 	<incrementId class="Afspraak">
 		<currentId>1</currentId>
 	</incrementId>
@@ -10,7 +9,7 @@
 		<currentId>1</currentId>
 	</incrementId>		
 	<incrementId class="Medewerker">
-		<currentId>1</currentId>
+		<currentId>2</currentId>
 	</incrementId>	
 	<incrementId class="Praktijk">
 		<currentId>1</currentId>
