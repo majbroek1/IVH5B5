@@ -24,18 +24,14 @@ import general.Settings;
  */
 public class AfspraakDAO {
 
-	private static final String FILE_XML = System.getProperty(Settings.DATADIR)
-			+ "/afspraken.xml";
-	private static final String FILE_XSD = System.getProperty(Settings.DATADIR)
-			+ "/afspraken.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/afspraken.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/afspraken.xsd";
 
-	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss");
+	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
 	public static ArrayList<Afspraak> getAfspraken() {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML,
-				AfspraakDAO.FILE_XSD);
+		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML, AfspraakDAO.FILE_XSD);
 
 		ArrayList<Afspraak> afspraken = new ArrayList<Afspraak>();
 		if (document != null) {
@@ -50,23 +46,19 @@ public class AfspraakDAO {
 					Date datumTijd = null;
 
 					try {
-						datumTijd = FORMAT.parse(child.getElementsByTagName("datumTijd")
-								.item(0).getTextContent());
+						datumTijd = FORMAT.parse(child.getElementsByTagName("datumTijd").item(0).getTextContent());
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
 
-					Fysiotherapeut fysio = MedewerkerDAO.getFysio(Integer
-							.parseInt(child.getElementsByTagName("fysioId")
-									.item(0).getTextContent()));
+					Fysiotherapeut fysio = MedewerkerDAO.getFysio(Integer.parseInt(child
+							.getElementsByTagName("fysioId").item(0).getTextContent()));
 
-					Behandeling behandeling = BehandelingDAO
-							.getBehandeling(Integer.parseInt(child
-									.getElementsByTagName("behandelingId")
-									.item(0).getTextContent()),false);
+					Behandeling behandeling = BehandelingDAO.getBehandeling(
+							Integer.parseInt(child.getElementsByTagName("behandelingId").item(0).getTextContent()),
+							false);
 
-					afspraken.add(new Afspraak(id, datumTijd, fysio,
-							behandeling));
+					afspraken.add(new Afspraak(id, datumTijd, fysio, behandeling));
 				}
 			}
 		} else
@@ -80,8 +72,7 @@ public class AfspraakDAO {
 
 	public static void setAfspraak(Afspraak afspraak) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML,
-				AfspraakDAO.FILE_XSD);
+		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML, AfspraakDAO.FILE_XSD);
 
 		boolean edited = false;
 
@@ -95,31 +86,22 @@ public class AfspraakDAO {
 
 					if (Integer.parseInt(_id) == afspraak.getId()) {
 
-						Node datumTijd = child
-								.getElementsByTagName("datumTijd").item(0)
-								.getFirstChild();
+						Node datumTijd = child.getElementsByTagName("datumTijd").item(0).getFirstChild();
 
-						Node fysioId = child.getElementsByTagName("fysioId")
-								.item(0).getFirstChild();
+						Node fysioId = child.getElementsByTagName("fysioId").item(0).getFirstChild();
 
-						Node behandelingId = child
-								.getElementsByTagName("behandelingId").item(0)
-								.getFirstChild();
+						Node behandelingId = child.getElementsByTagName("behandelingId").item(0).getFirstChild();
 
-						datumTijd.setNodeValue(FORMAT.format(afspraak
-								.getDatumTijd()));
-						fysioId.setNodeValue(Integer.toString(afspraak
-								.getFysiotherapeut().getId()));
-						behandelingId.setNodeValue(Integer.toString(afspraak
-								.getBehandeling().getId()));
+						datumTijd.setNodeValue(FORMAT.format(afspraak.getDatumTijd()));
+						fysioId.setNodeValue(Integer.toString(afspraak.getFysiotherapeut().getId()));
+						behandelingId.setNodeValue(Integer.toString(afspraak.getBehandeling().getId()));
 
 						edited = true;
 					}
 				}
 			}
 
-			domdocument.writeDocument(AfspraakDAO.FILE_XML,
-					AfspraakDAO.FILE_XSD, document);
+			domdocument.writeDocument(AfspraakDAO.FILE_XML, AfspraakDAO.FILE_XSD, document);
 		} else
 			System.out.println("XML document is null");
 
@@ -129,36 +111,29 @@ public class AfspraakDAO {
 
 	public static boolean addAfspraak(Afspraak afspraak) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML,
-				AfspraakDAO.FILE_XSD);
+		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML, AfspraakDAO.FILE_XSD);
 
 		if (getAfspraak(afspraak.getId()) == null) {
-			Node rootElement = document.getElementsByTagName("afspraken").item(
-					0);
+			Node rootElement = document.getElementsByTagName("afspraken").item(0);
 
 			// TODO
 			Element newAfspraak = document.createElement("afspraakId");
-			newAfspraak.setAttribute("id",
-					Integer.toString(IdManager.getId("Afspraak")));
+			newAfspraak.setAttribute("id", Integer.toString(IdManager.getId("Afspraak")));
 			rootElement.appendChild(newAfspraak);
 
 			Element datumTijd = document.createElement("datumTijd");
-			datumTijd.appendChild(document.createTextNode(FORMAT
-					.format(afspraak.getDatumTijd())));
+			datumTijd.appendChild(document.createTextNode(FORMAT.format(afspraak.getDatumTijd())));
 			newAfspraak.appendChild(datumTijd);
 
 			Element fysio = document.createElement("fysioId");
-			fysio.appendChild(document.createTextNode(Integer.toString(afspraak
-					.getFysiotherapeut().getId())));
+			fysio.appendChild(document.createTextNode(Integer.toString(afspraak.getFysiotherapeut().getId())));
 			newAfspraak.appendChild(fysio);
 
 			Element behandelingId = document.createElement("behandelingId");
-			behandelingId.appendChild(document.createTextNode(Integer
-					.toString(afspraak.getBehandeling().getId())));
+			behandelingId.appendChild(document.createTextNode(Integer.toString(afspraak.getBehandeling().getId())));
 			newAfspraak.appendChild(behandelingId);
 
-			domdocument.writeDocument(AfspraakDAO.FILE_XML,
-					AfspraakDAO.FILE_XSD, document);
+			domdocument.writeDocument(AfspraakDAO.FILE_XML, AfspraakDAO.FILE_XSD, document);
 
 			if (AfspraakDAO.getAfspraak(afspraak.getId()) != null)
 				return true;
@@ -177,8 +152,7 @@ public class AfspraakDAO {
 	 */
 	public static Afspraak getAfspraak(int id) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML,
-				AfspraakDAO.FILE_XSD);
+		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML, AfspraakDAO.FILE_XSD);
 
 		Afspraak afspraak = null;
 		if (document != null) {
@@ -193,24 +167,19 @@ public class AfspraakDAO {
 						Date datumTijd = null;
 
 						try {
-							datumTijd = FORMAT.parse(child
-									.getElementsByTagName("datumTijd").item(0)
-									.getTextContent());
+							datumTijd = FORMAT.parse(child.getElementsByTagName("datumTijd").item(0).getTextContent());
 						} catch (Exception ex) {
 							ex.printStackTrace();
 						}
 
-						Fysiotherapeut fysio = MedewerkerDAO.getFysio(Integer
-								.parseInt(child.getElementsByTagName("fysioId")
-										.item(0).getTextContent()));
+						Fysiotherapeut fysio = MedewerkerDAO.getFysio(Integer.parseInt(child
+								.getElementsByTagName("fysioId").item(0).getTextContent()));
 
-						Behandeling behandeling = BehandelingDAO
-								.getBehandeling(Integer.parseInt(child
-										.getElementsByTagName("behandelingId")
-										.item(0).getTextContent()),false);
+						Behandeling behandeling = BehandelingDAO.getBehandeling(
+								Integer.parseInt(child.getElementsByTagName("behandelingId").item(0).getTextContent()),
+								false);
 
-						afspraak = new Afspraak(id, datumTijd, fysio,
-								behandeling);
+						afspraak = new Afspraak(id, datumTijd, fysio, behandeling);
 					}
 				}
 			}

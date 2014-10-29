@@ -20,7 +20,7 @@ public class MedewerkerDAOTest {
 	public void testGetMedewerker() {
 		PowerMockito.mockStatic(MedewerkerDAO.class);
 		
-		Mockito.when(MedewerkerDAO.getMedewerker(956)).thenReturn(new Medewerker(956,"Henk","welkom123",Status.ACTIEF));
+		Mockito.when(MedewerkerDAO.getMedewerker(956)).thenReturn(new Medewerker(956,"Henk","welkom123",Status.ACTIEF,null));
 		
 		Medewerker medewerker = MedewerkerDAO.getMedewerker(956);
 		Assert.assertEquals(medewerker.getId(), 956);

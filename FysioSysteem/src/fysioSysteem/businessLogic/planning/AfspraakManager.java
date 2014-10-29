@@ -13,7 +13,7 @@ import fysioSysteem.domain.Klant;
  *
  */
 public class AfspraakManager implements IAfspraakManager {
-	
+
 	public AfspraakManager() {
 		// TOOD
 	}
@@ -26,39 +26,37 @@ public class AfspraakManager implements IAfspraakManager {
 	 */
 	private boolean controleerBeschikbaarheid(Afspraak afspraak) {
 		Iterator<Afspraak> afspraken = getAfspraken().iterator();
-		
-		while(afspraken.hasNext()) {
+
+		while (afspraken.hasNext()) {
 			Afspraak a = afspraken.next();
-			if(a.getDatumTijd().before(afspraak.getDatumTijd())
-				&& a.getEindTijd().before(afspraak.getDatumTijd())) {
+			if (a.getDatumTijd().before(afspraak.getDatumTijd()) && a.getEindTijd().before(afspraak.getDatumTijd())) {
 				return true;
-			}
-			else if(a.getDatumTijd().after(afspraak.getDatumTijd())
-				&& a.getDatumTijd().after(afspraak.getEindTijd())) {
+			} else if (a.getDatumTijd().after(afspraak.getDatumTijd())
+					&& a.getDatumTijd().after(afspraak.getEindTijd())) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean addAfspraak(Afspraak afspraak) {
-		if(controleerBeschikbaarheid(afspraak))
+		if (controleerBeschikbaarheid(afspraak))
 			return AfspraakDAO.addAfspraak(afspraak);
-		
+
 		return false;
 	}
 
 	@Override
 	public boolean setAfspraak(Afspraak afspraak) {
-		if(controleerBeschikbaarheid(afspraak)) {
+		if (controleerBeschikbaarheid(afspraak)) {
 			AfspraakDAO.setAfspraak(afspraak);
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public Afspraak getAfspraak(int id) {
 		return AfspraakDAO.getAfspraak(id);

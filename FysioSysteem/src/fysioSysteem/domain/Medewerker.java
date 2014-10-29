@@ -9,16 +9,18 @@ public class Medewerker {
 	private int id;
 	private String naam, wachtwoord;
 	private Enum<?> status;
+	private Praktijk praktijk;
 	
 	/**
 	 * @param naam
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Medewerker(String naam, String wachtwoord, Enum<?> status) {
+	public Medewerker(String naam, String wachtwoord, Enum<?> status, Praktijk praktijk) {
 		this.naam = naam;
 		this.wachtwoord = wachtwoord;
 		this.status = status;
+		this.praktijk = praktijk;
 	}
 	
 	/**
@@ -27,11 +29,12 @@ public class Medewerker {
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Medewerker(int id, String naam, String wachtwoord, Enum<?> status) {
+	public Medewerker(int id, String naam, String wachtwoord, Enum<?> status, Praktijk praktijk) {
 		this.id = id;
 		this.naam = naam;
 		this.wachtwoord = wachtwoord;
 		this.status = status;
+		this.praktijk = praktijk;
 	}
 
 	/**
@@ -88,5 +91,13 @@ public class Medewerker {
 	 */
 	public void setStatus(Enum<?> status) {
 		this.status = status;
+	}
+
+	public Praktijk getPraktijk() {
+		return praktijk;
+	}
+
+	public void setPraktijk(Praktijk praktijk) {
+		this.praktijk = praktijk;
 	}	
 }

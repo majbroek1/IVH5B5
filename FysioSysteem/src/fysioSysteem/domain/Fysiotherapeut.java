@@ -16,8 +16,8 @@ public class Fysiotherapeut extends Medewerker {
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Fysiotherapeut(String naam, String wachtwoord, Enum<?> status) {
-		super(naam, wachtwoord, status);
+	public Fysiotherapeut(String naam, String wachtwoord, Enum<?> status,Praktijk praktijk) {
+		super(naam, wachtwoord, status, praktijk);
 	}
 	
 	/**
@@ -26,8 +26,8 @@ public class Fysiotherapeut extends Medewerker {
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Fysiotherapeut(int id, String naam, String wachtwoord, Enum<?> status) {
-		super(id, naam, wachtwoord, status);
+	public Fysiotherapeut(int id, String naam, String wachtwoord, Enum<?> status, Praktijk praktijk) {
+		super(id, naam, wachtwoord, status, praktijk);
 	}
 
 	/**
@@ -39,8 +39,8 @@ public class Fysiotherapeut extends Medewerker {
 	 * @param afspraken
 	 */
 	public Fysiotherapeut(int id, String naam, String wachtwoord,
-			Enum<?> status, Rooster rooster, ArrayList<Afspraak> afspraken) {
-		this(id, naam, wachtwoord, status);
+			Enum<?> status, Rooster rooster, ArrayList<Afspraak> afspraken, Praktijk praktijk) {
+		this(id, naam, wachtwoord, status, praktijk);
 		this.rooster = rooster;
 		this.afspraken = afspraken;
 	}

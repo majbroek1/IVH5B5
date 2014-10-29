@@ -11,7 +11,7 @@
 		<website>blablabla.nl</website>
 	</praktijk>
 	<praktijk id="2">
-		<naam>Praktijk 1</naam>
+		<naam>Praktijk 2</naam>
 		<adres>Scholtenstraat 13</adres>
 		<postcode>8256AD</postcode>
 		<plaats>Haarlem</plaats>
@@ -20,8 +20,8 @@
 		<email>bla@blabla.nl</email>
 		<website>bla.nl</website>
 	</praktijk>
-	<praktijk id="2">
-		<naam>Praktijk 1</naam>
+	<praktijk id="3">
+		<naam>Praktijk 3</naam>
 		<adres>Scholtenstraat 13</adres>
 		<postcode>8256AD</postcode>
 		<plaats>Haarlem</plaats>
