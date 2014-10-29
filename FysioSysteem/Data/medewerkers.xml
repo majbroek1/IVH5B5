@@ -20,4 +20,4 @@
 		<functie>fysiotherapeut</functie>
 		<praktijkId>3</praktijkId>
 	</medewerker>
-<medewerker id="1"><naam>adfaf</naam><wachtwoord>adf</wachtwoord><praktijkId>1</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker></medewerkers>
+<medewerker id="4"><naam>adfaf</naam><wachtwoord>adf</wachtwoord><praktijkId>1</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="5"><naam>Pascal</naam><wachtwoord>hoihoi</wachtwoord><praktijkId>3</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="6"><naam>Pascal</naam><wachtwoord>hoihoi</wachtwoord><praktijkId>3</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker></medewerkers>

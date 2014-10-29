@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import fysioSysteem.businessLogic.beheer.*;
@@ -40,6 +41,15 @@ public class pnlFysToeWzg extends JPanel{
 		
 		setLayout(null);
 
+		/* update Fysio therapeut */
+		
+		
+		int medewerkerId = 2;
+
+		Fysiotherapeut fysiother = this.medeManager.getFysiotherapeut(medewerkerId);
+		
+		/* end update Fysio therapeut */
+		
 		/* Label */
 		JLabel lblFysToeWzgTitel = new JLabel("Fysiotherapeut Gegevens");
 		lblFysToeWzgTitel.setBounds(74, 11, 163, 16);
@@ -69,22 +79,25 @@ public class pnlFysToeWzg extends JPanel{
 		txtFysToeWzgNaam = new JTextField();
 		txtFysToeWzgNaam.setBounds(250, 51, 134, 28);
 		txtFysToeWzgNaam.setColumns(10);
-		//txtFysToeWzgNaam.setText();
+		if (medewerkerId != 0) txtFysToeWzgNaam.setText(fysiother.getNaam());
 		add(txtFysToeWzgNaam);
 		
-		txtFysToeWzgWachtwoord = new JTextField();
+		txtFysToeWzgWachtwoord = new JPasswordField();
 		txtFysToeWzgWachtwoord.setBounds(250, 172, 134, 28);
 		txtFysToeWzgWachtwoord.setColumns(10);
+		if (medewerkerId != 0) txtFysToeWzgWachtwoord.setText(fysiother.getWachtwoord());
 		add(txtFysToeWzgWachtwoord);
 		
-		txtFysToeWzgWachtwoordHerhalen = new JTextField();
+		txtFysToeWzgWachtwoordHerhalen = new JPasswordField();
 		txtFysToeWzgWachtwoordHerhalen.setBounds(619, 172, 134, 28);
 		txtFysToeWzgWachtwoordHerhalen.setColumns(10);
+		if (medewerkerId != 0) txtFysToeWzgWachtwoordHerhalen.setText(fysiother.getWachtwoord());
 		add(txtFysToeWzgWachtwoordHerhalen);
 		
 		/* ComboBox */
 		JComboBox cmbStatus = new JComboBox(Status.values());
 		cmbStatus.setBounds(614, 53, 134, 27);
+		if (medewerkerId !=0) cmbStatus.setSelectedItem(fysiother.getStatus());
 		add(cmbStatus);
 		
 		JComboBox cmbPraktijk = new JComboBox();
@@ -92,6 +105,7 @@ public class pnlFysToeWzg extends JPanel{
 		for (Praktijk praktijk : this.prakManager.getPraktijken()) {
 			cmbPraktijk.addItem(praktijk);
 		}
+		if (medewerkerId !=0)cmbStatus.setSelectedItem(fysiother.getPraktijk().toString()); // TODO!!!!!!!!!!!!!!!!!!!
 		add(cmbPraktijk);
 		
 		/* Button */
@@ -106,27 +120,34 @@ public class pnlFysToeWzg extends JPanel{
 				ArrayList<String> errorMessages = new ArrayList<String>();
 				Border redBorder = BorderFactory.createLineBorder(Color.red);
 				
-				if (txtFysToeWzgNaam.getText().equals("")|| txtFysToeWzgNaam.getText().length() >= 50)
+				if (txtFysToeWzgNaam.getText().equals("") && txtFysToeWzgNaam.getText().length() >= 50)
 				{
 					txtFysToeWzgNaam.setBorder(redBorder);
 					errorMessages.add("- Fysiotherapeut Naam");
 				}
-				if (txtFysToeWzgWachtwoord.getText().equals("")|| txtFysToeWzgWachtwoord.getText().length() >= 50)
+				if (txtFysToeWzgWachtwoord.getText().equals("") && txtFysToeWzgWachtwoord.getText().length() >= 50)
 				{
 					txtFysToeWzgWachtwoord.setBorder(redBorder);
 					errorMessages.add("- Wachtwoord");
 				}
-				if (txtFysToeWzgWachtwoordHerhalen.getText().equals("") || txtFysToeWzgWachtwoord.getText() == txtFysToeWzgWachtwoordHerhalen.getText())
+				if (txtFysToeWzgWachtwoordHerhalen.getText().equals("") && txtFysToeWzgWachtwoord.getText() == txtFysToeWzgWachtwoordHerhalen.getText())
 				{
 					txtFysToeWzgWachtwoordHerhalen.setBorder(redBorder);
 					errorMessages.add("- Wachtwoord Herhalen");
 				}
 				if (errorMessages.size() == 0)
 				{
-					Fysiotherapeut fysiotherapeut = new Fysiotherapeut(txtFysToeWzgNaam.getText(), txtFysToeWzgWachtwoord.getText(), 
+					/* update Fysio therapeut */
+					
+					
+					/* end update Fysio therapeut */
+					
+					/* new Fysio therapeut */
+					/*Fysiotherapeut fysiotherapeut = new Fysiotherapeut(txtFysToeWzgNaam.getText(), txtFysToeWzgWachtwoord.getText(), 
 							Status.valueOf(cmbStatus.getSelectedItem().toString()), (Praktijk)cmbPraktijk.getSelectedItem());
 					
-				    medeManager.addMedewerker(fysiotherapeut);
+				 	  medeManager.addMedewerker(fysiotherapeut);*/
+					/* end new  Fysio therapeut */
 					
 					revalidate();
 				    repaint();

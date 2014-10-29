@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.google.inject.Singleton;
 
 import fysioSysteem.dataStorage.MedewerkerDAO;
+import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Medewerker;
 
 /**
@@ -30,6 +31,11 @@ public class MedewerkerManager implements IMedewerkerManager {
 	@Override
 	public Medewerker getMedewerker(int id) {
 		return MedewerkerDAO.getMedewerker(id);
+	}
+	
+	@Override
+	public Fysiotherapeut getFysiotherapeut(int id){
+		return MedewerkerDAO.getFysio(id);
 	}
 	
 	@Override
