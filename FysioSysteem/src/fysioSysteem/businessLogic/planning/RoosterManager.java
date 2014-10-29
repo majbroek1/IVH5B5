@@ -12,10 +12,6 @@ import fysioSysteem.domain.Rooster;
  */
 public class RoosterManager implements IRoosterManager {
 	
-	public RoosterManager() {
-		// TODO
-	}
-	
 	@Override
 	public boolean addRooster(Rooster rooster) {
 		RoosterDAO.addRooster(rooster);

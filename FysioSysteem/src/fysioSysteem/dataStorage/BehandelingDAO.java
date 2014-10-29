@@ -3,6 +3,7 @@
  */
 package fysioSysteem.dataStorage;
 
+import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Behandeling;
 import general.Settings;
 
@@ -165,4 +166,17 @@ public class BehandelingDAO {
 
 		return behandelingen;
 	}
+	
+	public static ArrayList<Behandeling> getBehandelingen(BehandelCode bc) {
+		ArrayList<Behandeling> _behandelingen = getBehandelingen();
+		ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
+
+		for (Behandeling b : _behandelingen) {
+			if (b.getBehandelCode().getCode() == bc.getCode())
+				behandelingen.add(b);
+		}
+
+		return behandelingen;
+	}
+	
 }

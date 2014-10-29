@@ -2,12 +2,12 @@ package general;
 
 import com.google.inject.AbstractModule;
 
-import fysioSysteem.businessLogic.behanding.BehandelCodeManager;
-import fysioSysteem.businessLogic.behanding.BehandelingManager;
-import fysioSysteem.businessLogic.behanding.IBehandelCodeManager;
-import fysioSysteem.businessLogic.behanding.IBehandelingManager;
-import fysioSysteem.businessLogic.behanding.IKlantManager;
-import fysioSysteem.businessLogic.behanding.KlantManager;
+import fysioSysteem.businessLogic.behandeling.BehandelCodeManager;
+import fysioSysteem.businessLogic.behandeling.BehandelingManager;
+import fysioSysteem.businessLogic.behandeling.IBehandelCodeManager;
+import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
+import fysioSysteem.businessLogic.behandeling.IKlantManager;
+import fysioSysteem.businessLogic.behandeling.KlantManager;
 import fysioSysteem.businessLogic.login.ILoginManager;
 import fysioSysteem.businessLogic.login.LoginManager;
 

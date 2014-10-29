@@ -1,4 +1,4 @@
-package fysioSysteem.businessLogic.behanding;
+package fysioSysteem.businessLogic.behandeling;
 
 import java.util.ArrayList;
 
@@ -13,12 +13,6 @@ import fysioSysteem.domain.Klant;
 
 @Singleton
 public class KlantManager implements IKlantManager {
-
-	private ArrayList<Klant> klanten;
-	
-	public KlantManager() {
-		// TODO
-	}
 	
 	@Override
 	public void addKlant(Klant klant) {

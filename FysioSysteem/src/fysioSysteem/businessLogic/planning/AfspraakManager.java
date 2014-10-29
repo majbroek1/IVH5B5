@@ -14,10 +14,6 @@ import fysioSysteem.domain.Klant;
  */
 public class AfspraakManager implements IAfspraakManager {
 
-	public AfspraakManager() {
-		// TOOD
-	}
-
 	/**
 	 * Controleert of het tijdstip van de afspraak haalbaar is
 	 * 
