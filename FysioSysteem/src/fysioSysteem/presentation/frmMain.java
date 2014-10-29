@@ -26,6 +26,7 @@ import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
@@ -36,22 +37,6 @@ public class frmMain extends JFrame {
 	final static String BEHANDELINGEN_MAIN = "Behandelingen Main";
 	final static String FYSIOTHEROPEUTEN_MAIN = "Fysiotheropeuten Main";
 	final static String PARKTIJK_GEGEVENS = "Praktijk Gegevens Toevoegen / Wijzigen";
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmMain frame = new frmMain();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

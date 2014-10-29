@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <praktijken>
 	<praktijk id="1">
-		<naam>Praktijk 1</naam>
+		<naam>Praktijk 2</naam>
 		<adres>Scholtenstraat 13</adres>
-		<postcode>8256AD</postcode>
+		<postcode>8256BD</postcode>
 		<plaats>Haarlem</plaats>
 		<iban>13ING000376271752</iban>
 		<telnr>0739564712</telnr>
 		<email>bla@blabla.nl</email>
-		<website>bla.nl</website>
+		<website>blablabla.nl</website>
 	</praktijk>
 	<praktijk id="2">
 		<naam>Praktijk 1</naam>

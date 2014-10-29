@@ -3,6 +3,10 @@
  */
 package fysioSysteem.dataStorage;
 
+import fysioSysteem.domain.Afspraak;
+import fysioSysteem.domain.Behandeling;
+import general.Settings;
+
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
@@ -10,19 +14,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import fysioSysteem.domain.Behandeling;
-import general.Settings;
-
 /**
  * @author Bob
  *
  */
 public class BehandelingDAO {
 
-	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/behandelingen.xml";
-	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/behandelingen.xsd";
+	private static final String FILE_XML = System.getProperty(Settings.DATADIR)
+			+ "/behandelingen.xml";
+	private static final String FILE_XSD = System.getProperty(Settings.DATADIR)
+			+ "/behandelingen.xsd";
 
-	public static Behandeling getBehandeling(int id) {
+	public static Behandeling getBehandeling(int id, boolean includeAfspraken) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();
 		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
 				BehandelingDAO.FILE_XSD);
@@ -49,11 +52,19 @@ public class BehandelingDAO {
 								.getElementsByTagName("klantBsn").item(0)
 								.getTextContent();
 
-						behandeling = new Behandeling(id, status,
-								KlantDAO.getKlant(klantBsn),
-								BehandelCodeDAO.getBehandelCode(behandelCode),
-								AfspraakDAO.getAfspraken(new Behandeling(id,
-										status)));
+						if (includeAfspraken) {
+							behandeling = new Behandeling(id, status,
+									KlantDAO.getKlant(klantBsn),
+									BehandelCodeDAO
+											.getBehandelCode(behandelCode),
+									AfspraakDAO.getAfspraken(new Behandeling(
+											id, status)));
+						} else {
+							behandeling = new Behandeling(id, status,
+									KlantDAO.getKlant(klantBsn),
+									BehandelCodeDAO
+											.getBehandelCode(behandelCode));
+						}
 					}
 				}
 			}
@@ -104,7 +115,7 @@ public class BehandelingDAO {
 		Document document = domdocument.getDocument(BehandelingDAO.FILE_XML,
 				BehandelingDAO.FILE_XSD);
 
-		if (getBehandeling(behandeling.getId()) == null) {
+		if (getBehandeling(behandeling.getId(),false) == null) {
 			Node rootElement = document.getElementsByTagName("behandelingen")
 					.item(0);
 

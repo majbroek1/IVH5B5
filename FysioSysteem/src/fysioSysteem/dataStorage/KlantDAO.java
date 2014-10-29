@@ -24,7 +24,7 @@ public class KlantDAO {
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/klanten.xml";
 	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/klanten.xsd";
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss");
+			"yyyy-MM-dd");
 
 	public static Klant getKlant(String bsn) {
 		XmlDOMDocument domdocument = new XmlDOMDocument();

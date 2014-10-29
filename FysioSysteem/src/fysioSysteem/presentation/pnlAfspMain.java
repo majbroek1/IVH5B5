@@ -79,10 +79,10 @@ public class pnlAfspMain extends JPanel{
 				int n = JOptionPane.showOptionDialog(frame, "Weet je zeker dat je het wilt verwijderen?", "Verwijder Waarschuwing", 
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]); 
 				
-				if (n == 1)
+				if (n == JOptionPane.YES_NO_OPTION)
 				{
 					// verwijderen
-					
+					JOptionPane.showMessageDialog(frame, "verwijderen");
 				}
 			}
 		});
