@@ -3,6 +3,8 @@
  */
 package fysioSysteem.businessLogic.beheer;
 
+import java.util.ArrayList;
+
 import fysioSysteem.domain.Praktijk;
 
 /**
@@ -23,4 +25,8 @@ public interface IPraktijkManager {
 	 */
 	public Praktijk getPraktijk(int id);
 	
+	/**
+	 * @return
+	 */
+	public ArrayList<Praktijk> getPraktijken();
 }

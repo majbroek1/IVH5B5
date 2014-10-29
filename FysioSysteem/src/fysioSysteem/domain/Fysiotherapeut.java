@@ -16,7 +16,7 @@ public class Fysiotherapeut extends Medewerker {
 	 * @param wachtwoord
 	 * @param status
 	 */
-	public Fysiotherapeut(String naam, String wachtwoord, Enum<?> status,Praktijk praktijk) {
+	public Fysiotherapeut(String naam, String wachtwoord, Enum<?> status, Praktijk praktijk) {
 		super(naam, wachtwoord, status, praktijk);
 	}
 	

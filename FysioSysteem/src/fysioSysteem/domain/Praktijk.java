@@ -221,4 +221,9 @@ public class Praktijk {
 		this.medewerkers = medewerkers;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return this.naam;
+	}
 }

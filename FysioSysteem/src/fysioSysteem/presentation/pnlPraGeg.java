@@ -139,42 +139,42 @@ public class pnlPraGeg extends JPanel{
 				ArrayList<String> errorMessages = new ArrayList<String>();
 				Border redBorder = BorderFactory.createLineBorder(Color.red);
 				
-				if (txtPraGegNaam.getText().equals("")|| txtPraGegNaam.getText().length() >= 30)
+				if (txtPraGegNaam.getText().equals("") && txtPraGegNaam.getText().length() >= 30)
 				{
 					txtPraGegNaam.setBorder(redBorder);
 					errorMessages.add("- Naam");
 				}
-				if (txtPraGegAdres.getText().equals("")|| txtPraGegAdres.getText().length() >= 50)
+				if (txtPraGegAdres.getText().equals("") && txtPraGegAdres.getText().length() >= 50)
 				{
 					txtPraGegAdres.setBorder(redBorder);
 					errorMessages.add("- Adres");
 				}
-				if (txtPraGegPostcode.getText().equals("")|| !validatePostcode(txtPraGegPostcode.getText()))
+				if (txtPraGegPostcode.getText().equals("") && !validatePostcode(txtPraGegPostcode.getText()))
 				{
 					txtPraGegPostcode.setBorder(redBorder);
 					errorMessages.add("- Postcode");
 				}
-				if (txtPraGegPlaats.getText().equals("")|| txtPraGegPlaats.getText().length() >= 50)
+				if (txtPraGegPlaats.getText().equals("") && txtPraGegPlaats.getText().length() >= 50)
 				{
 					txtPraGegPlaats.setBorder(redBorder);
 					errorMessages.add("- Plaats");
 				}
-				if (txtPraGegIBAN.getText().equals("")|| txtPraGegIBAN.getText().length() >= 35)
+				if (txtPraGegIBAN.getText().equals("") && txtPraGegIBAN.getText().length() >= 35)
 				{
 					txtPraGegIBAN.setBorder(redBorder);
 					errorMessages.add("- IBAN");
 				}
-				if (txtPraGegTelnr.getText().equals("")|| txtPraGegTelnr.getText().length() >= 30)
+				if (txtPraGegTelnr.getText().equals("") && txtPraGegTelnr.getText().length() >= 30)
 				{
 					txtPraGegTelnr.setBorder(redBorder);
 					errorMessages.add("- Telefoonnummer");
 				}
-				if (txtPraGegEmail.getText().equals("")|| txtPraGegEmail.getText().length() >= 50 || !validateEmail(txtPraGegEmail.getText()))
+				if (txtPraGegEmail.getText().equals("") && txtPraGegEmail.getText().length() >= 50 || !validateEmail(txtPraGegEmail.getText()))
 				{
 					txtPraGegEmail.setBorder(redBorder);
 					errorMessages.add("- Email");
 				}
-				if (txtPraGegWebsite.getText().equals("")|| txtPraGegWebsite.getText().length() >= 50)
+				if (txtPraGegWebsite.getText().equals("") && txtPraGegWebsite.getText().length() >= 50)
 				{
 					txtPraGegWebsite.setBorder(redBorder);
 					errorMessages.add("- Website");
