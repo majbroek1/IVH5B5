@@ -64,7 +64,7 @@ public class KlantDAO {
 		if (klant == null)
 			System.out.println("klant niet gevonden");
 
-		return klant;
+		return null;
 	}
 
 	public static void setKlant(Klant klant) {

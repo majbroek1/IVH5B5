@@ -3,7 +3,6 @@
  */
 package fysioSysteem.dataStorage;
 
-import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.Behandeling;
 import general.Settings;
 

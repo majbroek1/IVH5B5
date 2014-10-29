@@ -1,21 +1,26 @@
 package shared;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author thom145
  */
-public class Zorgaanbieder {
+public class Zorgaanbieder implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String naam;
 	private String adres;
 	private String postcode;
 	private String plaats;
-	private Integer telNr;
+	private String telNr;
 	private String email;
 	private ArrayList<Sessie> sessies;
 
 	public Zorgaanbieder(String naam, String adres, String postcode,
-			String plaats, Integer telNr, String email) {
+			String plaats, String telNr, String email) {
 		this.naam = naam;
 		this.adres = adres;
 		this.postcode = postcode;
@@ -45,7 +50,7 @@ public class Zorgaanbieder {
 		this.postcode = postcode;
 	}
 
-	public void setTelNr(Integer telNr) {
+	public void setTelNr(String telNr) {
 		this.telNr = telNr;
 	}
 
@@ -69,7 +74,7 @@ public class Zorgaanbieder {
 		return this.plaats;
 	}
 
-	public Integer getTelNr() {
+	public String getTelNr() {
 		return this.telNr;
 	}
 
