@@ -3,17 +3,19 @@ package fysioSysteem.main;
 import fysioSysteem.dataStorage.BehandelingDAO;
 import fysioSysteem.dataStorage.KlantDAO;
 import fysioSysteem.dataStorage.MedewerkerDAO;
-import fysioSysteem.dataStorage.PraktijkDAO;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Klant;
 import fysioSysteem.domain.Medewerker;
-import fysioSysteem.domain.Status;
 import fysioSysteem.presentation.frmLogin;
+import general.AppInjector;
 import general.Settings;
 
 import java.util.ArrayList;
 
 import org.apache.log4j.BasicConfigurator;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class Main {
 
@@ -42,6 +44,8 @@ public class Main {
 		int i = 0;
 		
 		BasicConfigurator.configure();
-		new frmLogin().setVisible(true);
+
+		Injector injector = Guice.createInjector(new AppInjector());
+		injector.getInstance(frmLogin.class).setVisible(true);
 	}
 }

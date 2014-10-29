@@ -1,5 +1,7 @@
 package fysioSysteem.presentation;
 
+import general.AppInjector;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -30,6 +32,9 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class frmMain extends JFrame {
 
@@ -109,7 +114,8 @@ public class frmMain extends JFrame {
 		btnUitloggen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain.this.dispose();
-				new frmLogin().setVisible(true);				
+				Injector injector = Guice.createInjector(new AppInjector());
+				injector.getInstance(frmLogin.class).setVisible(true);
 			}
 		});
 		btnUitloggen.setHorizontalAlignment(SwingConstants.LEFT);
