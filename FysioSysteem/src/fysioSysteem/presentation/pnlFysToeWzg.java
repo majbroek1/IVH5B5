@@ -111,9 +111,9 @@ public class pnlFysToeWzg extends JPanel{
 				}
 				if (errorMessages.size() == 0)
 				{
-					Fysiotherapeut fysiotherapeut = new Fysiotherapeut(txtFysToeWzgNaam.getText(), txtFysToeWzgWachtwoord.getText(), Status.valueOf(cmbBoxstatus.getSelectedItem().toString()));
+					//Fysiotherapeut fysiotherapeut = new Fysiotherapeut(txtFysToeWzgNaam.getText(), txtFysToeWzgWachtwoord.getText(), Status.valueOf(cmbBoxstatus.getSelectedItem().toString()));
 					
-					medeManager.setMedewerker(fysiotherapeut);
+				//	medeManager.setMedewerker(fysiotherapeut);
 					
 					revalidate();
 				    repaint();
