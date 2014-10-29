@@ -2,6 +2,8 @@ package fysioSysteem.businessLogic.beheer;
 
 import java.util.ArrayList;
 
+import com.google.inject.Singleton;
+
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Medewerker;
 
@@ -9,6 +11,8 @@ import fysioSysteem.domain.Medewerker;
  * @author Bob
  *
  */
+
+@Singleton
 public class MedewerkerManager implements IMedewerkerManager {
 	
 	public MedewerkerManager() {
