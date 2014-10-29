@@ -59,5 +59,4 @@ public class LoginManagerTest {
 		Assert.assertNotNull(MedewerkerDAO.getMedewerker(1));
 		Assert.assertEquals(MedewerkerDAO.getMedewerker(1).getStatus(), Status.ACTIEF);
 	}
-
 }
