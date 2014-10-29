@@ -1,9 +1,10 @@
-package fysioSysteem.businessLogic.behanding;
+package fysioSysteem.businessLogic.behandeling;
 
 import java.util.ArrayList;
 
 import com.google.inject.Singleton;
 
+import fysioSysteem.dataStorage.BehandelCodeDAO;
 import fysioSysteem.domain.BehandelCode;
 
 /**
@@ -13,35 +14,25 @@ import fysioSysteem.domain.BehandelCode;
 
 @Singleton
 public class BehandelCodeManager implements IBehandelCodeManager {
-
-	private ArrayList<BehandelCode> behandelCodes;
-	
-	public BehandelCodeManager() {
-		// TODO
-	}
 	
 	@Override
 	public void addBehandelCode(BehandelCode behandelCode) {
-		// TODO Auto-generated method stub
-
+		BehandelCodeDAO.addBehandeling(behandelCode);
 	}
 
 	@Override
 	public void setBehandelCode(BehandelCode behandelCode) {
-		// TODO Auto-generated method stub
-
+		BehandelCodeDAO.setBehandeling(behandelCode);
 	}
 
 	@Override
 	public BehandelCode getBehandelCode(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return BehandelCodeDAO.getBehandelCode(id);
 	}
 	
 	@Override
 	public ArrayList<BehandelCode> getBehandelCodes() {
-		// TODO Auto-generated method stub
-		return null;
+		return BehandelCodeDAO.getBehandelCodes();
 	}
 
 }

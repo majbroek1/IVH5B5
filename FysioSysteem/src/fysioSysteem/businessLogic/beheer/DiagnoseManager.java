@@ -18,10 +18,6 @@ import fysioSysteem.domain.Diagnose;
 @Singleton
 public class DiagnoseManager implements IDiagnoseManager {
 	
-	public DiagnoseManager() {
-		// TODO
-	}
-	
 	@Override
 	public boolean addDiagnose(Diagnose diagnose) {
 		DiagnoseDAO.addDiagnose(diagnose);

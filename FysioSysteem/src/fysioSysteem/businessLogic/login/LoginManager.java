@@ -16,10 +16,6 @@ public class LoginManager implements ILoginManager {
 
 	private Medewerker ingelogdeMedewerker = null;
 	
-	public LoginManager() {
-		// TODO
-	}
-	
 	@Override
 	public boolean valideer(int id, String wachtwoord) {
 		Medewerker m = MedewerkerDAO.getMedewerker(id);

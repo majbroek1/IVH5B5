@@ -15,13 +15,6 @@ import fysioSysteem.domain.Praktijk;
 
 @Singleton
 public class PraktijkManager implements IPraktijkManager {
-	
-	/**
-	 * 
-	 */
-	public PraktijkManager() {
-		
-	}
 
 	@Override
 	public boolean setPraktijk(Praktijk praktijk) {

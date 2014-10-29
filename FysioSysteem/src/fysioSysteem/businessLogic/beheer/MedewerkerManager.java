@@ -15,10 +15,6 @@ import fysioSysteem.domain.Medewerker;
 @Singleton
 public class MedewerkerManager implements IMedewerkerManager {
 	
-	public MedewerkerManager() {
-		// TODO
-	}
-	
 	@Override
 	public boolean addMedewerker(Medewerker medewerker) {
 		MedewerkerDAO.addMedewerker(medewerker);

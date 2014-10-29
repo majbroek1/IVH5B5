@@ -14,8 +14,8 @@ import fysioSysteem.domain.Klant;
  * @author Bob
  *
  */
-
-@Singleton
+ 
+ @Singleton
 public class AfspraakManager implements IAfspraakManager {
 
 	/**
@@ -36,6 +36,7 @@ public class AfspraakManager implements IAfspraakManager {
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
