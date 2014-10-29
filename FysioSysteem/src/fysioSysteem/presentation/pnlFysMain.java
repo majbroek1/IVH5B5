@@ -24,7 +24,7 @@ public class pnlFysMain extends JPanel{
 		JPanel pnlFysOvz = new pnlFysOvz();
 		pnlFysOvz.setBounds(0, 0, 876, 600);
 		
-		JPanel pnlFysToeWzg = new pnlFysToeWzg();
+		JPanel pnlFysToeWzg = new pnlFysToeWzg(0);
 		pnlFysToeWzg.setBounds(0, 0, 876, 600);
 		
 		JPanel pnlFysRooOvz = new pnlFysRooOvz();

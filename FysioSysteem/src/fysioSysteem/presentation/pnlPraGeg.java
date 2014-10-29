@@ -129,6 +129,7 @@ public class pnlPraGeg extends JPanel{
 		btnPraGegOpslaan.setBounds(74, 286, 117, 29);
 		add(btnPraGegOpslaan);
 		
+		
 		/* Button Handling */
 		btnPraGegOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,42 +140,42 @@ public class pnlPraGeg extends JPanel{
 				if (txtPraGegNaam.getText().equals("")|| txtPraGegNaam.getText().length() >= 30)
 				{
 					txtPraGegNaam.setBorder(redBorder);
-					errorMessages.add("Voer de praktijk naam correct in!");
+					errorMessages.add("- Naam");
 				}
 				if (txtPraGegAdres.getText().equals("")|| txtPraGegAdres.getText().length() >= 50)
 				{
 					txtPraGegAdres.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk adres correct in!");
+					errorMessages.add("- Adres");
 				}
 				if (txtPraGegPostcode.getText().equals("")|| !validatePostcode(txtPraGegPostcode.getText()))
 				{
 					txtPraGegPostcode.setBorder(redBorder);
-					errorMessages.add("Voer de praktijk postcode correct in!");
+					errorMessages.add("- Postcode");
 				}
 				if (txtPraGegPlaats.getText().equals("")|| txtPraGegPlaats.getText().length() >= 50)
 				{
 					txtPraGegPlaats.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk plaatsnaam correct in!");
+					errorMessages.add("- Plaats");
 				}
 				if (txtPraGegIBAN.getText().equals("")|| txtPraGegIBAN.getText().length() >= 35)
 				{
 					txtPraGegIBAN.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk IBAN nummer correct in!");
+					errorMessages.add("- IBAN");
 				}
 				if (txtPraGegTelnr.getText().equals("")|| txtPraGegTelnr.getText().length() >= 30)
 				{
 					txtPraGegTelnr.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk telefoonnummer correct in!");
+					errorMessages.add("- Telefoonnummer");
 				}
 				if (txtPraGegEmail.getText().equals("")|| txtPraGegEmail.getText().length() >= 50 || !validateEmail(txtPraGegEmail.getText()))
 				{
 					txtPraGegEmail.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk email adres correct in!");
+					errorMessages.add("- Email");
 				}
 				if (txtPraGegWebsite.getText().equals("")|| txtPraGegWebsite.getText().length() >= 50)
 				{
 					txtPraGegWebsite.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk website adres correct in!");
+					errorMessages.add("- Website");
 				}
 				if (errorMessages.size() == 0)
 				{
@@ -187,6 +188,17 @@ public class pnlPraGeg extends JPanel{
 				    repaint();
 				    
 				    JOptionPane.showMessageDialog(frame, "De praktijk gegevens zijn succesvol opgeslagen.");
+				}
+				else
+				{
+					int sizeStringBuilder = errorMessages.size() + 1;
+					StringBuilder builder = new StringBuilder(sizeStringBuilder);
+					builder.append("Controleer de volgende velden op volledigheid en correctheid:" + "\n");
+					for (String s: errorMessages)
+				    {
+						builder.append(s + "\n");
+				    }
+					JOptionPane.showMessageDialog(null, builder.toString());
 				}
 			}
 		});
