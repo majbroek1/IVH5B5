@@ -109,7 +109,7 @@ public class AfspraakManagerTest {
 		Date dateNieuw = null;
 		
 		try {
-			dateBestaand = new Date(sdf.parse("2014-10-28T13:00:00").getTime());
+			dateBestaand = new Date(sdf.parse("2014-10-28T13:30:00").getTime());
 			dateNieuw = new Date(sdf.parse("2014-10-28T14:00:00").getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
