@@ -11,15 +11,22 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.DefaultComboBoxModel;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import fysioSysteem.businessLogic.behanding.BehandelingManager;
 import fysioSysteem.businessLogic.behanding.IBehandelingManager;
 import fysioSysteem.domain.Behandeling;
+import general.AppInjector;
 
 public class pnlBhdlToeWzg extends JPanel {
 	private JTextField txtFldBehandelCode;
+	private IBehandelingManager behandelingManager;
 
 	public pnlBhdlToeWzg(int behandelingId){
 		//behandelingId = 2;
+		Injector injector = Guice.createInjector(new AppInjector());
+		behandelingManager = injector.getInstance(IBehandelingManager.class);
 		
 		setLayout(null);
 				
@@ -52,7 +59,6 @@ public class pnlBhdlToeWzg extends JPanel {
 		
 		if(behandelingId != 0)
 		{
-			IBehandelingManager behandelingManager = new BehandelingManager();
 			Behandeling behandeling = behandelingManager.getBehandeling(behandelingId);
 			
 			cmbBxKlantBSN.setSelectedItem(behandeling.getKlant().getBsn());
