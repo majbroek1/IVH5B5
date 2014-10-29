@@ -1,6 +1,9 @@
 package fysioSysteem.businessLogic.planning;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import com.google.inject.Singleton;
@@ -24,16 +27,21 @@ public class AfspraakManager implements IAfspraakManager {
 	 * @param afspraak
 	 * @return
 	 */
-	private boolean controleerBeschikbaarheid(Afspraak afspraak) {
-		Iterator<Afspraak> afspraken = getAfspraken().iterator();
-
-		while (afspraken.hasNext()) {
-			Afspraak a = afspraken.next();
-			if (a.getDatumTijd().before(afspraak.getDatumTijd()) && a.getEindTijd().before(afspraak.getDatumTijd())) {
-				return true;
-			} else if (a.getDatumTijd().after(afspraak.getDatumTijd())
+	private boolean controleerBeschikbaarheid(Afspraak afspraak) {		
+		if(!afspraak.getDatumTijd().before(new Date())) {
+			
+			Iterator<Afspraak> afspraken =
+				getAfspraken().iterator();
+	
+			while (afspraken.hasNext()) {
+				Afspraak a = afspraken.next();
+				if (a.getDatumTijd().before(afspraak.getDatumTijd())
+					&& a.getEindTijd().before(afspraak.getDatumTijd())) {
+					return true;
+				} else if (a.getDatumTijd().after(afspraak.getDatumTijd())
 					&& a.getDatumTijd().after(afspraak.getEindTijd())) {
-				return true;
+					return true;
+				}
 			}
 		}
 		

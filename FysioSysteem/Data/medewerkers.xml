@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<medewerkers>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><medewerkers>
 	<medewerker id="1">
 		<naam>Mark</naam>
 		<wachtwoord>Test</wachtwoord>
@@ -21,4 +20,4 @@
 		<functie>fysiotherapeut</functie>
 		<praktijkId>3</praktijkId>
 	</medewerker>
-</medewerkers>
+<medewerker id="4"><naam>adfaf</naam><wachtwoord>adf</wachtwoord><praktijkId>1</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="5"><naam>Pascal</naam><wachtwoord>hoihoi</wachtwoord><praktijkId>3</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="6"><naam>Pascal</naam><wachtwoord>hoihoi</wachtwoord><praktijkId>3</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker></medewerkers>

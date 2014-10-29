@@ -128,6 +128,8 @@ public class frmMain extends JFrame {
 		/* Card Panel */
 		CardLayout cl = new CardLayout();
 
+		Injector injector = Guice.createInjector(new AppInjector());
+		
 		JPanel pnlAfspMain = new pnlAfspMain();
 		pnlAfspMain.setBounds(200, 0, 876, 656);
 		
@@ -136,8 +138,8 @@ public class frmMain extends JFrame {
 		
 		JPanel pnlFysMain = new pnlFysMain();
 		pnlFysMain.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlPraGeg = new pnlPraGeg();
+
+		JPanel pnlPraGeg = injector.getInstance(pnlPraGeg.class);
 		pnlPraGeg.setBounds(200, 0, 876, 656);
 		
 		JPanel pnlContent = new JPanel();

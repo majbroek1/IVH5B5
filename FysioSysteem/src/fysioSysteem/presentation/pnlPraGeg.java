@@ -1,23 +1,23 @@
 package fysioSysteem.presentation;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import java.awt.Color;
-import java.awt.Label;
-
-import javax.swing.JButton;
 import javax.swing.border.Border;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import com.google.inject.Inject;
 
-import fysioSysteem.businessLogic.beheer.*;
+import fysioSysteem.businessLogic.beheer.IPraktijkManager;
+import fysioSysteem.businessLogic.beheer.PraktijkManager;
 import fysioSysteem.domain.Praktijk;
 
 public class pnlPraGeg extends JPanel{
@@ -29,12 +29,14 @@ public class pnlPraGeg extends JPanel{
 	private JTextField txtPraGegEmail;
 	private JTextField txtPraGegWebsite;
 	private JTextField txtPraGegPostcode;
+	private IPraktijkManager prakManager;
 	private int praktijkID = 1;
 	
-	public pnlPraGeg(){
-		setLayout(null);		
+	@Inject
+	public pnlPraGeg(IPraktijkManager prakManager){
+		this.prakManager = prakManager;
 		
-		IPraktijkManager prakManager = new PraktijkManager();
+		setLayout(null);		
 		
 		Praktijk p = prakManager.getPraktijk(praktijkID);
 		
@@ -129,6 +131,7 @@ public class pnlPraGeg extends JPanel{
 		btnPraGegOpslaan.setBounds(74, 286, 117, 29);
 		add(btnPraGegOpslaan);
 		
+		
 		/* Button Handling */
 		btnPraGegOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,45 +139,45 @@ public class pnlPraGeg extends JPanel{
 				ArrayList<String> errorMessages = new ArrayList<String>();
 				Border redBorder = BorderFactory.createLineBorder(Color.red);
 				
-				if (txtPraGegNaam.getText().equals("")|| txtPraGegNaam.getText().length() >= 30)
+				if (txtPraGegNaam.getText().equals("") && txtPraGegNaam.getText().length() >= 30)
 				{
 					txtPraGegNaam.setBorder(redBorder);
-					errorMessages.add("Voer de praktijk naam correct in!");
+					errorMessages.add("- Naam");
 				}
-				if (txtPraGegAdres.getText().equals("")|| txtPraGegAdres.getText().length() >= 50)
+				if (txtPraGegAdres.getText().equals("") && txtPraGegAdres.getText().length() >= 50)
 				{
 					txtPraGegAdres.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk adres correct in!");
+					errorMessages.add("- Adres");
 				}
-				if (txtPraGegPostcode.getText().equals("")|| !validatePostcode(txtPraGegPostcode.getText()))
+				if (txtPraGegPostcode.getText().equals("") && !validatePostcode(txtPraGegPostcode.getText()))
 				{
 					txtPraGegPostcode.setBorder(redBorder);
-					errorMessages.add("Voer de praktijk postcode correct in!");
+					errorMessages.add("- Postcode");
 				}
-				if (txtPraGegPlaats.getText().equals("")|| txtPraGegPlaats.getText().length() >= 50)
+				if (txtPraGegPlaats.getText().equals("") && txtPraGegPlaats.getText().length() >= 50)
 				{
 					txtPraGegPlaats.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk plaatsnaam correct in!");
+					errorMessages.add("- Plaats");
 				}
-				if (txtPraGegIBAN.getText().equals("")|| txtPraGegIBAN.getText().length() >= 35)
+				if (txtPraGegIBAN.getText().equals("") && txtPraGegIBAN.getText().length() >= 35)
 				{
 					txtPraGegIBAN.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk IBAN nummer correct in!");
+					errorMessages.add("- IBAN");
 				}
-				if (txtPraGegTelnr.getText().equals("")|| txtPraGegTelnr.getText().length() >= 30)
+				if (txtPraGegTelnr.getText().equals("") && txtPraGegTelnr.getText().length() >= 30)
 				{
 					txtPraGegTelnr.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk telefoonnummer correct in!");
+					errorMessages.add("- Telefoonnummer");
 				}
-				if (txtPraGegEmail.getText().equals("")|| txtPraGegEmail.getText().length() >= 50 || !validateEmail(txtPraGegEmail.getText()))
+				if (txtPraGegEmail.getText().equals("") && txtPraGegEmail.getText().length() >= 50 || !validateEmail(txtPraGegEmail.getText()))
 				{
 					txtPraGegEmail.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk email adres correct in!");
+					errorMessages.add("- Email");
 				}
-				if (txtPraGegWebsite.getText().equals("")|| txtPraGegWebsite.getText().length() >= 50)
+				if (txtPraGegWebsite.getText().equals("") && txtPraGegWebsite.getText().length() >= 50)
 				{
 					txtPraGegWebsite.setBorder(redBorder);
-					errorMessages.add("Voer het praktijk website adres correct in!");
+					errorMessages.add("- Website");
 				}
 				if (errorMessages.size() == 0)
 				{
@@ -187,6 +190,17 @@ public class pnlPraGeg extends JPanel{
 				    repaint();
 				    
 				    JOptionPane.showMessageDialog(frame, "De praktijk gegevens zijn succesvol opgeslagen.");
+				}
+				else
+				{
+					int sizeStringBuilder = errorMessages.size() + 1;
+					StringBuilder builder = new StringBuilder(sizeStringBuilder);
+					builder.append("Controleer de volgende velden op volledigheid en correctheid:" + "\n");
+					for (String s: errorMessages)
+				    {
+						builder.append(s + "\n");
+				    }
+					JOptionPane.showMessageDialog(null, builder.toString());
 				}
 			}
 		});

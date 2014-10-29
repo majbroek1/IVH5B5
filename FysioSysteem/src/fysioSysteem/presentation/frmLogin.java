@@ -61,6 +61,7 @@ public class frmLogin extends JFrame {
 		contentPane.add(txtMedewerkerPass);
 		
 		JButton btnInloggen = new JButton("Inloggen");
+		getRootPane().setDefaultButton(btnInloggen);
 		btnInloggen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
