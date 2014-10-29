@@ -2,6 +2,8 @@ package fysioSysteem.businessLogic.planning;
 
 import java.util.ArrayList;
 
+import com.google.inject.Singleton;
+
 import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
@@ -10,6 +12,8 @@ import fysioSysteem.domain.Rooster;
  * @author Bob
  *
  */
+
+@Singleton
 public class RoosterManager implements IRoosterManager {
 	
 	@Override

@@ -3,6 +3,8 @@ package fysioSysteem.businessLogic.planning;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.google.inject.Singleton;
+
 import fysioSysteem.dataStorage.AfspraakDAO;
 import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.Fysiotherapeut;
@@ -12,6 +14,8 @@ import fysioSysteem.domain.Klant;
  * @author Bob
  *
  */
+ 
+ @Singleton
 public class AfspraakManager implements IAfspraakManager {
 
 	/**
@@ -32,6 +36,7 @@ public class AfspraakManager implements IAfspraakManager {
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
