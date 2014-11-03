@@ -112,7 +112,7 @@ public class pnlBhdlToeWzg extends JPanel {
 				{
 					BehandelCode behandelCode = behandelCodeManager.getBehandelCode(Integer.parseInt(txtFldBehandelCode.getText()));
 					Klant klant = klantManager.getKlant(cmbBxKlantBSN.getSelectedItem().toString());
-					if(behandeling.getId() != 0)
+					if(behandeling != null)
 					{
 						Behandeling newBehandeling = new Behandeling(behandeling.getId(), BehandelStatus.valueOf(cmbBxStatus.getSelectedItem().toString()), klant, behandelCode);
 						behandelingManager.setBehandeling(newBehandeling);
