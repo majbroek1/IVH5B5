@@ -12,8 +12,10 @@ import fysioSysteem.domain.Rooster;
 import fysioSysteem.businessLogic.planning.IRoosterManager;
 
 public class pnlFysRooToeWzg extends JPanel{
-	private JTextField textFieldFysRooToeWzgNaam;
+	private JTextField txtFysRooToeWzgNaam;
 	private int roosterID = 0;
+	private JTextField txtFysRooToeWzgStart;
+	private JTextField txtFysRooToeWzgEind;
 	
 	public pnlFysRooToeWzg(){
 		setLayout(null);
@@ -33,47 +35,13 @@ public class pnlFysRooToeWzg extends JPanel{
 		lblFysRooToeWzgNaam.setBounds(32, 36, 46, 14);
 		add(lblFysRooToeWzgNaam);
 		
-		JLabel lblFysRooToeWzgMaandag = new JLabel("Maandag");
-		lblFysRooToeWzgMaandag.setBounds(32, 71, 46, 14);
-		add(lblFysRooToeWzgMaandag);
+		JLabel lblFysRooToeWzgStarttijd = new JLabel("Starttijd");
+		lblFysRooToeWzgStarttijd.setBounds(32, 71, 46, 14);
+		add(lblFysRooToeWzgStarttijd);
 		
-		JLabel lblFysRooToeWzgDinsdag = new JLabel("Dinsdag");
-		lblFysRooToeWzgDinsdag.setBounds(32, 110, 46, 14);
-		add(lblFysRooToeWzgDinsdag);
-		
-		JLabel lblFysRooToeWzgWoensdag = new JLabel("Woensdag");
-		lblFysRooToeWzgWoensdag.setBounds(32, 154, 60, 14);
-		add(lblFysRooToeWzgWoensdag);
-		
-		JLabel lblFysRooToeWzgDonderdag = new JLabel("Donderdag");
-		lblFysRooToeWzgDonderdag.setBounds(289, 71, 53, 14);
-		add(lblFysRooToeWzgDonderdag);
-		
-		JLabel lblFysRooToeWzgVrijdag = new JLabel("Vrijdag");
-		lblFysRooToeWzgVrijdag.setBounds(289, 110, 46, 14);
-		add(lblFysRooToeWzgVrijdag);
-		
-		//ComboBoxes
-		
-		JComboBox comboBoxFysRooToeWzgMaandag = new JComboBox();
-		comboBoxFysRooToeWzgMaandag.setBounds(136, 68, 105, 20);
-		add(comboBoxFysRooToeWzgMaandag);
-		
-		JComboBox comboBoxFysRooToeWzgDinsdag = new JComboBox();
-		comboBoxFysRooToeWzgDinsdag.setBounds(136, 107, 105, 20);
-		add(comboBoxFysRooToeWzgDinsdag);
-		
-		JComboBox comboBoxFysRooToeWzgWoensdag = new JComboBox();
-		comboBoxFysRooToeWzgWoensdag.setBounds(136, 151, 105, 20);
-		add(comboBoxFysRooToeWzgWoensdag);
-		
-		JComboBox comboBoxFysRooToeWzgDonderdag = new JComboBox();
-		comboBoxFysRooToeWzgDonderdag.setBounds(368, 68, 105, 20);
-		add(comboBoxFysRooToeWzgDonderdag);
-		
-		JComboBox comboBoxFysRooToeWzgVrijdag = new JComboBox();
-		comboBoxFysRooToeWzgVrijdag.setBounds(368, 107, 105, 20);
-		add(comboBoxFysRooToeWzgVrijdag);
+		JLabel lblFysRooToeWzgEindtijd = new JLabel("Eindtijd:");
+		lblFysRooToeWzgEindtijd.setBounds(32, 110, 46, 14);
+		add(lblFysRooToeWzgEindtijd);
 		
 		//Buttons
 		
@@ -87,11 +55,21 @@ public class pnlFysRooToeWzg extends JPanel{
 		
 		//TextField
 		
-		textFieldFysRooToeWzgNaam = new JTextField();
-		textFieldFysRooToeWzgNaam.setEditable(false);
-		textFieldFysRooToeWzgNaam.setBounds(136, 33, 174, 20);
-		add(textFieldFysRooToeWzgNaam);
-		textFieldFysRooToeWzgNaam.setColumns(10);
+		txtFysRooToeWzgNaam = new JTextField();
+		txtFysRooToeWzgNaam.setEditable(false);
+		txtFysRooToeWzgNaam.setBounds(136, 33, 174, 20);
+		add(txtFysRooToeWzgNaam);
+		txtFysRooToeWzgNaam.setColumns(10);
+		
+		txtFysRooToeWzgStart = new JTextField();
+		txtFysRooToeWzgStart.setBounds(136, 68, 86, 20);
+		add(txtFysRooToeWzgStart);
+		txtFysRooToeWzgStart.setColumns(10);
+		
+		txtFysRooToeWzgEind = new JTextField();
+		txtFysRooToeWzgEind.setBounds(136, 107, 86, 20);
+		add(txtFysRooToeWzgEind);
+		txtFysRooToeWzgEind.setColumns(10);
 		
 
 	}

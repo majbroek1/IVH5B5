@@ -78,7 +78,11 @@ public class pnlFysMain extends JPanel{
 		
 		btnFysioAanpassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				cl.show(pnlContent, FYSIOTHEROPEUTEN_TOEVOEGEN_WIJZIGEN);
+				
+				
+				((pnlFysToeWzg) pnlFysToeWzg).renderControls();
+				btnFysioToevoegen.setText("Annuleren");
 			}
 		});
 		
