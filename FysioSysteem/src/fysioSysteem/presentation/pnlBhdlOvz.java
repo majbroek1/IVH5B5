@@ -88,7 +88,14 @@ public class pnlBhdlOvz extends JPanel{
 		ArrayList<Behandeling> behandelingen = this.behandelingManager.getBehandelingen();
 		
 		DefaultTableModel mdl = new DefaultTableModel(
-				new Object[]{"ID", "Klant BSN", "BehandelCode", "Status"}, 0);
+				new Object[]{"ID", "Klant BSN", "BehandelCode", "Status"}, 0){
+			
+			// Tabel Bewerken uit
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       return false;
+		    }
+		};
 			
 			for(Behandeling b : behandelingen) {
 				mdl.addRow(new Object[]{
