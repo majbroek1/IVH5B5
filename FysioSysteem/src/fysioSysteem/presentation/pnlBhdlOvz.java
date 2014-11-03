@@ -23,13 +23,14 @@ import com.google.inject.Injector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class pnlBhdlOvz extends JPanel{
-	private JTable overzichtTabel;
+public class pnlBhdlOvz extends JPanel {
+	
 	final static String BEHANDELINGEN_TOEVOEGEN_WIJZIGEN = "Behandelingen Toevoegen/ Wijzigen";
 	
+	private JTable overzichtTabel;
 	private IBehandelingManager behandelingManager;
 	
-	public pnlBhdlOvz(){
+	public pnlBhdlOvz() {
 		Injector injector = Guice.createInjector(new AppInjector());
 		this.behandelingManager = injector.getInstance(IBehandelingManager.class);
 		
@@ -37,8 +38,7 @@ public class pnlBhdlOvz extends JPanel{
 		vulVelden();
 	}
 	
-	private void genereerLayout()
-	{
+	private void genereerLayout() {
 		setLayout(null);
 	    		
 		overzichtTabel = new JTable();
@@ -50,7 +50,7 @@ public class pnlBhdlOvz extends JPanel{
 		JButton btnBehandelingToevoegen = new JButton("Behandeling toevoegen");
 		btnBehandelingToevoegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg(0);
+				JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg();
 				pnlBhdlToeWzg.setBounds(0, 0, 876, 600);
 				frmMain parent = (frmMain)getParentFrame();
 				parent.setPanel(pnlBhdlToeWzg);

@@ -21,14 +21,14 @@ public class pnlAfspMain extends JPanel{
 	final static String AFSPRAKEN_OVERZICHT = "Afspraken Overzicht";
 	final static String AFSPRAKEN_TOEVOEGEN_WIJZIGEN = "Afspraken Toevoegen/ Wijzigen";
 	
-	public pnlAfspMain() {
-		setLayout(null);
-		
+	public pnlAfspMain() {		
 		Injector injector = Guice.createInjector(new AppInjector());
-		renderControls(injector);
+		genereerLayout(injector);
 	}
 	
-	private void renderControls(Injector inj) {
+	private void genereerLayout(Injector inj) {
+		setLayout(null);
+		
 		CardLayout cl = new CardLayout();
 		
 		JPanel pnlAfspOvz = inj.getInstance(pnlAfspOvz.class);

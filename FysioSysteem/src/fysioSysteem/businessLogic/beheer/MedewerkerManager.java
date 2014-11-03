@@ -7,6 +7,7 @@ import com.google.inject.Singleton;
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Medewerker;
+import fysioSysteem.domain.Secretaresse;
 
 /**
  * @author IVH5B5
@@ -46,6 +47,16 @@ public class MedewerkerManager implements IMedewerkerManager {
 	@Override
 	public ArrayList<Medewerker> getActieveMedewerkers() {
 		return MedewerkerDAO.getActieveMedewerkers();
+	}
+	
+	@Override
+	public ArrayList<Fysiotherapeut> getFysiotherapeuten() {
+		return MedewerkerDAO.getFysiotherapeuten();
+	}
+	
+	@Override
+	public ArrayList<Secretaresse> getSecretaressen() {
+		return MedewerkerDAO.getSecretaressen();
 	}
 
 }

@@ -29,17 +29,18 @@ public class pnlAfspToeWzg extends JPanel {
 	private Afspraak afspraak = null;
 	
 	public pnlAfspToeWzg() {
-		setLayout(null);
-		
 		IAfspraakManager afsprManager = new AfspraakManager();
 		afspraak = afsprManager.getAfspraak(1);
-		renderControls();
+		
+		genereerLayout();
 		
 		if(afspraak != null)
 			vulVelden();
 	}
 	
-	private void renderControls() {
+	private void genereerLayout() {
+		setLayout(null);
+		
 		JLabel lblAfsprToeWzgNaam = new JLabel("Naam");
 		lblAfsprToeWzgNaam.setBounds(60, 54, 46, 14);
 		add(lblAfsprToeWzgNaam);

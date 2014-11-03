@@ -4,6 +4,7 @@
 package fysioSysteem.dataStorage;
 
 import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.domain.BehandelStatus;
 import fysioSysteem.domain.Behandeling;
 import general.Settings;
 
@@ -39,7 +40,7 @@ public class BehandelingDAO {
 					String _id = child.getAttribute("id");
 					if (Integer.parseInt(_id) == id) {
 
-						String status = child.getElementsByTagName("status").item(0).getTextContent();
+						BehandelStatus status = BehandelStatus.valueOf(child.getElementsByTagName("status").item(0).getTextContent());
 
 						int behandelCode = Integer.parseInt(child.getElementsByTagName("behandelCode").item(0)
 								.getTextContent());
@@ -82,7 +83,7 @@ public class BehandelingDAO {
 					if (Integer.parseInt(_id) == behandeling.getId()) {
 						Node status = child.getElementsByTagName("status").item(0).getFirstChild();
 
-						status.setNodeValue(behandeling.getStatus());
+						status.setNodeValue(behandeling.getStatus().toString());
 						edited = true;
 					}
 				}
@@ -136,7 +137,7 @@ public class BehandelingDAO {
 					Element child = (Element) node;
 					int id = Integer.parseInt(child.getAttribute("id"));
 
-					String status = child.getElementsByTagName("status").item(0).getTextContent();
+					BehandelStatus status = BehandelStatus.valueOf(child.getElementsByTagName("status").item(0).getTextContent());
 
 					int behandelCode = Integer.parseInt(child.getElementsByTagName("behandelCode").item(0)
 							.getTextContent());
