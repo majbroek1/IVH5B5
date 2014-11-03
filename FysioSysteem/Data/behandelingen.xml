@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<behandelingen>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><behandelingen>
 	<behandeling id="1">
-		<status>Uitbehandeld</status>
+		<status>UITBEHANDELD</status>
 		<behandelCode>1</behandelCode>
 		<klantBsn>1</klantBsn>
 	</behandeling>
 	<behandeling id="2">
-		<status>In onderzoek</status>
+		<status>IN_ONDERZOEK</status>
 		<behandelCode>1</behandelCode>
 		<klantBsn>2</klantBsn>
 	</behandeling>
 	<behandeling id="3">
-		<status>stat3</status>
+		<status>IN_BEHANDELING</status>
 		<behandelCode>3</behandelCode>
 		<klantBsn>3</klantBsn>
-	</behandeling>
-</behandelingen>
+	</behandeling><behandeling id="8"><status>IN_ONDERZOEK</status><behandelCode>2</behandelCode><klantBsn>2</klantBsn></behandeling></behandelingen>

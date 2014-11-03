@@ -107,16 +107,19 @@ public class BehandelingDAO {
 			Element newbehandeling = document.createElement("behandeling");
 			newbehandeling.setAttribute("id", Integer.toString(IdManager.getId("Behandeling")));
 			rootElement.appendChild(newbehandeling);
+			
+			Element status = document.createElement("status");
+			status.appendChild(document.createTextNode(behandeling.getStatus().toString()));
+			newbehandeling.appendChild(status);
 
-			Element klant = document.createElement("klantBsn");
-			klant.appendChild(document.createTextNode(behandeling.getKlant().getBsn()));
-			newbehandeling.appendChild(klant);
-
-			Element behandelCode = document.createElement("behandelcode");
+			Element behandelCode = document.createElement("behandelCode");
 			behandelCode
 					.appendChild(document.createTextNode(Integer.toString(behandeling.getBehandelCode().getCode())));
 			newbehandeling.appendChild(behandelCode);
 
+			Element klant = document.createElement("klantBsn");
+			klant.appendChild(document.createTextNode(behandeling.getKlant().getBsn()));
+			newbehandeling.appendChild(klant);
 			domdocument.writeDocument(BehandelingDAO.FILE_XML, BehandelingDAO.FILE_XSD, document);
 		} else {
 			System.out.println("behandelCode bestaat al");
