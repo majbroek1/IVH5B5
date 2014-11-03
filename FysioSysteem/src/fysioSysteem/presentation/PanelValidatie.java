@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 public class PanelValidatie {
 	
-	public static boolean validateDatum(String datum){
+	public static boolean valideerDatum(String datum){
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 			sdf.parse(datum);
@@ -16,7 +16,7 @@ public class PanelValidatie {
 		}
 	}
 	
-	public static boolean validateTijd(String tijd){
+	public static boolean valideerTijd(String tijd){
 		return tijd.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]");
 	}
 	
