@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.google.inject.Singleton;
 
+import fysioSysteem.dataStorage.KlantDAO;
 import fysioSysteem.domain.Klant;
 
 /**
@@ -30,6 +31,11 @@ public class KlantManager implements IKlantManager {
 	public Klant getKlant(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public Klant getKlant(String bsn) {
+		return KlantDAO.getKlant(bsn);
 	}
 
 	@Override

@@ -45,8 +45,7 @@ public class Behandeling implements Serializable{
 		this.afspraken = afspraken;
 	}
 	
-	public Behandeling(int id, String status, Klant klant,
-			BehandelCode behandelCode) {
+	public Behandeling(int id, String status, Klant klant, BehandelCode behandelCode) {
 		this.id = id;
 		this.status = status;
 		this.klant = klant;

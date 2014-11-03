@@ -1,18 +1,30 @@
 package fysioSysteem.presentation;
 
+import fysioSysteem.businessLogic.behandeling.BehandelingManager;
+import fysioSysteem.businessLogic.behandeling.IBehandelCodeManager;
 import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
+import fysioSysteem.businessLogic.behandeling.IKlantManager;
+import fysioSysteem.businessLogic.beheer.IPraktijkManager;
+import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Behandeling;
+import fysioSysteem.domain.Klant;
 import general.AppInjector;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -20,14 +32,30 @@ import com.google.inject.Injector;
 public class pnlBhdlToeWzg extends JPanel {
 	private JTextField txtFldBehandelCode;
 	private IBehandelingManager behandelingManager;
+	private IBehandelCodeManager behandelCodeManager;
+	private IKlantManager klantManager;
+	private Behandeling behandeling;
 
-	public pnlBhdlToeWzg(int behandelingId){
-		//behandelingId = 2;
+	public pnlBhdlToeWzg() {
 		Injector injector = Guice.createInjector(new AppInjector());
 		behandelingManager = injector.getInstance(IBehandelingManager.class);
-		
+		behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
+		klantManager =  injector.getInstance(IKlantManager.class);
+		renderControls();
+	}
+
+	public pnlBhdlToeWzg(int behandelingId){
+		Injector injector = Guice.createInjector(new AppInjector());
+		behandelingManager = injector.getInstance(IBehandelingManager.class);
+		behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
+		klantManager =  injector.getInstance(IKlantManager.class);
+		this.behandeling = behandelingManager.getBehandeling(behandelingId);
+		renderControls();
+	}	
+	
+	private void renderControls() {
 		setLayout(null);
-				
+		
 		JLabel lblKlant = new JLabel("Klant");
 		lblKlant.setBounds(10, 28, 139, 14);
 		add(lblKlant);
@@ -55,10 +83,8 @@ public class pnlBhdlToeWzg extends JPanel {
 		cmbBxStatus.setBounds(125, 117, 133, 20);
 		add(cmbBxStatus);
 		
-		if(behandelingId != 0)
+		if(behandeling != null)
 		{
-			Behandeling behandeling = behandelingManager.getBehandeling(behandelingId);
-			
 			cmbBxKlantBSN.setSelectedItem(behandeling.getKlant().getBsn());
 			txtFldBehandelCode.setText(Integer.toString(behandeling.getBehandelCode().getCode()));
 			cmbBxStatus.setSelectedItem(behandeling.getStatus());
@@ -71,11 +97,63 @@ public class pnlBhdlToeWzg extends JPanel {
 		JButton btnOpslaan = new JButton("Opslaan");
 		btnOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				JFrame frame = new JFrame();
+				ArrayList<String> errorMessages = new ArrayList<String>();
+				Border redBorder = BorderFactory.createLineBorder(Color.red);
+				
+				if (txtFldBehandelCode.getText().equals("") && txtFldBehandelCode.getText().length() >= 10)
+				{
+					txtFldBehandelCode.setBorder(redBorder);
+					errorMessages.add("- Behandelcode is incorrect");
+				}
+				
+				if(cmbBxKlantBSN.getSelectedItem().toString() == "")
+				{
+					txtFldBehandelCode.setBorder(redBorder);
+					errorMessages.add("- Behandelcode is incorrect");
+				}
+				
+				if (errorMessages.size() == 0)
+				{
+					BehandelCode behandelCode = behandelCodeManager.getBehandelCode(Integer.parseInt(txtFldBehandelCode.getText()));
+					Klant klant = klantManager.getKlant(cmbBxKlantBSN.getSelectedItem().toString());
+					Behandeling newBehandeling = new Behandeling(behandeling.getId(), cmbBxStatus.getSelectedItem().toString(), klant, behandelCode);
+					if(behandeling.getId() != 0)
+					{
+						behandelingManager.setBehandeling(newBehandeling);
+					}
+					else
+					{
+						behandelingManager.addBehandeling(newBehandeling);
+					}				
+					revalidate();
+				    repaint();
+				    
+				    JOptionPane.showMessageDialog(frame, "De behandelinggegevens zijn succesvol opgeslagen.");
+				}
+				else
+				{
+					int sizeStringBuilder = errorMessages.size() + 1;
+					StringBuilder builder = new StringBuilder(sizeStringBuilder);
+					builder.append("Controleer de volgende velden op volledigheid en correctheid:" + "\n");
+					for (String s: errorMessages)
+				    {
+						builder.append(s + "\n");
+				    }
+					JOptionPane.showMessageDialog(null, builder.toString());
+				}
+				
+				
+				
+				
 			}
 		});
 		btnOpslaan.setBounds(10, 502, 172, 29);
 		add(btnOpslaan);
+		
+		JButton btnAnnuleren = new JButton("Annuleren");
+		btnAnnuleren.setBounds(248, 505, 172, 29);
+		add(btnAnnuleren);
 	}
-	
 	
 }
