@@ -41,10 +41,6 @@ public class pnlFysOvz extends JPanel {
 		JButton btnFysioAanpassen = new JButton("Aanpassen");
 		btnFysioAanpassen.setBounds(358, 620, 172, 29);
 		add(btnFysioAanpassen);
-
-		JButton btnFysioVerwijderen = new JButton("Verwijderen");
-		btnFysioVerwijderen.setBounds(614, 620, 172, 29);
-		add(btnFysioVerwijderen);
 		
 		table = new JTable();
 		
@@ -61,10 +57,9 @@ public class pnlFysOvz extends JPanel {
 		
 		btnFysioAanpassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmMain parent = (frmMain)getParentFrame();
-				
 				try
 				{
+					frmMain parent = (frmMain)getParentFrame();
 					Fysiotherapeut t = therapeuten.get(
 							table.convertRowIndexToModel(table.getSelectedRow()));
 					parent.setPanel(new pnlFysToeWzg(t));

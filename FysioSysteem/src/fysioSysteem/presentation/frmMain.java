@@ -51,7 +51,7 @@ public class frmMain extends JFrame {
 		gbc_btnAfspraken.gridy = 0;
 		pnlMenu.add(btnAfspraken, gbc_btnAfspraken);
 		
-		JButton btnFysiotherapeuten = new JButton("Fsyiotherapeuten");
+		JButton btnFysiotherapeuten = new JButton("Fysiotherapeuten");
 		btnFysiotherapeuten.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_btnFysiotherapeuten = new GridBagConstraints();
 		gbc_btnFysiotherapeuten.fill = GridBagConstraints.HORIZONTAL;
