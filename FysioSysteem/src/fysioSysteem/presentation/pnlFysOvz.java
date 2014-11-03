@@ -46,7 +46,6 @@ public class pnlFysOvz extends JPanel {
 		add(btnFysioVerwijderen);
 		
 		table = new JTable();
-		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 10, 867, 590);
 		add(scrollPane);
