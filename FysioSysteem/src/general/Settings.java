@@ -12,6 +12,8 @@ import java.util.Properties;
 
 public class Settings {
 	public static final String DATADIR = "service.DataDir";
+	public static final String RMI_LOCATION = "service.RMILocation";
+	
 	public static Properties props = new Properties();
 
 	public static void loadProperties(String propertiesFileName) {
@@ -25,6 +27,7 @@ public class Settings {
 
 				// Set System properties.
 				System.setProperty(DATADIR, props.getProperty(DATADIR));
+				System.setProperty(RMI_LOCATION, props.getProperty(RMI_LOCATION));
 			}
 		} catch (IOException e) {
 			System.out.println("Error reading file: " + e.getMessage()

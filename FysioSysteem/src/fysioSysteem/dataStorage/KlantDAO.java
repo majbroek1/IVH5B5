@@ -77,8 +77,7 @@ public class KlantDAO {
 	}
 
 	public static ArrayList<Klant> getKlanten() {
-		// TODO
-		return null;
+		return RMIClient.getKlanten();
 	}
 
 }

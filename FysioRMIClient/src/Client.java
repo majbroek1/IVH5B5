@@ -10,7 +10,7 @@ public class Client {
 		String hostname = "localhost";
 
 
-		System.setProperty("java.security.policy", "http://" + hostname + "/classes/resources/FysioServer.policy");
+		System.setProperty("java.security.policy", "http://" + hostname + "/classes/resources/facturatieserver.policy");
 
 		if (System.getSecurityManager() == null) {
 			System.setSecurityManager(new SecurityManager());
