@@ -8,21 +8,27 @@ import javax.swing.JTextField;
 
 import fysioSysteem.businessLogic.planning.*;
 import fysioSysteem.domain.Rooster;
+import fysioSysteem.domain.Fysiotherapeut;
 
 import fysioSysteem.businessLogic.planning.IRoosterManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class pnlFysRooToeWzg extends JPanel {
 	
 	private JTextField txtFysRooToeWzgNaam;
 	private JTextField txtFysRooToeWzgStart;
 	private JTextField txtFysRooToeWzgEind;
+	private JTextField txtFysRooToeWzgDatum;
 	
 	private Rooster rooster;
+	private Fysiotherapeut fysio;
 	
-	public pnlFysRooToeWzg(){		
-		IRoosterManager roosManager = new RoosterManager();
-		rooster = roosManager.getRooster(0);
+	public pnlFysRooToeWzg(Fysiotherapeut f){
+		this.fysio = f;
 		
+		IRoosterManager roosManager = new RoosterManager();
+		rooster = roosManager.getRooster(f.getId());
 		genereerLayout();
 	}
 	
@@ -39,12 +45,16 @@ public class pnlFysRooToeWzg extends JPanel {
 		add(lblFysRooToeWzgNaam);
 		
 		JLabel lblFysRooToeWzgStarttijd = new JLabel("Starttijd");
-		lblFysRooToeWzgStarttijd.setBounds(32, 71, 46, 14);
+		lblFysRooToeWzgStarttijd.setBounds(32, 115, 46, 14);
 		add(lblFysRooToeWzgStarttijd);
 		
 		JLabel lblFysRooToeWzgEindtijd = new JLabel("Eindtijd:");
-		lblFysRooToeWzgEindtijd.setBounds(32, 110, 46, 14);
+		lblFysRooToeWzgEindtijd.setBounds(32, 154, 46, 14);
 		add(lblFysRooToeWzgEindtijd);
+		
+		JLabel lblDatum = new JLabel("Datum:");
+		lblDatum.setBounds(32, 76, 46, 14);
+		add(lblDatum);
 		
 		//Buttons
 		JButton btnFysRooToeWzgOpslaan = new JButton("Opslaan");
@@ -57,19 +67,38 @@ public class pnlFysRooToeWzg extends JPanel {
 		
 		//TextField
 		txtFysRooToeWzgNaam = new JTextField();
+		txtFysRooToeWzgNaam.setText(fysio.getNaam());
 		txtFysRooToeWzgNaam.setEditable(false);
 		txtFysRooToeWzgNaam.setBounds(136, 33, 174, 20);
 		add(txtFysRooToeWzgNaam);
 		txtFysRooToeWzgNaam.setColumns(10);
 		
 		txtFysRooToeWzgStart = new JTextField();
-		txtFysRooToeWzgStart.setBounds(136, 68, 86, 20);
+		txtFysRooToeWzgStart.setBounds(136, 112, 86, 20);
 		add(txtFysRooToeWzgStart);
 		txtFysRooToeWzgStart.setColumns(10);
 		
 		txtFysRooToeWzgEind = new JTextField();
-		txtFysRooToeWzgEind.setBounds(136, 107, 86, 20);
+		txtFysRooToeWzgEind.setBounds(136, 151, 86, 20);
 		add(txtFysRooToeWzgEind);
 		txtFysRooToeWzgEind.setColumns(10);
+		
+		txtFysRooToeWzgDatum = new JTextField();
+		txtFysRooToeWzgDatum.setBounds(136, 73, 86, 20);
+		add(txtFysRooToeWzgDatum);
+		txtFysRooToeWzgDatum.setColumns(10);
+		
+
+		
+
+		
+		btnFysRooToeWzgOpslaan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Rooster newRooster = new Rooster(0,null/*lblFysRooToeWzgStarttijd.getText()*/,null/*lblFysRooToeWzgEindtijd.getText()*/,fysio);
+				
+			}
+		});
+		
 	}
 }
