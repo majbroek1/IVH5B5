@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import com.google.inject.Guice;
@@ -54,17 +55,17 @@ public class pnlFysToeWzg extends JPanel{
 		this.medeManager = injector.getInstance(IMedewerkerManager.class);
 		this.prakManager = injector.getInstance(IPraktijkManager.class);
 		therapeut = medeManager.getFysiotherapeut(medewerkerId);
+		setLayout(null);
 		renderControls();
 	}
 	
 	public void renderControls(){
-		this.therapeut = therapeut;
 		/* Label */
-		JLabel lblFysToeWzgTitel = new JLabel("therapeutapeut Gegevens");
+		JLabel lblFysToeWzgTitel = new JLabel("Therapeut Gegevens");
 		lblFysToeWzgTitel.setBounds(74, 11, 163, 16);
 		add(lblFysToeWzgTitel);
 		
-		JLabel lblFysToeWzgNaam = new JLabel("therapeutapeut Naam");
+		JLabel lblFysToeWzgNaam = new JLabel("Therapeut Naam");
 		lblFysToeWzgNaam.setBounds(74, 57, 138, 16);
 		add(lblFysToeWzgNaam);
 		
@@ -111,16 +112,43 @@ public class pnlFysToeWzg extends JPanel{
 		
 		JComboBox cmbPraktijk = new JComboBox();
 		cmbPraktijk.setBounds(250, 112, 134, 27);
-		for (Praktijk praktijk : this.prakManager.getPraktijken()) {
-			cmbPraktijk.addItem(praktijk);
+		
+		ArrayList<Praktijk> listPraktijk = this.prakManager.getPraktijken();
+		int selectedItem = 0;
+		
+		for(int i=0; i<listPraktijk.size(); i++)
+		{
+			cmbPraktijk.addItem(listPraktijk.get(i));
+			
+			if(listPraktijk.get(i).getId() == therapeut.getPraktijk().getId())
+			{
+				selectedItem = i;
+			}
 		}
-		if (therapeut != null)cmbStatus.setSelectedItem(therapeut.getPraktijk().toString()); // TODO!!!!!!!!!!!!!!!!!!!
+		if (therapeut != null)cmbStatus.setSelectedIndex(selectedItem);
+		
+		/*
+		listPraktijk.size();
+		
+		for (Praktijk praktijk : ) {
+			
+			if(index == )
+			{
+				
+			}
+			index++;
+		}*/
+		
 		add(cmbPraktijk);
 		
 		/* Button */
 		JButton btnFysToeWzgOpslaan = new JButton("Opslaan");
 		btnFysToeWzgOpslaan.setBounds(74, 234, 117, 29);
 		add(btnFysToeWzgOpslaan);
+		
+		JButton btnFysToeWzgAnnuleren = new JButton("Annuleren");
+		btnFysToeWzgAnnuleren.setBounds(213, 234, 117, 29);
+		add(btnFysToeWzgAnnuleren);
 		
 		/* Button handling */
 		btnFysToeWzgOpslaan.addActionListener(new ActionListener() {
@@ -129,39 +157,42 @@ public class pnlFysToeWzg extends JPanel{
 				ArrayList<String> errorMessages = new ArrayList<String>();
 				Border redBorder = BorderFactory.createLineBorder(Color.red);
 				
-				if (txtFysToeWzgNaam.getText().equals("") && txtFysToeWzgNaam.getText().length() >= 50)
+				if (txtFysToeWzgNaam.getText().equals("") || txtFysToeWzgNaam.getText().length() >= 50)
 				{
 					txtFysToeWzgNaam.setBorder(redBorder);
-					errorMessages.add("- therapeutapeut Naam");
+					errorMessages.add("- Therapeut Naam");
 				}
-				if (txtFysToeWzgWachtwoord.getText().equals("") && txtFysToeWzgWachtwoord.getText().length() >= 50)
+				if (txtFysToeWzgWachtwoord.getText().equals("") || txtFysToeWzgWachtwoord.getText().length() >= 50)
 				{
 					txtFysToeWzgWachtwoord.setBorder(redBorder);
 					errorMessages.add("- Wachtwoord");
 				}
-				if (txtFysToeWzgWachtwoordHerhalen.getText().equals("") && txtFysToeWzgWachtwoord.getText() == txtFysToeWzgWachtwoordHerhalen.getText())
+				if (txtFysToeWzgWachtwoordHerhalen.getText().equals("") || txtFysToeWzgWachtwoord.getText() == txtFysToeWzgWachtwoordHerhalen.getText())
 				{
 					txtFysToeWzgWachtwoordHerhalen.setBorder(redBorder);
 					errorMessages.add("- Wachtwoord Herhalen");
 				}
 				if (errorMessages.size() == 0)
 				{
-					/* update Fysio therapeut */
-					
-					
-					/* end update Fysio therapeut */
-					
-					/* new Fysio therapeut */
-					/*therapeutapeut therapeutapeut = new therapeutapeut(txtFysToeWzgNaam.getText(), txtFysToeWzgWachtwoord.getText(), 
-							Status.valueOf(cmbStatus.getSelectedItem().toString()), (Praktijk)cmbPraktijk.getSelectedItem());
-					
-				 	  medeManager.addMedewerker(therapeutapeut);*/
-					/* end new  Fysio therapeut */
-					
-					revalidate();
-				    repaint();
+					if (therapeut == null)
+					{
+						Fysiotherapeut Fysiotherapeut = new Fysiotherapeut(txtFysToeWzgNaam.getText(), txtFysToeWzgWachtwoord.getText(), 
+								Status.valueOf(cmbStatus.getSelectedItem().toString()), (Praktijk)cmbPraktijk.getSelectedItem());
+						
+						medeManager.addMedewerker(Fysiotherapeut);
+					}
+					else
+					{
+						Fysiotherapeut Fysiotherapeut = new Fysiotherapeut(therapeut.getId(),txtFysToeWzgNaam.getText(), txtFysToeWzgWachtwoord.getText(), 
+								Status.valueOf(cmbStatus.getSelectedItem().toString()), (Praktijk)cmbPraktijk.getSelectedItem());
+						
+						medeManager.setMedewerker(Fysiotherapeut);
+					}
 				    
-				    JOptionPane.showMessageDialog(frame, "De praktijk gegevens zijn succesvol opgeslagen.");
+				    JOptionPane.showMessageDialog(frame, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
+				    
+				    frmMain parent = (frmMain)getParentFrame();
+				    parent.setPanel(new pnlFysOvz());
 				}
 				else
 				{
@@ -176,5 +207,16 @@ public class pnlFysToeWzg extends JPanel{
 				}
 			}
 		});
+		
+		btnFysToeWzgAnnuleren.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmMain parent = (frmMain)getParentFrame();
+				parent.setPanel(new pnlFysOvz());
+			}
+		});
+	}
+	
+	private JFrame getParentFrame(){
+		return (JFrame)SwingUtilities.getRoot(this);
 	}
 }
