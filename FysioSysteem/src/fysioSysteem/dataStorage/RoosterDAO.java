@@ -18,9 +18,10 @@ import fysioSysteem.domain.Rooster;
 import general.Settings;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class RoosterDAO {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/roosters.xml";

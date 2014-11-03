@@ -20,6 +20,11 @@ import fysioSysteem.businessLogic.planning.IAfspraakManager;
 import fysioSysteem.businessLogic.planning.IRoosterManager;
 import fysioSysteem.businessLogic.planning.RoosterManager;
 
+/**
+ * @author IVH5B5
+ *
+ */
+
 public class AppInjector extends AbstractModule {
 	 
     @Override

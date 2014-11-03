@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import fysioSysteem.domain.Klant;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public interface IKlantManager {
 
 	/**

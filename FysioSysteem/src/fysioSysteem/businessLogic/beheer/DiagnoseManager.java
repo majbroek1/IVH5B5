@@ -11,7 +11,7 @@ import fysioSysteem.dataStorage.DiagnoseDAO;
 import fysioSysteem.domain.Diagnose;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 

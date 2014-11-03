@@ -15,9 +15,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class BehandelingDAO {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/behandelingen.xml";

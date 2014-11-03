@@ -24,7 +24,7 @@ import fysioSysteem.domain.Rooster;
 import fysioSysteem.domain.Status;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 

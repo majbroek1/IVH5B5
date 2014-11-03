@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author IVH5B5
+ *
+ */
+
 public class Settings {
 	public static final String DATADIR = "service.DataDir";
 	public static Properties props = new Properties();

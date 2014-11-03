@@ -17,6 +17,11 @@ import org.apache.log4j.BasicConfigurator;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+/**
+ * @author IVH5B5
+ *
+ */
+
 public class Main {
 
 	public static void main(String[] args) {
