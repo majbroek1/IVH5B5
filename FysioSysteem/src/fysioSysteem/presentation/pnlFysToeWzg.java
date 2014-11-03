@@ -143,6 +143,10 @@ public class pnlFysToeWzg extends JPanel {
 		btnFysToeWzgAnnuleren.setBounds(213, 234, 117, 29);
 		add(btnFysToeWzgAnnuleren);
 		
+		JButton btnFysToeWzgRooster = new JButton("Rooster");
+		btnFysToeWzgRooster.setBounds(636, 237, 117, 29);
+		add(btnFysToeWzgRooster);
+		
 		/* Button handling */
 		btnFysToeWzgOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -207,10 +211,16 @@ public class pnlFysToeWzg extends JPanel {
 				parent.setPanel(new pnlFysOvz());
 			}
 		});
+		
+		btnFysToeWzgRooster.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmMain parent = (frmMain)getParentFrame();
+				parent.setPanel(new pnlFysRooOvz(therapeut));
+			}
+		});
 	}
 	
 	private JFrame getParentFrame(){
 		return (JFrame)SwingUtilities.getRoot(this);
 	}
-	
 }
