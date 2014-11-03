@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -40,10 +41,6 @@ public class pnlFysOvz extends JPanel {
 		JButton btnFysioAanpassen = new JButton("Aanpassen");
 		btnFysioAanpassen.setBounds(358, 620, 172, 29);
 		add(btnFysioAanpassen);
-
-		JButton btnFysioVerwijderen = new JButton("Verwijderen");
-		btnFysioVerwijderen.setBounds(614, 620, 172, 29);
-		add(btnFysioVerwijderen);
 		
 		table = new JTable();
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -59,19 +56,31 @@ public class pnlFysOvz extends JPanel {
 		
 		btnFysioAanpassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmMain parent = (frmMain)getParentFrame();
-				
-				Fysiotherapeut t = therapeuten.get(
-					table.convertRowIndexToModel(table.getSelectedRow()));
-				
-				parent.setPanel(new pnlFysToeWzg(t));
+				try
+				{
+					frmMain parent = (frmMain)getParentFrame();
+					Fysiotherapeut t = therapeuten.get(
+							table.convertRowIndexToModel(table.getSelectedRow()));
+					parent.setPanel(new pnlFysToeWzg(t));
+				}
+				catch (Exception ex)
+				{
+					JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+				}
 			}
 		});
 	}
 	
 	private void vulVelden() {
 		DefaultTableModel mdl = new DefaultTableModel(
-			new Object[]{"ID", "Naam", "Praktijk", "Status"}, 0);
+			new Object[]{"ID", "Naam", "Praktijk", "Status"}, 0){
+			
+			// Tabel Bewerken uit
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       return false;
+		    }
+		};
 		
 		for(Fysiotherapeut f : therapeuten) {
 			mdl.addRow(new Object[]{
@@ -79,7 +88,7 @@ public class pnlFysOvz extends JPanel {
 				f.getPraktijk().getNaam(), f.getStatus()
 			});
 		}
-		
+
 		table.setModel(mdl);
 	}
 	

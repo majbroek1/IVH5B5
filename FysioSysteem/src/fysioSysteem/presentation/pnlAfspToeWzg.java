@@ -105,7 +105,7 @@ public class pnlAfspToeWzg extends JPanel {
 				}
 				
 				if (txtAfsprToeWzgDatum.getText().equals("")
-					|| PanelValidatie.validateDatum(txtAfsprToeWzgDatum.getText())) {
+					|| PanelValidatie.valideerDatum(txtAfsprToeWzgDatum.getText())) {
 					txtAfsprToeWzgDatum.setBorder(redBorder);
 					errorMessages.add("De datum klopt niet! vul in: dd-MM-yyyy");
 				}
@@ -116,7 +116,7 @@ public class pnlAfspToeWzg extends JPanel {
 				}
 				
 				if (txtAfsprToeWzgTijdstip.getText().equals("")
-					|| PanelValidatie.validateTijd(txtAfsprToeWzgTijdstip.getText())) {
+					|| PanelValidatie.valideerTijd(txtAfsprToeWzgTijdstip.getText())) {
 					txtAfsprToeWzgTijdstip.setBorder(redBorder);
 					errorMessages.add("Het tijdstip klopt niet! vul in: hh:mm ");
 				}

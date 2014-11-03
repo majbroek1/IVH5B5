@@ -28,6 +28,12 @@ public interface IKlantManager {
 	public Klant getKlant(int id);
 	
 	/**
+	 * @param id
+	 * @return
+	 */
+	public Klant getKlant(String bsn);
+	
+	/**
 	 * @return
 	 */
 	public ArrayList<Klant> getKlanten();
