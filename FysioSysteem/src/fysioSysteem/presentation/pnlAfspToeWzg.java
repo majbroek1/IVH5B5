@@ -25,6 +25,7 @@ public class pnlAfspToeWzg extends JPanel {
 	private JTextField txtAfsprToeWzgNaam;
 	private JTextField txtAfsprToeWzgDatum;
 	private JTextField txtAfsprToeWzgTijdstip;
+	private JComboBox comboAfsprToeWzgBehNaam;
 	
 	private Afspraak afspraak = null;
 	
@@ -34,6 +35,9 @@ public class pnlAfspToeWzg extends JPanel {
 		IAfspraakManager afsprManager = new AfspraakManager();
 		afspraak = afsprManager.getAfspraak(1);
 		renderControls();
+		
+		if(afspraak != null)
+			vulVelden();
 	}
 	
 	private void renderControls() {
@@ -77,28 +81,16 @@ public class pnlAfspToeWzg extends JPanel {
 		btnAfsprToeWzgNaamOpslaan.setBounds(60, 236, 117, 29);
 		add(btnAfsprToeWzgNaamOpslaan);
 		
-		// Gegevens
-		if (afspraak instanceof Afspraak) {			
-			JLabel lblAfspToeWzgTitel = new JLabel("Afspraak Wijzigen");
-			lblAfspToeWzgTitel.setBounds(74, 11, 120, 16);
-			add(lblAfspToeWzgTitel);
-			
-			txtAfsprToeWzgNaam.setText(
-				afspraak.getBehandeling().getKlant().getNaam());
-			
-			txtAfsprToeWzgDatum.setText(
-				afspraak.getDatumTijd().toString());
-			
-			txtAfsprToeWzgTijdstip.setText(
-				afspraak.getEindTijd().toString());	
-			
-			comboAfsprToeWzgBehNaam.setSelectedItem(
-				afspraak.getBehandeling().getBehandelCode().getBehandelingNaam());
+		JLabel lblAfspToeWzgTitel = new JLabel();
+		lblAfspToeWzgTitel.setBounds(74, 11, 120, 16);
+		add(lblAfspToeWzgTitel);
+		
+		// Panel titel
+		if (afspraak != null) {			
+			lblAfspToeWzgTitel.setText("Afspraak Wijzigen");
 		}
 		else {
-			JLabel lblAfspToeWzgTitel = new JLabel("Afspraak Toevoegen");
-			lblAfspToeWzgTitel.setBounds(74, 11, 120, 16);
-			add(lblAfspToeWzgTitel);
+			lblAfspToeWzgTitel.setText("Afspraak Toevoegen");
 		}
 		
 		// Button Handling
@@ -137,9 +129,22 @@ public class pnlAfspToeWzg extends JPanel {
 					repaint();
 					JOptionPane.showMessageDialog(frame, "De afspraak is succesvol opgeslagen");
 				}
-				
 			}
 		});
+	}
+	
+	private void vulVelden() {
+		txtAfsprToeWzgNaam.setText(
+			afspraak.getBehandeling().getKlant().getNaam());
+		
+		txtAfsprToeWzgDatum.setText(
+			afspraak.getDatumTijd().toString());
+		
+		txtAfsprToeWzgTijdstip.setText(
+			afspraak.getEindTijd().toString());	
+		
+		comboAfsprToeWzgBehNaam.setSelectedItem(
+			afspraak.getBehandeling().getBehandelCode().getBehandelingNaam());
 	}
 
 }
