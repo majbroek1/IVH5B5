@@ -37,6 +37,7 @@ public class FysioImpl implements FysioServiceIF {
 		for (fysioSysteem.domain.Behandeling b : fysioBehandelingen) {
 			shared.Behandeling fb = new shared.Behandeling(b.getId(), b.getKlant().getBsn());
 			ArrayList<Sessie> sessies = new ArrayList<Sessie>();
+			
 			for (Afspraak a : AfspraakDAO.getAfspraken(b)) {
 				Praktijk p = a.getFysiotherapeut().getPraktijk();
 				Zorgaanbieder z = new Zorgaanbieder(p.getNaam(), p.getAdres(), p.getPostcode(), p.getPlaats(),
@@ -44,6 +45,7 @@ public class FysioImpl implements FysioServiceIF {
 
 				sessies.add(new Sessie(a.getId(), a.getDatumTijd(), z));
 			}
+			
 			fb.setSessies(sessies);
 			BehandelCode bc = b.getBehandelCode();
 			fb.setBehandelcodes(new ArrayList<Behandelcode>(Arrays.asList(new Behandelcode(bc.getCode(), bc
@@ -52,6 +54,7 @@ public class FysioImpl implements FysioServiceIF {
 			verzekerBehandelingen.add(fb);
 
 		}
+		
 		return verzekerBehandelingen;
 	}
 }

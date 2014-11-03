@@ -1,16 +1,13 @@
 package fysioSysteem.presentation;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import fysioSysteem.businessLogic.behanding.BehandelingManager;
-import fysioSysteem.businessLogic.behanding.IBehandelingManager;
+import fysioSysteem.businessLogic.behandeling.BehandelingManager;
+import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
 import fysioSysteem.domain.Behandeling;
 
 public class pnlBhdlOvz extends JPanel{

@@ -28,18 +28,23 @@ public class BehandelingManager implements IBehandelingManager {
 	}
 
 	@Override
-	public ArrayList<Behandeling> getBehandelingen(Klant klant) {
-		return BehandelingDAO.getBehandelingen(klant.getBsn());
-	}
-
-	@Override
 	public Behandeling getBehandeling(int id) {
 		return BehandelingDAO.getBehandeling(id, true);
 	}
 	
 	@Override
+	public ArrayList<Behandeling> getBehandelingen() {
+		return BehandelingDAO.getBehandelingen();
+	}
+	
+	@Override
 	public ArrayList<Behandeling> getBehandelingen(BehandelCode behandelCode) {
 		return BehandelingDAO.getBehandelingen(behandelCode);
+	}
+	
+	@Override
+	public ArrayList<Behandeling> getBehandelingen(Klant klant) {
+		return BehandelingDAO.getBehandelingen(klant.getBsn());
 	}
 
 }

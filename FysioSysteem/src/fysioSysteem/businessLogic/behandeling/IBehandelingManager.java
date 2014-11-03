@@ -29,6 +29,11 @@ public interface IBehandelingManager {
 	public Behandeling getBehandeling(int id);
 	
 	/**
+	 * @return
+	 */
+	public ArrayList<Behandeling> getBehandelingen();
+	
+	/**
 	 * @param klant
 	 * @return
 	 */

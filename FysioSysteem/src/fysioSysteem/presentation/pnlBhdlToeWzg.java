@@ -1,23 +1,21 @@
 package fysioSysteem.presentation;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
+import fysioSysteem.domain.Behandeling;
+import general.AppInjector;
 
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
-import fysioSysteem.businessLogic.behanding.BehandelingManager;
-import fysioSysteem.businessLogic.behanding.IBehandelingManager;
-import fysioSysteem.domain.Behandeling;
-import general.AppInjector;
 
 public class pnlBhdlToeWzg extends JPanel {
 	private JTextField txtFldBehandelCode;
