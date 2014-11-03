@@ -11,8 +11,6 @@ public class pnlAfspOvz extends JPanel {
 		//ILoginManager lgn = new ILoginManager();
 		//IMedewerkerManager mdwrk = new IMedewerkerManager();
 		
-		setLayout(null);
-		
 		/*
 		String[] tabelKolomNamen = {"Afspraak #", "Patient", "Datum" , "Tijd", "Behandeling"};
 		Object[][] data = { {new Integer(1), "Smith","23-10-2014", "14:12", "Knieblessure"}};*/
@@ -23,10 +21,12 @@ public class pnlAfspOvz extends JPanel {
 		add(tblAfspOvzTable);
 		*/
 		
-		renderControls();
+		genereerLayout();
 	}
 	
-	private void renderControls() {
+	private void genereerLayout() {
+		setLayout(null);
+		
 		JLabel lblAfspOvzTitel = new JLabel("Afspraak Overzicht");
 		lblAfspOvzTitel.setBounds(74, 11, 120, 16);
 		add(lblAfspOvzTitel);

@@ -13,6 +13,8 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
+import fysioSysteem.businessLogic.beheer.MedewerkerManager;
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 
@@ -24,15 +26,16 @@ public class pnlFysOvz extends JPanel {
 	private ArrayList<Fysiotherapeut> therapeuten;
 	
 	public pnlFysOvz() {
-		setLayout(null);
-
-		therapeuten = MedewerkerDAO.getFysiotherapeuten();
+		IMedewerkerManager mm = new MedewerkerManager();
+		therapeuten = mm.getFysiotherapeuten();
 		
 		genereerLayout();
 		vulVelden();
 	}
 
 	public void genereerLayout() {
+		setLayout(null);
+		
 		btnFysioToevoegen = new JButton("Toevoegen");
 		btnFysioToevoegen.setBounds(107, 620, 172, 29);
 		
@@ -73,7 +76,7 @@ public class pnlFysOvz extends JPanel {
 	
 	private void vulVelden() {
 		DefaultTableModel mdl = new DefaultTableModel(
-			new Object[]{"ID", "Naam", "Praktijk", "Status"}, 0){
+			new Object[]{"ID", "Naam", "Praktijk", "Status"}, 0) {
 			
 			// Tabel Bewerken uit
 			@Override

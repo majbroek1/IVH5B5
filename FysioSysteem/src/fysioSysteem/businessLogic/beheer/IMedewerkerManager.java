@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Medewerker;
+import fysioSysteem.domain.Secretaresse;
 
 /**
  * @author IVH5B5
@@ -30,7 +31,22 @@ public interface IMedewerkerManager {
 	 */
 	public Medewerker getMedewerker(int id);
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public Fysiotherapeut getFysiotherapeut(int id);
+	
+	/**
+	 * @return
+	 */
+	public ArrayList<Fysiotherapeut> getFysiotherapeuten();
+	
+	/**
+	 * @return
+	 */
+	public ArrayList<Secretaresse> getSecretaressen();
+	
 	/**
 	 * @return
 	 */

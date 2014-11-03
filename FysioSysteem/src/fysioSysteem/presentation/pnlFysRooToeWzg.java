@@ -11,22 +11,25 @@ import fysioSysteem.domain.Rooster;
 
 import fysioSysteem.businessLogic.planning.IRoosterManager;
 
-public class pnlFysRooToeWzg extends JPanel{
+public class pnlFysRooToeWzg extends JPanel {
+	
 	private JTextField txtFysRooToeWzgNaam;
-	private int roosterID = 0;
 	private JTextField txtFysRooToeWzgStart;
 	private JTextField txtFysRooToeWzgEind;
 	
-	public pnlFysRooToeWzg(){
+	private Rooster rooster;
+	
+	public pnlFysRooToeWzg(){		
+		IRoosterManager roosManager = new RoosterManager();
+		rooster = roosManager.getRooster(0);
+		
+		genereerLayout();
+	}
+	
+	private void genereerLayout() {
 		setLayout(null);
 		
-		IRoosterManager roosManager = new RoosterManager();
-		
-		Rooster r = roosManager.getRooster(roosterID);
-		
-		
 		// Labels
-		
 		JLabel lblRooster = new JLabel("Voeg Rooster toe/Wijzig rooster");
 		lblRooster.setBounds(10, 11, 154, 14);
 		add(lblRooster);
@@ -44,7 +47,6 @@ public class pnlFysRooToeWzg extends JPanel{
 		add(lblFysRooToeWzgEindtijd);
 		
 		//Buttons
-		
 		JButton btnFysRooToeWzgOpslaan = new JButton("Opslaan");
 		btnFysRooToeWzgOpslaan.setBounds(32, 250, 89, 23);
 		add(btnFysRooToeWzgOpslaan);
@@ -54,7 +56,6 @@ public class pnlFysRooToeWzg extends JPanel{
 		add(btnFysRooToeWzgTerug);
 		
 		//TextField
-		
 		txtFysRooToeWzgNaam = new JTextField();
 		txtFysRooToeWzgNaam.setEditable(false);
 		txtFysRooToeWzgNaam.setBounds(136, 33, 174, 20);
@@ -70,7 +71,5 @@ public class pnlFysRooToeWzg extends JPanel{
 		txtFysRooToeWzgEind.setBounds(136, 107, 86, 20);
 		add(txtFysRooToeWzgEind);
 		txtFysRooToeWzgEind.setColumns(10);
-		
-
 	}
 }

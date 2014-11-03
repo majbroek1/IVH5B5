@@ -1,15 +1,5 @@
 package fysioSysteem.presentation;
 
-import fysioSysteem.businessLogic.behandeling.BehandelingManager;
-import fysioSysteem.businessLogic.behandeling.IBehandelCodeManager;
-import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
-import fysioSysteem.businessLogic.behandeling.IKlantManager;
-import fysioSysteem.businessLogic.beheer.IPraktijkManager;
-import fysioSysteem.domain.BehandelCode;
-import fysioSysteem.domain.Behandeling;
-import fysioSysteem.domain.Klant;
-import general.AppInjector;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +19,14 @@ import javax.swing.border.Border;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import fysioSysteem.businessLogic.behandeling.IBehandelCodeManager;
+import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
+import fysioSysteem.businessLogic.behandeling.IKlantManager;
+import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.domain.Behandeling;
+import fysioSysteem.domain.Klant;
+import general.AppInjector;
+
 public class pnlBhdlToeWzg extends JPanel {
 	private JTextField txtFldBehandelCode;
 	private JComboBox<Object> cmbBxKlantBSN, cmbBxStatus;
@@ -43,6 +41,7 @@ public class pnlBhdlToeWzg extends JPanel {
 		behandelingManager = injector.getInstance(IBehandelingManager.class);
 		behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
 		klantManager =  injector.getInstance(IKlantManager.class);
+		
 		genereerLayout();
 	}
 
@@ -51,7 +50,9 @@ public class pnlBhdlToeWzg extends JPanel {
 		behandelingManager = injector.getInstance(IBehandelingManager.class);
 		behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
 		klantManager =  injector.getInstance(IKlantManager.class);
+		
 		this.behandeling = behandelingManager.getBehandeling(behandelingId);
+		
 		genereerLayout();
 		vulVelden();
 	}	

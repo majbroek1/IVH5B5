@@ -1,17 +1,37 @@
 package fysioSysteem.presentation;
 
-import javax.swing.JPanel;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
+
+import fysioSysteem.businessLogic.planning.IRoosterManager;
+import fysioSysteem.businessLogic.planning.RoosterManager;
+import fysioSysteem.domain.Fysiotherapeut;
+import fysioSysteem.domain.Rooster;
 
 public class pnlFysRooOvz extends JPanel{
+	
 	private JTable tableFysRooOvzRooster;
 	
-	public pnlFysRooOvz(){
+	private ArrayList<Rooster> roosters;
+	
+	public pnlFysRooOvz(Fysiotherapeut f) {		
+		IRoosterManager rm = new RoosterManager();
+		roosters = rm.getWeekRooster(f);
+		
+		genereerLayout();
+		vulVelden();
+	}
+	
+	private void genereerLayout() {
 		setLayout(null);
+		
+		tableFysRooOvzRooster = new JTable();
 		
 		JLabel lblFysRooOvzRooster = new JLabel("Rooster");
 		lblFysRooOvzRooster.setBounds(10, 11, 46, 14);
@@ -21,23 +41,30 @@ public class pnlFysRooOvz extends JPanel{
 		spFysRooOvzTableRooster.setBounds(20, 36, 545, 317);
 		add(spFysRooOvzTableRooster);
 		
-		tableFysRooOvzRooster = new JTable();
-		spFysRooOvzTableRooster.setViewportView(tableFysRooOvzRooster);
-		tableFysRooOvzRooster.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Maandag", null},
-				{"Dinsdag", null},
-				{"Woensdag", null},
-				{"Donderdag", null},
-				{"Vrijdag", null},
-			},
-			new String[] {
-				"Dag", "Dagdeel"
-			}
-		));
-		
 		JButton btnFysRooOvzTerug = new JButton("Terug");
 		btnFysRooOvzTerug.setBounds(30, 364, 89, 23);
 		add(btnFysRooOvzTerug);
 	}
+	
+	private void vulVelden() {
+		DefaultTableModel mdl = new DefaultTableModel(
+			new Object[]{"Start", "Eind"}, 0) {
+			
+			// Tabel Bewerken uit
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       return false;
+		    }
+		};
+		
+		for(Rooster r : roosters) {
+			mdl.addRow(new Object[]{
+				r.getStart().toString(),
+				r.getEind().toString()
+			});
+		}
+		
+		tableFysRooOvzRooster.setModel(mdl);
+	}
+	
 }
