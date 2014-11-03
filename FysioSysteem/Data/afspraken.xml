@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <afspraken>
 	<afspraak id="1">
-		<datumTijd>2014-10-30T09:30:10</datumTijd>
+		<datumTijd>2014-11-03T20:00:10</datumTijd>
 		<fysioId>1</fysioId>
 		<behandelingId>1</behandelingId>
 	</afspraak>
