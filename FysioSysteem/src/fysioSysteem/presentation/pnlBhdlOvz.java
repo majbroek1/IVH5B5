@@ -28,7 +28,7 @@ public class pnlBhdlOvz extends JPanel{
 			rijData[i][2] = behandeling.getStatus();
 		}
 	   
-	        Object kolomNamen[] = { "Klant BSN", "Behandelcode", "Status" };
+        Object kolomNamen[] = { "Klant BSN", "Behandelcode", "Status" };
         overzichtTabel = new JTable(rijData, kolomNamen);
 
         JScrollPane scrllPnOverzichtTabel = new JScrollPane(overzichtTabel);

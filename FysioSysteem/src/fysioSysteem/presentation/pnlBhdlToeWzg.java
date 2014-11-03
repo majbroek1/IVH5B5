@@ -1,5 +1,6 @@
 package fysioSysteem.presentation;
 
+import fysioSysteem.businessLogic.behandeling.BehandelingManager;
 import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
 import fysioSysteem.domain.Behandeling;
 import general.AppInjector;
@@ -22,12 +23,16 @@ public class pnlBhdlToeWzg extends JPanel {
 	private IBehandelingManager behandelingManager;
 
 	public pnlBhdlToeWzg(int behandelingId){
-		//behandelingId = 2;
-		Injector injector = Guice.createInjector(new AppInjector());
-		behandelingManager = injector.getInstance(IBehandelingManager.class);
+		//Injector injector = Guice.createInjector(new AppInjector());
+		//behandelingManager = injector.getInstance(IBehandelingManager.class);
+		behandelingManager = new BehandelingManager(); 
 		
+		renderControls(behandelingId);
+	}	
+	
+	private void renderControls(int behandelingId) {
 		setLayout(null);
-				
+		
 		JLabel lblKlant = new JLabel("Klant");
 		lblKlant.setBounds(10, 28, 139, 14);
 		add(lblKlant);
@@ -76,6 +81,5 @@ public class pnlBhdlToeWzg extends JPanel {
 		btnOpslaan.setBounds(10, 502, 172, 29);
 		add(btnOpslaan);
 	}
-	
 	
 }

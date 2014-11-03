@@ -21,6 +21,11 @@ public class pnlBhdlMain extends JPanel{
 	
 	public pnlBhdlMain()
 	{
+		renderControls();	
+	}
+	
+	private void renderControls()
+	{
 		setLayout(null);
 		
 		CardLayout cl = new CardLayout();
@@ -78,6 +83,6 @@ public class pnlBhdlMain extends JPanel{
 				}
 			}
 		});
-		//TODO
 	}
 }
+
