@@ -18,6 +18,7 @@ import fysioSysteem.businessLogic.planning.AfspraakManager;
 import fysioSysteem.dataStorage.AfspraakDAO;
 import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.domain.BehandelStatus;
 import fysioSysteem.domain.Behandeling;
 
 /**
@@ -46,7 +47,7 @@ public class AfspraakManagerTest {
 		}
 		
 		BehandelCode code = new BehandelCode(1, 2, "", 60, 45.00);
-		Behandeling behandeling = new Behandeling(1, "", null, code);
+		Behandeling behandeling = new Behandeling(1, BehandelStatus.IN_BEHANDELING, null, code);
 		
 		//Bestaande afspraak opbouwen
 		Afspraak bestaandeAfspraak = new Afspraak(1, dateBestaand, null, behandeling);
@@ -84,7 +85,7 @@ public class AfspraakManagerTest {
 		}
 		
 		BehandelCode code = new BehandelCode(1, 2, "", 60, 45.00);
-		Behandeling behandeling = new Behandeling(1, "", null, code);
+		Behandeling behandeling = new Behandeling(1, BehandelStatus.IN_BEHANDELING, null, code);
 		
 		//Bestaande afspraak opbouwen
 		Afspraak bestaandeAfspraak = new Afspraak(1, dateBestaand, null, behandeling);
@@ -122,7 +123,7 @@ public class AfspraakManagerTest {
 		}
 		
 		BehandelCode code = new BehandelCode(1, 2, "", 60, 45.00);
-		Behandeling behandeling = new Behandeling(1, "", null, code);
+		Behandeling behandeling = new Behandeling(1, BehandelStatus.IN_BEHANDELING, null, code);
 		
 		//Bestaande afspraak opbouwen
 		Afspraak bestaandeAfspraak = new Afspraak(1, dateBestaand, null, behandeling);
@@ -160,7 +161,7 @@ public class AfspraakManagerTest {
 		}
 		
 		BehandelCode code = new BehandelCode(1, 2, "", 60, 45.00);
-		Behandeling behandeling = new Behandeling(1, "", null, code);
+		Behandeling behandeling = new Behandeling(1, BehandelStatus.IN_BEHANDELING, null, code);
 		
 		//Bestaande afspraak opbouwen
 		Afspraak bestaandeAfspraak = new Afspraak(1, dateBestaand, null, behandeling);
@@ -199,8 +200,8 @@ public class AfspraakManagerTest {
 		
 		BehandelCode code1 = new BehandelCode(1, 2, "", 60, 45.00);
 		BehandelCode code2 = new BehandelCode(1, 2, "", 30, 45.00);
-		Behandeling behandeling1 = new Behandeling(1, "", null, code1);
-		Behandeling behandeling2 = new Behandeling(1, "", null, code2);
+		Behandeling behandeling1 = new Behandeling(1, BehandelStatus.IN_BEHANDELING, null, code1);
+		Behandeling behandeling2 = new Behandeling(1, BehandelStatus.IN_BEHANDELING, null, code2);
 		
 		//Bestaande afspraak opbouwen
 		Afspraak bestaandeAfspraak = new Afspraak(1, dateBestaand, null, behandeling1);

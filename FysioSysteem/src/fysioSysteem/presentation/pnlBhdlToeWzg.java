@@ -6,8 +6,10 @@ import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
 import fysioSysteem.businessLogic.behandeling.IKlantManager;
 import fysioSysteem.businessLogic.beheer.IPraktijkManager;
 import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.domain.BehandelStatus;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Klant;
+import fysioSysteem.domain.Status;
 import general.AppInjector;
 
 import java.awt.Color;
@@ -24,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import com.google.inject.Guice;
@@ -42,7 +45,7 @@ public class pnlBhdlToeWzg extends JPanel {
 		Injector injector = Guice.createInjector(new AppInjector());
 		behandelingManager = injector.getInstance(IBehandelingManager.class);
 		behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
-		klantManager =  injector.getInstance(IKlantManager.class);
+		klantManager = injector.getInstance(IKlantManager.class);
 		genereerLayout();
 	}
 
@@ -82,7 +85,7 @@ public class pnlBhdlToeWzg extends JPanel {
 		txtFldBehandelCode.setColumns(10);
 		
 		cmbBxStatus = new JComboBox();
-		cmbBxStatus.setModel(new DefaultComboBoxModel(new String[] {"", "In onderzoek", "In behandeling", "Uitbehandeld"}));
+		cmbBxStatus.setModel(new DefaultComboBoxModel(BehandelStatus.values()));
 		cmbBxStatus.setBounds(125, 117, 133, 20);
 		add(cmbBxStatus);
 		
@@ -109,13 +112,14 @@ public class pnlBhdlToeWzg extends JPanel {
 				{
 					BehandelCode behandelCode = behandelCodeManager.getBehandelCode(Integer.parseInt(txtFldBehandelCode.getText()));
 					Klant klant = klantManager.getKlant(cmbBxKlantBSN.getSelectedItem().toString());
-					Behandeling newBehandeling = new Behandeling(behandeling.getId(), cmbBxStatus.getSelectedItem().toString(), klant, behandelCode);
 					if(behandeling.getId() != 0)
 					{
+						Behandeling newBehandeling = new Behandeling(behandeling.getId(), BehandelStatus.valueOf(cmbBxStatus.getSelectedItem().toString()), klant, behandelCode);
 						behandelingManager.setBehandeling(newBehandeling);
 					}
 					else
 					{
+						Behandeling newBehandeling = new Behandeling(BehandelStatus.valueOf(cmbBxStatus.getSelectedItem().toString()), klant, behandelCode);
 						behandelingManager.addBehandeling(newBehandeling);
 					}				
 					revalidate();
@@ -140,7 +144,13 @@ public class pnlBhdlToeWzg extends JPanel {
 		add(btnOpslaan);
 		
 		JButton btnAnnuleren = new JButton("Annuleren");
-		btnAnnuleren.setBounds(248, 505, 172, 29);
+		btnAnnuleren.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmMain parent = (frmMain)getParentFrame();
+				parent.setPanel(new pnlBhdlOvz());
+			}
+		});
+		btnAnnuleren.setBounds(248, 502, 172, 29);
 		add(btnAnnuleren);
 	}
 	
@@ -151,4 +161,7 @@ public class pnlBhdlToeWzg extends JPanel {
 		cmbBxStatus.setSelectedItem(behandeling.getStatus());
 	}
 	
+	private JFrame getParentFrame(){
+		return (JFrame)SwingUtilities.getRoot(this);
+	}
 }

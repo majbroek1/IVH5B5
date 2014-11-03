@@ -15,7 +15,7 @@ public class Behandeling implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private String status;
+	private BehandelStatus status;
 	private Klant klant;
 	private BehandelCode behandelCode;
 	private ArrayList<Afspraak> afspraken;
@@ -23,7 +23,7 @@ public class Behandeling implements Serializable{
 	/**
 	 * @param status
 	 */
-	public Behandeling(String status) {
+	public Behandeling(BehandelStatus status) {
 		this.status = status;
 	}
 	
@@ -31,12 +31,12 @@ public class Behandeling implements Serializable{
 	 * @param id
 	 * @param status
 	 */
-	public Behandeling(int id, String status) {
+	public Behandeling(int id, BehandelStatus status) {
 		this.id = id;
 		this.status = status;
 	}
 
-	public Behandeling(int id, String status, Klant klant,
+	public Behandeling(int id, BehandelStatus status, Klant klant,
 			BehandelCode behandelCode, ArrayList<Afspraak> afspraken) {
 		this.id = id;
 		this.status = status;
@@ -45,8 +45,14 @@ public class Behandeling implements Serializable{
 		this.afspraken = afspraken;
 	}
 	
-	public Behandeling(int id, String status, Klant klant, BehandelCode behandelCode) {
+	public Behandeling(int id, BehandelStatus status, Klant klant, BehandelCode behandelCode) {
 		this.id = id;
+		this.status = status;
+		this.klant = klant;
+		this.behandelCode = behandelCode;
+	}
+	
+	public Behandeling(BehandelStatus status, Klant klant, BehandelCode behandelCode) {
 		this.status = status;
 		this.klant = klant;
 		this.behandelCode = behandelCode;
@@ -69,14 +75,14 @@ public class Behandeling implements Serializable{
 	/**
 	 * @return
 	 */
-	public String getStatus() {
+	public BehandelStatus getStatus() {
 		return status;
 	}
 
 	/**
 	 * @param status
 	 */
-	public void setStatus(String status) {
+	public void setStatus(BehandelStatus status) {
 		this.status = status;
 	}
 
