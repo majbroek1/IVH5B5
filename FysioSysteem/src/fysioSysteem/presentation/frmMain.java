@@ -20,12 +20,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 public class frmMain extends JFrame {
-
-	final static String AFSPRAKEN_MAIN = "Afspraken Main";
-	final static String BEHANDELINGEN_MAIN = "Behandelingen Main";
-	final static String FYSIOTHEROPEUTEN_MAIN = "Fysiotheropeuten Main";
-	final static String PARKTIJK_GEGEVENS = "Praktijk Gegevens Toevoegen / Wijzigen";
-
+	private JPanel pnlContent;
 	/**
 	 * Create the frame.
 	 */
@@ -108,57 +103,43 @@ public class frmMain extends JFrame {
 		gbc_btnUitloggen.gridy = 5;
 		pnlMenu.add(btnUitloggen, gbc_btnUitloggen);
 		
-		/* Card Panel */
-		CardLayout cl = new CardLayout();
-
 		Injector injector = Guice.createInjector(new AppInjector());
-		
-		JPanel pnlAfspMain = new pnlAfspMain();
-		pnlAfspMain.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlBhdlMain = new pnlBhdlMain();
-		pnlBhdlMain.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlFysMain = new pnlFysMain();
-		pnlFysMain.setBounds(200, 0, 876, 656);
 
-		JPanel pnlPraGeg = injector.getInstance(pnlPraGeg.class);
-		pnlPraGeg.setBounds(200, 0, 876, 656);
-		
-		JPanel pnlContent = new JPanel();
-		pnlContent.setLayout(cl);
+		pnlContent = new JPanel();
 		pnlContent.setBounds(200, 0, 876, 656);
-		
-		pnlContent.add(pnlAfspMain, AFSPRAKEN_MAIN);
-		pnlContent.add(pnlBhdlMain, BEHANDELINGEN_MAIN);
-		pnlContent.add(pnlFysMain, FYSIOTHEROPEUTEN_MAIN);
-		pnlContent.add(pnlPraGeg, PARKTIJK_GEGEVENS);
-		
+	
 		getContentPane().add(pnlContent);
 
 		
 		btnAfspraken.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cl.show(pnlContent, AFSPRAKEN_MAIN);
+				setPanel(new pnlAfspOvz());
 			}
 		});
 		
 		btnFysiotherapeuten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cl.show(pnlContent, FYSIOTHEROPEUTEN_MAIN);
+				setPanel(new pnlFysOvz());
 			}
 		});
 		
 		btnBehandelingen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cl.show(pnlContent, BEHANDELINGEN_MAIN);
+				setPanel(new pnlBhdlOvz());
 			}
 		});
 		
 		btnPraktijk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cl.show(pnlContent, PARKTIJK_GEGEVENS);
+				setPanel(injector.getInstance(pnlPraGeg.class));
 			}
 		});
+	}
+	
+	public void setPanel(JPanel panel){
+		pnlContent.removeAll();
+		panel.setBounds(0, 0, 876, 656);
+		pnlContent.add(panel);
+		pnlContent.repaint();
 	}
 }
