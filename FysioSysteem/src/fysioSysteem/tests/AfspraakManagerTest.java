@@ -33,8 +33,8 @@ public class AfspraakManagerTest {
 		Date dateNieuw = null;
 		
 		try {
-			dateBestaand = new Date(sdf.parse("2014-10-28T15:00:00").getTime());
-			dateNieuw = new Date(sdf.parse("2014-10-28T13:00:00").getTime());
+			dateBestaand = new Date(sdf.parse("2020-10-28T15:00:00").getTime());
+			dateNieuw = new Date(sdf.parse("2020-10-28T13:00:00").getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class AfspraakManagerTest {
 		AfspraakManager aManager = new AfspraakManager();
 		boolean result = aManager.addAfspraak(nieuweAfspraak);
 		
-		Assert.assertEquals(result, true);
+		Assert.assertEquals(true, result);
 	}
 	
 	@Test
@@ -71,8 +71,8 @@ public class AfspraakManagerTest {
 		Date dateNieuw = null;
 		
 		try {
-			dateBestaand = new Date(sdf.parse("2014-10-28T13:00:00").getTime());
-			dateNieuw = new Date(sdf.parse("2014-10-28T15:00:00").getTime());
+			dateBestaand = new Date(sdf.parse("2020-10-28T13:00:00").getTime());
+			dateNieuw = new Date(sdf.parse("2020-10-28T15:00:00").getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,7 +97,7 @@ public class AfspraakManagerTest {
 		AfspraakManager aManager = new AfspraakManager();
 		boolean result = aManager.addAfspraak(nieuweAfspraak);
 		
-		Assert.assertEquals(result, true);
+		Assert.assertEquals(true, result);
 	}
 	
 	@Test
@@ -109,8 +109,8 @@ public class AfspraakManagerTest {
 		Date dateNieuw = null;
 		
 		try {
-			dateBestaand = new Date(sdf.parse("2014-10-28T13:00:00").getTime());
-			dateNieuw = new Date(sdf.parse("2014-10-28T14:00:00").getTime());
+			dateBestaand = new Date(sdf.parse("2020-10-28T13:30:00").getTime());
+			dateNieuw = new Date(sdf.parse("2020-10-28T14:00:00").getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -135,7 +135,7 @@ public class AfspraakManagerTest {
 		AfspraakManager aManager = new AfspraakManager();
 		boolean result = aManager.addAfspraak(nieuweAfspraak);
 		
-		Assert.assertEquals(result, false);
+		Assert.assertEquals(false, result);
 	}
 	
 	@Test
@@ -147,8 +147,8 @@ public class AfspraakManagerTest {
 		Date dateNieuw = null;
 		
 		try {
-			dateBestaand = new Date(sdf.parse("2014-10-28T15:30:00").getTime());
-			dateNieuw = new Date(sdf.parse("2014-10-28T15:00:00").getTime());
+			dateBestaand = new Date(sdf.parse("2020-10-28T15:30:00").getTime());
+			dateNieuw = new Date(sdf.parse("2020-10-28T15:00:00").getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,7 +173,7 @@ public class AfspraakManagerTest {
 		AfspraakManager aManager = new AfspraakManager();
 		boolean result = aManager.addAfspraak(nieuweAfspraak);
 		
-		Assert.assertEquals(result, false);
+		Assert.assertEquals(false, result);
 	}
 	
 	@Test
@@ -185,8 +185,8 @@ public class AfspraakManagerTest {
 		Date dateNieuw = null;
 		
 		try {
-			dateBestaand = new Date(sdf.parse("2014-10-28T15:15:00").getTime());
-			dateNieuw = new Date(sdf.parse("2014-10-28T15:00:00").getTime());
+			dateBestaand = new Date(sdf.parse("2020-10-28T15:00:00").getTime());
+			dateNieuw = new Date(sdf.parse("2020-10-28T15:15:00").getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -213,6 +213,6 @@ public class AfspraakManagerTest {
 		AfspraakManager aManager = new AfspraakManager();
 		boolean result = aManager.addAfspraak(nieuweAfspraak);
 		
-		Assert.assertEquals(result, false);
+		Assert.assertEquals(false, result);
 	}
 }
