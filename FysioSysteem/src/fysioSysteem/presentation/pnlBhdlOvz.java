@@ -11,9 +11,11 @@ import javax.swing.SwingUtilities;
 import fysioSysteem.businessLogic.behandeling.BehandelingManager;
 import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
 import fysioSysteem.domain.Behandeling;
+import fysioSysteem.domain.Fysiotherapeut;
 import general.AppInjector;
 
 import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -31,17 +33,15 @@ public class pnlBhdlOvz extends JPanel{
 		Injector injector = Guice.createInjector(new AppInjector());
 		this.behandelingManager = injector.getInstance(IBehandelingManager.class);
 		
-		renderControls();
+		genereerLayout();
+		vulVelden();
 	}
 	
-	private void renderControls()
+	private void genereerLayout()
 	{
 		setLayout(null);
 	    		
-		Object rijData[][] = getData();
-	   
-        Object kolomNamen[] = { "Klant BSN", "Behandelcode", "Status" };
-        overzichtTabel = new JTable(rijData, kolomNamen);
+		overzichtTabel = new JTable();
 
         JScrollPane scrllPnOverzichtTabel = new JScrollPane(overzichtTabel);
         scrllPnOverzichtTabel.setBounds(10, 10, 867, 590);
@@ -83,18 +83,23 @@ public class pnlBhdlOvz extends JPanel{
 		add(btnBehandelingVerwijdering);
 	}
 	
-	private Object[][] getData()
+	private void vulVelden()
 	{
 		ArrayList<Behandeling> behandelingen = this.behandelingManager.getBehandelingen();
 		
-		Object rijData[][] = new Object [behandelingen.size()][3];
-		for (int i = 0; i < behandelingen.size(); i++) {
-			Behandeling behandeling = behandelingen.get(i);
-			rijData[i][0] = behandeling.getKlant().getBsn();
-			rijData[i][1] = behandeling.getBehandelCode().getCode();
-			rijData[i][2] = behandeling.getStatus();
-		}
-		return rijData;
+		DefaultTableModel mdl = new DefaultTableModel(
+				new Object[]{"ID", "Klant BSN", "BehandelCode", "Status"}, 0);
+			
+			for(Behandeling b : behandelingen) {
+				mdl.addRow(new Object[]{
+					b.getId(), 
+					b.getKlant().getBsn(),
+					b.getBehandelCode().getCode(), 
+					b.getStatus()
+				});
+			}
+			
+			overzichtTabel.setModel(mdl);
 	}
 	
 	private JFrame getParentFrame(){

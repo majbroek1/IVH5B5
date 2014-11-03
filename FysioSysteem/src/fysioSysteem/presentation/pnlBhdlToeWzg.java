@@ -31,17 +31,19 @@ import com.google.inject.Injector;
 
 public class pnlBhdlToeWzg extends JPanel {
 	private JTextField txtFldBehandelCode;
+	private JComboBox<Object> cmbBxKlantBSN, cmbBxStatus;
+	
 	private IBehandelingManager behandelingManager;
 	private IBehandelCodeManager behandelCodeManager;
 	private IKlantManager klantManager;
 	private Behandeling behandeling;
-
+	
 	public pnlBhdlToeWzg() {
 		Injector injector = Guice.createInjector(new AppInjector());
 		behandelingManager = injector.getInstance(IBehandelingManager.class);
 		behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
 		klantManager =  injector.getInstance(IKlantManager.class);
-		renderControls();
+		genereerLayout();
 	}
 
 	public pnlBhdlToeWzg(int behandelingId){
@@ -50,10 +52,11 @@ public class pnlBhdlToeWzg extends JPanel {
 		behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
 		klantManager =  injector.getInstance(IKlantManager.class);
 		this.behandeling = behandelingManager.getBehandeling(behandelingId);
-		renderControls();
+		genereerLayout();
+		vulVelden();
 	}	
 	
-	private void renderControls() {
+	private void genereerLayout() {
 		setLayout(null);
 		
 		JLabel lblKlant = new JLabel("Klant");
@@ -68,7 +71,7 @@ public class pnlBhdlToeWzg extends JPanel {
 		lblBehandelcode.setBounds(10, 73, 106, 14);
 		add(lblBehandelcode);
 		
-		JComboBox cmbBxKlantBSN = new JComboBox();
+		cmbBxKlantBSN = new JComboBox();
 		cmbBxKlantBSN.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4"}));
 		cmbBxKlantBSN.setBounds(125, 25, 133, 20);
 		add(cmbBxKlantBSN);
@@ -78,22 +81,11 @@ public class pnlBhdlToeWzg extends JPanel {
 		add(txtFldBehandelCode);
 		txtFldBehandelCode.setColumns(10);
 		
-		JComboBox cmbBxStatus = new JComboBox();
+		cmbBxStatus = new JComboBox();
 		cmbBxStatus.setModel(new DefaultComboBoxModel(new String[] {"", "In onderzoek", "In behandeling", "Uitbehandeld"}));
 		cmbBxStatus.setBounds(125, 117, 133, 20);
 		add(cmbBxStatus);
 		
-		if(behandeling != null)
-		{
-			cmbBxKlantBSN.setSelectedItem(behandeling.getKlant().getBsn());
-			txtFldBehandelCode.setText(Integer.toString(behandeling.getBehandelCode().getCode()));
-			cmbBxStatus.setSelectedItem(behandeling.getStatus());
-			
-			JPanel pnlAfspOvz = new pnlAfspOvz();
-			pnlAfspOvz.setBounds(10, 173, 866, 300);
-			add(pnlAfspOvz);
-		}
-
 		JButton btnOpslaan = new JButton("Opslaan");
 		btnOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -142,10 +134,6 @@ public class pnlBhdlToeWzg extends JPanel {
 				    }
 					JOptionPane.showMessageDialog(null, builder.toString());
 				}
-				
-				
-				
-				
 			}
 		});
 		btnOpslaan.setBounds(10, 502, 172, 29);
@@ -154,6 +142,13 @@ public class pnlBhdlToeWzg extends JPanel {
 		JButton btnAnnuleren = new JButton("Annuleren");
 		btnAnnuleren.setBounds(248, 505, 172, 29);
 		add(btnAnnuleren);
+	}
+	
+	private void vulVelden()
+	{
+		cmbBxKlantBSN.setSelectedItem(behandeling.getKlant().getBsn());
+		txtFldBehandelCode.setText(Integer.toString(behandeling.getBehandelCode().getCode()));
+		cmbBxStatus.setSelectedItem(behandeling.getStatus());
 	}
 	
 }

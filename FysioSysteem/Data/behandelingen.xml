@@ -2,12 +2,12 @@
 
 <behandelingen>
 	<behandeling id="1">
-		<status>stat1</status>
+		<status>Uitbehandeld</status>
 		<behandelCode>1</behandelCode>
 		<klantBsn>1</klantBsn>
 	</behandeling>
 	<behandeling id="2">
-		<status>stat2</status>
+		<status>In onderzoek</status>
 		<behandelCode>1</behandelCode>
 		<klantBsn>2</klantBsn>
 	</behandeling>
