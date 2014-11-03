@@ -1,9 +1,10 @@
 package fysioSysteem.domain;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class Secretaresse extends Medewerker {
 
 	/**

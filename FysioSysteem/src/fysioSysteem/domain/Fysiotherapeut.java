@@ -3,9 +3,10 @@ package fysioSysteem.domain;
 import java.util.ArrayList;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class Fysiotherapeut extends Medewerker {
 	
 	private Rooster rooster;

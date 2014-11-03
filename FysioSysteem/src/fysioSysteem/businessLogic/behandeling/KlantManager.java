@@ -7,7 +7,7 @@ import com.google.inject.Singleton;
 import fysioSysteem.domain.Klant;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 

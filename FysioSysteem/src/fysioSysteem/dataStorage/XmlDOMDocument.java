@@ -23,6 +23,11 @@ import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+/**
+ * @author IVH5B5
+ *
+ */
+
 public class XmlDOMDocument {
 
 	// Get a logger instance for the current class

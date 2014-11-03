@@ -9,7 +9,7 @@ import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Medewerker;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 

@@ -13,7 +13,7 @@ import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 

@@ -3,9 +3,10 @@ package fysioSysteem.domain;
 import java.util.Date;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class Rooster {
 
 	private int id;

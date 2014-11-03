@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class BehandelCode implements Serializable{
 
 	/**

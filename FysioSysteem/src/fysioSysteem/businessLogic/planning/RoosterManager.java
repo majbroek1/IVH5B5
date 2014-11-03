@@ -12,7 +12,7 @@ import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 
