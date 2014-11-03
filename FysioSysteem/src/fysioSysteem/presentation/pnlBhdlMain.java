@@ -30,15 +30,11 @@ public class pnlBhdlMain extends JPanel{
 		JPanel pnlBhdlOvz = injector.getInstance(pnlBhdlOvz.class);
 		pnlBhdlOvz.setBounds(0, 0, 876, 600);
 		
-		JPanel pnlBhdlToeWzg = injector.getInstance(pnlBhdlToeWzg.class);
-		pnlBhdlToeWzg.setBounds(0, 0, 876, 600);
-		
 		JPanel pnlContent = new JPanel();
 		
 		pnlContent.setLayout(cl);
 		pnlContent.setBounds(0, 0, 876, 600);
 		pnlContent.add(pnlBhdlOvz, BEHANDELINGEN_OVERZICHT);
-		pnlContent.add(pnlBhdlToeWzg, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
 		
 		add(pnlContent);
 		
@@ -47,6 +43,15 @@ public class pnlBhdlMain extends JPanel{
 		add(btnBehandelingToevoegen);
 		
 		JButton btnBehandelingAanpassen = new JButton("Behandeling aanpassen");
+		btnBehandelingAanpassen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selection = ((fysioSysteem.presentation.pnlBhdlOvz) pnlBhdlOvz).getSelectedIndex();
+				JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg(selection);
+				pnlBhdlToeWzg.setBounds(0, 0, 876, 600);
+				pnlContent.add(pnlBhdlToeWzg, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
+				cl.show(pnlContent, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
+			}
+		});
 		btnBehandelingAanpassen.setBounds(358, 620, 172, 29);
 		add(btnBehandelingAanpassen);
 		
@@ -58,13 +63,18 @@ public class pnlBhdlMain extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if (btnBehandelingToevoegen.getText() == "Behandeling toevoegen")
 				{	
+					JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg(0);
+					pnlBhdlToeWzg.setBounds(0, 0, 876, 600);
+					pnlContent.add(pnlBhdlToeWzg, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
 					cl.show(pnlContent, BEHANDELINGEN_TOEVOEGEN_WIJZIGEN);
 					btnBehandelingToevoegen.setText("Terug naar het overzicht");
+					btnBehandelingAanpassen.setEnabled(false);
 				}
 				else
 				{
 					cl.show(pnlContent, BEHANDELINGEN_OVERZICHT);
 					btnBehandelingToevoegen.setText("Behandeling toevoegen");
+					btnBehandelingAanpassen.setEnabled(true);
 				}
 			}
 		});
