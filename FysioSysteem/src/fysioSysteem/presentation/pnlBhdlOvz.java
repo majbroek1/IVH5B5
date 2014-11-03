@@ -50,7 +50,7 @@ public class pnlBhdlOvz extends JPanel {
 		JButton btnBehandelingToevoegen = new JButton("Behandeling toevoegen");
 		btnBehandelingToevoegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg(0);
+				JPanel pnlBhdlToeWzg = new pnlBhdlToeWzg();
 				pnlBhdlToeWzg.setBounds(0, 0, 876, 600);
 				frmMain parent = (frmMain)getParentFrame();
 				parent.setPanel(pnlBhdlToeWzg);
