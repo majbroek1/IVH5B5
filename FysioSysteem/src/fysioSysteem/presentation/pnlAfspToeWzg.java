@@ -21,7 +21,6 @@ import fysioSysteem.domain.Afspraak;
 
 public class pnlAfspToeWzg extends JPanel {
 	
-	private static final long serialVersionUID = 1L;
 	private JTextField txtAfsprToeWzgNaam;
 	private JTextField txtAfsprToeWzgDatum;
 	private JTextField txtAfsprToeWzgTijdstip;
@@ -41,7 +40,7 @@ public class pnlAfspToeWzg extends JPanel {
 	}
 	
 	private void renderControls() {
-		JLabel lblAfsprToeWzgNaam = new JLabel("Naam:");
+		JLabel lblAfsprToeWzgNaam = new JLabel("Naam");
 		lblAfsprToeWzgNaam.setBounds(60, 54, 46, 14);
 		add(lblAfsprToeWzgNaam);
 		

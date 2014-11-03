@@ -10,45 +10,28 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import javax.swing.table.DefaultTableModel;
 
 import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Fysiotherapeut;
-import general.AppInjector;
 
 public class pnlFysOvz extends JPanel {
+	
 	private JButton btnFysioToevoegen;
 	private JTable table;
+	
+	private ArrayList<Fysiotherapeut> therapeuten;
 	
 	public pnlFysOvz() {
 		setLayout(null);
 
-		ArrayList<Fysiotherapeut> therapeuten = MedewerkerDAO.getFysiotherapeuten();
-
-		// Create a table with 10 rows and 5 columns
-		Object rijData[][] = new Object[therapeuten.size()][4];
-		for (int i = 0; i < therapeuten.size(); i++) {
-			Fysiotherapeut therapeut = therapeuten.get(i);
-			rijData[i][0] = therapeut.getId();
-			rijData[i][1] = therapeut.getNaam();
-			rijData[i][2] = therapeut.getPraktijk().getNaam();
-			rijData[i][3] = therapeut.getStatus();
-		}
-
-		Object kolomNamen[] = { "Id", "Naam", "Praktijk", "Status" };
-
-		table = new JTable(rijData, kolomNamen);
-
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 10, 867, 590);
-		add(scrollPane);
-
-		renderControls();
+		therapeuten = MedewerkerDAO.getFysiotherapeuten();
+		
+		genereerLayout();
+		vulVelden();
 	}
 
-	public void renderControls() {
+	public void genereerLayout() {
 		btnFysioToevoegen = new JButton("Toevoegen");
 		btnFysioToevoegen.setBounds(107, 620, 172, 29);
 		
@@ -62,6 +45,12 @@ public class pnlFysOvz extends JPanel {
 		btnFysioVerwijderen.setBounds(614, 620, 172, 29);
 		add(btnFysioVerwijderen);
 		
+		table = new JTable();
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(10, 10, 867, 590);
+		add(scrollPane);
+		
 		btnFysioToevoegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain parent = (frmMain)getParentFrame();
@@ -72,10 +61,27 @@ public class pnlFysOvz extends JPanel {
 		btnFysioAanpassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain parent = (frmMain)getParentFrame();
-				int medewerkerId = (int)table.getValueAt(table.getSelectedRow(), 0); 
-				parent.setPanel(new pnlFysToeWzg(medewerkerId));
+				
+				Fysiotherapeut t = therapeuten.get(
+					table.convertRowIndexToModel(table.getSelectedRow()));
+				
+				parent.setPanel(new pnlFysToeWzg(t));
 			}
 		});
+	}
+	
+	private void vulVelden() {
+		DefaultTableModel mdl = new DefaultTableModel(
+			new Object[]{"ID", "Naam", "Praktijk", "Status"}, 0);
+		
+		for(Fysiotherapeut f : therapeuten) {
+			mdl.addRow(new Object[]{
+				f.getId(), f.getNaam(),
+				f.getPraktijk().getNaam(), f.getStatus()
+			});
+		}
+		
+		table.setModel(mdl);
 	}
 	
 	private JFrame getParentFrame(){
