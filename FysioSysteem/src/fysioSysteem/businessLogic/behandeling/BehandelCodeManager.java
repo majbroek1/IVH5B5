@@ -8,7 +8,7 @@ import fysioSysteem.dataStorage.BehandelCodeDAO;
 import fysioSysteem.domain.BehandelCode;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 

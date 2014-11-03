@@ -14,9 +14,10 @@ import fysioSysteem.domain.Status;
 import general.Settings;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class MedewerkerDAO {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/medewerkers.xml";

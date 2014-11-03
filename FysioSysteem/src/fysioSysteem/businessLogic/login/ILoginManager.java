@@ -3,9 +3,10 @@ package fysioSysteem.businessLogic.login;
 import fysioSysteem.domain.Medewerker;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public interface ILoginManager {
 
 	/**

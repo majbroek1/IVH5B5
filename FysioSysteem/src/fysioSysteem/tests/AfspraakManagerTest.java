@@ -20,6 +20,11 @@ import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.Behandeling;
 
+/**
+ * @author IVH5B5
+ *
+ */
+
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AfspraakDAO.class)
 public class AfspraakManagerTest {

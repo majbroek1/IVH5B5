@@ -4,9 +4,10 @@
 package fysioSysteem.domain;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public enum Status {
 	ACTIEF,INACTIEF;
 	

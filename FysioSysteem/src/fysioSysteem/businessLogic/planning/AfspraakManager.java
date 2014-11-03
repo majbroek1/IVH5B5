@@ -14,7 +14,7 @@ import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Klant;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
  

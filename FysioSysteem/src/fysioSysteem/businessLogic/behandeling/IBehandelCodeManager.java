@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import fysioSysteem.domain.BehandelCode;
 
+/**
+ * @author IVH5B5
+ *
+ */
+
 public interface IBehandelCodeManager {
 
 	/**

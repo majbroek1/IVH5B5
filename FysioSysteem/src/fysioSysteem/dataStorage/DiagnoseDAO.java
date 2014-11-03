@@ -14,9 +14,10 @@ import fysioSysteem.domain.Diagnose;
 import general.Settings;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class DiagnoseDAO {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/diagnoses.xml";

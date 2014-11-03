@@ -10,7 +10,7 @@ import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Klant;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
 

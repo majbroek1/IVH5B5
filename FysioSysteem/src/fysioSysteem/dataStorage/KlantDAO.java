@@ -16,9 +16,10 @@ import fysioSysteem.domain.Klant;
 import general.Settings;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class KlantDAO {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/klanten.xml";

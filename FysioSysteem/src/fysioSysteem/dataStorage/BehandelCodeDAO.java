@@ -14,9 +14,10 @@ import fysioSysteem.domain.BehandelCode;
 import general.Settings;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class BehandelCodeDAO {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/behandelCodes.xml";

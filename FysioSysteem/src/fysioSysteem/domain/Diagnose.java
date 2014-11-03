@@ -2,9 +2,10 @@ package fysioSysteem.domain;
 
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class Diagnose {
 
 	private int code;

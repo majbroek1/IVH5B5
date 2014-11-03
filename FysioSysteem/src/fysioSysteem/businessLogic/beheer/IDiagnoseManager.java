@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import fysioSysteem.domain.Diagnose;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public interface IDiagnoseManager {
 
 	/**

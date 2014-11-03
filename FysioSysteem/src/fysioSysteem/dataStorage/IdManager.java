@@ -7,6 +7,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * @author IVH5B5
+ *
+ */
+
 public class IdManager {
 
 	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/autoIncrement.xml";

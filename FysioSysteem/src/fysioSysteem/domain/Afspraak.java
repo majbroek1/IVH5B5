@@ -4,9 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author Bob
+ * @author IVH5B5
  *
  */
+
 public class Afspraak {
 
 	private int id;
