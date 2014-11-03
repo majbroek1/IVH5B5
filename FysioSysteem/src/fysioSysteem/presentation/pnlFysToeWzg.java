@@ -18,17 +18,18 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
 import fysioSysteem.businessLogic.beheer.IPraktijkManager;
 import fysioSysteem.domain.Fysiotherapeut;
+import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Status;
 import general.AppInjector;
 
-public class pnlFysToeWzg extends JPanel{
+public class pnlFysToeWzg extends JPanel {
+	
 	private JTextField txtFysToeWzgNaam;
 	private JTextField txtFysToeWzgWachtwoord;
 	private JTextField txtFysToeWzgWachtwoordHerhalen;
@@ -40,26 +41,29 @@ public class pnlFysToeWzg extends JPanel{
 	private IPraktijkManager prakManager;
 	private Fysiotherapeut therapeut;
 	
-	public pnlFysToeWzg()
-	{
+	public pnlFysToeWzg() {
+		Injector injector = Guice.createInjector(new AppInjector());
+		this.medeManager = injector.getInstance(IMedewerkerManager.class);
+		this.prakManager = injector.getInstance(IPraktijkManager.class);
+		
+		setLayout(null);
+		
+		renderControls();
+	}
+	
+	public pnlFysToeWzg(Fysiotherapeut f) {
 		Injector injector = Guice.createInjector(new AppInjector());
 		this.medeManager = injector.getInstance(IMedewerkerManager.class);
 		this.prakManager = injector.getInstance(IPraktijkManager.class);
 		setLayout(null);
+		
+		therapeut = f;
+		
 		renderControls();
 	}
 	
-	public pnlFysToeWzg(int medewerkerId)
-	{
-		Injector injector = Guice.createInjector(new AppInjector());
-		this.medeManager = injector.getInstance(IMedewerkerManager.class);
-		this.prakManager = injector.getInstance(IPraktijkManager.class);
-		therapeut = medeManager.getFysiotherapeut(medewerkerId);
-		setLayout(null);
-		renderControls();
-	}
-	
-	public void renderControls(){
+
+	public void renderControls() {
 		/* Label */
 		JLabel lblFysToeWzgTitel = new JLabel("Therapeut Gegevens");
 		lblFysToeWzgTitel.setBounds(74, 11, 163, 16);
@@ -219,4 +223,5 @@ public class pnlFysToeWzg extends JPanel{
 	private JFrame getParentFrame(){
 		return (JFrame)SwingUtilities.getRoot(this);
 	}
+	
 }
