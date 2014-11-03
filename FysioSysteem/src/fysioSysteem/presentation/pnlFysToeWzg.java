@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -23,7 +24,6 @@ import com.google.inject.Injector;
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
 import fysioSysteem.businessLogic.beheer.IPraktijkManager;
 import fysioSysteem.domain.Fysiotherapeut;
-import fysioSysteem.domain.Medewerker;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Status;
 import general.AppInjector;
@@ -118,33 +118,22 @@ public class pnlFysToeWzg extends JPanel {
 		cmbPraktijk.setBounds(250, 112, 134, 27);
 		
 		ArrayList<Praktijk> listPraktijk = this.prakManager.getPraktijken();
-		int selectedItem = 0;
 		
-		for(int i=0; i<listPraktijk.size(); i++)
+		Praktijk selected = null;
+		DefaultComboBoxModel<Praktijk> model = new DefaultComboBoxModel<Praktijk>();
+		for(Praktijk k : listPraktijk)
 		{
-			cmbPraktijk.addItem(listPraktijk.get(i));
-			
-			if(listPraktijk.get(i).getId() == therapeut.getPraktijk().getId())
-			{
-				selectedItem = i;
-			}
+			model.addElement(k);
+			if(k.getId() == therapeut.getPraktijk().getId())
+				selected = k;
 		}
-		if (therapeut != null)cmbStatus.setSelectedIndex(selectedItem);
-		
-		/*
-		listPraktijk.size();
-		
-		for (Praktijk praktijk : ) {
-			
-			if(index == )
-			{
-				
-			}
-			index++;
-		}*/
+
+		cmbPraktijk.setModel(model);
+
+		if (therapeut != null)
+			model.setSelectedItem(selected);
 		
 		add(cmbPraktijk);
-		
 		/* Button */
 		JButton btnFysToeWzgOpslaan = new JButton("Opslaan");
 		btnFysToeWzgOpslaan.setBounds(74, 234, 117, 29);
