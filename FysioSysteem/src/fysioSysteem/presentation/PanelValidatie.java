@@ -19,5 +19,4 @@ public class PanelValidatie {
 	public static boolean valideerTijd(String tijd){
 		return tijd.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]");
 	}
-	
 }
