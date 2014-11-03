@@ -14,6 +14,11 @@ public class pnlBhdlOvz extends JPanel{
 	private JTable overzichtTabel;
 	
 	public pnlBhdlOvz(){
+		renderControls();
+	}
+	
+	private void renderControls()
+	{
 		setLayout(null);
 		
 	    IBehandelingManager behandelingManager = new BehandelingManager();
