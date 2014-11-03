@@ -9,12 +9,11 @@ import java.util.Date;
  *
  */
 
-public class Klant implements Serializable{
+public class Klant{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private String bsn, naam, adres, postcode, plaats, telNr, email;
 	private Date gebDatum;
 	private ArrayList<Diagnose> diagnoses;

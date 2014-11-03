@@ -8,12 +8,11 @@ import java.util.ArrayList;
  *
  */
 
-public class Behandeling implements Serializable{
+public class Behandeling{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private int id;
 	private BehandelStatus status;
 	private Klant klant;

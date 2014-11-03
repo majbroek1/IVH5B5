@@ -8,12 +8,11 @@ import java.util.ArrayList;
  *
  */
 
-public class BehandelCode implements Serializable{
+public class BehandelCode{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private int code, aantalSessies;
 	private String behandelingNaam;
 	private double tariefBehandeling;
