@@ -33,11 +33,11 @@ public class pnlBhdlOvz extends JPanel{
 		Injector injector = Guice.createInjector(new AppInjector());
 		this.behandelingManager = injector.getInstance(IBehandelingManager.class);
 		
-		renderControls();
+		genereerLayout();
 		vulVelden();
 	}
 	
-	private void renderControls()
+	private void genereerLayout()
 	{
 		setLayout(null);
 	    		
