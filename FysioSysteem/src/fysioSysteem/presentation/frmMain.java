@@ -2,36 +2,19 @@ package fysioSysteem.presentation;
 
 import general.AppInjector;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import java.awt.CardLayout;
 import java.awt.Color;
-
-import javax.swing.JDesktopPane;
-import javax.swing.BoxLayout;
-
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
-import javax.swing.SwingConstants;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.CardLayout;
-
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.border.MatteBorder;
+import javax.swing.SwingConstants;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

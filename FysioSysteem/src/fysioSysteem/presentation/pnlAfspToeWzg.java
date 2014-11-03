@@ -8,31 +8,37 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
 import javax.swing.border.Border;
 
-import fysioSysteem.businessLogic.planning.*;
+import fysioSysteem.businessLogic.planning.AfspraakManager;
+import fysioSysteem.businessLogic.planning.IAfspraakManager;
 import fysioSysteem.domain.Afspraak;
 
-public class pnlAfspToeWzg extends JPanel{
+public class pnlAfspToeWzg extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	private JTextField txtAfsprToeWzgNaam;
 	private JTextField txtAfsprToeWzgDatum;
 	private JTextField txtAfsprToeWzgTijdstip;
-	public pnlAfspToeWzg(){
+	
+	private Afspraak afspraak = null;
+	
+	public pnlAfspToeWzg() {
 		setLayout(null);
 		
 		IAfspraakManager afsprManager = new AfspraakManager();
-		
-		Afspraak a = afsprManager.getAfspraak(1);
-		
-		
-		
+		afspraak = afsprManager.getAfspraak(1);
+		renderControls();
+	}
+	
+	private void renderControls() {
 		JLabel lblAfsprToeWzgNaam = new JLabel("Naam:");
 		lblAfsprToeWzgNaam.setBounds(60, 54, 46, 14);
 		add(lblAfsprToeWzgNaam);
@@ -49,8 +55,7 @@ public class pnlAfspToeWzg extends JPanel{
 		lblAfsprToeWzgTijdstip.setBounds(60, 182, 46, 14);
 		add(lblAfsprToeWzgTijdstip);
 		
-		/* TextFields en ComboBox*/
-		
+		// TextFields & ComboBox
 		txtAfsprToeWzgNaam = new JTextField();
 		txtAfsprToeWzgNaam.setBounds(216, 46, 153, 31);
 		add(txtAfsprToeWzgNaam);
@@ -75,56 +80,59 @@ public class pnlAfspToeWzg extends JPanel{
 		add(btnAfsprToeWzgNaamOpslaan);
 		
 		// Gegevens
-		
-		int afspraak = 1;
-		
-		if (afspraak == 1){
-			JLabel lblAfspToeWzgTitel = new JLabel("Afspraak Toevoegen");
-			lblAfspToeWzgTitel.setBounds(74, 11, 120, 16);
-			add(lblAfspToeWzgTitel);
-		}
-		else {
+		if (afspraak instanceof Afspraak) {			
 			JLabel lblAfspToeWzgTitel = new JLabel("Afspraak Wijzigen");
 			lblAfspToeWzgTitel.setBounds(74, 11, 120, 16);
 			add(lblAfspToeWzgTitel);
 			
-			//in geval van wijzigen, is er data ingevuld.
+			txtAfsprToeWzgNaam.setText(
+				afspraak.getBehandeling().getKlant().getNaam());
 			
-			txtAfsprToeWzgNaam.setText(a.getBehandeling().getKlant().getNaam());
-			txtAfsprToeWzgDatum.setText(a.getDatumTijd().toString());
-			txtAfsprToeWzgTijdstip.setText(a.getEindTijd().toString());	
-			comboAfsprToeWzgBehNaam.setSelectedItem(a.getBehandeling().getBehandelCode().getBehandelingNaam());
+			txtAfsprToeWzgDatum.setText(
+				afspraak.getDatumTijd().toString());
+			
+			txtAfsprToeWzgTijdstip.setText(
+				afspraak.getEindTijd().toString());	
+			
+			comboAfsprToeWzgBehNaam.setSelectedItem(
+				afspraak.getBehandeling().getBehandelCode().getBehandelingNaam());
+		}
+		else {
+			JLabel lblAfspToeWzgTitel = new JLabel("Afspraak Toevoegen");
+			lblAfspToeWzgTitel.setBounds(74, 11, 120, 16);
+			add(lblAfspToeWzgTitel);
 		}
 		
 		// Button Handling
-		
 		btnAfsprToeWzgNaamOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame frame = new JFrame();
 				ArrayList<String> errorMessages = new ArrayList<String>();
 				Border redBorder = BorderFactory.createLineBorder(Color.red);
 				
-				if (txtAfsprToeWzgNaam.getText().equals("")){
+				if (txtAfsprToeWzgNaam.getText().equals("")) {
 					txtAfsprToeWzgNaam.setBorder(redBorder);
 					errorMessages.add("Er is geen naam ingevuld!");
 				}
 				
-				if (txtAfsprToeWzgDatum.getText().equals("") || !validateDatum(txtAfsprToeWzgDatum.getText())){
+				if (txtAfsprToeWzgDatum.getText().equals("")
+					|| !validateDatum(txtAfsprToeWzgDatum.getText())) {
 					txtAfsprToeWzgDatum.setBorder(redBorder);
 					errorMessages.add("De datum klopt niet! vul in: dd-MM-yyyy");
 				}
 				
-				if (comboAfsprToeWzgBehNaam.getSelectedItem().toString().equals("")){
+				if (comboAfsprToeWzgBehNaam.getSelectedItem().toString().equals("")) {
 					comboAfsprToeWzgBehNaam.setBorder(redBorder);
 					errorMessages.add("Er is geen behandeling gekozen!");					
 				}
 				
-				if (txtAfsprToeWzgTijdstip.getText().equals("") || !validateTijd(txtAfsprToeWzgTijdstip.getText())){
+				if (txtAfsprToeWzgTijdstip.getText().equals("")
+					|| !validateTijd(txtAfsprToeWzgTijdstip.getText())) {
 					txtAfsprToeWzgTijdstip.setBorder(redBorder);
 					errorMessages.add("Het tijdstip klopt niet! vul in: hh:mm ");
 				}
 				
-				if (errorMessages.size() == 0){
+				if (errorMessages.size() < 1) {
 					//Afspraak afspraak = new Afspraak( 0, txtAfsprToeWzgDatum.getText(), txtAfsprToeWzgNaam.getText(), comboAfsprToeWzgBehNaam.getSelectedItem());
 					
 					revalidate();
@@ -134,10 +142,9 @@ public class pnlAfspToeWzg extends JPanel{
 				
 			}
 		});
-		
 	}
 	
-	private boolean validateDatum(String datum){
+	private boolean validateDatum(String datum) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		try {
 			sdf.parse(datum);
@@ -148,7 +155,7 @@ public class pnlAfspToeWzg extends JPanel{
 		}
 	}
 	
-	private boolean validateTijd(String tijd){
+	private boolean validateTijd(String tijd) {
 		String tijdRegex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
 		
 		boolean check = false;

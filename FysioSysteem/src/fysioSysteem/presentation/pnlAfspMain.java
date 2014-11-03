@@ -17,22 +17,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class pnlAfspMain extends JPanel{
+	
 	final static String AFSPRAKEN_OVERZICHT = "Afspraken Overzicht";
 	final static String AFSPRAKEN_TOEVOEGEN_WIJZIGEN = "Afspraken Toevoegen/ Wijzigen";
 	
-	public pnlAfspMain()
-	{
+	public pnlAfspMain() {
 		setLayout(null);
 		
+		Injector injector = Guice.createInjector(new AppInjector());
+		renderControls(injector);
+	}
+	
+	private void renderControls(Injector inj) {
 		CardLayout cl = new CardLayout();
 		
-		Injector injector = Guice.createInjector(new AppInjector());
-		
-		JPanel pnlAfspOvz = injector.getInstance(pnlAfspOvz.class);
+		JPanel pnlAfspOvz = inj.getInstance(pnlAfspOvz.class);
 		pnlAfspOvz.setBounds(0, 0, 876, 600);
 		pnlAfspOvz.setBackground(Color.BLUE);
 		
-		JPanel pnlAfspToeWzg = injector.getInstance(pnlAfspToeWzg.class);
+		JPanel pnlAfspToeWzg = inj.getInstance(pnlAfspToeWzg.class);
 		pnlAfspToeWzg.setBounds(0, 0, 876, 600);
 		pnlAfspToeWzg.setBackground(Color.RED);
 		
@@ -58,13 +61,11 @@ public class pnlAfspMain extends JPanel{
 		
 		btnAfspOvzToevoegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnAfspOvzToevoegen.getText() == "Afspraak Toevoegen")
-				{	
+				if (btnAfspOvzToevoegen.getText() == "Afspraak Toevoegen") {	
 					cl.show(pnlContent, AFSPRAKEN_TOEVOEGEN_WIJZIGEN);
 					btnAfspOvzToevoegen.setText("Afspraak Annuleren");
 				}
-				else
-				{
+				else {
 					cl.show(pnlContent, AFSPRAKEN_OVERZICHT);
 					btnAfspOvzToevoegen.setText("Afspraak Toevoegen");
 				}
@@ -86,12 +87,12 @@ public class pnlAfspMain extends JPanel{
 				int n = JOptionPane.showOptionDialog(frame, "Weet je zeker dat je het wilt verwijderen?", "Verwijder Waarschuwing", 
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]); 
 				
-				if (n == 1)
-				{
+				if (n == 1) {
 					// verwijderen
 					JOptionPane.showMessageDialog(frame, "verwijderen");
 				}
 			}
 		});
 	}
+	
 }
