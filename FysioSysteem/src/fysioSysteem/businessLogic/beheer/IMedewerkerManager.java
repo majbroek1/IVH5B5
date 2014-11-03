@@ -2,6 +2,7 @@ package fysioSysteem.businessLogic.beheer;
 
 import java.util.ArrayList;
 
+import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Medewerker;
 
 /**
@@ -28,6 +29,7 @@ public interface IMedewerkerManager {
 	 */
 	public Medewerker getMedewerker(int id);
 	
+	public Fysiotherapeut getFysiotherapeut(int id);
 	/**
 	 * @return
 	 */

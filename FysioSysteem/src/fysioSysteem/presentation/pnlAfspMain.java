@@ -1,5 +1,7 @@
 package fysioSysteem.presentation;
 
+import general.AppInjector;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 
@@ -7,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,11 +26,13 @@ public class pnlAfspMain extends JPanel{
 		
 		CardLayout cl = new CardLayout();
 		
-		JPanel pnlAfspOvz = new pnlAfspOvz();
+		Injector injector = Guice.createInjector(new AppInjector());
+		
+		JPanel pnlAfspOvz = injector.getInstance(pnlAfspOvz.class);
 		pnlAfspOvz.setBounds(0, 0, 876, 600);
 		pnlAfspOvz.setBackground(Color.BLUE);
 		
-		JPanel pnlAfspToeWzg = new pnlAfspToeWzg();
+		JPanel pnlAfspToeWzg = injector.getInstance(pnlAfspToeWzg.class);
 		pnlAfspToeWzg.setBounds(0, 0, 876, 600);
 		pnlAfspToeWzg.setBackground(Color.RED);
 		

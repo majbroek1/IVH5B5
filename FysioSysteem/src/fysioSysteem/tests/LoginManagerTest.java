@@ -67,5 +67,4 @@ public class LoginManagerTest {
 		
 		Assert.assertFalse(lManager.valideer(medewerker.getId(), medewerker.getWachtwoord()));
 	}
-
 }

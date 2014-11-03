@@ -13,7 +13,7 @@
 	</behandeling>
 	<behandeling id="3">
 		<status>stat3</status>
-		<behandelCode>1</behandelCode>
-		<klantBsn>1</klantBsn>
+		<behandelCode>3</behandelCode>
+		<klantBsn>3</klantBsn>
 	</behandeling>
 </behandelingen>
