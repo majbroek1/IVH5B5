@@ -1,6 +1,7 @@
 package fysioSysteem.presentation;
 
 import java.awt.Color;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -109,7 +110,7 @@ public class pnlAfspToeWzg extends JPanel{
 					errorMessages.add("Er is geen naam ingevuld!");
 				}
 				
-				if (txtAfsprToeWzgDatum.getText().equals("") || !validateDatum(txtAfsprToeWzgDatum.getText())){
+				if (txtAfsprToeWzgDatum.getText().equals("") || !PanelValidatie.validateDatum(txtAfsprToeWzgDatum.getText())){
 					txtAfsprToeWzgDatum.setBorder(redBorder);
 					errorMessages.add("De datum klopt niet! vul in: dd-MM-yyyy");
 				}
@@ -119,7 +120,7 @@ public class pnlAfspToeWzg extends JPanel{
 					errorMessages.add("Er is geen behandeling gekozen!");					
 				}
 				
-				if (txtAfsprToeWzgTijdstip.getText().equals("") || !validateTijd(txtAfsprToeWzgTijdstip.getText())){
+				if (txtAfsprToeWzgTijdstip.getText().equals("") || !PanelValidatie.validateTijd(txtAfsprToeWzgTijdstip.getText())){
 					txtAfsprToeWzgTijdstip.setBorder(redBorder);
 					errorMessages.add("Het tijdstip klopt niet! vul in: hh:mm ");
 				}
@@ -135,30 +136,5 @@ public class pnlAfspToeWzg extends JPanel{
 			}
 		});
 		
-	}
-	
-	private boolean validateDatum(String datum){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			sdf.parse(datum);
-			return true;
-		}
-		catch (ParseException e) {
-			return false;
-		}
-	}
-	
-	private boolean validateTijd(String tijd){
-		String tijdRegex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
-		
-		boolean check = false;
-		
-		if (tijd.matches(tijdRegex)){
-			check = true;
-		}
-		
-		return check;
-	}
-
-	
+	}	
 }
