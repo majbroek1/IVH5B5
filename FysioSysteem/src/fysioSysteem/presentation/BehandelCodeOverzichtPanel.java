@@ -139,16 +139,15 @@ public class BehandelCodeOverzichtPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnWijzigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWijzigenActionPerformed
-        // Code wijzigen
-    	try{
-    		BehandelCode b = behandelcodes.get(
-    				tblBehandelCodes.convertRowIndexToModel(tblBehandelCodes.getSelectedRow()));
-    	HoofdVenster parent = (HoofdVenster) getParentFrame();
-    	parent.setPanel(new BehandelCodeEditPanel());
-    	}
-    	catch (Exception ex) {
-    		JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
-    	}
+        try {
+            BehandelCode b = behandelcodes.get(
+                    tblBehandelCodes.convertRowIndexToModel(tblBehandelCodes.getSelectedRow()));
+            
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            parent.setPanel(new BehandelCodeEditPanel(b));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+        }
     }//GEN-LAST:event_btnWijzigenActionPerformed
 
     private void btnToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToevoegenActionPerformed
