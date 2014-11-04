@@ -39,13 +39,14 @@ public class Diagnose {
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getCode() {
 		return code;
 	}
 
 	/**
+	 * @return void
 	 * @param code
 	 */
 	public void setCode(int code) {
@@ -53,13 +54,14 @@ public class Diagnose {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getOmschrijving() {
 		return omschrijving;
 	}
 
 	/**
+	 * @return void
 	 * @param omschrijving
 	 */
 	public void setOmschrijving(String omschrijving) {
@@ -67,13 +69,14 @@ public class Diagnose {
 	}
 
 	/**
-	 * @return
+	 * @return Klant
 	 */
 	public Klant getKlant() {
 		return klant;
 	}
 
 	/**
+	 * @return void
 	 * @param klanten
 	 */
 	public void setKlant(Klant klant) {

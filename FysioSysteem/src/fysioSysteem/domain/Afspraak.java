@@ -43,7 +43,7 @@ public class Afspraak {
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getId() {
 		return id;
@@ -51,13 +51,14 @@ public class Afspraak {
 
 	/**
 	 * @param id
+	 * @return void
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return
+	 * @return Date 
 	 */
 	public Date getDatumTijd() {
 		return datumTijd;
@@ -65,13 +66,14 @@ public class Afspraak {
 
 	/**
 	 * @param datumTijd
+	 * @return void
 	 */
 	public void setDatumTijd(Date datumTijd) {
 		this.datumTijd = datumTijd;
 	}
 
 	/**
-	 * @return
+	 * @return Fysiotherapeut
 	 */
 	public Fysiotherapeut getFysiotherapeut() {
 		return fysiotherapeut;
@@ -79,6 +81,7 @@ public class Afspraak {
 
 	/**
 	 * @param fysiotherapeut
+	 * return void
 	 */
 	public void setFysiotherapeut(Fysiotherapeut fysiotherapeut) {
 		this.fysiotherapeut = fysiotherapeut;
@@ -86,17 +89,22 @@ public class Afspraak {
 	
 	/**
 	 * @param behandeling
+	 * @return Behandeling
 	 */
 	public Behandeling getBehandeling() {
 		return behandeling;
 	}
 
+	/**
+	 * @return void
+	 * @param behandeling
+	 */
 	public void setBehandeling(Behandeling behandeling) {
 		this.behandeling = behandeling;
 	}
 
 	/**
-	 * @return
+	 * @return Date
 	 */
 	public Date getEindTijd(){
 		int sessieDuur = behandeling.getBehandelCode().getSessieDuur();

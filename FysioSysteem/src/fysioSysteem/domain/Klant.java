@@ -57,13 +57,14 @@ public class Klant{
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getBsn() {
 		return bsn;
 	}
 
 	/**
+	 * @return void
 	 * @param bsn
 	 */
 	public void setBsn(String bsn) {
@@ -71,7 +72,7 @@ public class Klant{
 	}
 	
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getNaam() {
 		return naam;
@@ -79,19 +80,21 @@ public class Klant{
 
 	/**
 	 * @param naam
+	 * @return void
 	 */
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getAdres() {
 		return adres;
 	}
 
 	/**
+	 * @return void
 	 * @param adres
 	 */
 	public void setAdres(String adres) {
@@ -99,13 +102,14 @@ public class Klant{
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getPostcode() {
 		return postcode;
 	}
 
 	/**
+	 * @return void
 	 * @param postcode
 	 */
 	public void setPostcode(String postcode) {
@@ -113,7 +117,7 @@ public class Klant{
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getPlaats() {
 		return plaats;
@@ -121,13 +125,14 @@ public class Klant{
 
 	/**
 	 * @param plaats
+	 * @return void
 	 */
 	public void setPlaats(String plaats) {
 		this.plaats = plaats;
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getTelNr() {
 		return telNr;
@@ -135,13 +140,14 @@ public class Klant{
 
 	/**
 	 * @param telNr
+	 * @return void
 	 */
 	public void setTelNr(String telNr) {
 		this.telNr = telNr;
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getEmail() {
 		return email;
@@ -149,19 +155,21 @@ public class Klant{
 
 	/**
 	 * @param email
+	 * @return void
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
-	 * @return
+	 * @return Date
 	 */
 	public Date getGebDatum() {
 		return gebDatum;
 	}
 
 	/**
+	 * @return void
 	 * @param gebDatum
 	 */
 	public void setGebDatum(Date gebDatum) {
@@ -169,13 +177,14 @@ public class Klant{
 	}
 
 	/**
-	 * @return
+	 * @return ArrayList<Diagnose>
 	 */
 	public ArrayList<Diagnose> getDiagnoses() {
 		return diagnoses;
 	}
 
 	/**
+	 * @return void
 	 * @param diagnoses
 	 */
 	public void setDiagnoses(ArrayList<Diagnose> diagnoses) {

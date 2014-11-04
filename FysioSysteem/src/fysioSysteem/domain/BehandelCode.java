@@ -51,13 +51,14 @@ public class BehandelCode{
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getCode() {
 		return code;
 	}
 
 	/**
+	 * @return void
 	 * @param code
 	 */
 	public void setCode(int code) {
@@ -65,13 +66,14 @@ public class BehandelCode{
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getAantalSessies() {
 		return aantalSessies;
 	}
 
 	/**
+	 * @return void
 	 * @param aantalSessies
 	 */
 	public void setAantalSessies(int aantalSessies) {
@@ -79,13 +81,14 @@ public class BehandelCode{
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getBehandelingNaam() {
 		return behandelingNaam;
 	}
 
 	/**
+	 * @return void
 	 * @param behandelingNaam
 	 */
 	public void setBehandelingNaam(String behandelingNaam) {
@@ -93,13 +96,14 @@ public class BehandelCode{
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getSessieDuur() {
 		return sessieDuur;
 	}
 
 	/**
+	 * @return void
 	 * @param sessieDuur
 	 */
 	public void setSessieDuur(int sessieDuur) {
@@ -107,13 +111,14 @@ public class BehandelCode{
 	}
 
 	/**
-	 * @return
+	 * @return double
 	 */
 	public double getTariefBehandeling() {
 		return tariefBehandeling;
 	}
 
 	/**
+	 * @return void
 	 * @param tariefBehandeling
 	 */
 	public void setTariefBehandeling(double tariefBehandeling) {
@@ -121,7 +126,7 @@ public class BehandelCode{
 	}
 
 	/**
-	 * @return
+	 * @return ArrayList<Behandeling>
 	 */
 	public ArrayList<Behandeling> getBehandelingen() {
 		return behandelingen;
@@ -129,6 +134,7 @@ public class BehandelCode{
 
 	/**
 	 * @param behandelingen
+	 * @return void
 	 */
 	public void setBehandelingen(ArrayList<Behandeling> behandelingen) {
 		this.behandelingen = behandelingen;

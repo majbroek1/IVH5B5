@@ -53,13 +53,14 @@ public class Medewerker {
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
+	 * @return void
 	 * @param id
 	 */
 	public void setId(int id) {
@@ -67,13 +68,14 @@ public class Medewerker {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getNaam() {
 		return naam;
 	}
 
 	/**
+	 * @return void
 	 * @param naam
 	 */
 	public void setNaam(String naam) {
@@ -81,13 +83,14 @@ public class Medewerker {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getWachtwoord() {
 		return wachtwoord;
 	}
 
 	/**
+	 * @return void
 	 * @param wachtwoord
 	 */
 	public void setWachtwoord(String wachtwoord) {
@@ -95,23 +98,32 @@ public class Medewerker {
 	}
 
 	/**
-	 * @return
+	 * @return Enum<?>
 	 */
 	public Enum<?> getStatus() {
 		return status;
 	}
 
 	/**
+	 * @return void
 	 * @param status
 	 */
 	public void setStatus(Enum<?> status) {
 		this.status = status;
 	}
 
+	/**
+	 * 
+	 * @return Praktijk
+	 */
 	public Praktijk getPraktijk() {
 		return praktijk;
 	}
 
+	/**
+	 * @return void
+	 * @param praktijk
+	 */
 	public void setPraktijk(Praktijk praktijk) {
 		this.praktijk = praktijk;
 	}	

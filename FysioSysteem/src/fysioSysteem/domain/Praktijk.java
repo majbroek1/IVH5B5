@@ -83,13 +83,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
+	 * @return void
 	 * @param id
 	 */
 	public void setId(int id) {
@@ -97,13 +98,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getNaam() {
 		return naam;
 	}
 
 	/**
+	 * @return void
 	 * @param naam
 	 */
 	public void setNaam(String naam) {
@@ -111,13 +113,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getAdres() {
 		return adres;
 	}
 
 	/**
+	 * @return void
 	 * @param adres
 	 */
 	public void setAdres(String adres) {
@@ -125,13 +128,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String 
 	 */
 	public String getPostcode() {
 		return postcode;
 	}
 
 	/**
+	 * @return void
 	 * @param postcode
 	 */
 	public void setPostcode(String postcode) {
@@ -139,13 +143,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String 
 	 */
 	public String getPlaats() {
 		return plaats;
 	}
 
 	/**
+	 * @return void
 	 * @param plaats
 	 */
 	public void setPlaats(String plaats) {
@@ -153,13 +158,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getIban() {
 		return iban;
 	}
 
 	/**
+	 * @return void
 	 * @param iban
 	 */
 	public void setIban(String iban) {
@@ -167,13 +173,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getTelNr() {
 		return telNr;
 	}
 
 	/**
+	 * @return void
 	 * @param telNr
 	 */
 	public void setTelNr(String telNr) {
@@ -181,7 +188,7 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String
 	 */
 	public String getEmail() {
 		return email;
@@ -195,13 +202,14 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return String 
 	 */
 	public String getWebsite() {
 		return website;
 	}
 
 	/**
+	 * @return void
 	 * @param website
 	 */
 	public void setWebsite(String website) {
@@ -209,7 +217,7 @@ public class Praktijk {
 	}
 
 	/**
-	 * @return
+	 * @return ArrayList<Medewerker>
 	 */
 	public ArrayList<Medewerker> getMedewerkers() {
 		return medewerkers;
@@ -222,6 +230,9 @@ public class Praktijk {
 		this.medewerkers = medewerkers;
 	}
 	
+	/**
+	 * @return String
+	 */
 	@Override
 	public String toString()
 	{

@@ -35,13 +35,14 @@ public class Rooster {
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
+	 * @return void
 	 * @param id
 	 */
 	public void setId(int id) {
@@ -49,13 +50,14 @@ public class Rooster {
 	}
 
 	/**
-	 * @return
+	 * @return Date
 	 */
 	public Date getStart() {
 		return start;
 	}
 
 	/**
+	 * @return void
 	 * @param start
 	 */
 	public void setStart(Date start) {
@@ -63,13 +65,14 @@ public class Rooster {
 	}
 
 	/**
-	 * @return
+	 * @return Date
 	 */
 	public Date getEind() {
 		return eind;
 	}
 
 	/**
+	 * @return void
 	 * @param eind
 	 */
 	public void setEind(Date eind) {
@@ -77,13 +80,14 @@ public class Rooster {
 	}
 
 	/**
-	 * @return
+	 * @return Fysiotherapeut
 	 */
 	public Fysiotherapeut getFysiotherapeut() {
 		return fysiotherapeut;
 	}
 
 	/**
+	 * @return void
 	 * @param fysiotherapeut
 	 */
 	public void setFysiotherapeut(Fysiotherapeut fysiotherapeut) {

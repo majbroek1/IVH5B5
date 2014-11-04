@@ -11,6 +11,10 @@ package fysioSysteem.domain;
 public enum BehandelStatus {
 	IN_ONDERZOEK, IN_BEHANDELING, UITBEHANDELD;
 	
+	/**
+	 * 
+	 * @return BehandelStatus
+	 */
 	public BehandelStatus getNext(){
 		return values()[(ordinal() + 1) % values().length];
 	}

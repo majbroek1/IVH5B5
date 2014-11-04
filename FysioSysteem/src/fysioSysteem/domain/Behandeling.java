@@ -35,6 +35,13 @@ public class Behandeling{
 		this.status = status;
 	}
 
+	/**
+	 * @param id
+	 * @param status
+	 * @param klant
+	 * @param behandelCode
+	 * @param afspraken
+	 */
 	public Behandeling(int id, BehandelStatus status, Klant klant,
 			BehandelCode behandelCode, ArrayList<Afspraak> afspraken) {
 		this.id = id;
@@ -44,6 +51,12 @@ public class Behandeling{
 		this.afspraken = afspraken;
 	}
 	
+	/**
+	 * @param id
+	 * @param status
+	 * @param klant
+	 * @param behandelCode
+	 */
 	public Behandeling(int id, BehandelStatus status, Klant klant, BehandelCode behandelCode) {
 		this.id = id;
 		this.status = status;
@@ -51,6 +64,11 @@ public class Behandeling{
 		this.behandelCode = behandelCode;
 	}
 	
+	/**
+	 * @param status
+	 * @param klant
+	 * @param behandelCode
+	 */
 	public Behandeling(BehandelStatus status, Klant klant, BehandelCode behandelCode) {
 		this.status = status;
 		this.klant = klant;
@@ -58,7 +76,7 @@ public class Behandeling{
 	}
 
 	/**
-	 * @return
+	 * @return int
 	 */
 	public int getId() {
 		return id;
@@ -66,19 +84,21 @@ public class Behandeling{
 
 	/**
 	 * @param id
+	 * @return void
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return
+	 * @return BehandelStatus
 	 */
 	public BehandelStatus getStatus() {
 		return status;
 	}
 
 	/**
+	 * @return void
 	 * @param status
 	 */
 	public void setStatus(BehandelStatus status) {
@@ -86,13 +106,14 @@ public class Behandeling{
 	}
 
 	/**
-	 * @return
+	 * @return ArrayList<Afspraak> 
 	 */
 	public ArrayList<Afspraak> getAfspraken() {
 		return afspraken;
 	}
 
 	/**
+	 * @return void
 	 * @param afspraken
 	 */
 	public void setAfspraken(ArrayList<Afspraak> afspraken) {
@@ -100,13 +121,14 @@ public class Behandeling{
 	}
 
 	/**
-	 * @return
+	 * @return BehandelCode
 	 */
 	public BehandelCode getBehandelCode() {
 		return behandelCode;
 	}
 
 	/**
+	 * @return void
 	 * @param behandelCode
 	 */
 	public void setBehandelCode(BehandelCode behandelCode) {
@@ -114,13 +136,14 @@ public class Behandeling{
 	}
 
 	/**
-	 * @return
+	 * @return Klant
 	 */
 	public Klant getKlant() {
 		return klant;
 	}
 
 	/**
+	 * @return void
 	 * @param klant
 	 */
 	public void setKlant(Klant klant) {

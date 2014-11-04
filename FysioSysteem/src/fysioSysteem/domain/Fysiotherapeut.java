@@ -47,13 +47,14 @@ public class Fysiotherapeut extends Medewerker {
 	}
 
 	/**
-	 * @return
+	 * @return Rooster
 	 */
 	public Rooster getRooster() {
 		return rooster;
 	}
 
 	/**
+	 * @return void 
 	 * @param rooster
 	 */
 	public void setRooster(Rooster rooster) {
@@ -61,13 +62,15 @@ public class Fysiotherapeut extends Medewerker {
 	}
 
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Afspraak>
 	 */
 	public ArrayList<Afspraak> getAfspraken() {
 		return afspraken;
 	}
 
 	/**
+	 * @return void
 	 * @param afspraken
 	 */
 	public void setAfspraken(ArrayList<Afspraak> afspraken) {

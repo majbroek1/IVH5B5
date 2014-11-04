@@ -11,6 +11,10 @@ package fysioSysteem.domain;
 public enum Status {
 	ACTIEF,INACTIEF;
 	
+	/**
+	 * 
+	 * @return Status
+	 */
 	public Status getNext(){
 		return values()[(ordinal() + 1) % values().length];
 	}
