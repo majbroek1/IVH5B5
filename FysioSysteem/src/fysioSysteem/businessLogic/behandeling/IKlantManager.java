@@ -12,29 +12,38 @@ import fysioSysteem.domain.Klant;
 public interface IKlantManager {
 
 	/**
+	 * 
+	 * @return void
 	 * @param klant
 	 */
+
 	public void addKlant(Klant klant);
 	
 	/**
+	 * 
+	 * @return void
 	 * @param klant
 	 */
 	public void setKlant(Klant klant);
 	
 	/**
+	 * 
 	 * @param id
-	 * @return
+	 * @return Klant
 	 */
+
 	public Klant getKlant(int id);
 	
 	/**
-	 * @param id
-	 * @return
+	 * 
+	 * @param bsn
+	 * @return Klant
 	 */
 	public Klant getKlant(String bsn);
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Klant>
 	 */
 	public ArrayList<Klant> getKlanten();
 	

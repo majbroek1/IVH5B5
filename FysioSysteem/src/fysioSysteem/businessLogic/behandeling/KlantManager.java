@@ -15,6 +15,7 @@ import fysioSysteem.domain.Klant;
 @Singleton
 public class KlantManager implements IKlantManager {
 	
+	
 	@Override
 	public void addKlant(Klant klant) {
 		// TODO Auto-generated method stub

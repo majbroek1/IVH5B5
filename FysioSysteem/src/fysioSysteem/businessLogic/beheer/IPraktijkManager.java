@@ -15,19 +15,22 @@ import fysioSysteem.domain.Praktijk;
 public interface IPraktijkManager {
 
 	/**
+	 * 
 	 * @param medewerker
-	 * @return
+	 * @return boolean
 	 */
 	public boolean setPraktijk(Praktijk praktijk);
 	
 	/**
+	 * 
 	 * @param id
-	 * @return
+	 * @return Praktijk
 	 */
 	public Praktijk getPraktijk(int id);
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Praktijk>
 	 */
 	public ArrayList<Praktijk> getPraktijken();
 }

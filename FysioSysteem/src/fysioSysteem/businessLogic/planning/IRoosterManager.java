@@ -13,38 +13,45 @@ import fysioSysteem.domain.Rooster;
 public interface IRoosterManager {
 
 	/**
+	 * 
 	 * @param rooster
-	 * @return
+	 * @return boolean
 	 */
 	public boolean addRooster(Rooster rooster);
 	
 	/**
+	 * 
 	 * @param rooster
-	 * @return
+	 * @return boolean
 	 */
 	public boolean setRooster(Rooster rooster);
 	
 	/**
+	 * 
 	 * @param id
-	 * @return
+	 * @return Rooster
 	 */
 	public Rooster getRooster(int id);
 	
 	/**
+	 * 
 	 * @param fysio
-	 * @return
+	 * @return ArrayList<Rooster>
 	 */
 	public ArrayList<Rooster> getWeekRooster(Fysiotherapeut fysio);
 	
 	/**
+	 * 
 	 * @param fysio
 	 * @param weekNr
-	 * @return
+	 * @return Rooster
 	 */
 	public Rooster getWeekRooster(Fysiotherapeut fysio, int weekNr);
 	
 	/**
+	 * 
 	 * @param rooster
+	 * @return void
 	 */
 	public void removeRooster(Rooster rooster);
 	

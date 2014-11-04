@@ -14,46 +14,54 @@ import fysioSysteem.domain.Secretaresse;
 public interface IMedewerkerManager {
 
 	/**
+	 * 
 	 * @param medewerker
-	 * @return
+	 * @return boolean
 	 */
 	public boolean addMedewerker(Medewerker medewerker);
 	
 	/**
+	 * 
 	 * @param medewerker
-	 * @return
+	 * @return boolean
 	 */
 	public boolean setMedewerker(Medewerker medewerker);
 	
 	/**
+	 * 
 	 * @param id
-	 * @return
+	 * @return Medewerker
 	 */
 	public Medewerker getMedewerker(int id);
 	
 	/**
+	 * 
 	 * @param id
-	 * @return
+	 * @return Fysiotherapeut
 	 */
 	public Fysiotherapeut getFysiotherapeut(int id);
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Fysiotherapeut>
 	 */
 	public ArrayList<Fysiotherapeut> getFysiotherapeuten();
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Secretaresse>
 	 */
 	public ArrayList<Secretaresse> getSecretaressen();
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Medewerker>
 	 */
 	public ArrayList<Medewerker> getMedewerkers();
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Medewerker>
 	 */
 	public ArrayList<Medewerker> getActieveMedewerkers();
 	
