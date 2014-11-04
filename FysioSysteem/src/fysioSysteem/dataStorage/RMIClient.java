@@ -12,7 +12,7 @@ public class RMIClient {
 	public static ArrayList<Klant> getKlanten() {
 		String hostname = System.getProperty(Settings.RMI_LOCATION);
 		
-		System.setProperty("java.security.policy", "http://" + hostname + "/classes/resources/FysioServer.policy");
+		System.setProperty("java.security.policy", "http://" + hostname + "/classes/resources/facturatieserver.policy");
 		
 		if (System.getSecurityManager() == null) {
 			System.setSecurityManager(new SecurityManager());

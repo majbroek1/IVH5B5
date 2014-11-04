@@ -16,18 +16,15 @@ public class KlantDAO {
 
 	public static Klant getKlant(String bsn) {
 		ArrayList<Klant> klanten = getKlanten();
-		Klant klant = null;
 		for(Klant k : klanten){
 			if(k.getBsn().equals(bsn)){
-				klant = k;
+				return k;
 			}
 		}
 		
-		if(klant == null){
-			System.out.println("Klant niet gevonden");
-		}
+                System.out.println("Klant niet gevonden");
 		
-		return klant;
+                return null;
 	}
 
 	public static ArrayList<Klant> getKlanten() {
