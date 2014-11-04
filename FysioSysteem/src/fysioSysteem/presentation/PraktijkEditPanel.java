@@ -5,6 +5,7 @@
  */
 package fysioSysteem.presentation;
 
+import general.PanelValidatie;
 import com.google.inject.Inject;
 import fysioSysteem.businessLogic.beheer.IPraktijkManager;
 import fysioSysteem.domain.Praktijk;

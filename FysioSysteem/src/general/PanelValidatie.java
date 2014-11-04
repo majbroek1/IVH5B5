@@ -1,4 +1,4 @@
-package fysioSysteem.presentation;
+package general;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

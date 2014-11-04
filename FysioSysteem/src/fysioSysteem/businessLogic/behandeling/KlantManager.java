@@ -15,19 +15,13 @@ import fysioSysteem.domain.Klant;
 public class KlantManager implements IKlantManager {
 
     @Override
-    public void addKlant(Klant klant) {
-        // TODO Auto-generated method stub
-
+    public Klant getKlant(String bsn) {
+        return KlantDAO.getKlant(bsn);
     }
 
     @Override
-    public void setKlant(Klant klant) {
-        // TODO Auto-generated method stub
-
-	@Override
-	public ArrayList<Klant> getKlanten() {
-		// TODO Auto-generated method stub
-		return KlantDAO.getKlanten();
-	}
-
+    public ArrayList<Klant> getKlanten() {
+        return KlantDAO.getKlanten();
+    }
+    
 }
