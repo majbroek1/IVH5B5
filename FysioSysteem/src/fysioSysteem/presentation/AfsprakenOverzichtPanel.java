@@ -152,17 +152,34 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAfspraakToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakToevoegenActionPerformed
-        frmMain parent = (frmMain)getParentFrame();
+        HoofdVenster parent = (HoofdVenster)getParentFrame();
         parent.setPanel(new AfsprakenToevoegenPanel());
     }//GEN-LAST:event_buttonAfspraakToevoegenActionPerformed
 
     private void buttonAfspraakVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakVerwijderenActionPerformed
         try {
                 Afspraak a = afspraken.get(jTable1.convertRowIndexToModel(jTable1.getSelectedRow()));
+            
+                Object[] options = {"nee", "Ja"};
                 
-                am.removeAfspraak(a);
+                JFrame frame = new JFrame();
                 
-                setTable();
+                int n = JOptionPane.showOptionDialog(frame,
+                    "Weet je zeker dat u afspraak: " + a.getId()  + "  wilt verwijderd?",
+                    "Verwijder afspraak: "+ a.getId(),
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
+ 
+                if (n == 1)
+                {
+                   am.removeAfspraak(a);
+                
+                   HoofdVenster parent = (HoofdVenster)getParentFrame();
+                   parent.setPanel(new AfsprakenOverzichtPanel());
+                }
 	}
 	catch (Exception ex) {
 		JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
