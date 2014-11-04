@@ -267,7 +267,8 @@ public class HoofdVenster extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAfsprakenMouseClicked
 
     private void btnTherapeutenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTherapeutenMouseClicked
-        setPanel(new MedewerkerOverzichtPanel());
+        Injector injector = Guice.createInjector(new AppInjector());
+        setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
     }//GEN-LAST:event_btnTherapeutenMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -246,5 +246,30 @@ public class AfspraakDAO {
 
 		return rtnAfspraken;
 	}
+        
+        public static void removeAfspraak(Afspraak afspraak){
+            XmlDOMDocument domdocument = new XmlDOMDocument();
+		Document document = domdocument.getDocument(AfspraakDAO.FILE_XML,
+				AfspraakDAO.FILE_XSD);
+
+		if (document != null) {
+			NodeList list = document.getElementsByTagName("afspraak");
+
+			for (int i = 0; i < list.getLength(); i++) {
+				Node node = list.item(i);
+				if (node instanceof Element) {
+					Element child = (Element) node;
+					String _id = child.getAttribute("id");
+					if (Integer.parseInt(_id) == afspraak.getId()) {
+						child.getParentNode().removeChild(child);
+
+						domdocument.writeDocument(AfspraakDAO.FILE_XML,
+								AfspraakDAO.FILE_XSD, document);
+					}
+				}
+			}
+		} else
+			System.out.println("XML document is null");
+        }
 
 }

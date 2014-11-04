@@ -25,7 +25,8 @@ public class LoginVenster extends javax.swing.JFrame {
 
         this.lgn = lgn;
 
-        initComponents();
+        initComponents();        
+        getRootPane().setDefaultButton(btnInloggen);
     }
 
     /**
