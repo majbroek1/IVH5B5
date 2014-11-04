@@ -42,7 +42,7 @@ public class pnlFysRooOvz extends JPanel {
 		lblFysRooOvzRooster.setBounds(10, 11, 46, 14);
 		add(lblFysRooOvzRooster);
 		
-		JScrollPane spFysRooOvzTableRooster = new JScrollPane();
+		JScrollPane spFysRooOvzTableRooster = new JScrollPane(tableFysRooOvzRooster);
 		spFysRooOvzTableRooster.setBounds(20, 36, 545, 317);
 		add(spFysRooOvzTableRooster);
 		
