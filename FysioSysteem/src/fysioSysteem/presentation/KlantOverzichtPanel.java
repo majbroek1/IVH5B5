@@ -5,12 +5,9 @@
  */
 package fysioSysteem.presentation;
 
-import com.google.inject.Guice;
 import com.google.inject.Inject;
-import com.google.inject.Injector;
 import fysioSysteem.businessLogic.behandeling.IKlantManager;
 import fysioSysteem.domain.Klant;
-import general.AppInjector;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
