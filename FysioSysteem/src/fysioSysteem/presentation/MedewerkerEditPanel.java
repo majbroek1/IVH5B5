@@ -28,10 +28,10 @@ import javax.swing.border.Border;
  * @author Bob
  */
 public class MedewerkerEditPanel extends javax.swing.JPanel {
-    
+
     private IMedewerkerManager medewerkerManager;
     private IPraktijkManager praktijkManager;
-    
+
     private Fysiotherapeut therapeut;
 
     /**
@@ -41,29 +41,29 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         Injector injector = Guice.createInjector(new AppInjector());
         medewerkerManager = injector.getInstance(IMedewerkerManager.class);
         praktijkManager = injector.getInstance(IPraktijkManager.class);
-        
+
         initComponents();
         laadData();
     }
-    
+
     public MedewerkerEditPanel(Fysiotherapeut f) {
         Injector injector = Guice.createInjector(new AppInjector());
         medewerkerManager = injector.getInstance(IMedewerkerManager.class);
         praktijkManager = injector.getInstance(IPraktijkManager.class);
-        
+
         therapeut = f;
-        
+
         initComponents();
         laadData();
     }
-    
+
     private void laadData() {
         ArrayList<Praktijk> praktijken
                 = praktijkManager.getPraktijken();
-        
+
         DefaultComboBoxModel<Praktijk> praktijkModel
                 = new DefaultComboBoxModel<>();
-        
+
         Praktijk selPraktijk = null;
         for (Praktijk p : praktijken) {
             praktijkModel.addElement(p);
@@ -74,20 +74,62 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                 }
             }
         }
-        
+
         if (therapeut != null) {
             txtNaam.setText(therapeut.getNaam());
             txtWachtwoord.setText(therapeut.getWachtwoord());
             txtWachtwoordHer.setText(therapeut.getWachtwoord());
-            
+
             if (selPraktijk != null) {
                 cbPraktijk.setSelectedItem(selPraktijk);
             }
+
+            cbStatus.getModel().setSelectedItem(therapeut.getStatus());
         }
 
         cbPraktijk.setModel(praktijkModel);
         cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
-        cbStatus.getModel().setSelectedItem(therapeut.getStatus());
+    }
+
+    private boolean controleerVelden() {
+        ArrayList<String> errorMessages = new ArrayList<>();
+        Border redBorder = BorderFactory.createLineBorder(Color.red);
+
+        if (txtNaam.getText().isEmpty()
+                || txtNaam.getText().length() >= 50) {
+
+            txtNaam.setBorder(redBorder);
+            errorMessages.add("- Therapeut Naam");
+        }
+
+        if (txtWachtwoord.getPassword().length < 4
+                || txtWachtwoord.getPassword().length >= 50) {
+
+            txtWachtwoord.setBorder(redBorder);
+            errorMessages.add("- Wachtwoord");
+        }
+
+        if (!Arrays.equals(txtWachtwoord.getPassword(),
+                txtWachtwoordHer.getPassword())) {
+
+            txtWachtwoordHer.setBorder(redBorder);
+            errorMessages.add("- Wachtwoord Herhalen");
+        }
+
+        if (errorMessages.size() > 0) {
+            int sizeStringBuilder = errorMessages.size() + 1;
+            StringBuilder builder = new StringBuilder(sizeStringBuilder);
+            builder.append("Controleer de volgende velden:" + "\n");
+
+            for (String s : errorMessages) {
+                builder.append(s + "\n");
+            }
+
+            JOptionPane.showMessageDialog(this, builder.toString(),
+                    "Controleer gegevens", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return errorMessages.size() < 1;
     }
 
     private JFrame getParentFrame() {
@@ -208,31 +250,7 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAnnulerenActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
-        ArrayList<String> errorMessages = new ArrayList<String>();
-        Border redBorder = BorderFactory.createLineBorder(Color.red);
-
-        if (txtNaam.getText().equals("")
-                || txtNaam.getText().length() >= 50) {
-            
-            txtNaam.setBorder(redBorder);
-            errorMessages.add("- Therapeut Naam");
-        }
-
-        if (txtWachtwoord.getPassword().length < 4
-                || txtWachtwoord.getPassword().length >= 50) {
-
-            txtWachtwoord.setBorder(redBorder);
-            errorMessages.add("- Wachtwoord");
-        }
-
-        if (!Arrays.equals(txtWachtwoord.getPassword(),
-                txtWachtwoordHer.getPassword())) {
-
-            txtWachtwoordHer.setBorder(redBorder);
-            errorMessages.add("- Wachtwoord Herhalen");
-        }
-
-        if (errorMessages.size() < 1) {
+        if (controleerVelden()) {
             String password = "";
             for (char c : txtWachtwoord.getPassword()) {
                 password += c;
@@ -243,28 +261,20 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                         Status.valueOf(cbStatus.getSelectedItem().toString()), (Praktijk) cbPraktijk.getSelectedItem());
 
                 medewerkerManager.setMedewerker(Fysiotherapeut);
+
+                JOptionPane.showMessageDialog(this, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
             } else {
                 Fysiotherapeut Fysiotherapeut = new Fysiotherapeut(txtNaam.getText(), password,
                         Status.valueOf(cbStatus.getSelectedItem().toString()), (Praktijk) cbPraktijk.getSelectedItem());
 
                 medewerkerManager.addMedewerker(Fysiotherapeut);
+
+                JOptionPane.showMessageDialog(this, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
+
+                HoofdVenster parent = (HoofdVenster) getParentFrame();
+                Injector injector = Guice.createInjector(new AppInjector());
+                parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
             }
-
-            JOptionPane.showMessageDialog(this, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
-
-            HoofdVenster parent = (HoofdVenster) getParentFrame();
-            Injector injector = Guice.createInjector(new AppInjector());
-            parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
-        } else {
-            int sizeStringBuilder = errorMessages.size() + 1;
-            StringBuilder builder = new StringBuilder(sizeStringBuilder);
-            builder.append("Controleer de volgende velden op volledigheid en correctheid:" + "\n");
-
-            for (String s : errorMessages) {
-                builder.append(s + "\n");
-            }
-
-            JOptionPane.showMessageDialog(null, builder.toString());
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
 

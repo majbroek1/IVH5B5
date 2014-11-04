@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Pascal
  */
 public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
-    
+
     private ArrayList<Afspraak> afspraken;
     private AfspraakManager afspraakManager;
     /**
@@ -47,43 +47,39 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
         setTable();
     }
 
-    
-        
     private void setTable() {
-		DefaultTableModel tabelModel = new DefaultTableModel(
-			new Object[]{"Afspraak #", "Patient", "Datum" , "Tijd", "Behandeling"}, 0){
-		
-			// Tabel Bewerken uit
-			@Override
-		    public boolean isCellEditable(int row, int column) {
-		       return false;
-		    }
-		};
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM");
-		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-		Date today = new Date();
-		
-                try
-                {
-                    for(Afspraak a : afspraken) {
-                            if(dateFormat.format(a.getDatumTijd()).equals(dateFormat.format(today)) || today.before(a.getDatumTijd())) {
-                                    tabelModel.addRow(new Object[]{
-                                            a.getId(), 
-                                            a.getBehandeling().getKlant().getNaam(),
-                                            dateFormat.format(a.getDatumTijd()), 
-                                            timeFormat.format(a.getDatumTijd()),
-                                            a.getBehandeling().getBehandelCode().getBehandelingNaam()
-                                    });
-                            }
+        DefaultTableModel tabelModel = new DefaultTableModel(
+                new Object[]{"Afspraak #", "Patient", "Datum", "Tijd", "Behandeling"}, 0) {
+
+                    // Tabel Bewerken uit
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
                     }
+                };
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        Date today = new Date();
+
+        try {
+            for (Afspraak a : afspraken) {
+                if (dateFormat.format(a.getDatumTijd()).equals(dateFormat.format(today)) || today.before(a.getDatumTijd())) {
+                    tabelModel.addRow(new Object[]{
+                        a.getId(),
+                        a.getBehandeling().getKlant().getNaam(),
+                        dateFormat.format(a.getDatumTijd()),
+                        timeFormat.format(a.getDatumTijd()),
+                        a.getBehandeling().getBehandelCode().getBehandelingNaam()
+                    });
                 }
-                catch (Exception e)
-                {
-                            
-                }
-		jTable1.setModel(tabelModel);
-	}
+            }
+        } catch (Exception e) {
+
+        }
+        jTable1.setModel(tabelModel);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,21 +151,21 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAfspraakToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakToevoegenActionPerformed
-        HoofdVenster parent = (HoofdVenster)getParentFrame();
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
         parent.setPanel(new AfsprakenToevoegenPanel());
     }//GEN-LAST:event_buttonAfspraakToevoegenActionPerformed
 
     private void buttonAfspraakVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakVerwijderenActionPerformed
         try {
-                Afspraak a = afspraken.get(jTable1.convertRowIndexToModel(jTable1.getSelectedRow()));
-            
-                Object[] options = {"nee", "Ja"};
-                
-                JFrame frame = new JFrame();
-                
-                int n = JOptionPane.showOptionDialog(frame,
-                    "Weet je zeker dat u afspraak: " + a.getId()  + "  wilt verwijderd?",
-                    "Verwijder afspraak: "+ a.getId(),
+            Afspraak a = afspraken.get(jTable1.convertRowIndexToModel(jTable1.getSelectedRow()));
+
+            Object[] options = {"nee", "Ja"};
+
+            JFrame frame = new JFrame();
+
+            int n = JOptionPane.showOptionDialog(frame,
+                    "Weet je zeker dat u afspraak: " + a.getId() + "  wilt verwijderd?",
+                    "Verwijder afspraak: " + a.getId(),
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,
@@ -188,9 +184,9 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
 		JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
 	}
     }//GEN-LAST:event_buttonAfspraakVerwijderenActionPerformed
-   
-    private JFrame getParentFrame(){
-	return (JFrame)SwingUtilities.getRoot(this);
+
+    private JFrame getParentFrame() {
+        return (JFrame) SwingUtilities.getRoot(this);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

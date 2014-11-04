@@ -11,8 +11,12 @@ import fysioSysteem.businessLogic.beheer.IDiagnoseManager;
 import fysioSysteem.domain.Diagnose;
 import fysioSysteem.domain.Klant;
 import general.AppInjector;
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /**
  *
@@ -21,47 +25,72 @@ import javax.swing.DefaultComboBoxModel;
 public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
 
     private IDiagnoseManager diagnoseManager;
-    
+
     private Klant klant;
     private ArrayList<Diagnose> diagnoses;
     private Diagnose diagnose = null;
-    
+
     /**
      * Creates new form DiagnoseOverzichtPanel
      */
     public DiagnoseOverzichtPanel(Klant k) {
         Injector injector = Guice.createInjector(new AppInjector());
         diagnoseManager = injector.getInstance(IDiagnoseManager.class);
-        
+
         klant = k;
         diagnoses = k.getDiagnoses();
-        
+
         initComponents();
         laadData();
     }
-    
+
     private void laadData() {
         DefaultComboBoxModel<Diagnose> diagnoseModel
                 = new DefaultComboBoxModel<>();
-        
+
         for (Diagnose d : diagnoses) {
             diagnoseModel.addElement(d);
         }
-        
+
         cbDiagnose.setModel(diagnoseModel);
-        
-        if(diagnoses.size() > 0)
+
+        if (diagnoses.size() > 0) {
             setDiagnose(diagnoses.get(0));
+        }
     }
-    
+
+    private boolean controleerVelden() {
+        ArrayList<String> errorMessages = new ArrayList<>();
+        Border redBorder = BorderFactory.createLineBorder(Color.red);
+
+        if (txtOmschrijving.getText().isEmpty()) {
+            txtOmschrijving.setBorder(redBorder);
+            errorMessages.add("Er is geen omschrijving ingevuld!");
+        }
+
+        if (errorMessages.size() > 0) {
+            int sizeStringBuilder = errorMessages.size() + 1;
+            StringBuilder builder = new StringBuilder(sizeStringBuilder);
+            builder.append("Controleer de volgende velden:" + "\n");
+
+            for (String s : errorMessages) {
+                builder.append(s + "\n");
+            }
+
+            JOptionPane.showMessageDialog(this, builder.toString(),
+                    "Controleer gegevens", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return errorMessages.size() < 1;
+    }
+
     private void setDiagnose(Diagnose d) {
         diagnose = d;
-        
-        if(d != null) {
+
+        if (d != null) {
             txtCode.setText(Integer.toString(d.getCode()));
             txtOmschrijving.setText(d.getOmschrijving());
-        }
-        else {
+        } else {
             txtCode.setText("");
             txtOmschrijving.setText("");
         }
@@ -177,17 +206,24 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNieuwActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
-       if(diagnose != null) { // Wijzigen
-            diagnose.setOmschrijving(txtOmschrijving.getText());
-            diagnose.setKlant(klant);
-            
-            diagnoseManager.setDiagnose(diagnose);
-        }
-        else { // Toevoegen
-            diagnoseManager.addDiagnose(new Diagnose(
-                    txtOmschrijving.getText(),
-                    klant
-            ));
+        if (diagnose != null) { // Wijzigen
+            if (controleerVelden()) {
+                diagnose.setOmschrijving(txtOmschrijving.getText());
+                diagnose.setKlant(klant);
+                diagnoseManager.setDiagnose(diagnose);
+
+                JOptionPane.showMessageDialog(this,
+                        "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else { // Toevoegen
+            if (controleerVelden()) {
+                diagnoseManager.addDiagnose(new Diagnose(
+                        txtOmschrijving.getText(), klant
+                ));
+
+                JOptionPane.showMessageDialog(this,
+                        "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
 
