@@ -33,7 +33,7 @@ public class frmMain extends JFrame {
 		
 		JPanel pnlMenu = new JPanel();
 		pnlMenu.setBackground(new Color(204, 0, 0));
-		pnlMenu.setBounds(0, 0, 200, 674);
+		pnlMenu.setBounds(0, 0, 200, 667);
 		getContentPane().add(pnlMenu);
 		GridBagLayout gbl_pnlMenu = new GridBagLayout();
 		gbl_pnlMenu.columnWidths = new int[]{0, 0};
@@ -106,7 +106,7 @@ public class frmMain extends JFrame {
 		Injector injector = Guice.createInjector(new AppInjector());
 
 		pnlContent = new JPanel();
-		pnlContent.setBounds(200, 0, 876, 656);
+		pnlContent.setBounds(200, 0, 886, 667);
 	
 		getContentPane().add(pnlContent);
 

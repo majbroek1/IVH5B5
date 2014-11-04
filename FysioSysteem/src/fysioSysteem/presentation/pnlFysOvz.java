@@ -50,6 +50,10 @@ public class pnlFysOvz extends JPanel {
 		scrollPane.setBounds(10, 10, 867, 590);
 		add(scrollPane);
 		
+		JButton btnRoosInzien = new JButton("Bekijk rooster");
+		btnRoosInzien.setBounds(620, 620, 172, 29);
+		add(btnRoosInzien);
+		
 		btnFysioToevoegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain parent = (frmMain)getParentFrame();
@@ -59,17 +63,24 @@ public class pnlFysOvz extends JPanel {
 		
 		btnFysioAanpassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try
-				{
+				try {
 					frmMain parent = (frmMain)getParentFrame();
 					Fysiotherapeut t = therapeuten.get(
 							table.convertRowIndexToModel(table.getSelectedRow()));
 					parent.setPanel(new pnlFysToeWzg(t));
 				}
-				catch (Exception ex)
-				{
+				catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
 				}
+			}
+		});
+		
+		btnRoosInzien.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmMain parent = (frmMain)getParentFrame();
+				Fysiotherapeut t = therapeuten.get(
+						table.convertRowIndexToModel(table.getSelectedRow()));
+				parent.setPanel(new pnlFysRooOvz(t));
 			}
 		});
 	}
