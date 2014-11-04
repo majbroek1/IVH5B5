@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fysioSysteem.businessLogic.behandeling;
+package fysioSysteem.businessLogic.beheer;
 
 import java.util.ArrayList;
 

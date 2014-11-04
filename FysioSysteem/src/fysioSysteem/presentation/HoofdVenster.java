@@ -302,7 +302,7 @@ public class HoofdVenster extends javax.swing.JFrame {
     private void btnUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUitloggenMouseClicked
         HoofdVenster.this.dispose();
         Injector injector = Guice.createInjector(new AppInjector());
-        injector.getInstance(frmLogin.class).setVisible(true);
+        injector.getInstance(LoginVenster.class).setVisible(true);
     }//GEN-LAST:event_btnUitloggenMouseClicked
 
     private void btnAfsprakenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAfsprakenMouseClicked
