@@ -48,7 +48,12 @@ public class MedewerkerManager implements IMedewerkerManager {
 	public ArrayList<Medewerker> getActieveMedewerkers() {
 		return MedewerkerDAO.getActieveMedewerkers();
 	}
-	
+        
+        @Override
+        public ArrayList<Fysiotherapeut> getActieveFysiotherapeuten() {
+                return MedewerkerDAO.getActieveFysiotherapeuten();
+        }
+        
 	@Override
 	public ArrayList<Fysiotherapeut> getFysiotherapeuten() {
 		return MedewerkerDAO.getFysiotherapeuten();

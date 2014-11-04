@@ -46,5 +46,4 @@ public interface IKlantManager {
 	 * @return ArrayList<Klant>
 	 */
 	public ArrayList<Klant> getKlanten();
-	
 }

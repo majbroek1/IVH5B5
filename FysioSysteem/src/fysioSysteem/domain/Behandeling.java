@@ -150,4 +150,12 @@ public class Behandeling{
 		this.klant = klant;
 	}
 
+        /**
+	 * @return String
+	 */
+	@Override
+	public String toString()
+	{
+		return this.behandelCode.getBehandelingNaam();
+	}
 }

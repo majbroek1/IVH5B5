@@ -35,9 +35,22 @@ public class Afspraak {
 	 * @param id
 	 * @param datumTijd
 	 * @param fysiotherapeut
+         * @param behandeling
 	 */
 	public Afspraak(int id, Date datumTijd, Fysiotherapeut fysiotherapeut, Behandeling behandeling) {
 		this(id, datumTijd);
+                this.datumTijd = datumTijd;
+		this.fysiotherapeut = fysiotherapeut;
+		this.behandeling = behandeling;
+	}
+        
+        /**
+	 * @param datumTijd
+	 * @param fysiotherapeut
+         * @param behandeling
+	 */
+	public Afspraak(Date datumTijd, Fysiotherapeut fysiotherapeut, Behandeling behandeling) {
+		this.datumTijd = datumTijd;
 		this.fysiotherapeut = fysiotherapeut;
 		this.behandeling = behandeling;
 	}

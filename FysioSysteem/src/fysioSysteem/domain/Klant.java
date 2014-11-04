@@ -191,4 +191,12 @@ public class Klant{
 		this.diagnoses = diagnoses;
 	}
 	
+        /**
+	 * @return String
+	 */
+	@Override
+	public String toString()
+	{
+		return this.naam;
+	}
 }

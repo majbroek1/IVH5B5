@@ -5,10 +5,12 @@
  */
 package fysioSysteem.presentation;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import fysioSysteem.businessLogic.planning.AfspraakManager;
 import fysioSysteem.businessLogic.planning.IAfspraakManager;
-import fysioSysteem.dataStorage.AfspraakDAO;
 import fysioSysteem.domain.Afspraak;
+import general.AppInjector;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,18 +26,19 @@ import javax.swing.table.DefaultTableModel;
 public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
     
     private ArrayList<Afspraak> afspraken;
-    private AfspraakManager am;
+    private AfspraakManager afspraakManager;
     /**
      * Creates new form AfsprakenOverzichtPanel
      */
     public AfsprakenOverzichtPanel() {
-        am = new AfspraakManager();
+        //Injector injector = Guice.createInjector(new AppInjector());
+        this.afspraakManager = new AfspraakManager(); //injector.getInstance(IAfspraakManager.class);
         
         initComponents();
         
         try
         {
-            afspraken = am.getAfspraken();
+            afspraken = afspraakManager.getAfspraken();
         }
         catch (Exception e)
         {
@@ -175,7 +178,7 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
  
                 if (n == 1)
                 {
-                   am.removeAfspraak(a);
+                   afspraakManager.removeAfspraak(a);
                 
                    HoofdVenster parent = (HoofdVenster)getParentFrame();
                    parent.setPanel(new AfsprakenOverzichtPanel());

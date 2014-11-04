@@ -42,7 +42,7 @@ public class KlantManager implements IKlantManager {
 	@Override
 	public ArrayList<Klant> getKlanten() {
 		// TODO Auto-generated method stub
-		return null;
+		return KlantDAO.getKlanten();
 	}
 
 }

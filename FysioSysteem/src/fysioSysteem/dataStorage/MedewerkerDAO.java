@@ -59,8 +59,20 @@ public class MedewerkerDAO {
 		ArrayList<Medewerker> rtnList = new ArrayList<>();
 
 		for (Medewerker m : medewerkers) {
-			if (m.getStatus().equals("ACTIEF"))
+			if (m.getStatus() == Status.ACTIEF)
 				rtnList.add(m);
+		}
+
+		return rtnList;
+	}
+        
+        public static ArrayList<Fysiotherapeut> getActieveFysiotherapeuten() {
+		ArrayList<Fysiotherapeut> fysiotherapeuten = MedewerkerDAO.getFysiotherapeuten();
+		ArrayList<Fysiotherapeut> rtnList = new ArrayList<>();
+
+		for (Fysiotherapeut f : fysiotherapeuten) {
+			if (f.getStatus() == Status.ACTIEF)
+				rtnList.add(f);
 		}
 
 		return rtnList;
