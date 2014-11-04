@@ -121,6 +121,11 @@ public class HoofdVenster extends javax.swing.JFrame {
 
         btnBehandelingen.setBackground(new java.awt.Color(0, 137, 137));
         btnBehandelingen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBehandelingen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBehandelingenMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -270,6 +275,11 @@ public class HoofdVenster extends javax.swing.JFrame {
         Injector injector = Guice.createInjector(new AppInjector());
         setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
     }//GEN-LAST:event_btnTherapeutenMouseClicked
+
+    private void btnBehandelingenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBehandelingenMouseClicked
+        Injector injector = Guice.createInjector(new AppInjector());
+        setPanel(injector.getInstance(BehandelingOverzichtPanel.class));
+    }//GEN-LAST:event_btnBehandelingenMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnAfspraken;

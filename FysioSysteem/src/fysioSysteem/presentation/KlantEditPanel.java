@@ -25,6 +25,7 @@ public class KlantEditPanel extends javax.swing.JPanel {
     
     /**
      * Creates new form KlantEditPanel
+     * @param k
      */
     public KlantEditPanel(Klant k) {
         Injector injector = Guice.createInjector(new AppInjector());
@@ -199,7 +200,8 @@ public class KlantEditPanel extends javax.swing.JPanel {
 
     private void btnSluitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSluitenActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new KlantOverzichtPanel());
+        Injector injector = Guice.createInjector(new AppInjector());
+        parent.setPanel(injector.getInstance(KlantOverzichtPanel.class));
     }//GEN-LAST:event_btnSluitenActionPerformed
 
     private void btnDiagnosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagnosesActionPerformed

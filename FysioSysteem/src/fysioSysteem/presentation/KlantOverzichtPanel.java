@@ -5,12 +5,10 @@
  */
 package fysioSysteem.presentation;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.Inject;
 import fysioSysteem.businessLogic.behandeling.IKlantManager;
 import fysioSysteem.businessLogic.behandeling.KlantManager;
 import fysioSysteem.domain.Klant;
-import general.AppInjector;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -28,10 +26,11 @@ public class KlantOverzichtPanel extends javax.swing.JPanel {
     
     /**
      * Creates new form KlantOverzichtPanel
+     * @param klantenManager
      */
-    public KlantOverzichtPanel() {
-        Injector injector = Guice.createInjector(new AppInjector());
-        klantenManager = injector.getInstance(IKlantManager.class);
+    @Inject
+    public KlantOverzichtPanel(IKlantManager klantenManager) {
+        this.klantenManager = klantenManager;
         
         klantenManager = new KlantManager();
         klanten = klantenManager.getKlanten();
