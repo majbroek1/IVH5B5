@@ -78,10 +78,15 @@ public class pnlFysOvz extends JPanel {
 		
 		btnRoosInzien.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmMain parent = (frmMain)getParentFrame();
-				Fysiotherapeut t = therapeuten.get(
-						table.convertRowIndexToModel(table.getSelectedRow()));
-				parent.setPanel(new pnlFysRooOvz(t));
+				try {
+					frmMain parent = (frmMain)getParentFrame();
+					Fysiotherapeut t = therapeuten.get(
+							table.convertRowIndexToModel(table.getSelectedRow()));
+					parent.setPanel(new pnlFysRooOvz(t));
+				}
+				catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+				}
 			}
 		});
 	}
