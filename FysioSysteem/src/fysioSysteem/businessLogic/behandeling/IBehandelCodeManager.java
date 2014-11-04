@@ -12,23 +12,29 @@ import fysioSysteem.domain.BehandelCode;
 public interface IBehandelCodeManager {
 
 	/**
+	 * 
+	 * @return void
 	 * @param behandelCode
 	 */
 	public void addBehandelCode(BehandelCode behandelCode);
 	
 	/**
+	 * 
+	 * @return void
 	 * @param behandelCode
 	 */
 	public void setBehandelCode(BehandelCode behandelCode);
 	
 	/**
+	 * 
+	 * @return BehandelCode
 	 * @param id
-	 * @return
 	 */
 	public BehandelCode getBehandelCode(int id);
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<BehandelCode>
 	 */
 	public ArrayList<BehandelCode> getBehandelCodes();
 	
