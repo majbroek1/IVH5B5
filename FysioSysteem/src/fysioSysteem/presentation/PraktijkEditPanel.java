@@ -5,11 +5,9 @@
  */
 package fysioSysteem.presentation;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.Inject;
 import fysioSysteem.businessLogic.beheer.IPraktijkManager;
 import fysioSysteem.domain.Praktijk;
-import general.AppInjector;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -31,9 +29,9 @@ public class PraktijkEditPanel extends javax.swing.JPanel {
     /**
      * Creates new form PraktijkEditPanel
      */
-    public PraktijkEditPanel() {
-        Injector injector = Guice.createInjector(new AppInjector());
-        praktijkManager = injector.getInstance(IPraktijkManager.class);
+    @Inject
+    public PraktijkEditPanel(IPraktijkManager praktijkManager) {
+        this.praktijkManager = praktijkManager;
 
         praktijk = praktijkManager.getPraktijk(1);
 
