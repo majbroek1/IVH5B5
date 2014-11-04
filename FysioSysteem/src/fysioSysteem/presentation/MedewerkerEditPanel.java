@@ -83,11 +83,12 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
             if (selPraktijk != null) {
                 cbPraktijk.setSelectedItem(selPraktijk);
             }
+            
+            cbStatus.getModel().setSelectedItem(therapeut.getStatus());
         }
 
         cbPraktijk.setModel(praktijkModel);
         cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
-        cbStatus.getModel().setSelectedItem(therapeut.getStatus());
     }
 
     private JFrame getParentFrame() {
