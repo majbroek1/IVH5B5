@@ -26,10 +26,10 @@ import javax.swing.border.Border;
  * @author Bob
  */
 public class MedewerkerEditPanel extends javax.swing.JPanel {
-
+    
     private IMedewerkerManager medewerkerManager;
     private IPraktijkManager praktijkManager;
-
+    
     private Fysiotherapeut therapeut;
 
     /**
@@ -39,47 +39,47 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         Injector injector = Guice.createInjector(new AppInjector());
         medewerkerManager = injector.getInstance(IMedewerkerManager.class);
         praktijkManager = injector.getInstance(IPraktijkManager.class);
-
+        
         initComponents();
     }
-
+    
     public MedewerkerEditPanel(Fysiotherapeut f) {
         this();
         therapeut = f;
-
+        
         laadData();
     }
-
+    
     private void laadData() {
         ArrayList<Praktijk> praktijken
                 = praktijkManager.getPraktijken();
-
+        
         DefaultComboBoxModel<Praktijk> praktijkModel
                 = new DefaultComboBoxModel<>();
-
+        
         Praktijk selPraktijk = null;
         for (Praktijk p : praktijken) {
             praktijkModel.addElement(p);
-
+            
             if (p.getId() == therapeut.getPraktijk().getId()) {
                 selPraktijk = p;
             }
         }
-
+        
         cbPraktijk.setModel(praktijkModel);
-
+        
         if (therapeut != null) {
             txtNaam.setText(therapeut.getNaam());
             txtWachtwoord.setText(therapeut.getWachtwoord());
             txtWachtwoordHer.setText(therapeut.getWachtwoord());
-            cbStatus.setSelectedItem(therapeut.getStatus());
-
+            
             if (selPraktijk != null) {
                 cbPraktijk.setSelectedItem(selPraktijk);
             }
         }
         
         cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
+        cbStatus.getModel().setSelectedItem(therapeut.getStatus());
     }
     
     private JFrame getParentFrame() {
@@ -195,7 +195,8 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
 
     private void btnAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulerenActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new MedewerkerOverzichtPanel());
+        Injector injector = Guice.createInjector(new AppInjector());
+        parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
     }//GEN-LAST:event_btnAnnulerenActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
@@ -203,8 +204,8 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         Border redBorder = BorderFactory.createLineBorder(Color.red);
         
         if (txtNaam.getText().equals("")
-            || txtNaam.getText().length() >= 50) {
-
+                || txtNaam.getText().length() >= 50) {
+            
             txtNaam.setBorder(redBorder);
             errorMessages.add("- Therapeut Naam");
         }
