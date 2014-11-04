@@ -19,6 +19,15 @@ public class Diagnose {
 		this.omschrijving = omschrijving;
 	}
 	
+        /**
+         * @param omschrijving
+         * @param klant 
+         */
+        public Diagnose(String omschrijving, Klant klant) {
+            this(omschrijving);
+            this.klant = klant;
+        }
+        
 	/**
 	 * @param code
 	 * @param omschrijving
