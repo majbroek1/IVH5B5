@@ -6,9 +6,12 @@
 package fysioSysteem.presentation;
 
 import com.google.inject.Inject;
+
 import fysioSysteem.businessLogic.behandeling.IBehandelCodeManager;
 import fysioSysteem.domain.BehandelCode;
+
 import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -51,6 +54,10 @@ public class BehandelCodeOverzichtPanel extends javax.swing.JPanel {
 		
 		tblBehandelCodes.setModel(behandelcodeModel);
 		
+	}
+	
+	private JFrame getParentFrame(){
+		return (JFrame) SwingUtilities.getRoot(this);
 	}
 
 
@@ -133,10 +140,21 @@ public class BehandelCodeOverzichtPanel extends javax.swing.JPanel {
 
     private void btnWijzigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWijzigenActionPerformed
         // Code wijzigen
+    	try{
+    		BehandelCode b = behandelcodes.get(
+    				tblBehandelCodes.convertRowIndexToModel(tblBehandelCodes.getSelectedRow()));
+    	HoofdVenster parent = (HoofdVenster) getParentFrame();
+    	parent.setPanel(new BehandelCodeEditPanel());
+    	}
+    	catch (Exception ex) {
+    		JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+    	}
     }//GEN-LAST:event_btnWijzigenActionPerformed
 
     private void btnToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToevoegenActionPerformed
         // Code toevoegen
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
+        parent.setPanel(new BehandelCodeEditPanel());
     }//GEN-LAST:event_btnToevoegenActionPerformed
 
 
