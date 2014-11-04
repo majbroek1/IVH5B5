@@ -10,6 +10,8 @@ import com.google.inject.Injector;
 import fysioSysteem.businessLogic.behandeling.IBehandelCodeManager;
 import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
 import fysioSysteem.businessLogic.behandeling.IKlantManager;
+import fysioSysteem.dataStorage.BehandelCodeDAO;
+import fysioSysteem.dataStorage.KlantDAO;
 import fysioSysteem.domain.BehandelCode;
 import fysioSysteem.domain.BehandelStatus;
 import fysioSysteem.domain.Behandeling;
@@ -18,8 +20,10 @@ import general.AppInjector;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
@@ -36,6 +40,8 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
     private IBehandelCodeManager behandelCodeManager;
     private IKlantManager klantManager;
     private Behandeling behandeling;
+    private Klant klant;
+    private AfsprakenToevoegenPanel parentPanel;
 
     /**
      * Creates new form BehandelingEditPanel
@@ -56,9 +62,23 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
         klantManager = injector.getInstance(IKlantManager.class);
 
         this.behandeling = behandeling;
+        this.klant = behandeling.getKlant();
 
-        laadData();
         initComponents();
+        laadData();
+    }
+
+    public BehandelingEditPanel(Klant klant, AfsprakenToevoegenPanel parentPanel) {
+        Injector injector = Guice.createInjector(new AppInjector());
+        behandelingManager = injector.getInstance(IBehandelingManager.class);
+        behandelCodeManager = injector.getInstance(IBehandelCodeManager.class);
+        klantManager = injector.getInstance(IKlantManager.class);
+
+        this.klant = klant;
+        this.parentPanel = parentPanel;
+
+        initComponents();
+        laadData();
     }
 
     /**
@@ -73,11 +93,11 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
         lblKlantBSN = new javax.swing.JLabel();
         cmbbxKlantBSN = new javax.swing.JComboBox();
         lblBehandelCode = new javax.swing.JLabel();
-        txtBehandelCode = new javax.swing.JTextField();
         lblStatus = new javax.swing.JLabel();
         cmbbxStatus = new javax.swing.JComboBox();
         btnAnnuleren = new javax.swing.JButton();
         btnOpslaan = new javax.swing.JButton();
+        cmbBehandelCode = new javax.swing.JComboBox();
 
         lblKlantBSN.setText("Klant BSN");
 
@@ -103,6 +123,8 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
             }
         });
 
+        cmbBehandelCode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,16 +135,16 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
                     .addComponent(cmbbxKlantBSN, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbbxStatus, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAnnuleren)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnOpslaan))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblKlantBSN)
                             .addComponent(lblBehandelCode)
                             .addComponent(lblStatus))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtBehandelCode)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAnnuleren)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOpslaan)))
+                    .addComponent(cmbBehandelCode, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -135,7 +157,7 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(lblBehandelCode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBehandelCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbBehandelCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(lblStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,8 +171,8 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulerenActionPerformed
-        HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new BehandelingOverzichtPanel());
+        JFrame parent = (JFrame) getParentFrame();
+        parent.dispose();
     }//GEN-LAST:event_btnAnnulerenActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
@@ -158,10 +180,8 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
         ArrayList<String> errorMessages = new ArrayList<String>();
         Border redBorder = BorderFactory.createLineBorder(Color.red);
 
-        if (txtBehandelCode.getText().equals("")
-                && txtBehandelCode.getText().length() >= 10) {
-
-            txtBehandelCode.setBorder(redBorder);
+        if (cmbBehandelCode.getSelectedItem().toString().equals("")) {
+            cmbBehandelCode.setBorder(redBorder);
             errorMessages.add("- Behandelcode is incorrect");
         }
 
@@ -176,14 +196,13 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
         }
 
         if (errorMessages.size() < 1) {
-            BehandelCode behandelCode = behandelCodeManager.getBehandelCode(Integer.parseInt(txtBehandelCode.getText()));
             Klant klant = klantManager.getKlant(cmbbxKlantBSN.getSelectedItem().toString());
 
             if (behandeling != null) {
-                Behandeling newBehandeling = new Behandeling(behandeling.getId(), BehandelStatus.valueOf(cmbbxStatus.getSelectedItem().toString()), klant, behandelCode);
+                Behandeling newBehandeling = new Behandeling(behandeling.getId(), BehandelStatus.valueOf(cmbbxStatus.getSelectedItem().toString()), klant, (BehandelCode) cmbBehandelCode.getSelectedItem());
                 behandelingManager.setBehandeling(newBehandeling);
             } else {
-                Behandeling newBehandeling = new Behandeling(BehandelStatus.valueOf(cmbbxStatus.getSelectedItem().toString()), klant, behandelCode);
+                Behandeling newBehandeling = new Behandeling(BehandelStatus.valueOf(cmbbxStatus.getSelectedItem().toString()), (Klant) cmbbxKlantBSN.getSelectedItem(), (BehandelCode) cmbBehandelCode.getSelectedItem());
                 behandelingManager.addBehandeling(newBehandeling);
             }
 
@@ -202,12 +221,39 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(null, builder.toString());
         }
+        parentPanel.laadBehandelingCombobox();
+
+        JFrame parent = (JFrame) getParentFrame();
+        parent.dispose();
     }//GEN-LAST:event_btnOpslaanActionPerformed
 
     private void laadData() {
-        cmbbxKlantBSN.setSelectedItem(behandeling.getKlant().getBsn());
-        txtBehandelCode.setText(Integer.toString(behandeling.getBehandelCode().getCode()));
-        cmbbxStatus.setSelectedItem(behandeling.getStatus());
+        DefaultComboBoxModel<Klant> klantModel = new DefaultComboBoxModel<>();
+        for (Klant k : KlantDAO.getKlanten()) {
+            klantModel.addElement(k);
+            if (klant != null && k.getBsn().equals(klant.getBsn())) {
+                klantModel.setSelectedItem(k);
+            }
+        }
+        cmbbxKlantBSN.setModel(klantModel);
+
+        DefaultComboBoxModel<BehandelCode> codeModel = new DefaultComboBoxModel<>();
+        for (BehandelCode bc : BehandelCodeDAO.getBehandelCodes()) {
+            codeModel.addElement(bc);
+            if (behandeling != null && behandeling.getBehandelCode().getCode() == bc.getCode()) {
+                codeModel.setSelectedItem(bc);
+            }
+        }
+        cmbBehandelCode.setModel(codeModel);
+
+        DefaultComboBoxModel<BehandelStatus> statusModel = new DefaultComboBoxModel<>();
+        for (BehandelStatus s : BehandelStatus.values()) {
+            statusModel.addElement(s);
+            if (behandeling != null && behandeling.getStatus() == s) {
+                statusModel.setSelectedItem(s);
+            }
+        }
+        cmbbxStatus.setModel(statusModel);
     }
 
     private JFrame getParentFrame() {
@@ -217,11 +263,11 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnnuleren;
     private javax.swing.JButton btnOpslaan;
+    private javax.swing.JComboBox cmbBehandelCode;
     private javax.swing.JComboBox cmbbxKlantBSN;
     private javax.swing.JComboBox cmbbxStatus;
     private javax.swing.JLabel lblBehandelCode;
     private javax.swing.JLabel lblKlantBSN;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JTextField txtBehandelCode;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,17 +8,42 @@ import fysioSysteem.domain.Klant;
  * @author IVH5B5
  *
  */
+
 public interface IKlantManager {
 
-    /**
-     * @param bsn
-     * @return Klant
-     */
-    public Klant getKlant(String bsn);
+	/**
+	 * 
+	 * @return void
+	 * @param klant
+	 */
 
-    /**
-     * @return ArrayList<Klant>
-     */
-    public ArrayList<Klant> getKlanten();
-    
+	public void addKlant(Klant klant);
+	
+	/**
+	 * 
+	 * @return void
+	 * @param klant
+	 */
+	public void setKlant(Klant klant);
+	
+	/**
+	 * 
+	 * @param id
+	 * @return Klant
+	 */
+
+	public Klant getKlant(int id);
+	
+	/**
+	 * 
+	 * @param bsn
+	 * @return Klant
+	 */
+	public Klant getKlant(String bsn);
+	
+	/**
+	 * 
+	 * @return ArrayList<Klant>
+	 */
+	public ArrayList<Klant> getKlanten();
 }

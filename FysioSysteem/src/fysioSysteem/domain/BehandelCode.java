@@ -139,5 +139,10 @@ public class BehandelCode{
 	public void setBehandelingen(ArrayList<Behandeling> behandelingen) {
 		this.behandelingen = behandelingen;
 	}
+        
+        @Override
+        public String toString(){
+            return behandelingNaam;
+        }
 	
 }

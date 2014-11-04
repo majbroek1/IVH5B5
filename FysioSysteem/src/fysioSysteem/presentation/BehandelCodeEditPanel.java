@@ -5,137 +5,19 @@
  */
 package fysioSysteem.presentation;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import fysioSysteem.businessLogic.behandeling.IBehandelCodeManager;
-import fysioSysteem.domain.BehandelCode;
-import general.AppInjector;
-
-import java.awt.Color;
-import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
-
-
 /**
  *
  * @author Bob
  */
 public class BehandelCodeEditPanel extends javax.swing.JPanel {
-	
-	private IBehandelCodeManager behandelCodeManager;
-	
-	
+
     /**
      * Creates new form BehandelCodeEditPanel
      */
     public BehandelCodeEditPanel() {
         initComponents();
     }
-    
-    private JFrame getParentFrame() {
-        return (JFrame) SwingUtilities.getRoot(this);
-    }
 
-    private boolean controleerVelden(){
-    	ArrayList<String> errorMessages = new ArrayList<>();
-        Border redBorder = BorderFactory.createLineBorder(Color.red);
-    	
-    	//CODEVELD
-	    	boolean tempcode = true;
-	    	
-	    	try{
-	    		Integer.parseInt(txtCode.getText());
-	    	}
-	    	catch(NumberFormatException e){
-	    		tempcode = false;
-	    	}
-	    	
-	    	if (txtCode.getText().isEmpty()
-	    		|| txtCode.getText().length() >= 15
-	    		|| tempcode == false){
-	    			
-	    			txtCode.setBorder(redBorder);
-	    			errorMessages.add("- Codeveld");
-	    	}
-	    	
-	    //NAAMVELD
-	    	
-	    	if (txtNaam.getText().isEmpty()
-	    		||txtNaam.getText().length() >= 50){
-	    			
-	    		txtNaam.setBorder(redBorder);
-	    		errorMessages.add("- Naamveld");
-	    		}
-	    	
-	    //AANTAL SESSIES
-	    	
-	    	boolean tempsessies = true;
-	    	int sessiestemp = 0;
-	    	
-	    	try{
-	    		sessiestemp = (Integer) spnAantalSessies.getValue();
-	    	}
-	    	catch(NumberFormatException e){
-	    		tempsessies = false;
-	    	}
-	    	
-	    	if (sessiestemp !=0 || tempsessies == false){
-	    		
-	    		spnAantalSessies.setBorder(redBorder);
-	    		errorMessages.add("- Aantal Sessies");
-	    	}
-	    	
-	    //DURATIE SESSIE
-	    	
-	    	boolean tempduratie = true;
-	    	int duratietemp = 0;
-	    	
-	    	try{
-	    		duratietemp = (Integer) spnDuratieSessie.getValue();
-	    	}
-	    	catch(NumberFormatException e){
-	    		tempsessies = false;
-	    	}
-	    	
-	    	if (duratietemp !=0 || tempduratie == false){
-	    		
-	    		spnDuratieSessie.setBorder(redBorder);
-	    		errorMessages.add("- Aantal Sessies");
-	    	}
-	    	
-	    //TARIEF
-	    	
-	    	boolean temptarief = true;
-	    	
-	    	try{
-	    		Double.parseDouble(txtTarief.getText());
-	    	}
-	    	catch(NumberFormatException e){
-	    		temptarief = false;
-	    	}
-	    	
-	    	if (txtTarief.getText().isEmpty()
-	    			|| temptarief == false)
-	    	{
-    			txtTarief.setBorder(redBorder);
-	    		errorMessages.add("- Tarief");
-	    	}
-	    		
-	    	
-	    if (errorMessages.size() ==0){
-	    	return true;
-	    }
-	    else{
-	    	return false;
-	    }
-	    
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -233,26 +115,6 @@ public class BehandelCodeEditPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt){
-    	
-    	if (controleerVelden()==true){
-        	int code = Integer.parseInt(txtCode.getText());
-        	int sessies = (Integer) spnAantalSessies.getValue();
-        	int duur = (Integer) spnDuratieSessie.getValue();
-        	double tarief = Double.parseDouble(txtTarief.getText());
-        	BehandelCode behandelcode = new BehandelCode(code,sessies,txtNaam.getText(),duur,tarief);
-
-        	behandelCodeManager.addBehandelCode(behandelcode);
-    	}
-    	
-
-    }
-    
-    private void btnAnnulerenActionPerformed(java.awt.event.ActionEvent evt){
-        HoofdVenster parent = (HoofdVenster) getParentFrame();
-        Injector injector = Guice.createInjector(new AppInjector());
-        parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnnuleren;

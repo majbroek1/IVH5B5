@@ -97,17 +97,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Bewerken"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bewerkButtonActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="nieuwButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nieuw"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nieuwButtonActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
