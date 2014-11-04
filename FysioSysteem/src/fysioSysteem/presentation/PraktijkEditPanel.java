@@ -29,7 +29,7 @@ public class PraktijkEditPanel extends javax.swing.JPanel {
      */
     public PraktijkEditPanel() {
         Injector injector = Guice.createInjector(new AppInjector());
-        praktijkManager = injector.getInstance(IPraktijkManager.class); 
+        praktijkManager = injector.getInstance(IPraktijkManager.class);
         
         praktijk = praktijkManager.getPraktijk(1);
         
