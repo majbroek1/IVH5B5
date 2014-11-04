@@ -251,7 +251,8 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
 
             HoofdVenster parent = (HoofdVenster) getParentFrame();
-            parent.setPanel(new MedewerkerOverzichtPanel());
+            Injector injector = Guice.createInjector(new AppInjector());
+            parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
         } else {
             int sizeStringBuilder = errorMessages.size() + 1;
             StringBuilder builder = new StringBuilder(sizeStringBuilder);
