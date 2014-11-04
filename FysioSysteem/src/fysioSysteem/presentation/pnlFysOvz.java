@@ -13,22 +13,21 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-import com.google.inject.Inject;
-
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
+import fysioSysteem.businessLogic.beheer.MedewerkerManager;
+import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 
 public class pnlFysOvz extends JPanel {
 	
 	private JButton btnFysioToevoegen;
-	private JTable table;	
-	private ArrayList<Fysiotherapeut> therapeuten;
-	private IMedewerkerManager medewerkerManager;
+	private JTable table;
 	
-	@Inject
-	public pnlFysOvz(IMedewerkerManager medeManager) {
-		medewerkerManager = medeManager;
-		therapeuten = medewerkerManager.getFysiotherapeuten();
+	private ArrayList<Fysiotherapeut> therapeuten;
+	
+	public pnlFysOvz() {
+		IMedewerkerManager mm = new MedewerkerManager();
+		therapeuten = mm.getFysiotherapeuten();
 		
 		genereerLayout();
 		vulVelden();
@@ -65,9 +64,10 @@ public class pnlFysOvz extends JPanel {
 		btnFysioAanpassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					frmMain parent = (frmMain)getParentFrame();
 					Fysiotherapeut t = therapeuten.get(
-							table.convertRowIndexToModel(table.getSelectedRow()));
+						table.convertRowIndexToModel(table.getSelectedRow()));
+					
+					frmMain parent = (frmMain)getParentFrame();
 					parent.setPanel(new pnlFysToeWzg(t));
 				}
 				catch (Exception ex) {
@@ -79,9 +79,10 @@ public class pnlFysOvz extends JPanel {
 		btnRoosInzien.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					frmMain parent = (frmMain)getParentFrame();
 					Fysiotherapeut t = therapeuten.get(
-							table.convertRowIndexToModel(table.getSelectedRow()));
+						table.convertRowIndexToModel(table.getSelectedRow()));
+				
+					frmMain parent = (frmMain)getParentFrame();
 					parent.setPanel(new pnlFysRooOvz(t));
 				}
 				catch (Exception ex) {

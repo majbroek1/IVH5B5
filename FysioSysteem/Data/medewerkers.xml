@@ -1,23 +1,45 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><medewerkers>
-	<medewerker id="1">
-		<naam>Mark van Haperen</naam>
-		<wachtwoord>demo</wachtwoord>
-		<status>ACTIEF</status>
-		<functie>fysiotherapeut</functie>
-		<praktijkId>2</praktijkId>
-	</medewerker>
-	<medewerker id="2">
-		<naam>Bert Hosmans</naam>
-		<wachtwoord>demo</wachtwoord>
-		<status>INACTIEF</status>
-		<functie>fysiotherapeut</functie>
-		<praktijkId>2</praktijkId>
-	</medewerker>
-	<medewerker id="3">
-		<naam>Bob van den Broek</naam>
-		<wachtwoord>demo</wachtwoord>
-		<status>INACTIEF</status>
-		<functie>fysiotherapeut</functie>
-		<praktijkId>3</praktijkId>
-	</medewerker>
-<medewerker id="4"><naam>Maarten van de Lepel</naam><wachtwoord>demo</wachtwoord><praktijkId>1</praktijkId><status>INACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="5"><naam>Pascal den Hooiberg</naam><wachtwoord>demo</wachtwoord><praktijkId>2</praktijkId><status>INACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="6"><naam>Jorick de Oude</naam><wachtwoord>demo</wachtwoord><praktijkId>3</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker></medewerkers>
+<?xml version="1.0" encoding="UTF-8"?>
+<medewerkers>
+   <medewerker id="1">
+      <naam>Frits van Haperen</naam>
+      <wachtwoord>demo</wachtwoord>
+      <status>ACTIEF</status>
+      <functie>fysiotherapeut</functie>
+      <praktijkId>2</praktijkId>
+   </medewerker>
+   <medewerker id="2">
+      <naam>Bert Hosmans</naam>
+      <wachtwoord>demo</wachtwoord>
+      <status>INACTIEF</status>
+      <functie>fysiotherapeut</functie>
+      <praktijkId>2</praktijkId>
+   </medewerker>
+   <medewerker id="3">
+      <naam>Bob van den Broek</naam>
+      <wachtwoord>demo</wachtwoord>
+      <status>INACTIEF</status>
+      <functie>fysiotherapeut</functie>
+      <praktijkId>3</praktijkId>
+   </medewerker>
+   <medewerker id="4">
+      <naam>Maarten van de Lepel</naam>
+      <wachtwoord>demo</wachtwoord>
+      <status>INACTIEF</status>
+      <functie>fysiotherapeut</functie>
+      <praktijkId>1</praktijkId>
+   </medewerker>
+   <medewerker id="5">
+      <naam>Pascal den Hooiberg</naam>
+      <wachtwoord>demo</wachtwoord>
+      <status>INACTIEF</status>
+      <functie>fysiotherapeut</functie>
+      <praktijkId>2</praktijkId>
+   </medewerker>
+   <medewerker id="6">
+      <naam>Jorick de Oude</naam>
+      <wachtwoord>demo</wachtwoord>
+      <status>ACTIEF</status>
+      <functie>fysiotherapeut</functie>
+      <praktijkId>3</praktijkId>
+   </medewerker>
+</medewerkers>
