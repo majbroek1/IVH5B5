@@ -5,8 +5,8 @@
  */
 package fysioSysteem.presentation;
 
+import com.google.inject.Inject;
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
-import fysioSysteem.businessLogic.beheer.MedewerkerManager;
 import fysioSysteem.domain.Fysiotherapeut;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -27,8 +27,9 @@ public class MedewerkerOverzichtPanel extends javax.swing.JPanel {
     /**
      * Creates new form MedewerkerOverzichtPanel
      */
-    public MedewerkerOverzichtPanel() {
-        medewerkerManager = new MedewerkerManager();
+    @Inject
+    public MedewerkerOverzichtPanel(IMedewerkerManager medewerkerManager) {
+        this.medewerkerManager = medewerkerManager;
 
         fysiotherapeuten = medewerkerManager.getFysiotherapeuten();
 

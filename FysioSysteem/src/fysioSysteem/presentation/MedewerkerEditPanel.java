@@ -15,9 +15,11 @@ import fysioSysteem.domain.Status;
 import general.AppInjector;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
@@ -26,10 +28,10 @@ import javax.swing.border.Border;
  * @author Bob
  */
 public class MedewerkerEditPanel extends javax.swing.JPanel {
-
+    
     private IMedewerkerManager medewerkerManager;
     private IPraktijkManager praktijkManager;
-
+    
     private Fysiotherapeut therapeut;
 
     /**
@@ -39,49 +41,53 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         Injector injector = Guice.createInjector(new AppInjector());
         medewerkerManager = injector.getInstance(IMedewerkerManager.class);
         praktijkManager = injector.getInstance(IPraktijkManager.class);
-
+        
         initComponents();
+        laadData();
     }
-
+    
     public MedewerkerEditPanel(Fysiotherapeut f) {
         this();
         therapeut = f;
-
+        
         laadData();
     }
-
+    
     private void laadData() {
         ArrayList<Praktijk> praktijken
                 = praktijkManager.getPraktijken();
-
+        
         DefaultComboBoxModel<Praktijk> praktijkModel
                 = new DefaultComboBoxModel<>();
-
+        
         Praktijk selPraktijk = null;
         for (Praktijk p : praktijken) {
             praktijkModel.addElement(p);
 
-            if (p.getId() == therapeut.getPraktijk().getId()) {
-                selPraktijk = p;
+            if (therapeut != null) {
+                if (p.getId() == therapeut.getPraktijk().getId()) {
+                    selPraktijk = p;
+                }
             }
         }
-
+        
         cbPraktijk.setModel(praktijkModel);
-
+        
         if (therapeut != null) {
             txtNaam.setText(therapeut.getNaam());
             txtWachtwoord.setText(therapeut.getWachtwoord());
             txtWachtwoordHer.setText(therapeut.getWachtwoord());
-            cbStatus.setSelectedItem(therapeut.getStatus());
-
+            
             if (selPraktijk != null) {
                 cbPraktijk.setSelectedItem(selPraktijk);
             }
         }
-        
+
+        cbPraktijk.setModel(praktijkModel);
         cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
+        cbStatus.getModel().setSelectedItem(therapeut.getStatus());
     }
-    
+
     private JFrame getParentFrame() {
         return (JFrame) SwingUtilities.getRoot(this);
     }
@@ -195,18 +201,68 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
 
     private void btnAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulerenActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new MedewerkerOverzichtPanel());
+        Injector injector = Guice.createInjector(new AppInjector());
+        parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
     }//GEN-LAST:event_btnAnnulerenActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
         ArrayList<String> errorMessages = new ArrayList<String>();
         Border redBorder = BorderFactory.createLineBorder(Color.red);
-        
-        if (txtNaam.getText().equals("")
-            || txtNaam.getText().length() >= 50) {
 
+        if (txtNaam.getText().equals("")
+                || txtNaam.getText().length() >= 50) {
+            
             txtNaam.setBorder(redBorder);
             errorMessages.add("- Therapeut Naam");
+        }
+
+        if (txtWachtwoord.getPassword().length < 4
+                || txtWachtwoord.getPassword().length >= 50) {
+
+            txtWachtwoord.setBorder(redBorder);
+            errorMessages.add("- Wachtwoord");
+        }
+
+        if (!Arrays.equals(txtWachtwoord.getPassword(),
+                txtWachtwoordHer.getPassword())) {
+
+            txtWachtwoordHer.setBorder(redBorder);
+            errorMessages.add("- Wachtwoord Herhalen");
+        }
+
+        if (errorMessages.size() < 1) {
+            String password = "";
+            for (char c : txtWachtwoord.getPassword()) {
+                password += c;
+            }
+
+            if (therapeut != null) {
+                Fysiotherapeut Fysiotherapeut = new Fysiotherapeut(therapeut.getId(), txtNaam.getText(), password,
+                        Status.valueOf(cbStatus.getSelectedItem().toString()), (Praktijk) cbPraktijk.getSelectedItem());
+
+                medewerkerManager.setMedewerker(Fysiotherapeut);
+            } else {
+                Fysiotherapeut Fysiotherapeut = new Fysiotherapeut(txtNaam.getText(), password,
+                        Status.valueOf(cbStatus.getSelectedItem().toString()), (Praktijk) cbPraktijk.getSelectedItem());
+
+                medewerkerManager.addMedewerker(Fysiotherapeut);
+            }
+
+            JOptionPane.showMessageDialog(this, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
+
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            Injector injector = Guice.createInjector(new AppInjector());
+            parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
+        } else {
+            int sizeStringBuilder = errorMessages.size() + 1;
+            StringBuilder builder = new StringBuilder(sizeStringBuilder);
+            builder.append("Controleer de volgende velden op volledigheid en correctheid:" + "\n");
+
+            for (String s : errorMessages) {
+                builder.append(s + "\n");
+            }
+
+            JOptionPane.showMessageDialog(null, builder.toString());
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
 
