@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><medewerkers>
 	<medewerker id="1">
-		<naam>Mark</naam>
-		<wachtwoord>Test</wachtwoord>
+		<naam>Mark van Haperen</naam>
+		<wachtwoord>demo</wachtwoord>
 		<status>ACTIEF</status>
 		<functie>fysiotherapeut</functie>
 		<praktijkId>2</praktijkId>
 	</medewerker>
 	<medewerker id="2">
-		<naam>Bob</naam>
-		<wachtwoord>2</wachtwoord>
+		<naam>Bert Hosmans</naam>
+		<wachtwoord>demo</wachtwoord>
 		<status>INACTIEF</status>
 		<functie>fysiotherapeut</functie>
 		<praktijkId>2</praktijkId>
 	</medewerker>
 	<medewerker id="3">
-		<naam>Bert</naam>
-		<wachtwoord>2</wachtwoord>
+		<naam>Bob van den Broek</naam>
+		<wachtwoord>demo</wachtwoord>
 		<status>INACTIEF</status>
 		<functie>fysiotherapeut</functie>
 		<praktijkId>3</praktijkId>
 	</medewerker>
-<medewerker id="4"><naam>adfaf</naam><wachtwoord>adf</wachtwoord><praktijkId>1</praktijkId><status>INACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="5"><naam>Pascal</naam><wachtwoord>hoihoi</wachtwoord><praktijkId>3</praktijkId><status>INACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="6"><naam>Pascal</naam><wachtwoord>hoihoi</wachtwoord><praktijkId>3</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker></medewerkers>
+<medewerker id="4"><naam>Maarten van de Lepel</naam><wachtwoord>demo</wachtwoord><praktijkId>1</praktijkId><status>INACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="5"><naam>Pascal den Hooiberg</naam><wachtwoord>demo</wachtwoord><praktijkId>2</praktijkId><status>INACTIEF</status><functie>fysiotherapeut</functie></medewerker><medewerker id="6"><naam>Jorick de Oude</naam><wachtwoord>demo</wachtwoord><praktijkId>3</praktijkId><status>ACTIEF</status><functie>fysiotherapeut</functie></medewerker></medewerkers>

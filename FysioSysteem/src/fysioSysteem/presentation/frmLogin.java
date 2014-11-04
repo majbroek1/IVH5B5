@@ -43,7 +43,7 @@ public class frmLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblMedewerkerid = new JLabel("MedewerkerID");
+		JLabel lblMedewerkerid = new JLabel("Medewerkersnummer");
 		lblMedewerkerid.setBounds(10, 11, 414, 14);
 		contentPane.add(lblMedewerkerid);
 		
@@ -68,14 +68,23 @@ public class frmLogin extends JFrame {
 				try {
 					int medewerkerId = Integer.parseInt(txtMedewerkerID.getText());
 					String medewerkerPass = new String(txtMedewerkerPass.getPassword());
-					
-					if(lgn.valideer(medewerkerId, medewerkerPass)) {
-						frmLogin.this.dispose();
-						new frmMain().setVisible(true);
+					if (lgn.isActief(medewerkerId))
+					{	
+						if(lgn.valideer(medewerkerId, medewerkerPass)) {
+							frmLogin.this.dispose();
+							new frmMain().setVisible(true);
+						}
+						else {
+							JOptionPane.showMessageDialog(frmLogin.this,
+								    "Ongeldige gebruikersnaam of wachtwoord",
+								    "Validatie error",
+								    JOptionPane.ERROR_MESSAGE);
+						}
 					}
-					else {
+					else
+					{
 						JOptionPane.showMessageDialog(frmLogin.this,
-							    "Ongeldige gebruikersnaam of wachtwoord",
+							    "Deze gebruiker is in actief.",
 							    "Validatie error",
 							    JOptionPane.ERROR_MESSAGE);
 					}
