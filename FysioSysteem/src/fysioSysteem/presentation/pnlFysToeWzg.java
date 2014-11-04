@@ -208,8 +208,10 @@ public class pnlFysToeWzg extends JPanel {
 		for(Praktijk p : praktijken) {
 			pModel.addElement(p);
 			
-			if(p.getId() == therapeut.getPraktijk().getId())
-				selPraktijk = p;
+			if (therapeut != null) {
+				if(p.getId() == therapeut.getPraktijk().getId())
+					selPraktijk = p;
+			}
 		}
 
 		cbPraktijk.setModel(pModel);
