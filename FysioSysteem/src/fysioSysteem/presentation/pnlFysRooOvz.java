@@ -42,18 +42,33 @@ public class pnlFysRooOvz extends JPanel {
 		lblFysRooOvzRooster.setBounds(10, 11, 46, 14);
 		add(lblFysRooOvzRooster);
 		
-		JScrollPane spFysRooOvzTableRooster = new JScrollPane();
+		JScrollPane spFysRooOvzTableRooster = new JScrollPane(tableFysRooOvzRooster);
 		spFysRooOvzTableRooster.setBounds(20, 36, 545, 317);
 		add(spFysRooOvzTableRooster);
 		
 		JButton btnFysRooOvzTerug = new JButton("Terug");
-		btnFysRooOvzTerug.setBounds(30, 364, 89, 23);
+		btnFysRooOvzTerug.setBounds(30, 373, 89, 23);
 		add(btnFysRooOvzTerug);
+		
+		JButton btnWijzig = new JButton("Wijzig rooster");
+		btnWijzig.setBounds(129, 373, 99, 23);
+		add(btnWijzig);
 		
 		btnFysRooOvzTerug.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain parent = (frmMain)getParentFrame();
 				parent.setPanel(new pnlFysOvz());
+			}
+		});
+		
+		btnWijzig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Rooster r = roosters.get(
+					tableFysRooOvzRooster.convertRowIndexToModel(
+						tableFysRooOvzRooster.getSelectedRow()));
+				
+				frmMain parent = (frmMain)getParentFrame();
+				parent.setPanel(new pnlFysRooToeWzg(r));
 			}
 		});
 	}

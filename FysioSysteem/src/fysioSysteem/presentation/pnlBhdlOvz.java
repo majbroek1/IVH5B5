@@ -97,16 +97,16 @@ public class pnlBhdlOvz extends JPanel {
 		    }
 		};
 			
-			for(Behandeling b : behandelingen) {
-				mdl.addRow(new Object[]{
-					b.getId(), 
-					b.getKlant().getBsn(),
-					b.getBehandelCode().getCode(), 
-					b.getStatus()
-				});
-			}
-			
-			overzichtTabel.setModel(mdl);
+		for(Behandeling b : behandelingen) {
+			mdl.addRow(new Object[]{
+				b.getId(), 
+				b.getKlant().getBsn(),
+				b.getBehandelCode().getCode(), 
+				b.getStatus()
+			});
+		}
+		
+		overzichtTabel.setModel(mdl);
 	}
 	
 	private JFrame getParentFrame(){
