@@ -5,19 +5,61 @@
  */
 package fysioSysteem.presentation;
 
+import fysioSysteem.domain.Afspraak;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Pascal
  */
 public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
-
+    
+    private ArrayList<Afspraak> afspraken;
     /**
      * Creates new form AfsprakenOverzichtPanel
      */
     public AfsprakenOverzichtPanel() {
         initComponents();
+        setTable();
     }
 
+    private void setTable() {
+		DefaultTableModel mdl = new DefaultTableModel(
+			new Object[]{"Afspraak #", "Patient", "Datum" , "Tijd", "Behandeling"}, 0){
+		
+			// Tabel Bewerken uit
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       return false;
+		    }
+		};
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM");
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+		Date today = new Date();
+		
+                try{
+                    for(Afspraak a : afspraken) {
+                            if(dateFormat.format(a.getDatumTijd()).equals(dateFormat.format(today)) && today.before(a.getDatumTijd())) {
+                                    mdl.addRow(new Object[]{
+                                            a.getId(), 
+                                            a.getBehandeling().getKlant().getNaam(),
+                                            dateFormat.format(a.getDatumTijd()), 
+                                            timeFormat.format(a.getDatumTijd()),
+                                            a.getBehandeling().getBehandelCode().getBehandelingNaam()
+                                    });
+                            }
+                    }
+                }
+                catch (Exception e)
+                {
+                    
+                }
+		jTable1.setModel(mdl);
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +71,8 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(638, 436));
 
@@ -45,13 +89,32 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jButton1.setText("Afspraak Toevoegen");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Afspraak Verwijderen");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -59,12 +122,26 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
