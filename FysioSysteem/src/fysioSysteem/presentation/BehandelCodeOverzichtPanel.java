@@ -25,7 +25,7 @@ public class BehandelCodeOverzichtPanel extends javax.swing.JPanel {
 	private ArrayList<BehandelCode> behandelcodes;
 	
     /**
-     * Creates new form BehandelCodeOverzichtPanel --commit!!
+     * Creates new form BehandelCodeOverzichtPanel -commit!!
      */
 	@Inject
     public BehandelCodeOverzichtPanel(IBehandelCodeManager behandelcodeManager) {
