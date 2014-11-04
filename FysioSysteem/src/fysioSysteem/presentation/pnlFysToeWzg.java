@@ -131,6 +131,8 @@ public class pnlFysToeWzg extends JPanel {
 		btnFysToeWzgRooster.setBounds(636, 237, 117, 29);
 		add(btnFysToeWzgRooster);
 		
+	    Injector injector = Guice.createInjector(new AppInjector());
+	    
 		/* Button handling */
 		btnFysToeWzgOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,7 +178,7 @@ public class pnlFysToeWzg extends JPanel {
 				    JOptionPane.showMessageDialog(frame, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
 				    
 				    frmMain parent = (frmMain)getParentFrame();
-				    parent.setPanel(new pnlFysOvz());
+				    parent.setPanel(injector.getInstance(pnlFysOvz.class));
 				}
 				else {
 					int sizeStringBuilder = errorMessages.size() + 1;
@@ -194,7 +196,7 @@ public class pnlFysToeWzg extends JPanel {
 		btnFysToeWzgAnnuleren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain parent = (frmMain)getParentFrame();
-				parent.setPanel(new pnlFysOvz());
+				parent.setPanel(injector.getInstance(pnlFysOvz.class));
 			}
 		});
 		

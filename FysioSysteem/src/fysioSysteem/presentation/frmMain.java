@@ -119,7 +119,7 @@ public class frmMain extends JFrame {
 		
 		btnFysiotherapeuten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setPanel(new pnlFysOvz());
+				setPanel(injector.getInstance(pnlFysOvz.class));
 			}
 		});
 		

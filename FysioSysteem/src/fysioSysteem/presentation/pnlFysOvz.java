@@ -13,21 +13,22 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+import com.google.inject.Inject;
+
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
-import fysioSysteem.businessLogic.beheer.MedewerkerManager;
-import fysioSysteem.dataStorage.MedewerkerDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 
 public class pnlFysOvz extends JPanel {
 	
 	private JButton btnFysioToevoegen;
-	private JTable table;
-	
+	private JTable table;	
 	private ArrayList<Fysiotherapeut> therapeuten;
+	private IMedewerkerManager medewerkerManager;
 	
-	public pnlFysOvz() {
-		IMedewerkerManager mm = new MedewerkerManager();
-		therapeuten = mm.getFysiotherapeuten();
+	@Inject
+	public pnlFysOvz(IMedewerkerManager medeManager) {
+		medewerkerManager = medeManager;
+		therapeuten = medewerkerManager.getFysiotherapeuten();
 		
 		genereerLayout();
 		vulVelden();
