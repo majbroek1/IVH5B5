@@ -135,7 +135,7 @@ public class BehandelCodeOverzichtPanel extends javax.swing.JPanel {
                     tblBehandelCodes.convertRowIndexToModel(tblBehandelCodes.getSelectedRow()));
             
             HoofdVenster parent = (HoofdVenster) getParentFrame();
-            parent.setPanel(new BehandelCodeEditPanel());
+            parent.setPanel(new BehandelCodeEditPanel(b));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
         }

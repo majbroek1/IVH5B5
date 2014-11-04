@@ -38,6 +38,7 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     private ArrayList<Fysiotherapeut> actievefysiotherapeuten;
     private ArrayList<Behandeling> behandelingen;
     private ArrayList<Klant> klanten;
+    
     /**
      * Creates new form AfsprakenToevoegenPanel
      */
