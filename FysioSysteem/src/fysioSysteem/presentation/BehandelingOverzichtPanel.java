@@ -32,7 +32,7 @@ public class BehandelingOverzichtPanel extends javax.swing.JPanel {
     public BehandelingOverzichtPanel() {
         Injector injector = Guice.createInjector(new AppInjector());
         this.behandelingManager = injector.getInstance(IBehandelingManager.class);
-        
+
         initComponents();
         laadData();
     }

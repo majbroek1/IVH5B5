@@ -29,6 +29,9 @@ import javax.swing.border.Border;
  */
 public class BehandelingEditPanel extends javax.swing.JPanel {
 
+    /**
+     * Creates new form BehandelingEditPanle
+     */
     private IBehandelingManager behandelingManager;
     private IBehandelCodeManager behandelCodeManager;
     private IKlantManager klantManager;
@@ -70,13 +73,11 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
         lblKlantBSN = new javax.swing.JLabel();
         cmbbxKlantBSN = new javax.swing.JComboBox();
         lblBehandelCode = new javax.swing.JLabel();
-        cmbbxStatus = new javax.swing.JComboBox();
-        lblStatus = new javax.swing.JLabel();
         txtBehandelCode = new javax.swing.JTextField();
+        lblStatus = new javax.swing.JLabel();
+        cmbbxStatus = new javax.swing.JComboBox();
         btnAnnuleren = new javax.swing.JButton();
         btnOpslaan = new javax.swing.JButton();
-
-        setPreferredSize(new java.awt.Dimension(340, 277));
 
         lblKlantBSN.setText("Klant BSN");
 
@@ -84,9 +85,9 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
 
         lblBehandelCode.setText("BehandelCode");
 
-        cmbbxStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lblStatus.setText("Status");
+
+        cmbbxStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnAnnuleren.setText("Annuleren");
         btnAnnuleren.addActionListener(new java.awt.event.ActionListener() {
@@ -102,8 +103,8 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -145,8 +146,6 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
                     .addComponent(btnOpslaan))
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulerenActionPerformed
@@ -213,41 +212,6 @@ public class BehandelingEditPanel extends javax.swing.JPanel {
 
     private JFrame getParentFrame() {
         return (JFrame) SwingUtilities.getRoot(this);
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BehandelingEditPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BehandelingEditPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BehandelingEditPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BehandelingEditPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BehandelingEditPanel().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
