@@ -64,9 +64,10 @@ public class pnlFysOvz extends JPanel {
 		btnFysioAanpassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					frmMain parent = (frmMain)getParentFrame();
 					Fysiotherapeut t = therapeuten.get(
-							table.convertRowIndexToModel(table.getSelectedRow()));
+						table.convertRowIndexToModel(table.getSelectedRow()));
+					
+					frmMain parent = (frmMain)getParentFrame();
 					parent.setPanel(new pnlFysToeWzg(t));
 				}
 				catch (Exception ex) {
@@ -77,9 +78,10 @@ public class pnlFysOvz extends JPanel {
 		
 		btnRoosInzien.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmMain parent = (frmMain)getParentFrame();
 				Fysiotherapeut t = therapeuten.get(
-						table.convertRowIndexToModel(table.getSelectedRow()));
+					table.convertRowIndexToModel(table.getSelectedRow()));
+				
+				frmMain parent = (frmMain)getParentFrame();
 				parent.setPanel(new pnlFysRooOvz(t));
 			}
 		});

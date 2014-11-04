@@ -17,20 +17,10 @@ public class Rooster {
 	 * @param start
 	 * @param eind
 	 */
-	public Rooster(Date start, Date eind) {
+	public Rooster(Date start, Date eind, Fysiotherapeut f) {
 		this.start = start;
 		this.eind = eind;
-	}
-	
-	/**
-	 * @param id
-	 * @param start
-	 * @param eind
-	 */
-	public Rooster(int id, Date start, Date eind) {
-		this.id = id;
-		this.start = start;
-		this.eind = eind;
+		this.fysiotherapeut = f;
 	}
 
 	/**
@@ -40,8 +30,8 @@ public class Rooster {
 	 * @param fysiotherapeut
 	 */
 	public Rooster(int id, Date start, Date eind, Fysiotherapeut fysiotherapeut) {
-		this(id, start, eind);
-		this.fysiotherapeut = fysiotherapeut;
+		this(start, eind, fysiotherapeut);
+		this.id = id;
 	}
 
 	/**
