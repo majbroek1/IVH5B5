@@ -3,20 +3,17 @@ package fysioSysteem.presentation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
 import fysioSysteem.businessLogic.beheer.MedewerkerManager;
 import fysioSysteem.businessLogic.planning.IRoosterManager;
 import fysioSysteem.businessLogic.planning.RoosterManager;
 import fysioSysteem.domain.Fysiotherapeut;
-import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Rooster;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
@@ -88,10 +85,6 @@ public class pnlFysRooToeWzg extends JPanel {
 		lblFysiotherapeut.setBounds(10, 39, 89, 14);
 		add(lblFysiotherapeut);
 		
-		JDateChooser dcDatum = new JDateChooser();
-		dcDatum.setBounds(114, 73, 174, 20);
-		add(dcDatum);
-		
 		JSpinner spnStartUur = new JSpinner();
 		spnStartUur.setBounds(114, 114, 78, 20);
 		add(spnStartUur);
@@ -115,6 +108,10 @@ public class pnlFysRooToeWzg extends JPanel {
 		JSpinner spnEindMinuten = new JSpinner();
 		spnEindMinuten.setBounds(222, 156, 66, 20);
 		add(spnEindMinuten);
+		
+		JDateChooser dcDatum = new JDateChooser();
+		dcDatum.setBounds(114, 67, 89, 20);
+		add(dcDatum);
 		
 		btnFysRooToeWzgOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
