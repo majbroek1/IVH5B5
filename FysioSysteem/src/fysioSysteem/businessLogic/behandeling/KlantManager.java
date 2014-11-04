@@ -24,22 +24,10 @@ public class KlantManager implements IKlantManager {
     public void setKlant(Klant klant) {
         // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public Klant getKlant(int id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Klant getKlant(String bsn) {
-        return KlantDAO.getKlant(bsn);
-    }
-
-    @Override
-    public ArrayList<Klant> getKlanten() {
-        return KlantDAO.getKlanten();
-    }
+	@Override
+	public ArrayList<Klant> getKlanten() {
+		// TODO Auto-generated method stub
+		return KlantDAO.getKlanten();
+	}
 
 }

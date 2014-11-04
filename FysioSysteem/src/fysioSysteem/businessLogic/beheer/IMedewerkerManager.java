@@ -65,4 +65,9 @@ public interface IMedewerkerManager {
 	 */
 	public ArrayList<Medewerker> getActieveMedewerkers();
 	
+        /**
+         * 
+         * @return ArrayList<Fysiotherapeut>
+         */
+        public ArrayList<Fysiotherapeut> getActieveFysiotherapeuten();
 }

@@ -1,18 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<afspraken>
-	<afspraak id="1">
-		<datumTijd>2014-11-04T20:00:10</datumTijd>
-		<fysioId>1</fysioId>
-		<behandelingId>1</behandelingId>
-	</afspraak>
-	<afspraak id="2">
-		<datumTijd>2014-11-04T10:30:10</datumTijd>
-		<fysioId>2</fysioId>
-		<behandelingId>2</behandelingId>
-	</afspraak>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><afspraken>
+	
+	
 	<afspraak id="3">
 		<datumTijd>2014-11-04T09:00:10</datumTijd>
 		<fysioId>3</fysioId>
 		<behandelingId>3</behandelingId>
 	</afspraak>
+	
+	
 </afspraken>
