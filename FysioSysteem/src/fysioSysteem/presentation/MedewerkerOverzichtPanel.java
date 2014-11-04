@@ -150,7 +150,15 @@ public class MedewerkerOverzichtPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnWijzigenActionPerformed
 
     private void btnRoosterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoosterActionPerformed
-        // TODO
+        try {
+            Fysiotherapeut t = fysiotherapeuten.get(
+                    tblMedewerkers.convertRowIndexToModel(tblMedewerkers.getSelectedRow()));
+
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            parent.setPanel(new RoosterOverzichtPanel(t, medewerkerManager));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+        }
     }//GEN-LAST:event_btnRoosterActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
