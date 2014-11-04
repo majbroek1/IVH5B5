@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="Libs/javassist-3.18.2-GA.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Guice"/>
 	<classpathentry kind="src" path="/RMIShared"/>
+	<classpathentry kind="lib" path="jcalendar-1.4[1].jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
