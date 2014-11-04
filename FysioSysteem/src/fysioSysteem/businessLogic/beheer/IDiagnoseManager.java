@@ -15,23 +15,29 @@ import fysioSysteem.domain.Diagnose;
 public interface IDiagnoseManager {
 
 	/**
+	 * 
+	 * @return boolean
 	 * @param diagnose
 	 */
 	public boolean addDiagnose(Diagnose diagnose);
 	
 	/**
+	 * 
+	 * @return boolean
 	 * @param diagnose
 	 */
 	public boolean setDiagnose(Diagnose diagnose);
 	
 	/**
+	 * 
+	 * @return Diagnose
 	 * @param id
-	 * @return
 	 */
 	public Diagnose getDiagnose(int id);
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Diagnose>
 	 */
 	public ArrayList<Diagnose> getDiagnoses();
 	
