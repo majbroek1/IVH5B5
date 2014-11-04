@@ -127,10 +127,6 @@ public class pnlFysToeWzg extends JPanel {
 		btnFysToeWzgAnnuleren.setBounds(213, 234, 117, 29);
 		add(btnFysToeWzgAnnuleren);
 		
-		JButton btnFysToeWzgRooster = new JButton("Rooster");
-		btnFysToeWzgRooster.setBounds(636, 237, 117, 29);
-		add(btnFysToeWzgRooster);
-		
 	    Injector injector = Guice.createInjector(new AppInjector());
 	    
 		/* Button handling */
@@ -197,13 +193,6 @@ public class pnlFysToeWzg extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				frmMain parent = (frmMain)getParentFrame();
 				parent.setPanel(injector.getInstance(pnlFysOvz.class));
-			}
-		});
-		
-		btnFysToeWzgRooster.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmMain parent = (frmMain)getParentFrame();
-				parent.setPanel(new pnlFysRooOvz(therapeut));
 			}
 		});
 	}
