@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<medewerkers>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><medewerkers>
    <medewerker id="1">
       <naam>Frits van Haperen</naam>
       <wachtwoord>demo</wachtwoord>
