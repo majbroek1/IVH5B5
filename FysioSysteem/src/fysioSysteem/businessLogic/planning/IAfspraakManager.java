@@ -14,37 +14,43 @@ import fysioSysteem.domain.Klant;
 public interface IAfspraakManager {
 
 	/**
+	 * 
 	 * @param afspraak
-	 * @return
+	 * @return boolean
 	 */
 	public boolean addAfspraak(Afspraak afspraak);
 	
 	/**
+	 * 
 	 * @param afspraak
-	 * @return
+	 * @return boolean
 	 */
 	public boolean setAfspraak(Afspraak afspraak);
 	
 	/**
+	 * 
 	 * @param id
-	 * @return
+	 * @return Afspraak
 	 */
 	public Afspraak getAfspraak(int id);
 	
 	/**
+	 * 
 	 * @param klant
-	 * @return
+	 * @return ArrayList<Afspraak>
 	 */
 	public ArrayList<Afspraak> getAfspraken(Klant klant);
 	
 	/**
+	 * 
 	 * @param fysio
-	 * @return
+	 * @return ArrayList<Afspraak>
 	 */
 	public ArrayList<Afspraak> getAfspraken(Fysiotherapeut fysio);
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Afspraak> 
 	 */
 	public ArrayList<Afspraak> getAfspraken();
 	
