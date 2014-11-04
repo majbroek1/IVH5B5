@@ -263,7 +263,7 @@ public class HoofdVenster extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUitloggenMouseClicked
 
     private void btnAfsprakenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAfsprakenMouseClicked
-        // TODO
+        setPanel(new AfsprakenOverzichtPanel());
     }//GEN-LAST:event_btnAfsprakenMouseClicked
 
     private void btnTherapeutenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTherapeutenMouseClicked

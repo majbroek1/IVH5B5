@@ -15,9 +15,11 @@ import fysioSysteem.domain.Status;
 import general.AppInjector;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
@@ -41,6 +43,7 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         praktijkManager = injector.getInstance(IPraktijkManager.class);
         
         initComponents();
+        laadData();
     }
     
     public MedewerkerEditPanel(Fysiotherapeut f) {
@@ -60,9 +63,11 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         Praktijk selPraktijk = null;
         for (Praktijk p : praktijken) {
             praktijkModel.addElement(p);
-            
-            if (p.getId() == therapeut.getPraktijk().getId()) {
-                selPraktijk = p;
+
+            if (therapeut != null) {
+                if (p.getId() == therapeut.getPraktijk().getId()) {
+                    selPraktijk = p;
+                }
             }
         }
         
@@ -77,11 +82,12 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                 cbPraktijk.setSelectedItem(selPraktijk);
             }
         }
-        
+
+        cbPraktijk.setModel(praktijkModel);
         cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
         cbStatus.getModel().setSelectedItem(therapeut.getStatus());
     }
-    
+
     private JFrame getParentFrame() {
         return (JFrame) SwingUtilities.getRoot(this);
     }
@@ -202,12 +208,60 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
         ArrayList<String> errorMessages = new ArrayList<String>();
         Border redBorder = BorderFactory.createLineBorder(Color.red);
-        
+
         if (txtNaam.getText().equals("")
                 || txtNaam.getText().length() >= 50) {
             
             txtNaam.setBorder(redBorder);
             errorMessages.add("- Therapeut Naam");
+        }
+
+        if (txtWachtwoord.getPassword().length < 4
+                || txtWachtwoord.getPassword().length >= 50) {
+
+            txtWachtwoord.setBorder(redBorder);
+            errorMessages.add("- Wachtwoord");
+        }
+
+        if (!Arrays.equals(txtWachtwoord.getPassword(),
+                txtWachtwoordHer.getPassword())) {
+
+            txtWachtwoordHer.setBorder(redBorder);
+            errorMessages.add("- Wachtwoord Herhalen");
+        }
+
+        if (errorMessages.size() < 1) {
+            String password = "";
+            for (char c : txtWachtwoord.getPassword()) {
+                password += c;
+            }
+
+            if (therapeut != null) {
+                Fysiotherapeut Fysiotherapeut = new Fysiotherapeut(therapeut.getId(), txtNaam.getText(), password,
+                        Status.valueOf(cbStatus.getSelectedItem().toString()), (Praktijk) cbPraktijk.getSelectedItem());
+
+                medewerkerManager.setMedewerker(Fysiotherapeut);
+            } else {
+                Fysiotherapeut Fysiotherapeut = new Fysiotherapeut(txtNaam.getText(), password,
+                        Status.valueOf(cbStatus.getSelectedItem().toString()), (Praktijk) cbPraktijk.getSelectedItem());
+
+                medewerkerManager.addMedewerker(Fysiotherapeut);
+            }
+
+            JOptionPane.showMessageDialog(this, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
+
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            parent.setPanel(new MedewerkerOverzichtPanel());
+        } else {
+            int sizeStringBuilder = errorMessages.size() + 1;
+            StringBuilder builder = new StringBuilder(sizeStringBuilder);
+            builder.append("Controleer de volgende velden op volledigheid en correctheid:" + "\n");
+
+            for (String s : errorMessages) {
+                builder.append(s + "\n");
+            }
+
+            JOptionPane.showMessageDialog(null, builder.toString());
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
 
