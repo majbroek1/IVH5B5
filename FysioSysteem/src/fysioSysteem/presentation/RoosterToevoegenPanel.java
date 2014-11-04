@@ -11,6 +11,7 @@ import fysioSysteem.businessLogic.planning.RoosterManager;
 import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
+import general.PanelValidatie;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
