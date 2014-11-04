@@ -1,7 +1,5 @@
 package fysioSysteem.businessLogic.planning;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -86,4 +84,8 @@ public class AfspraakManager implements IAfspraakManager {
 		return AfspraakDAO.getAfspraken();
 	}
 
+        @Override
+        public void removeAfspraak(Afspraak afspraak) {
+                AfspraakDAO.removeAfspraak(afspraak);
+        }
 }

@@ -53,5 +53,10 @@ public interface IAfspraakManager {
 	 * @return ArrayList<Afspraak> 
 	 */
 	public ArrayList<Afspraak> getAfspraken();
-	
+        
+        /**
+	 * @param afspraak
+	 * @return void 
+	 */
+	public void removeAfspraak(Afspraak afspraak);
 }

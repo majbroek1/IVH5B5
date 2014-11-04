@@ -5,10 +5,16 @@
  */
 package fysioSysteem.presentation;
 
+import fysioSysteem.businessLogic.planning.AfspraakManager;
+import fysioSysteem.businessLogic.planning.IAfspraakManager;
+import fysioSysteem.dataStorage.AfspraakDAO;
 import fysioSysteem.domain.Afspraak;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,16 +24,30 @@ import javax.swing.table.DefaultTableModel;
 public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
     
     private ArrayList<Afspraak> afspraken;
+    private AfspraakManager am;
     /**
      * Creates new form AfsprakenOverzichtPanel
      */
     public AfsprakenOverzichtPanel() {
+        am = new AfspraakManager();
+        
         initComponents();
+        
+        try
+        {
+            afspraken = am.getAfspraken();
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Afspraken ophalen is mislukt.");
+        }
         setTable();
     }
 
+    
+        
     private void setTable() {
-		DefaultTableModel mdl = new DefaultTableModel(
+		DefaultTableModel tabelModel = new DefaultTableModel(
 			new Object[]{"Afspraak #", "Patient", "Datum" , "Tijd", "Behandeling"}, 0){
 		
 			// Tabel Bewerken uit
@@ -41,10 +61,11 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 		Date today = new Date();
 		
-                try{
+                try
+                {
                     for(Afspraak a : afspraken) {
-                            if(dateFormat.format(a.getDatumTijd()).equals(dateFormat.format(today)) && today.before(a.getDatumTijd())) {
-                                    mdl.addRow(new Object[]{
+                            if(dateFormat.format(a.getDatumTijd()).equals(dateFormat.format(today)) || today.before(a.getDatumTijd())) {
+                                    tabelModel.addRow(new Object[]{
                                             a.getId(), 
                                             a.getBehandeling().getKlant().getNaam(),
                                             dateFormat.format(a.getDatumTijd()), 
@@ -56,9 +77,9 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
                 }
                 catch (Exception e)
                 {
-                    
+                            
                 }
-		jTable1.setModel(mdl);
+		jTable1.setModel(tabelModel);
 	}
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,8 +92,8 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buttonAfspraakToevoegen = new javax.swing.JButton();
+        buttonAfspraakVerwijderen = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(638, 436));
 
@@ -89,17 +110,17 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jButton1.setText("Afspraak Toevoegen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonAfspraakToevoegen.setText("Afspraak Toevoegen");
+        buttonAfspraakToevoegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonAfspraakToevoegenActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Afspraak Verwijderen");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonAfspraakVerwijderen.setText("Afspraak Verwijderen");
+        buttonAfspraakVerwijderen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonAfspraakVerwijderenActionPerformed(evt);
             }
         });
 
@@ -112,9 +133,9 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(buttonAfspraakToevoegen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(buttonAfspraakVerwijderen)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,24 +145,37 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(buttonAfspraakToevoegen)
+                    .addComponent(buttonAfspraakVerwijderen))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buttonAfspraakToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakToevoegenActionPerformed
+        frmMain parent = (frmMain)getParentFrame();
+        parent.setPanel(new AfsprakenToevoegenPanel());
+    }//GEN-LAST:event_buttonAfspraakToevoegenActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    private void buttonAfspraakVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakVerwijderenActionPerformed
+        try {
+                Afspraak a = afspraken.get(jTable1.convertRowIndexToModel(jTable1.getSelectedRow()));
+                
+                am.removeAfspraak(a);
+                
+                setTable();
+	}
+	catch (Exception ex) {
+		JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+	}
+    }//GEN-LAST:event_buttonAfspraakVerwijderenActionPerformed
+   
+    private JFrame getParentFrame(){
+	return (JFrame)SwingUtilities.getRoot(this);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton buttonAfspraakToevoegen;
+    private javax.swing.JButton buttonAfspraakVerwijderen;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
