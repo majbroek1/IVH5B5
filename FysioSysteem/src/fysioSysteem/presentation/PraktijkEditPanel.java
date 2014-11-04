@@ -10,9 +10,13 @@ import com.google.inject.Injector;
 import fysioSysteem.businessLogic.beheer.IPraktijkManager;
 import fysioSysteem.domain.Praktijk;
 import general.AppInjector;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 /**
  *
@@ -21,22 +25,22 @@ import javax.swing.SwingUtilities;
 public class PraktijkEditPanel extends javax.swing.JPanel {
 
     private IPraktijkManager praktijkManager;
-    
+
     private Praktijk praktijk;
-    
+
     /**
      * Creates new form PraktijkEditPanel
      */
     public PraktijkEditPanel() {
         Injector injector = Guice.createInjector(new AppInjector());
         praktijkManager = injector.getInstance(IPraktijkManager.class);
-        
+
         praktijk = praktijkManager.getPraktijk(1);
-        
+
         initComponents();
         laadData();
     }
-    
+
     private void laadData() {
         txtNaam.setText(praktijk.getNaam());
         txtAdres.setText(praktijk.getAdres());
@@ -47,28 +51,70 @@ public class PraktijkEditPanel extends javax.swing.JPanel {
         txtEmail.setText(praktijk.getEmail());
         txtWebsite.setText(praktijk.getWebsite());
     }
-    
+
     private boolean controleerVelden() {
-        if(!txtNaam.getText().isEmpty()
-            && !txtAdres.getText().isEmpty()
-            && !txtPostcode.getText().isEmpty()
-            && !txtPlaats.getText().isEmpty()
-            && !txtIban.getText().isEmpty()
-            && !txtTelefoon.getText().isEmpty()
-            && !txtEmail.getText().isEmpty()) {
-            
-            if(!PanelValidatie.valideerPostcode(txtPostcode.getText()))
-                return false;
+        ArrayList<String> errorMessages = new ArrayList<>();
+        Border redBorder = BorderFactory.createLineBorder(Color.red);
+
+        if (txtNaam.getText().isEmpty()) {
+            txtNaam.setBorder(redBorder);
+            errorMessages.add("- Naam");
+        }
+
+        if (txtAdres.getText().isEmpty()) {
+            txtAdres.setBorder(redBorder);
+            errorMessages.add("- Adres");
+        }
+
+        if (txtPostcode.getText().isEmpty()
+                && PanelValidatie.valideerPostcode(txtPostcode.getText())) {
+            txtPostcode.setBorder(redBorder);
+            errorMessages.add("- Postcode");
+        }
+
+        if (txtPlaats.getText().isEmpty()) {
+            txtPlaats.setBorder(redBorder);
+            errorMessages.add("- Plaats");
+        }
+
+        if (txtIban.getText().isEmpty()) {
+            txtIban.setBorder(redBorder);
+            errorMessages.add("- IBAN");
+        }
+
+        if (txtTelefoon.getText().isEmpty()) {
+            txtTelefoon.setBorder(redBorder);
+            errorMessages.add("- Telefoon");
+        }
+
+        if (txtEmail.getText().isEmpty()) {
+            if (!PanelValidatie.valideerEmail(txtEmail.getText())) {
+                txtEmail.setBorder(redBorder);
+                errorMessages.add("- Email");
+            }
         }
         
-        if(!txtEmail.getText().isEmpty()) {
-            if(!PanelValidatie.valideerEmail(txtEmail.getText()))
-                return false;
+        if (txtWebsite.getText().isEmpty()) {
+            txtWebsite.setBorder(redBorder);
+            errorMessages.add("- Website");
         }
-        
-        return true;
+
+        if (errorMessages.size() > 0) {
+            int sizeStringBuilder = errorMessages.size() + 1;
+            StringBuilder builder = new StringBuilder(sizeStringBuilder);
+            builder.append("Controleer de volgende velden:" + "\n");
+
+            for (String s : errorMessages) {
+                builder.append(s + "\n");
+            }
+
+            JOptionPane.showMessageDialog(this, builder.toString(),
+                    "Controleer gegevens", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return errorMessages.size() < 1;
     }
-    
+
     private JFrame getParentFrame() {
         return (JFrame) SwingUtilities.getRoot(this);
     }
@@ -197,7 +243,7 @@ public class PraktijkEditPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
-        if(controleerVelden()) {
+        if (controleerVelden()) {
             praktijk.setNaam(txtNaam.getText());
             praktijk.setAdres(txtAdres.getText());
             praktijk.setPostcode(txtPostcode.getText());
@@ -206,15 +252,11 @@ public class PraktijkEditPanel extends javax.swing.JPanel {
             praktijk.setTelNr(txtTelefoon.getText());
             praktijk.setEmail(txtEmail.getText());
             praktijk.setWebsite(txtWebsite.getText());
-            
+
             praktijkManager.setPraktijk(praktijk);
-            
+
             JOptionPane.showMessageDialog(this,
-                "Opslaan van praktijk is succesvol", "Opslaan praktijk", JOptionPane.INFORMATION_MESSAGE); 
-        }
-        else {
-            JOptionPane.showMessageDialog(this,
-                "Fout bij het opslaan van praktijk, controleer de velden", "Opslaan praktijk", JOptionPane.WARNING_MESSAGE); 
+                    "Opslaan van praktijk is succesvol", "Opslaan praktijk", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
 

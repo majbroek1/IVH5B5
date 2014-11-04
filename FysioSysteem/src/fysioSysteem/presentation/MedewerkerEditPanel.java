@@ -95,7 +95,7 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         ArrayList<String> errorMessages = new ArrayList<>();
         Border redBorder = BorderFactory.createLineBorder(Color.red);
 
-        if (txtNaam.getText().equals("")
+        if (txtNaam.getText().isEmpty()
                 || txtNaam.getText().length() >= 50) {
 
             txtNaam.setBorder(redBorder);
