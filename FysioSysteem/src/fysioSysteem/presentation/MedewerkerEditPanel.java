@@ -13,8 +13,13 @@ import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Status;
 import general.AppInjector;
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 /**
  *
@@ -76,6 +81,10 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         
         cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
     }
+    
+    private JFrame getParentFrame() {
+        return (JFrame) SwingUtilities.getRoot(this);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,8 +115,18 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         jLabel3.setText("Status");
 
         btnAnnuleren.setText("Annuleren");
+        btnAnnuleren.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnnulerenActionPerformed(evt);
+            }
+        });
 
         btnOpslaan.setText("Opslaan");
+        btnOpslaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpslaanActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Praktijk");
 
@@ -173,6 +192,23 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulerenActionPerformed
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
+        parent.setPanel(new MedewerkerOverzichtPanel());
+    }//GEN-LAST:event_btnAnnulerenActionPerformed
+
+    private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
+        ArrayList<String> errorMessages = new ArrayList<String>();
+        Border redBorder = BorderFactory.createLineBorder(Color.red);
+        
+        if (txtNaam.getText().equals("")
+            || txtNaam.getText().length() >= 50) {
+
+            txtNaam.setBorder(redBorder);
+            errorMessages.add("- Therapeut Naam");
+        }
+    }//GEN-LAST:event_btnOpslaanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
