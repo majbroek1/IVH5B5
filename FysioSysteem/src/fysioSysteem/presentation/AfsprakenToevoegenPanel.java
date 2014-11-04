@@ -12,17 +12,22 @@ import fysioSysteem.businessLogic.behandeling.IKlantManager;
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
 import fysioSysteem.businessLogic.planning.IAfspraakManager;
 import fysioSysteem.domain.Afspraak;
+import fysioSysteem.domain.BehandelCode;
+import fysioSysteem.domain.BehandelStatus;
 import fysioSysteem.domain.Behandeling;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Klant;
 import general.AppInjector;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 /**
  *
@@ -59,7 +64,7 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
 
     private void laadData() {
         Date today = new Date();
-        jDateChooser1.setMinSelectableDate(today);
+        jDatum.setMinSelectableDate(today);
 
         DefaultComboBoxModel<Klant> klantModel
                 = new DefaultComboBoxModel<>();
@@ -107,9 +112,9 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jSpinField1 = new com.toedter.components.JSpinField();
-        jSpinField2 = new com.toedter.components.JSpinField();
+        jDatum = new com.toedter.calendar.JDateChooser();
+        jSpinUren = new com.toedter.components.JSpinField();
+        jSpinMinuten = new com.toedter.components.JSpinField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -122,11 +127,11 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         buttonNieuwBehandeling = new javax.swing.JButton();
 
-        jSpinField1.setMaximum(23);
-        jSpinField1.setMinimum(0);
+        jSpinUren.setMaximum(23);
+        jSpinUren.setMinimum(0);
 
-        jSpinField2.setMaximum(59);
-        jSpinField2.setMinimum(0);
+        jSpinMinuten.setMaximum(59);
+        jSpinMinuten.setMinimum(0);
 
         jLabel1.setText("Datum");
 
@@ -179,16 +184,16 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                            .addComponent(jDatum, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSpinField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSpinUren, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSpinMinuten, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2)))
                     .addComponent(cmbFysiotherapeut, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbBehandeling, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,9 +220,9 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSpinField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinUren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinMinuten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,20 +246,56 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAfspraakOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakOpslaanActionPerformed
+        if (valideerVelden()) {
+            Afspraak afspraak = new Afspraak(composeDate(), (Fysiotherapeut) cmbFysiotherapeut.getSelectedItem(), (Behandeling) cmbBehandeling.getSelectedItem());
+            afspraakManager.addAfspraak(afspraak);
 
-        jDateChooser1.getDate();
-
-        SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
-        SimpleDateFormat time = new SimpleDateFormat("hh:mm");
-
-        JOptionPane.showMessageDialog(null, jDateChooser1.getDate());
-
-        Date datumAfspraak = new Date();
-
-        Afspraak afspraak = new Afspraak(null, (Fysiotherapeut) cmbFysiotherapeut.getSelectedItem(), (Behandeling) cmbBehandeling.getSelectedItem());
-
-        afspraakManager.setAfspraak(afspraak);
+            JOptionPane.showMessageDialog(null, "De afspraak is opgeslagen");
+            Injector injector = Guice.createInjector(new AppInjector());
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            parent.setPanel(injector.getInstance(AfsprakenOverzichtPanel.class));
+        }
     }//GEN-LAST:event_buttonAfspraakOpslaanActionPerformed
+
+    private boolean valideerVelden() {
+        JFrame frame = new JFrame();
+        ArrayList<String> errorMessages = new ArrayList<String>();
+        Border redBorder = BorderFactory.createLineBorder(Color.red);
+
+        if (jDatum.getDate() == null) {
+            jDatum.setBorder(redBorder);
+            errorMessages.add("- Datum is niet ingevuld is incorrect");
+        }
+
+        if (cmbFysiotherapeut.getSelectedItem().toString().equals("")) {
+            cmbFysiotherapeut.setBorder(redBorder);
+            errorMessages.add("- Fysiotherapeut is incorrect");
+        }
+
+        if (cmbBehandeling.getSelectedItem().toString().equals("")) {
+            cmbBehandeling.setBorder(redBorder);
+            errorMessages.add("- Behandeling is incorrect");
+        }
+
+        if (cmbKlant.getSelectedItem().toString().equals("")) {
+            cmbKlant.setBorder(redBorder);
+            errorMessages.add("- Klant is incorrect");
+        }
+        if (errorMessages.size() > 0) {
+
+            int sizeStringBuilder = errorMessages.size() + 1;
+            StringBuilder builder = new StringBuilder(sizeStringBuilder);
+            builder.append("Controleer de volgende velden op volledigheid en correctheid:" + "\n");
+
+            for (String s : errorMessages) {
+                builder.append(s + "\n");
+            }
+
+            JOptionPane.showMessageDialog(null, builder.toString());
+            return false;
+        }
+        return true;
+    }
 
     private void buttonAfspraakAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakAnnulerenActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
@@ -263,7 +304,7 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
 
     private void buttonNieuwBehandelingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNieuwBehandelingActionPerformed
 
-        BehandelingEditPanel panel = new BehandelingEditPanel((Klant) cmbKlant.getSelectedItem(),this);
+        BehandelingEditPanel panel = new BehandelingEditPanel((Klant) cmbKlant.getSelectedItem(), this);
 
         JFrame frame = new JFrame();
         frame.setTitle("Nieuwe Behandeling");
@@ -281,6 +322,36 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
         return (JFrame) SwingUtilities.getRoot(this);
     }
 
+    private Date composeDate() {
+        // begin 
+        SimpleDateFormat fullTimeDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+
+        String uren = "";
+        if (jSpinUren.getValue() < 10) {
+            uren = "0" + Integer.toString(jSpinUren.getValue());
+        } else {
+            uren = Integer.toString(jSpinUren.getValue());
+        }
+        String minuten = "";
+        if (jSpinMinuten.getValue() < 10) {
+            minuten = "0" + Integer.toString(jSpinMinuten.getValue());
+        } else {
+            minuten = Integer.toString(jSpinMinuten.getValue());
+        }
+
+        String dagDate = date.format(jDatum.getDate());
+        String tijdDate = uren + ":" + minuten; // TO DO
+
+        Date fullDate = null;
+        try {
+            fullDate = fullTimeDate.parse(dagDate + " " + tijdDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fullDate;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAfspraakAnnuleren;
     private javax.swing.JButton buttonAfspraakOpslaan;
@@ -288,13 +359,13 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbBehandeling;
     private javax.swing.JComboBox cmbFysiotherapeut;
     private javax.swing.JComboBox cmbKlant;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDatum;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private com.toedter.components.JSpinField jSpinField1;
-    private com.toedter.components.JSpinField jSpinField2;
+    private com.toedter.components.JSpinField jSpinMinuten;
+    private com.toedter.components.JSpinField jSpinUren;
     // End of variables declaration//GEN-END:variables
 }
