@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import java.awt.SystemColor;
 
 public class frmMain extends JFrame {
 	private JPanel pnlContent;
@@ -32,7 +33,7 @@ public class frmMain extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JPanel pnlMenu = new JPanel();
-		pnlMenu.setBackground(new Color(204, 0, 0));
+		pnlMenu.setBackground(SystemColor.window);
 		pnlMenu.setBounds(0, 0, 200, 667);
 		getContentPane().add(pnlMenu);
 		GridBagLayout gbl_pnlMenu = new GridBagLayout();
@@ -79,8 +80,8 @@ public class frmMain extends JFrame {
 		pnlMenu.add(btnPraktijk, gbc_btnPraktijk);
 		
 		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(255, 0, 0));
-		separator.setBackground(new Color(153, 0, 0));
+		separator.setForeground(SystemColor.scrollbar);
+		separator.setBackground(SystemColor.inactiveCaptionText);
 		GridBagConstraints gbc_separator = new GridBagConstraints();
 		gbc_separator.insets = new Insets(0, 0, 5, 0);
 		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
