@@ -21,7 +21,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jDateChooser1" pref="388" max="32767" attributes="0"/>
+                          <Component id="jDatum" pref="388" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -30,9 +30,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jSpinField1" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jSpinUren" min="-2" pref="35" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSpinField2" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="jSpinMinuten" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -69,9 +69,9 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jSpinField1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSpinField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinUren" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDatum" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinMinuten" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" pref="16" max="-2" attributes="0"/>
@@ -98,15 +98,15 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+    <Component class="com.toedter.calendar.JDateChooser" name="jDatum">
     </Component>
-    <Component class="com.toedter.components.JSpinField" name="jSpinField1">
+    <Component class="com.toedter.components.JSpinField" name="jSpinUren">
       <Properties>
         <Property name="maximum" type="int" value="23"/>
         <Property name="minimum" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.components.JSpinField" name="jSpinField2">
+    <Component class="com.toedter.components.JSpinField" name="jSpinMinuten">
       <Properties>
         <Property name="maximum" type="int" value="59"/>
         <Property name="minimum" type="int" value="0"/>
