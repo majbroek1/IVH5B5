@@ -76,5 +76,10 @@ public class Fysiotherapeut extends Medewerker {
 	public void setAfspraken(ArrayList<Afspraak> afspraken) {
 		this.afspraken = afspraken;
 	}
-
+	
+	@Override
+	public String toString() {
+		return this.getNaam(); 
+	}
+	
 }

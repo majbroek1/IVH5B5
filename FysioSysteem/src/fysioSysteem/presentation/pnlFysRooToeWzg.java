@@ -18,13 +18,12 @@ import fysioSysteem.businessLogic.planning.RoosterManager;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Praktijk;
 import fysioSysteem.domain.Rooster;
+import javax.swing.JComboBox;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JSpinner;
 
 public class pnlFysRooToeWzg extends JPanel {
-	
-	private JTextField txtFysRooToeWzgNaam;
-	private JTextField txtFysRooToeWzgStart;
-	private JTextField txtFysRooToeWzgEind;
-	private JTextField txtFysRooToeWzgDatum;
+	private JComboBox cbFysio;
 	
 	private IRoosterManager roosterManager;
 	private Rooster rooster;
@@ -34,9 +33,9 @@ public class pnlFysRooToeWzg extends JPanel {
 	 * @wbp.parser.constructor
 	 */
 	public pnlFysRooToeWzg(Fysiotherapeut f) {
-		this.fysio = f;
-		
 		roosterManager = new RoosterManager();
+		
+		fysio = f;
 		rooster = roosterManager.getRooster(f.getId());
 		
 		genereerLayout();
@@ -44,9 +43,9 @@ public class pnlFysRooToeWzg extends JPanel {
 	}
 	
 	public pnlFysRooToeWzg(Rooster r) {
-		rooster = r;
-		
 		roosterManager = new RoosterManager();
+		
+		rooster = r;
 		
 		genereerLayout();
 		vulVelden();
@@ -60,57 +59,69 @@ public class pnlFysRooToeWzg extends JPanel {
 		lblRooster.setBounds(10, 11, 154, 14);
 		add(lblRooster);
 		
-		JLabel lblFysRooToeWzgNaam = new JLabel("Naam");
-		lblFysRooToeWzgNaam.setBounds(32, 36, 46, 14);
-		add(lblFysRooToeWzgNaam);
-		
 		JLabel lblFysRooToeWzgStarttijd = new JLabel("Starttijd");
-		lblFysRooToeWzgStarttijd.setBounds(32, 115, 46, 14);
+		lblFysRooToeWzgStarttijd.setBounds(10, 117, 46, 14);
 		add(lblFysRooToeWzgStarttijd);
 		
 		JLabel lblFysRooToeWzgEindtijd = new JLabel("Eindtijd");
-		lblFysRooToeWzgEindtijd.setBounds(32, 154, 46, 14);
+		lblFysRooToeWzgEindtijd.setBounds(10, 156, 46, 14);
 		add(lblFysRooToeWzgEindtijd);
 		
 		JLabel lblDatum = new JLabel("Datum");
-		lblDatum.setBounds(32, 76, 46, 14);
+		lblDatum.setBounds(10, 77, 46, 14);
 		add(lblDatum);
 		
 		//Buttons
 		JButton btnFysRooToeWzgOpslaan = new JButton("Opslaan");
-		btnFysRooToeWzgOpslaan.setBounds(131, 195, 89, 23);
+		btnFysRooToeWzgOpslaan.setBounds(221, 193, 89, 23);
 		add(btnFysRooToeWzgOpslaan);
 		
 		JButton btnFysRooToeWzgTerug = new JButton("Terug");
-		btnFysRooToeWzgTerug.setBounds(32, 195, 89, 23);
+		btnFysRooToeWzgTerug.setBounds(10, 193, 89, 23);
 		add(btnFysRooToeWzgTerug);
 		
-		//TextField
-		txtFysRooToeWzgNaam = new JTextField();
-		txtFysRooToeWzgNaam.setText(fysio.getNaam());
-		txtFysRooToeWzgNaam.setEditable(false);
-		txtFysRooToeWzgNaam.setBounds(136, 33, 174, 20);
-		add(txtFysRooToeWzgNaam);
-		txtFysRooToeWzgNaam.setColumns(10);
+		cbFysio = new JComboBox();
+		cbFysio.setBounds(114, 36, 174, 20);
+		add(cbFysio);
 		
-		txtFysRooToeWzgStart = new JTextField();
-		txtFysRooToeWzgStart.setBounds(136, 112, 174, 20);
-		add(txtFysRooToeWzgStart);
-		txtFysRooToeWzgStart.setColumns(10);
+		JLabel lblFysiotherapeut = new JLabel("Fysiotherapeut");
+		lblFysiotherapeut.setBounds(10, 39, 89, 14);
+		add(lblFysiotherapeut);
 		
-		txtFysRooToeWzgEind = new JTextField();
-		txtFysRooToeWzgEind.setBounds(136, 151, 174, 20);
-		add(txtFysRooToeWzgEind);
-		txtFysRooToeWzgEind.setColumns(10);
+		JDateChooser dcDatum = new JDateChooser();
+		dcDatum.setBounds(114, 73, 174, 20);
+		add(dcDatum);
 		
-		txtFysRooToeWzgDatum = new JTextField();
-		txtFysRooToeWzgDatum.setBounds(136, 73, 174, 20);
-		add(txtFysRooToeWzgDatum);
-		txtFysRooToeWzgDatum.setColumns(10);
+		JSpinner spnStartUur = new JSpinner();
+		spnStartUur.setBounds(114, 114, 78, 20);
+		add(spnStartUur);
+		
+		JSpinner spnStartMinuten = new JSpinner();
+		spnStartMinuten.setBounds(222, 114, 66, 20);
+		add(spnStartMinuten);
+		
+		JLabel label = new JLabel(":");
+		label.setBounds(202, 117, 4, 14);
+		add(label);
+		
+		JSpinner spnEindUur = new JSpinner();
+		spnEindUur.setBounds(114, 156, 78, 20);
+		add(spnEindUur);
+		
+		JLabel label_1 = new JLabel(":");
+		label_1.setBounds(202, 159, 4, 14);
+		add(label_1);
+		
+		JSpinner spnEindMinuten = new JSpinner();
+		spnEindMinuten.setBounds(222, 156, 66, 20);
+		add(spnEindMinuten);
 		
 		btnFysRooToeWzgOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				System.out.println(dcDatum.getDate().toString());
+				
+				/*
 				if(PanelValidatie.valideerDatum(txtFysRooToeWzgStart.getText())
 					&& PanelValidatie.valideerDatum(txtFysRooToeWzgEind.getText())) {
 					
@@ -128,6 +139,7 @@ public class pnlFysRooToeWzg extends JPanel {
 					Rooster newRooster = new Rooster(startRooster, eindRooster, fysio);
 					roosterManager.addRooster(newRooster);
 				}
+				*/
 			}
 		});
 	}
@@ -146,11 +158,11 @@ public class pnlFysRooToeWzg extends JPanel {
 		for(Fysiotherapeut f : fysiotherapeuten) {
 			fModel.addElement(f);
 			
-			if(f.getId() == fysio.getId())
+			if(f.getId() == rooster.getFysiotherapeut().getId())
 				selFysio = f;
 		}
 		
-		
+		cbFysio.setModel(fModel);
 		
 	}
 }
