@@ -5,6 +5,7 @@
  */
 package fysioSysteem.presentation;
 
+import general.PanelValidatie;
 import com.google.inject.Inject;
 import fysioSysteem.businessLogic.beheer.IPraktijkManager;
 import fysioSysteem.domain.Praktijk;
@@ -91,7 +92,7 @@ public class PraktijkEditPanel extends javax.swing.JPanel {
                 errorMessages.add("- Email");
             }
         }
-        
+
         if (txtWebsite.getText().isEmpty()) {
             txtWebsite.setBorder(redBorder);
             errorMessages.add("- Website");
