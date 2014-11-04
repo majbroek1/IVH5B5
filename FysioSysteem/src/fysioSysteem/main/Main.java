@@ -1,6 +1,5 @@
 package fysioSysteem.main;
 
-import fysioSysteem.presentation.frmLogin;
 import general.AppInjector;
 import general.Settings;
 
@@ -11,6 +10,7 @@ import org.apache.log4j.BasicConfigurator;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import fysioSysteem.presentation.LoginVenster;
 
 /**
  * @author IVH5B5
@@ -35,6 +35,6 @@ public class Main {
 		BasicConfigurator.configure();
 
 		Injector injector = Guice.createInjector(new AppInjector());
-		injector.getInstance(frmLogin.class).setVisible(true);
+		injector.getInstance(LoginVenster.class).setVisible(true);
 	}
 }
