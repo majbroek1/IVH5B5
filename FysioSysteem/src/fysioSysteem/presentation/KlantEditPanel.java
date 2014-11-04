@@ -206,7 +206,7 @@ public class KlantEditPanel extends javax.swing.JPanel {
 
     private void btnDiagnosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagnosesActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new DiagnoseEditPanel(klant));
+        parent.setPanel(new DiagnoseOverzichtPanel(klant));
     }//GEN-LAST:event_btnDiagnosesActionPerformed
 
 

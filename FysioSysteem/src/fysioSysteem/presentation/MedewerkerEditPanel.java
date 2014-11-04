@@ -47,9 +47,13 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
     }
     
     public MedewerkerEditPanel(Fysiotherapeut f) {
-        this();
+        Injector injector = Guice.createInjector(new AppInjector());
+        medewerkerManager = injector.getInstance(IMedewerkerManager.class);
+        praktijkManager = injector.getInstance(IPraktijkManager.class);
+        
         therapeut = f;
         
+        initComponents();
         laadData();
     }
     
@@ -70,8 +74,6 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                 }
             }
         }
-        
-        cbPraktijk.setModel(praktijkModel);
         
         if (therapeut != null) {
             txtNaam.setText(therapeut.getNaam());
