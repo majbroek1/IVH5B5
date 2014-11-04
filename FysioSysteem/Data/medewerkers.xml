@@ -4,7 +4,7 @@
       <wachtwoord>demo</wachtwoord>
       <status>ACTIEF</status>
       <functie>fysiotherapeut</functie>
-      <praktijkId>2</praktijkId>
+      <praktijkId>1</praktijkId>
    </medewerker>
    <medewerker id="2">
       <naam>Bert Hosmans</naam>
