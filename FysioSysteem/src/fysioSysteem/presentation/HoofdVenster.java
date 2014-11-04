@@ -54,7 +54,7 @@ public class HoofdVenster extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnUitloggen = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        btnKlanten = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btnBehandeCodes = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -210,11 +210,11 @@ public class HoofdVenster extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnKlanten.setBackground(new java.awt.Color(0, 137, 137));
-        btnKlanten.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnKlanten.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel1.setBackground(new java.awt.Color(0, 137, 137));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnKlantenMouseClicked(evt);
+                jPanel1MouseClicked(evt);
             }
         });
 
@@ -222,18 +222,18 @@ public class HoofdVenster extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Klanten");
 
-        javax.swing.GroupLayout btnKlantenLayout = new javax.swing.GroupLayout(btnKlanten);
-        btnKlanten.setLayout(btnKlantenLayout);
-        btnKlantenLayout.setHorizontalGroup(
-            btnKlantenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnKlantenLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        btnKlantenLayout.setVerticalGroup(
-            btnKlantenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnKlantenLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addContainerGap())
@@ -280,7 +280,7 @@ public class HoofdVenster extends javax.swing.JFrame {
                     .addComponent(btnBehandelingen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPraktijk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUitloggen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKlanten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBehandeCodes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -294,7 +294,7 @@ public class HoofdVenster extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBehandelingen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnKlanten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBehandeCodes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -359,10 +359,10 @@ public class HoofdVenster extends javax.swing.JFrame {
         setPanel(injector.getInstance(PraktijkEditPanel.class));
     }//GEN-LAST:event_btnPraktijkMouseClicked
 
-    private void btnKlantenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKlantenMouseClicked
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         Injector injector = Guice.createInjector(new AppInjector());
         setPanel(injector.getInstance(KlantOverzichtPanel.class));
-    }//GEN-LAST:event_btnKlantenMouseClicked
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     private void btnBehandeCodesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBehandeCodesMouseClicked
         Injector injector = Guice.createInjector(new AppInjector());
@@ -373,7 +373,6 @@ public class HoofdVenster extends javax.swing.JFrame {
     private javax.swing.JPanel btnAfspraken;
     private javax.swing.JPanel btnBehandeCodes;
     private javax.swing.JPanel btnBehandelingen;
-    private javax.swing.JPanel btnKlanten;
     private javax.swing.JPanel btnPraktijk;
     private javax.swing.JPanel btnTherapeuten;
     private javax.swing.JPanel btnUitloggen;
@@ -384,6 +383,7 @@ public class HoofdVenster extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables

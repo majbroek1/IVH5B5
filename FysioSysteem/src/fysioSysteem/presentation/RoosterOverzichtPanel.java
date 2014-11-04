@@ -13,7 +13,6 @@ import fysioSysteem.domain.Rooster;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +25,6 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
 
     private ArrayList<Rooster> roosters;
     private IMedewerkerManager medewerkerManager;
-    private Fysiotherapeut fysio;
 
     /**
      * Creates new form RoosterOverzichtPanel
@@ -37,7 +35,6 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
         IRoosterManager rm = new RoosterManager();
         this.medewerkerManager = medewerkerManager;
         roosters = rm.getWeekRooster(f);
-        this.fysio = f;
         initComponents();
         vulVelden();
     }
@@ -86,18 +83,8 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
         });
 
         bewerkButton.setText("Bewerken");
-        bewerkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bewerkButtonActionPerformed(evt);
-            }
-        });
 
         nieuwButton.setText("Nieuw");
-        nieuwButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nieuwButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -134,24 +121,6 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
         parent.setPanel(new MedewerkerOverzichtPanel(medewerkerManager));
     }//GEN-LAST:event_terugButtonActionPerformed
 
-    private void bewerkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bewerkButtonActionPerformed
-        try {
-            Rooster r = roosters.get(
-                    roosterTable.convertRowIndexToModel(
-                            roosterTable.getSelectedRow()));
-
-            HoofdVenster parent = (HoofdVenster) getParentFrame();
-            parent.setPanel(new RoosterEditPanel(r, medewerkerManager));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
-        }
-    }//GEN-LAST:event_bewerkButtonActionPerformed
-
-    private void nieuwButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nieuwButtonActionPerformed
-        HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new RoosterToevoegenPanel(fysio, medewerkerManager));
-    }//GEN-LAST:event_nieuwButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bewerkButton;
@@ -172,7 +141,7 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
                     }
                 };
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM");
 
         for (Rooster r : roosters) {
             mdl.addRow(new Object[]{

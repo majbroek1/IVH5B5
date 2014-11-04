@@ -23,42 +23,51 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BehandelCodeOverzichtPanel extends javax.swing.JPanel {
 
-    private IBehandelCodeManager behandelcodeManager;
-
-    private ArrayList<BehandelCode> behandelcodes;
-
+	private IBehandelCodeManager behandelcodeManager;
+	
+	private ArrayList<BehandelCode> behandelcodes;
+	
     /**
      * Creates new form BehandelCodeOverzichtPanel -commit!!
      */
-    @Inject
+	@Inject
     public BehandelCodeOverzichtPanel(IBehandelCodeManager behandelcodeManager) {
-        this.behandelcodeManager = behandelcodeManager;
-
-        behandelcodes = behandelcodeManager.getBehandelCodes();
-
+		this.behandelcodeManager = behandelcodeManager;
+		
+		behandelcodes = behandelcodeManager.getBehandelCodes();
+		
         initComponents();
         laadData();
     }
+	
+	private void laadData(){
+		DefaultTableModel behandelcodeModel = new DefaultTableModel(
+				new Object[]{"Code", "Behandelingnaam", "Aantal Sessies", "Sessieduur", "Tarief"}, 0
+		);
+		
+		for (BehandelCode b : behandelcodes){
+			behandelcodeModel.addRow(new Object[]{
+					b.getCode(), b.getBehandelingNaam(), b.getAantalSessies(),
+					b.getSessieDuur(), b.getTariefBehandeling()
+			});
+		}
+		
+		tblBehandelCodes.setModel(behandelcodeModel);
+		
+	}
+	
+	private JFrame getParentFrame(){
+		return (JFrame) SwingUtilities.getRoot(this);
+	}
 
-    private void laadData() {
-        DefaultTableModel behandelcodeModel = new DefaultTableModel(
-                new Object[]{"Code", "Behandelingnaam", "Aantal Sessies", "Sessieduur", "Tarief"}, 0
-        );
 
-        for (BehandelCode b : behandelcodes) {
-            behandelcodeModel.addRow(new Object[]{
-                b.getCode(), b.getBehandelingNaam(), b.getAantalSessies(),
-                b.getSessieDuur(), b.getTariefBehandeling()
-            });
-        }
+	
+	
+    /**
+     * Creates new form BehandelCodeEditPanel
+     */
 
-        tblBehandelCodes.setModel(behandelcodeModel);
-
-    }
-
-    private JFrame getParentFrame() {
-        return (JFrame) SwingUtilities.getRoot(this);
-    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,6 +151,7 @@ public class BehandelCodeOverzichtPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnWijzigenActionPerformed
 
     private void btnToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToevoegenActionPerformed
+        // Code toevoegen
         HoofdVenster parent = (HoofdVenster) getParentFrame();
         parent.setPanel(new BehandelCodeEditPanel());
     }//GEN-LAST:event_btnToevoegenActionPerformed

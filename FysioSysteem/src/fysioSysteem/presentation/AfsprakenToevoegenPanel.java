@@ -34,11 +34,11 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     private IMedewerkerManager medewerkerManger;
     private IBehandelingManager behandelingManager;
     private IKlantManager klantManager;
-    
+
     private ArrayList<Fysiotherapeut> actievefysiotherapeuten;
     private ArrayList<Behandeling> behandelingen;
     private ArrayList<Klant> klanten;
-    
+
     /**
      * Creates new form AfsprakenToevoegenPanel
      */
@@ -48,57 +48,56 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
         this.medewerkerManger = injector.getInstance(IMedewerkerManager.class);
         this.behandelingManager = injector.getInstance(IBehandelingManager.class);
         this.klantManager = injector.getInstance(IKlantManager.class);
-        
+
         actievefysiotherapeuten = medewerkerManger.getActieveFysiotherapeuten();
         klanten = klantManager.getKlanten();
         behandelingen = behandelingManager.getBehandelingen(klanten.get(0));
-        
+
         initComponents();
         laadData();
     }
 
-    private void laadData()
-    {
+    private void laadData() {
         Date today = new Date();
         jDateChooser1.setMinSelectableDate(today);
-        
+
         DefaultComboBoxModel<Klant> klantModel
                 = new DefaultComboBoxModel<>();
-        
+
         for (Klant k : klanten) {
             klantModel.addElement(k);
         }
         cmbKlant.setModel(klantModel);
-        
+
         DefaultComboBoxModel<Fysiotherapeut> fysiotherapeutModel
                 = new DefaultComboBoxModel<>();
-        
+
         for (Fysiotherapeut f : actievefysiotherapeuten) {
             fysiotherapeutModel.addElement(f);
         }
         cmbFysiotherapeut.setModel(fysiotherapeutModel);
-        
+
         DefaultComboBoxModel<Behandeling> behandelingModel
                 = new DefaultComboBoxModel<>();
-        
+
         for (Behandeling b : behandelingen) {
             behandelingModel.addElement(b);
         }
         cmbBehandeling.setModel(behandelingModel);
     }
-    
-    private void laadBehandelingCombobox()
-    {
-        behandelingen = behandelingManager.getBehandelingen((Klant)cmbKlant.getSelectedItem());
-        
+
+    public void laadBehandelingCombobox() {
+        behandelingen = behandelingManager.getBehandelingen((Klant) cmbKlant.getSelectedItem());
+
         DefaultComboBoxModel<Behandeling> behandelingModel
                 = new DefaultComboBoxModel<>();
-        
+
         for (Behandeling b : behandelingen) {
             behandelingModel.addElement(b);
         }
         cmbBehandeling.setModel(behandelingModel);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -242,35 +241,33 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAfspraakOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakOpslaanActionPerformed
-          
+
         jDateChooser1.getDate();
-        
-        
+
         SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat time = new SimpleDateFormat("hh:mm");
-        
-        
+
         JOptionPane.showMessageDialog(null, jDateChooser1.getDate());
-        
-        Date datumAfspraak = new Date ();
-        
-        Afspraak afspraak = new Afspraak(null, (Fysiotherapeut)cmbFysiotherapeut.getSelectedItem(),(Behandeling)cmbBehandeling.getSelectedItem());
-       
+
+        Date datumAfspraak = new Date();
+
+        Afspraak afspraak = new Afspraak(null, (Fysiotherapeut) cmbFysiotherapeut.getSelectedItem(), (Behandeling) cmbBehandeling.getSelectedItem());
+
         afspraakManager.setAfspraak(afspraak);
     }//GEN-LAST:event_buttonAfspraakOpslaanActionPerformed
 
     private void buttonAfspraakAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakAnnulerenActionPerformed
-        HoofdVenster parent = (HoofdVenster)getParentFrame();
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
         parent.setPanel(new AfsprakenOverzichtPanel());
     }//GEN-LAST:event_buttonAfspraakAnnulerenActionPerformed
 
     private void buttonNieuwBehandelingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNieuwBehandelingActionPerformed
-      
-        BehandelingEditPanel panel = new BehandelingEditPanel();
+
+        BehandelingEditPanel panel = new BehandelingEditPanel((Klant) cmbKlant.getSelectedItem(),this);
 
         JFrame frame = new JFrame();
         frame.setTitle("Nieuwe Behandeling");
-        frame.setSize(450,300);
+        frame.setSize(450, 300);
         frame.setLocationRelativeTo(null);
         frame.add(panel);
         frame.setVisible(true);
@@ -279,9 +276,9 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     private void cmbKlantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKlantActionPerformed
         laadBehandelingCombobox();
     }//GEN-LAST:event_cmbKlantActionPerformed
-    
-    private JFrame getParentFrame(){
-	return (JFrame)SwingUtilities.getRoot(this);
+
+    private JFrame getParentFrame() {
+        return (JFrame) SwingUtilities.getRoot(this);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
