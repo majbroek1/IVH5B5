@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><praktijken>
 	<praktijk id="1">
-		<naam>Praktijk 1</naam>
+		<naam>Lieve Zonneschijn Praktijk</naam>
 		<adres>Scholtenstraat 13</adres>
 		<postcode>8256BD</postcode>
 		<plaats>Roosendaal</plaats>
 		<iban>13ING000376271752</iban>
 		<telnr>0739564712</telnr>
-		<email>bla@blabla.nl</email>
-		<website>blablabla.nl</website>
+		<email>info@lzp.nl</email>
+		<website>lzp.nl</website>
 	</praktijk>
 	<praktijk id="2">
-		<naam>Praktijk 2</naam>
-		<adres>Scholtenstraat 13</adres>
-		<postcode>8256AD</postcode>
+		<naam>Hopmans Fysiopraktijk</naam>
+		<adres>Lepelstraat 23</adres>
+		<postcode>6523AS</postcode>
 		<plaats>Haarlem</plaats>
 		<iban>13ING000376271752</iban>
 		<telnr>0739564712</telnr>
-		<email>bla@blabla.nl</email>
-		<website>bla.nl</website>
+		<email>info@fysiopraktijkhopmans.nl</email>
+		<website>fysiopraktijkhopmans.nl</website>
 	</praktijk>
 	<praktijk id="3">
-		<naam>Praktijk 3</naam>
-		<adres>Scholtenstraat 13</adres>
+		<naam>Vork Fysiopraktijk</naam>
+		<adres>vorkstraat 2</adres>
 		<postcode>8256AD</postcode>
-		<plaats>Haarlem</plaats>
+		<plaats>Amsterdam</plaats>
 		<iban>13ING000376271752</iban>
 		<telnr>0739564712</telnr>
-		<email>bla@blabla.nl</email>
-		<website>bla.nl</website>
+		<email>info@vorkfysio.nl</email>
+		<website>vorkfysio.nl</website>
 	</praktijk>
 </praktijken>

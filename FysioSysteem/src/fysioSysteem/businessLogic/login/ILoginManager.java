@@ -10,10 +10,21 @@ import fysioSysteem.domain.Medewerker;
 public interface ILoginManager {
 
 	/**
-	 * @param id
+	 * @param medewerkerId
 	 * @param wachtwoord
-	 * @return
+	 * @return boolean
 	 */
-	public boolean valideer(int id, String wachtwoord);
+	public boolean valideer(int medewerkerId, String wachtwoord);
+	
+	/**
+	 * @param id
+	 * @return boolean
+	 */
+	
+	public boolean isActief(int medewerkerId);
+	
+	/**
+	 * @return Medewerker
+	 */
 	public Medewerker getIngelogdeMedewerker();
 }

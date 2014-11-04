@@ -33,5 +33,4 @@ public class KlantDAO {
 	public static ArrayList<Klant> getKlanten() {
 		return RMIClient.getKlanten();
 	}
-
 }

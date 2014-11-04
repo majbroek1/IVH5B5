@@ -17,8 +17,8 @@ public class LoginManager implements ILoginManager {
 	private Medewerker ingelogdeMedewerker = null;
 	
 	@Override
-	public boolean valideer(int id, String wachtwoord) {
-		Medewerker m = MedewerkerDAO.getMedewerker(id);
+	public boolean valideer(int medewerkerId, String wachtwoord) {
+		Medewerker m = MedewerkerDAO.getMedewerker(medewerkerId);
 		
 		if(m != null) {
 			if(m.getWachtwoord().equals(wachtwoord)
@@ -28,6 +28,21 @@ public class LoginManager implements ILoginManager {
 			}
 		}
 		
+		return false;
+	}
+	
+	@Override
+	public boolean isActief(int medewerkerId)
+	{
+		Medewerker m = MedewerkerDAO.getMedewerker(medewerkerId);
+		
+		if (m != null)
+		{
+			if (m.getStatus() == Status.ACTIEF)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 	

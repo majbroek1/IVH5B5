@@ -127,10 +127,8 @@ public class pnlFysToeWzg extends JPanel {
 		btnFysToeWzgAnnuleren.setBounds(213, 234, 117, 29);
 		add(btnFysToeWzgAnnuleren);
 		
-		JButton btnFysToeWzgRooster = new JButton("Rooster");
-		btnFysToeWzgRooster.setBounds(636, 237, 117, 29);
-		add(btnFysToeWzgRooster);
-		
+	    Injector injector = Guice.createInjector(new AppInjector());
+	    
 		/* Button handling */
 		btnFysToeWzgOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,7 +174,7 @@ public class pnlFysToeWzg extends JPanel {
 				    JOptionPane.showMessageDialog(frame, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
 				    
 				    frmMain parent = (frmMain)getParentFrame();
-				    parent.setPanel(new pnlFysOvz());
+				    parent.setPanel(injector.getInstance(pnlFysOvz.class));
 				}
 				else {
 					int sizeStringBuilder = errorMessages.size() + 1;
@@ -194,14 +192,7 @@ public class pnlFysToeWzg extends JPanel {
 		btnFysToeWzgAnnuleren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmMain parent = (frmMain)getParentFrame();
-				parent.setPanel(new pnlFysOvz());
-			}
-		});
-		
-		btnFysToeWzgRooster.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmMain parent = (frmMain)getParentFrame();
-				parent.setPanel(new pnlFysRooOvz(therapeut));
+				parent.setPanel(injector.getInstance(pnlFysOvz.class));
 			}
 		});
 	}
