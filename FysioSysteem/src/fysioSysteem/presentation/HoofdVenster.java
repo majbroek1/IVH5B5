@@ -22,14 +22,14 @@ public class HoofdVenster extends javax.swing.JFrame {
     public HoofdVenster() {
         initComponents();
     }
-    
+
     public void setPanel(JPanel panel) {
         pnlContent.removeAll();
         pnlContent.add(panel);
-        
+
         panel.setBounds(0, 0, pnlContent.getWidth(), pnlContent.getHeight());
         panel.setVisible(true);
-        
+
         pnlContent.revalidate();
         pack();
     }
@@ -365,7 +365,8 @@ public class HoofdVenster extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKlantenMouseClicked
 
     private void btnBehandeCodesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBehandeCodesMouseClicked
-        setPanel(new BehandelCodeOverzichtPanel());
+        Injector injector = Guice.createInjector(new AppInjector());
+        setPanel(injector.getInstance(BehandelCodeOverzichtPanel.class));
     }//GEN-LAST:event_btnBehandeCodesMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
