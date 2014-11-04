@@ -17,6 +17,7 @@ import fysioSysteem.domain.Klant;
 @Singleton
 public class BehandelingManager implements IBehandelingManager {
 	
+	
 	@Override
 	public void addBehandeling(Behandeling behandeling) {
 		BehandelingDAO.addBehandeling(behandeling);

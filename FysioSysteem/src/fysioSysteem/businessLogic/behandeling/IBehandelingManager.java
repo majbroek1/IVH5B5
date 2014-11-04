@@ -14,35 +14,41 @@ import fysioSysteem.domain.Klant;
 public interface IBehandelingManager {
 
 	/**
+	 * 
+	 * @return void
 	 * @param behandeling
 	 */
 	public void addBehandeling(Behandeling behandeling);
 	
 	/**
+	 * 
+	 * @return void
 	 * @param behandeling
 	 */
 	public void setBehandeling(Behandeling behandeling);
 	
 	/**
+	 * 
 	 * @param id
-	 * @return
+	 * @return Behandeling
 	 */
 	public Behandeling getBehandeling(int id);
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList<Behandeling>
 	 */
 	public ArrayList<Behandeling> getBehandelingen();
 	
 	/**
 	 * @param klant
-	 * @return
+	 * @return ArrayList<Behandeling>
 	 */
 	public ArrayList<Behandeling> getBehandelingen(Klant klant);
 	
 	/**
 	 * @param behandelCode
-	 * @return
+	 * @return ArrayList<Behandeling>
 	 */
 	public ArrayList<Behandeling> getBehandelingen(BehandelCode behandelCode);
 	

@@ -29,7 +29,7 @@ public class BehandelCodeManager implements IBehandelCodeManager {
 	public BehandelCode getBehandelCode(int id) {
 		return BehandelCodeDAO.getBehandelCode(id);
 	}
-	
+
 	@Override
 	public ArrayList<BehandelCode> getBehandelCodes() {
 		return BehandelCodeDAO.getBehandelCodes();
