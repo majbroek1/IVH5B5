@@ -18,6 +18,7 @@ public class KlantDAO {
 		ArrayList<Klant> klanten = getKlanten();
 		for(Klant k : klanten){
 			if(k.getBsn().equals(bsn)){
+                            k.setDiagnoses(DiagnoseDAO.getDiagnoses(k));
 				return k;
 			}
 		}
