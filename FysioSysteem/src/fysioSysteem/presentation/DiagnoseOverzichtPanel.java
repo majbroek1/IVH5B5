@@ -7,7 +7,7 @@ package fysioSysteem.presentation;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import fysioSysteem.businessLogic.beheer.IDiagnoseManager;
+import fysioSysteem.businessLogic.behandeling.IDiagnoseManager;
 import fysioSysteem.domain.Diagnose;
 import fysioSysteem.domain.Klant;
 import general.AppInjector;
