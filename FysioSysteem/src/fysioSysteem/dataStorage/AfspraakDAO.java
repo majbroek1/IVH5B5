@@ -121,7 +121,7 @@ public class AfspraakDAO {
             Node rootElement = document.getElementsByTagName("afspraken").item(0);
 
             // TODO
-            Element newAfspraak = document.createElement("afspraakId");
+            Element newAfspraak = document.createElement("afspraak");
             newAfspraak.setAttribute("id", Integer.toString(IdManager.getId("Afspraak")));
             rootElement.appendChild(newAfspraak);
 

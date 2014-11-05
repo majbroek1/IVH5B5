@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><incrementIds>
 	<incrementId class="Afspraak">
 		<currentId>10</currentId>
+		<currentId>12</currentId>
 	</incrementId>
 	<incrementId class="Behandeling">
 		<currentId>5</currentId>
