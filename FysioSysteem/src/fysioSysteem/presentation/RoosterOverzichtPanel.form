@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[638, 465]"/>
@@ -21,18 +21,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Component id="scrollTable" alignment="1" pref="638" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="nieuwButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="scrollTable" pref="621" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="terugButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="bewerkButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="nieuwButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="bewerkButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="terugButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -40,8 +36,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollTable" min="-2" pref="403" max="-2" attributes="0"/>
+              <Component id="scrollTable" min="-2" pref="414" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bewerkButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -92,7 +87,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="terugButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sluiten"/>
+        <Property name="text" type="java.lang.String" value="Terug"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="terugButtonActionPerformed"/>
@@ -100,7 +95,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="bewerkButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Rooster wijzigen"/>
+        <Property name="text" type="java.lang.String" value="Bewerken"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bewerkButtonActionPerformed"/>
@@ -108,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="nieuwButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Rooster Toevoegen"/>
+        <Property name="text" type="java.lang.String" value="Nieuw"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nieuwButtonActionPerformed"/>
