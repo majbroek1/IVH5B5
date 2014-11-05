@@ -206,7 +206,7 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNieuwActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
-        if (diagnose != null) { // Wijzigen
+        if (diagnose != null) {
             if (controleerVelden()) {
                 diagnose.setOmschrijving(txtOmschrijving.getText());
                 diagnose.setKlant(klant);
@@ -215,7 +215,7 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this,
                         "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
             }
-        } else { // Toevoegen
+        } else {
             if (controleerVelden()) {
                 diagnoseManager.addDiagnose(new Diagnose(
                         txtOmschrijving.getText(), klant

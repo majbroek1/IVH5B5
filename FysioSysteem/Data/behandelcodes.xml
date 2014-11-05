@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<behandelCodes>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><behandelCodes>
 	<behandelCode code="1">
 		<behandelingNaam>Achillespeesblessure</behandelingNaam>
 		<aantalSessies>19</aantalSessies>
 		<sessieDuur>10</sessieDuur>
-		<tariefBehandeling>300.00</tariefBehandeling>
+		<tariefBehandeling>300.0</tariefBehandeling>
 	</behandelCode>
 	<behandelCode code="2">
 		<behandelingNaam>Artrose</behandelingNaam>

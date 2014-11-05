@@ -9,6 +9,7 @@ import com.google.inject.Singleton;
 
 import fysioSysteem.dataStorage.DiagnoseDAO;
 import fysioSysteem.domain.Diagnose;
+import fysioSysteem.domain.Klant;
 
 /**
  * @author IVH5B5
@@ -37,6 +38,11 @@ public class DiagnoseManager implements IDiagnoseManager {
     @Override
     public ArrayList<Diagnose> getDiagnoses() {
         return DiagnoseDAO.getDiagnoses();
+    }
+    
+    @Override
+    public ArrayList<Diagnose> getDiagnoses(Klant klant) {
+        return DiagnoseDAO.getDiagnose(klant);
     }
 
 }

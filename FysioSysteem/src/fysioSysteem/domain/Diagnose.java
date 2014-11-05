@@ -91,10 +91,5 @@ public class Diagnose {
 	public void setKlant(Klant klant) {
 		this.klant = klant;
 	}
-        
-        @Override
-        public String toString(){
-            return Integer.toString(code);
-        }
 	
 }

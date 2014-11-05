@@ -11,7 +11,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fysioSysteem.domain.Diagnose;
-import fysioSysteem.domain.Klant;
 import general.Settings;
 
 /**
@@ -151,42 +150,6 @@ public class DiagnoseDAO {
                             .item(0).getTextContent();
                     diagnoses.add(new Diagnose(code, omschrijving, KlantDAO
                             .getKlant(klantBsn)));
-                }
-            }
-        } else {
-            System.out.println("XML document is null");
-        }
-
-        if (diagnoses.size() < 1) {
-            System.out.println("Geen diagnoses gevonden");
-        }
-
-        return diagnoses;
-    }
-
-    public static ArrayList<Diagnose> getDiagnoses(Klant klant) {
-        XmlDOMDocument domdocument = new XmlDOMDocument();
-        Document document = domdocument.getDocument(DiagnoseDAO.FILE_XML,
-                DiagnoseDAO.FILE_XSD);
-
-        ArrayList<Diagnose> diagnoses = new ArrayList<Diagnose>();
-        if (document != null) {
-            NodeList list = document.getElementsByTagName("diagnose");
-
-            for (int i = 0; i < list.getLength(); i++) {
-                Node node = list.item(i);
-                if (node instanceof Element) {
-                    Element child = (Element) node;
-
-                    String klantBsn = child.getElementsByTagName("klantBsn")
-                            .item(0).getTextContent();
-                    if (klantBsn.equals(klant.getBsn())) {
-                        int code = Integer.parseInt(child.getAttribute("code"));
-                        String omschrijving = child
-                                .getElementsByTagName("omschrijving").item(0)
-                                .getTextContent();
-                        diagnoses.add(new Diagnose(code, omschrijving, klant));
-                    }
                 }
             }
         } else {
