@@ -18,9 +18,15 @@
         <tariefBehandeling>300.00</tariefBehandeling>
     </behandelCode>
     <behandelCode code="4">
-        <behandelingNaam>Blabla</behandelingNaam>
+        <behandelingNaam>Enkel versteviging</behandelingNaam>
         <aantalSessies>19</aantalSessies>
         <sessieDuur>10</sessieDuur>
         <tariefBehandeling>300.0</tariefBehandeling>
     </behandelCode>
-<behandelCode code="5"><behandelingNaam>testtesttest</behandelingNaam><aantalSessies>13</aantalSessies><sessieDuur>10</sessieDuur><tariefBehandeling>200.0</tariefBehandeling></behandelCode></behandelCodes>
+<behandelCode code="5">
+	<behandelingNaam>Pees behandeling</behandelingNaam>
+	<aantalSessies>13</aantalSessies>
+	<sessieDuur>10</sessieDuur>
+	<tariefBehandeling>200.0</tariefBehandeling>
+</behandelCode>
+</behandelCodes>

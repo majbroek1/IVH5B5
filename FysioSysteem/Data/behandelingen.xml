@@ -14,4 +14,29 @@
 		<behandelCode>3</behandelCode>
 		<klantBsn>1</klantBsn>
 	</behandeling>
-<behandeling id="20"><status>IN_ONDERZOEK</status><behandelCode>2</behandelCode><klantBsn>1</klantBsn></behandeling><behandeling id="21"><status>IN_ONDERZOEK</status><behandelCode>2</behandelCode><klantBsn>1</klantBsn></behandeling><behandeling id="22"><status>IN_ONDERZOEK</status><behandelCode>2</behandelCode><klantBsn>2</klantBsn></behandeling><behandeling id="23"><status>IN_BEHANDELING</status><behandelCode>3</behandelCode><klantBsn>2</klantBsn></behandeling></behandelingen>
+	<behandeling id="4">
+		<status>IN_ONDERZOEK</status>
+		<behandelCode>4</behandelCode>
+		<klantBsn>3</klantBsn>
+	</behandeling>
+<behandeling id="20">
+	<status>IN_ONDERZOEK</status>
+	<behandelCode>2</behandelCode>
+	<klantBsn>1</klantBsn>
+</behandeling>
+<behandeling id="21">
+	<status>IN_ONDERZOEK</status>
+	<behandelCode>2</behandelCode>
+	<klantBsn>1</klantBsn>
+</behandeling>
+<behandeling id="22">
+	<status>IN_ONDERZOEK</status>
+	<behandelCode>2</behandelCode>
+	<klantBsn>2</klantBsn>
+</behandeling>
+<behandeling id="23">
+	<status>IN_BEHANDELING</status>
+	<behandelCode>3</behandelCode>
+	<klantBsn>2</klantBsn>
+</behandeling>
+</behandelingen>

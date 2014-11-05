@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><diagnoses>
 	<diagnose code="1">
-		<omschrijving>Hoop tekst</omschrijving>
+		<omschrijving>Verstuite enkel.</omschrijving>
 		<klantBsn>1</klantBsn>
 	</diagnose>
 	<diagnose code="2">
-		<omschrijving>Hoop tekst</omschrijving>
+		<omschrijving>Gekneusde pees.</omschrijving>
 		<klantBsn>1</klantBsn>
 	</diagnose>
 	<diagnose code="3">
-		<omschrijving>Hoop tekst</omschrijving>	
+		<omschrijving>Knie spieren verzwikt</omschrijving>	
 		<klantBsn>2</klantBsn>
 	</diagnose>
         <diagnose code="4">
-            <omschrijving>Nieuwe diagnose lalalalala</omschrijving>
+            <omschrijving></omschrijving>
             <klantBsn>1</klantBsn>
         </diagnose>
-<diagnose code="5"><omschrijving>testewstsetsets</omschrijving><klantBsn>1</klantBsn></diagnose><diagnose code="6"><omschrijving>testestsets</omschrijving><klantBsn>1</klantBsn></diagnose><diagnose code="7"><omschrijving>ioksdfjpasidjfposiajdfoiasdf</omschrijving><klantBsn>1</klantBsn></diagnose><diagnose code="8"><omschrijving>Bla</omschrijving><klantBsn>1</klantBsn></diagnose></diagnoses>
+<diagnose code="5">
+	<omschrijving>testewstsetsets</omschrijving>
+	<klantBsn>1</klantBsn>
+</diagnose>
+<diagnose code="6">
+	<omschrijving>testestsets</omschrijving>
+	<klantBsn>1</klantBsn>
+</diagnose>
+<diagnose code="7">
+	<omschrijving>ioksdfjpasidjfposiajdfoiasdf</omschrijving>
+	<klantBsn>1</klantBsn>
+</diagnose>
+<diagnose code="8">
+	<omschrijving>Bla</omschrijving>
+	<klantBsn>1</klantBsn>
+</diagnose>
+</diagnoses>

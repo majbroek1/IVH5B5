@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><incrementIds>
 	<incrementId class="Afspraak">
-		<currentId>11</currentId>
+		<currentId>10</currentId>
 	</incrementId>
 	<incrementId class="Behandeling">
-		<currentId>24</currentId>
+		<currentId>5</currentId>
 	</incrementId>	
 	<incrementId class="Diagnose">
 		<currentId>9</currentId>

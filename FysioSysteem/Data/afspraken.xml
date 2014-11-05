@@ -6,4 +6,8 @@
 		<fysioId>3</fysioId>
 		<behandelingId>3</behandelingId>
 	</afspraak>
-<afspraak id="6"><datumTijd>2014-11-24T02:05:00</datumTijd><fysioId>1</fysioId><behandelingId>1</behandelingId></afspraak><afspraak id="7"><datumTijd>2014-11-30T08:03:00</datumTijd><fysioId>1</fysioId><behandelingId>2</behandelingId></afspraak><afspraak id="8"><datumTijd>2014-11-24T04:04:00</datumTijd><fysioId>1</fysioId><behandelingId>22</behandelingId></afspraak></afspraken>
+<afspraak id="6"><datumTijd>2014-11-24T02:05:00</datumTijd><fysioId>1</fysioId><behandelingId>1</behandelingId></afspraak>
+<afspraak id="7"><datumTijd>2014-11-30T08:03:00</datumTijd><fysioId>2</fysioId><behandelingId>2</behandelingId></afspraak>
+<afspraak id="8"><datumTijd>2014-11-24T04:04:00</datumTijd><fysioId>1</fysioId><behandelingId>4</behandelingId></afspraak>
+<afspraak id="9"><datumTijd>2014-11-26T04:04:00</datumTijd><fysioId>2</fysioId><behandelingId>3</behandelingId></afspraak>
+</afspraken>
