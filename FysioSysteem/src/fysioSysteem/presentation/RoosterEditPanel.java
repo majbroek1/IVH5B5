@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -188,11 +189,11 @@ public class RoosterEditPanel extends javax.swing.JPanel {
     private void terugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terugButtonActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
         if(rooster != null){
-        parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut(), medewerkerManager));
+        parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut()));
         }
         else
         {
-            parent.setPanel(new RoosterOverzichtPanel(therapeut, medewerkerManager));
+            parent.setPanel(new RoosterOverzichtPanel(therapeut));
         }
     }//GEN-LAST:event_terugButtonActionPerformed
 
@@ -245,8 +246,14 @@ public class RoosterEditPanel extends javax.swing.JPanel {
             rm.setRooster(rooster);
         }
         else{
-            rm.addRooster(new Rooster(startDate, eindDate, therapeut));
-        }
+            rooster = new Rooster(startDate, eindDate, therapeut);
+            rm.addRooster(rooster);
+        }        
+        JOptionPane.showMessageDialog(null, "Het rooster is opgeslagen");
+        
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
+        parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut()));
+        
     }//GEN-LAST:event_saveButtonActionPerformed
 
 

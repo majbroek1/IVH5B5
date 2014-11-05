@@ -1,17 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><roosters>
-	<rooster id="1">
-		<start>2014-10-30T09:30:10.5</start>
-		<eind>2014-10-30T10:30:10.5</eind>
-		<fysioId>1</fysioId>
-	</rooster>
-	<rooster id="2">
-		<start>2014-11-30T09:30:00</start>
-		<eind>2014-11-30T11:30:00</eind>
-		<fysioId>1</fysioId>
-	</rooster>
-	<rooster id="3">
-		<start>2014-10-28T09:30:10.5</start>
-		<eind>2014-10-28T10:30:10.5</eind>
-		<fysioId>1</fysioId>
-	</rooster>
-<rooster id="1"><start>2014-11-27T13:00:00</start><eind>2014-11-27T14:00:00</eind><fysioId>1</fysioId></rooster><rooster id="2"><start>2014-11-08T13:00:00</start><eind>2014-11-08T15:00:00</eind><fysioId>1</fysioId></rooster></roosters>
+<rooster id="3"><start>2014-11-24T02:03:00</start><eind>2014-11-24T05:00:00</eind><fysioId>1</fysioId></rooster></roosters>

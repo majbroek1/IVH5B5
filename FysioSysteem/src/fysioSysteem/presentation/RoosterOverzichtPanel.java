@@ -5,16 +5,18 @@
  */
 package fysioSysteem.presentation;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
 import fysioSysteem.businessLogic.planning.IRoosterManager;
 import fysioSysteem.businessLogic.planning.RoosterManager;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
+import general.AppInjector;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,9 +35,10 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
      *
      * @param f
      */
-    public RoosterOverzichtPanel(Fysiotherapeut f, IMedewerkerManager medewerkerManager) {
+    public RoosterOverzichtPanel(Fysiotherapeut f) {
         IRoosterManager rm = new RoosterManager();
-        this.medewerkerManager = medewerkerManager;
+        Injector injector = Guice.createInjector(new AppInjector());
+        this.medewerkerManager = injector.getInstance(IMedewerkerManager.class);
         roosters = rm.getWeekRooster(f);
         this.fysio = f;
         initComponents();

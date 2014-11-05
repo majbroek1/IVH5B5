@@ -166,7 +166,7 @@ public class MedewerkerOverzichtPanel extends javax.swing.JPanel {
                     tblMedewerkers.convertRowIndexToModel(tblMedewerkers.getSelectedRow()));
 
             HoofdVenster parent = (HoofdVenster) getParentFrame();
-            parent.setPanel(new RoosterOverzichtPanel(t, medewerkerManager));
+            parent.setPanel(new RoosterOverzichtPanel(t));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
         }
