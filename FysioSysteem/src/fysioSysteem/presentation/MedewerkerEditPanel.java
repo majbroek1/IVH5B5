@@ -75,7 +75,10 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
             }
         }
 
+        cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
+
         if (therapeut != null) {
+            txtMedewerkerID.setText(Integer.toString(therapeut.getId()));
             txtNaam.setText(therapeut.getNaam());
             txtWachtwoord.setText(therapeut.getWachtwoord());
             txtWachtwoordHer.setText(therapeut.getWachtwoord());
@@ -88,7 +91,6 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         }
 
         cbPraktijk.setModel(praktijkModel);
-        cbStatus.setModel(new DefaultComboBoxModel(Status.values()));
     }
 
     private boolean controleerVelden() {
@@ -157,6 +159,8 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
         cbPraktijk = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         txtWachtwoordHer = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        txtMedewerkerID = new javax.swing.JTextField();
 
         jLabel1.setText("Naam");
 
@@ -182,6 +186,10 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Wachtwoord herhalen");
 
+        jLabel6.setText("Medewerker ID");
+
+        txtMedewerkerID.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,6 +205,10 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnOpslaan))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtWachtwoordHer))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
@@ -204,18 +216,20 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(103, 103, 103)
-                                .addComponent(jLabel5)))
-                        .addGap(0, 50, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtWachtwoordHer)))
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel6))
+                        .addGap(0, 112, Short.MAX_VALUE))
+                    .addComponent(txtMedewerkerID))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMedewerkerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,11 +284,11 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
                 medewerkerManager.addMedewerker(Fysiotherapeut);
 
                 JOptionPane.showMessageDialog(this, "De fysiotherapeut gegevens zijn succesvol opgeslagen.");
-
-                HoofdVenster parent = (HoofdVenster) getParentFrame();
-                Injector injector = Guice.createInjector(new AppInjector());
-                parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
             }
+            
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            Injector injector = Guice.createInjector(new AppInjector());
+            parent.setPanel(injector.getInstance(MedewerkerOverzichtPanel.class));
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
 
@@ -289,6 +303,8 @@ public class MedewerkerEditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtMedewerkerID;
     private javax.swing.JTextField txtNaam;
     private javax.swing.JPasswordField txtWachtwoord;
     private javax.swing.JPasswordField txtWachtwoordHer;

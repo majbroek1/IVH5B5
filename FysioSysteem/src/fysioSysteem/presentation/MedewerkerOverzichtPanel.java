@@ -40,7 +40,14 @@ public class MedewerkerOverzichtPanel extends javax.swing.JPanel {
     private void laadData() {
         DefaultTableModel medewerkerModel = new DefaultTableModel(
                 new Object[]{"MedewerkerID", "Naam", "Praktijk", "Status"}, 0
-        );
+        ) {
+
+            // Tabel Bewerken uit
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         for (Fysiotherapeut f : fysiotherapeuten) {
             medewerkerModel.addRow(new Object[]{

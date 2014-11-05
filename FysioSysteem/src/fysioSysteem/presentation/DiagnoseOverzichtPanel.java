@@ -117,7 +117,6 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
         btnSluiten = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cbDiagnose = new javax.swing.JComboBox();
-        btnLaadDiagnose = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
         btnNieuw = new javax.swing.JButton();
@@ -142,10 +141,9 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Diagnoses");
 
-        btnLaadDiagnose.setText("Open");
-        btnLaadDiagnose.addActionListener(new java.awt.event.ActionListener() {
+        cbDiagnose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLaadDiagnoseActionPerformed(evt);
+                cbDiagnoseActionPerformed(evt);
             }
         });
 
@@ -167,20 +165,21 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSluiten)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnOpslaan))
                     .addComponent(txtCode)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbDiagnose, 0, 356, Short.MAX_VALUE)
+                        .addComponent(cbDiagnose, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLaadDiagnose)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNieuw)))
+                        .addComponent(btnNieuw))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -191,7 +190,6 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbDiagnose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLaadDiagnose)
                     .addComponent(btnNieuw))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -207,14 +205,19 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLaadDiagnoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaadDiagnoseActionPerformed
-        Diagnose d = diagnoses.get(cbDiagnose.getSelectedIndex());
-        setDiagnose(d);
-    }//GEN-LAST:event_btnLaadDiagnoseActionPerformed
-
     private void btnNieuwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNieuwActionPerformed
         setDiagnose(null);
     }//GEN-LAST:event_btnNieuwActionPerformed
+
+    private void btnSluitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSluitenActionPerformed
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
+        parent.setPanel(new KlantEditPanel(klant));
+    }//GEN-LAST:event_btnSluitenActionPerformed
+
+    private void cbDiagnoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDiagnoseActionPerformed
+        Diagnose d = diagnoses.get(cbDiagnose.getSelectedIndex());
+        setDiagnose(d);
+    }//GEN-LAST:event_cbDiagnoseActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
         if (controleerVelden()) {
@@ -224,14 +227,14 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
                 diagnoseManager.setDiagnose(diagnose);
 
                 JOptionPane.showMessageDialog(this,
-                        "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
+                    "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 diagnoseManager.addDiagnose(new Diagnose(
-                        txtOmschrijving.getText(), klant
+                    txtOmschrijving.getText(), klant
                 ));
 
                 JOptionPane.showMessageDialog(this,
-                        "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
+                    "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
             }
 
             HoofdVenster parent = (HoofdVenster) getParentFrame();
@@ -239,14 +242,8 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
 
-    private void btnSluitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSluitenActionPerformed
-        HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new KlantEditPanel(klant));
-    }//GEN-LAST:event_btnSluitenActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLaadDiagnose;
     private javax.swing.JButton btnNieuw;
     private javax.swing.JButton btnOpslaan;
     private javax.swing.JButton btnSluiten;
