@@ -5,16 +5,16 @@
  */
 package fysioSysteem.presentation;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import fysioSysteem.businessLogic.beheer.IMedewerkerManager;
 import fysioSysteem.businessLogic.planning.IRoosterManager;
-import fysioSysteem.businessLogic.planning.RoosterManager;
-import fysioSysteem.dataStorage.RoosterDAO;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Rooster;
+import general.AppInjector;
 import general.PanelValidatie;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -26,6 +26,7 @@ import javax.swing.SwingUtilities;
 public class RoosterEditPanel extends javax.swing.JPanel {
 
     private Rooster rooster;
+    private Fysiotherapeut therapeut;
     private IMedewerkerManager medewerkerManager;
     private IRoosterManager rm;
 
@@ -35,12 +36,32 @@ public class RoosterEditPanel extends javax.swing.JPanel {
      * @param r
      * @param manager
      */
-    public RoosterEditPanel(Rooster r, IMedewerkerManager manager) {
-        rm = new RoosterManager();
-        this.medewerkerManager = manager;
+    public RoosterEditPanel(Rooster r) {
+        Injector injector = Guice.createInjector(new AppInjector());
+        this.rm = injector.getInstance(IRoosterManager.class);
+        this.medewerkerManager = injector.getInstance(IMedewerkerManager.class);
         this.rooster = r;
         initComponents();
         vulVelden();
+    }
+    
+        public RoosterEditPanel(Fysiotherapeut f) {
+        Injector injector = Guice.createInjector(new AppInjector());
+        this.rm = injector.getInstance(IRoosterManager.class);
+        this.medewerkerManager = injector.getInstance(IMedewerkerManager.class);
+        this.therapeut = f;
+        initComponents();
+    }
+
+    private void vulVelden() {        
+        dtmDatum.setDate(rooster.getStart());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(rooster.getStart());
+        jSpinStartUren.setValue(calendar.get(Calendar.HOUR_OF_DAY));
+        jSpinStartMinuten.setValue(calendar.get(Calendar.MINUTE));
+        calendar.setTime(rooster.getEind());
+        jSpinEindUren.setValue(calendar.get(Calendar.HOUR_OF_DAY));
+        jSpinEindMinuten.setValue(calendar.get(Calendar.MINUTE));        
     }
 
     /**
@@ -52,14 +73,18 @@ public class RoosterEditPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        startDateField = new javax.swing.JTextField();
-        startTimeField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        endDateField = new javax.swing.JTextField();
-        endTimeField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
         terugButton = new javax.swing.JButton();
+        dtmDatum = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jSpinStartUren = new com.toedter.components.JSpinField();
+        jSpinStartMinuten = new com.toedter.components.JSpinField();
+        jLabel4 = new javax.swing.JLabel();
+        jSpinEindUren = new com.toedter.components.JSpinField();
+        jSpinEindMinuten = new com.toedter.components.JSpinField();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("Begin");
 
@@ -72,12 +97,30 @@ public class RoosterEditPanel extends javax.swing.JPanel {
             }
         });
 
-        terugButton.setText("Terug");
+        terugButton.setText("Annuleren");
         terugButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 terugButtonActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Datum");
+
+        jSpinStartUren.setMaximum(23);
+        jSpinStartUren.setMinimum(0);
+
+        jSpinStartMinuten.setMaximum(59);
+        jSpinStartMinuten.setMinimum(0);
+
+        jLabel4.setText(":");
+
+        jSpinEindUren.setMaximum(23);
+        jSpinEindUren.setMinimum(0);
+
+        jSpinEindMinuten.setMaximum(59);
+        jSpinEindMinuten.setMinimum(0);
+
+        jLabel5.setText(":");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,99 +129,141 @@ public class RoosterEditPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dtmDatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(saveButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 468, Short.MAX_VALUE)
-                        .addComponent(terugButton))
+                        .addComponent(terugButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSpinStartUren, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinStartMinuten, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2)
-                                    .addComponent(startDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                    .addComponent(endDateField))
-                                .addGap(47, 47, 47)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(startTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                    .addComponent(endTimeField))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jSpinEindUren, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinEindMinuten, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(104, 104, 104)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addComponent(dtmDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSpinStartUren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSpinStartMinuten, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSpinEindUren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSpinEindMinuten, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveButton)
-                    .addComponent(terugButton))
-                .addContainerGap())
+                    .addComponent(terugButton)
+                    .addComponent(saveButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void terugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terugButtonActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
+        if(rooster != null){
         parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut(), medewerkerManager));
+        }
+        else
+        {
+            parent.setPanel(new RoosterOverzichtPanel(therapeut, medewerkerManager));
+        }
     }//GEN-LAST:event_terugButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        if (validateVelden()) {
-            String start = startDateField.getText() + startTimeField.getText() + ":00";
-            String eind = endDateField.getText() + endTimeField.getText() + ":00";
-            try {
-                Date startDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(start);
-                Date endDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(eind);
+        SimpleDateFormat fullTimeDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 
-                rooster.setEind(endDate);
-                rooster.setStart(startDate);
-                
-                rm.setRooster(rooster);
-            } catch (ParseException ex) {
-                System.out.println("Kan datum niet parsen");
-            }
+        String startUren = "";
+        if (jSpinStartUren.getValue() < 10) {
+            startUren = "0" + Integer.toString(jSpinStartUren.getValue());
+        } else {
+            startUren = Integer.toString(jSpinStartUren.getValue());
+        }
+        String startMinuten = "";
+        if (jSpinStartMinuten.getValue() < 10) {
+            startMinuten = "0" + Integer.toString(jSpinStartMinuten.getValue());
+        } else {
+            startMinuten = Integer.toString(jSpinStartMinuten.getValue());
+        }
+
+        String eindUren = "";
+        if (jSpinStartUren.getValue() < 10) {
+            eindUren = "0" + Integer.toString(jSpinEindUren.getValue());
+        } else {
+            eindUren = Integer.toString(jSpinEindUren.getValue());
+        }
+        String eindMinuten = "";
+        if (jSpinStartMinuten.getValue() < 10) {
+            eindMinuten = "0" + Integer.toString(jSpinEindMinuten.getValue());
+        } else {
+            eindMinuten = Integer.toString(jSpinEindMinuten.getValue());
+        }
+
+        String dagDate = date.format(dtmDatum.getDate());
+        String startTijdDate = startUren + ":" + startMinuten; // TO DO
+        String eindTijdDate = eindUren + ":" + eindMinuten;
+
+        Date startDate = null;
+        Date eindDate = null;
+        try {
+            startDate = fullTimeDate.parse(dagDate + " " + startTijdDate);
+            eindDate = fullTimeDate.parse(dagDate + " " + eindTijdDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (rooster != null) {
+            rooster.setStart(startDate);
+            rooster.setEind(eindDate);
+
+            rm.setRooster(rooster);
+        }
+        else{
+            rm.addRooster(new Rooster(startDate, eindDate, therapeut));
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField endDateField;
-    private javax.swing.JTextField endTimeField;
+    private com.toedter.calendar.JDateChooser dtmDatum;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private com.toedter.components.JSpinField jSpinEindMinuten;
+    private com.toedter.components.JSpinField jSpinEindUren;
+    private com.toedter.components.JSpinField jSpinStartMinuten;
+    private com.toedter.components.JSpinField jSpinStartUren;
     private javax.swing.JButton saveButton;
-    private javax.swing.JTextField startDateField;
-    private javax.swing.JTextField startTimeField;
     private javax.swing.JButton terugButton;
     // End of variables declaration//GEN-END:variables
-
-    private void vulVelden() {
-        SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
-        SimpleDateFormat time = new SimpleDateFormat("hh:mm");
-
-        startDateField.setText(date.format(rooster.getStart()));
-        startTimeField.setText(time.format(rooster.getStart()));
-        endDateField.setText(date.format(rooster.getEind()));
-        endTimeField.setText(time.format(rooster.getEind()));
-    }
-
-    private boolean validateVelden() {
-        return PanelValidatie.valideerDatum(startDateField.getText())
-                && PanelValidatie.valideerTijd(startTimeField.getText())
-                && PanelValidatie.valideerDatum(endDateField.getText())
-                && PanelValidatie.valideerTijd(endTimeField.getText());
-    }
 
     private JFrame getParentFrame() {
         return (JFrame) SwingUtilities.getRoot(this);

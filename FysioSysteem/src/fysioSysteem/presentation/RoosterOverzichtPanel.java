@@ -138,7 +138,7 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
                             roosterTable.getSelectedRow()));
 
             HoofdVenster parent = (HoofdVenster) getParentFrame();
-            parent.setPanel(new RoosterEditPanel(r, medewerkerManager));
+            parent.setPanel(new RoosterEditPanel(r));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
         }
@@ -146,7 +146,7 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
 
     private void nieuwButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nieuwButtonActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new RoosterToevoegenPanel(fysio, medewerkerManager));
+        parent.setPanel(new RoosterEditPanel(fysio));
     }//GEN-LAST:event_nieuwButtonActionPerformed
 
 
