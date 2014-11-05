@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><roosters>
-<rooster id="3"><start>2014-11-24T02:03:00</start><eind>2014-11-24T05:00:00</eind><fysioId>1</fysioId></rooster></roosters>
+<rooster id="3"><start>2014-11-24T02:03:00</start><eind>2014-11-24T03:00:00</eind><fysioId>1</fysioId></rooster><rooster id="4"><start>2014-11-24T08:14:00</start><eind>2014-11-24T09:00:00</eind><fysioId>1</fysioId></rooster><rooster id="5"><start>2014-11-25T04:00:00</start><eind>2014-11-25T06:00:00</eind><fysioId>2</fysioId></rooster></roosters>

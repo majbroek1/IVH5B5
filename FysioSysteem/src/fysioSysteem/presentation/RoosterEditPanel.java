@@ -45,8 +45,8 @@ public class RoosterEditPanel extends javax.swing.JPanel {
         initComponents();
         vulVelden();
     }
-    
-        public RoosterEditPanel(Fysiotherapeut f) {
+
+    public RoosterEditPanel(Fysiotherapeut f) {
         Injector injector = Guice.createInjector(new AppInjector());
         this.rm = injector.getInstance(IRoosterManager.class);
         this.medewerkerManager = injector.getInstance(IMedewerkerManager.class);
@@ -54,7 +54,7 @@ public class RoosterEditPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    private void vulVelden() {        
+    private void vulVelden() {
         dtmDatum.setDate(rooster.getStart());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(rooster.getStart());
@@ -62,7 +62,7 @@ public class RoosterEditPanel extends javax.swing.JPanel {
         jSpinStartMinuten.setValue(calendar.get(Calendar.MINUTE));
         calendar.setTime(rooster.getEind());
         jSpinEindUren.setValue(calendar.get(Calendar.HOUR_OF_DAY));
-        jSpinEindMinuten.setValue(calendar.get(Calendar.MINUTE));        
+        jSpinEindMinuten.setValue(calendar.get(Calendar.MINUTE));
     }
 
     /**
@@ -188,11 +188,9 @@ public class RoosterEditPanel extends javax.swing.JPanel {
 
     private void terugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terugButtonActionPerformed
         HoofdVenster parent = (HoofdVenster) getParentFrame();
-        if(rooster != null){
-        parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut()));
-        }
-        else
-        {
+        if (rooster != null) {
+            parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut()));
+        } else {
             parent.setPanel(new RoosterOverzichtPanel(therapeut));
         }
     }//GEN-LAST:event_terugButtonActionPerformed
@@ -239,21 +237,28 @@ public class RoosterEditPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        boolean result = false;
         if (rooster != null) {
             rooster.setStart(startDate);
             rooster.setEind(eindDate);
 
-            rm.setRooster(rooster);
-        }
-        else{
+            result = rm.setRooster(rooster);
+        } else {
             rooster = new Rooster(startDate, eindDate, therapeut);
-            rm.addRooster(rooster);
-        }        
-        JOptionPane.showMessageDialog(null, "Het rooster is opgeslagen");
+
+            result = rm.addRooster(rooster);
+
+        }
         
-        HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut()));
-        
+        if (result) {
+            JOptionPane.showMessageDialog(null, "Het rooster is opgeslagen");
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            parent.setPanel(new RoosterOverzichtPanel(rooster.getFysiotherapeut()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Er is een conflicterende afspraak");
+        }
+
     }//GEN-LAST:event_saveButtonActionPerformed
 
 

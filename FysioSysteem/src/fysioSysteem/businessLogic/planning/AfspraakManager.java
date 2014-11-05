@@ -15,77 +15,77 @@ import fysioSysteem.domain.Klant;
  * @author IVH5B5
  *
  */
- 
- @Singleton
+@Singleton
 public class AfspraakManager implements IAfspraakManager {
 
-	/**
-	 * Controleert of het tijdstip van de afspraak haalbaar is
-	 * 
-	 * @param afspraak
-	 * @return
-	 */
-	private boolean controleerBeschikbaarheid(Afspraak afspraak) {		
-		if(!afspraak.getDatumTijd().before(new Date())) {
-			
-			Iterator<Afspraak> afspraken =
-				getAfspraken().iterator();
-	
-			while (afspraken.hasNext()) {
-				Afspraak a = afspraken.next();
-				if (a.getDatumTijd().before(afspraak.getDatumTijd())
-					&& a.getEindTijd().before(afspraak.getDatumTijd())) {
-					return true;
-				} else if (a.getDatumTijd().after(afspraak.getDatumTijd())
-					&& a.getDatumTijd().after(afspraak.getEindTijd())) {
-					return true;
-				}
-			}
-		}
-		
-		return false;
-	}
+    /**
+     * Controleert of het tijdstip van de afspraak haalbaar is
+     *
+     * @param afspraak
+     * @return
+     */
+    private boolean controleerBeschikbaarheid(Afspraak afspraak) {
+        if (!afspraak.getDatumTijd().before(new Date())) {
 
-	@Override
-	public boolean addAfspraak(Afspraak afspraak) {
-		if (controleerBeschikbaarheid(afspraak))
-			return AfspraakDAO.addAfspraak(afspraak);
+            Iterator<Afspraak> afspraken
+                    = getAfspraken().iterator();
 
-		return false;
-	}
-
-	@Override
-	public boolean setAfspraak(Afspraak afspraak) {
-		if (controleerBeschikbaarheid(afspraak)) {
-			AfspraakDAO.setAfspraak(afspraak);
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
-	public Afspraak getAfspraak(int id) {
-		return AfspraakDAO.getAfspraak(id);
-	}
-
-	@Override
-	public ArrayList<Afspraak> getAfspraken(Klant klant) {
-		return AfspraakDAO.getAfspraken(klant);
-	}
-
-	@Override
-	public ArrayList<Afspraak> getAfspraken(Fysiotherapeut fysio) {
-		return AfspraakDAO.getAfspraken(fysio);
-	}
-
-	@Override
-	public ArrayList<Afspraak> getAfspraken() {
-		return AfspraakDAO.getAfspraken();
-	}
-
-        @Override
-        public void removeAfspraak(Afspraak afspraak) {
-                AfspraakDAO.removeAfspraak(afspraak);
+            while (afspraken.hasNext()) {
+                Afspraak a = afspraken.next();
+                if (a.getDatumTijd().before(afspraak.getDatumTijd())
+                        && a.getEindTijd().before(afspraak.getDatumTijd())) {
+                    return true;
+                } else if (a.getDatumTijd().after(afspraak.getDatumTijd())
+                        && a.getDatumTijd().after(afspraak.getEindTijd())) {
+                    return true;
+                }
+            }
         }
+
+        return false;
+    }
+
+    @Override
+    public boolean addAfspraak(Afspraak afspraak) {
+        if (controleerBeschikbaarheid(afspraak)) {
+            return AfspraakDAO.addAfspraak(afspraak);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean setAfspraak(Afspraak afspraak) {
+        if (controleerBeschikbaarheid(afspraak)) {
+            AfspraakDAO.setAfspraak(afspraak);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public Afspraak getAfspraak(int id) {
+        return AfspraakDAO.getAfspraak(id);
+    }
+
+    @Override
+    public ArrayList<Afspraak> getAfspraken(Klant klant) {
+        return AfspraakDAO.getAfspraken(klant);
+    }
+
+    @Override
+    public ArrayList<Afspraak> getAfspraken(Fysiotherapeut fysio) {
+        return AfspraakDAO.getAfspraken(fysio);
+    }
+
+    @Override
+    public ArrayList<Afspraak> getAfspraken() {
+        return AfspraakDAO.getAfspraken();
+    }
+
+    @Override
+    public void removeAfspraak(Afspraak afspraak) {
+        AfspraakDAO.removeAfspraak(afspraak);
+    }
 }

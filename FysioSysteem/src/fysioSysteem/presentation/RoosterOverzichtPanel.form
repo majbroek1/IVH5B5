@@ -21,29 +21,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="scrollTable" alignment="1" pref="638" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Component id="nieuwButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="bewerkButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="terugButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="scrollTable" pref="516" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="terugButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="bewerkButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="nieuwButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="scrollTable" min="-2" pref="414" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="scrollTable" pref="357" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bewerkButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nieuwButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="terugButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,7 +92,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="terugButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Terug"/>
+        <Property name="text" type="java.lang.String" value="Sluiten"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="terugButtonActionPerformed"/>
@@ -95,7 +100,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="bewerkButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bewerken"/>
+        <Property name="text" type="java.lang.String" value="Rooster wijzigen"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bewerkButtonActionPerformed"/>
@@ -103,7 +108,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="nieuwButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nieuw"/>
+        <Property name="text" type="java.lang.String" value="Rooster toevoegen"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nieuwButtonActionPerformed"/>

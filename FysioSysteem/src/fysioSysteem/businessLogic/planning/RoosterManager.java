@@ -31,23 +31,24 @@ public class RoosterManager implements IRoosterManager {
             Iterator<Rooster> roosters
                     = getWeekRooster(rooster.getFysiotherapeut()).iterator();
 
-            int count = 0;
+            boolean mogelijk = true;
             while (roosters.hasNext()) {
-                count++;
                 Rooster r = roosters.next();
-                if (r.getStart().before(rooster.getStart())
-                        && r.getEind().before(rooster.getEind())) {
-                    return true;
-                } else if (r.getStart().after(rooster.getStart())
-                        && r.getStart().after(rooster.getEind())) {
-                    return true;
+                if (rooster.getId() != r.getId()) {
+                    boolean check = true;
+                    check = r.getStart().before(rooster.getStart())
+                            && r.getEind().before(rooster.getStart());
+                    if (!check) {
+                        mogelijk = r.getStart().after(rooster.getStart())
+                                && r.getStart().after(rooster.getEind());
+                    }
+                    if (!mogelijk) {
+                        return false;
+                    }
                 }
             }
-            if(count == 0){
-                return true;
-            }
+            return mogelijk;
         }
-
         return false;
     }
 
