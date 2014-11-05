@@ -1,0 +1,10 @@
+fysioSysteem.businessLogic.behandeling
+fysioSysteem.businessLogic.beheer
+fysioSysteem.businessLogic.login
+fysioSysteem.businessLogic.planning
+fysioSysteem.dataStorage
+fysioSysteem.domain
+fysioSysteem.main
+fysioSysteem.presentation
+fysioSysteem.tests
+general
