@@ -24,13 +24,13 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="scrollTable" pref="618" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="nieuwButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bewerkButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Component id="scrollTable" pref="621" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="terugButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="bewerkButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="nieuwButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="terugButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Terug"/>
+        <Property name="text" type="java.lang.String" value="Sluiten"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="terugButtonActionPerformed"/>
@@ -100,13 +100,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="bewerkButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bewerken"/>
+        <Property name="text" type="java.lang.String" value="Rooster wijzigen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bewerkButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="nieuwButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nieuw"/>
+        <Property name="text" type="java.lang.String" value="Rooster Toevoegen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nieuwButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -13,7 +13,6 @@ import fysioSysteem.domain.Rooster;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,10 +32,38 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
      */
     public RoosterOverzichtPanel(Fysiotherapeut f, IMedewerkerManager medewerkerManager) {
         IRoosterManager rm = new RoosterManager();
+        
         this.medewerkerManager = medewerkerManager;
         roosters = rm.getWeekRooster(f);
+        
         initComponents();
         vulVelden();
+    }
+    
+    private void vulVelden() {
+        DefaultTableModel mdl = new DefaultTableModel(
+                new Object[]{"Start", "Eind"}, 0) {
+
+                    // Tabel Bewerken uit
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM");
+
+        for (Rooster r : roosters) {
+            mdl.addRow(new Object[]{
+                dateFormat.format(r.getStart()),
+                dateFormat.format(r.getEind())
+            });
+        }
+        roosterTable.setModel(mdl);
+    }
+
+    private JFrame getParentFrame() {
+        return (JFrame) SwingUtilities.getRoot(this);
     }
 
     /**
@@ -75,16 +102,26 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
         roosterTable.getTableHeader().setReorderingAllowed(false);
         scrollTable.setViewportView(roosterTable);
 
-        terugButton.setText("Terug");
+        terugButton.setText("Sluiten");
         terugButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 terugButtonActionPerformed(evt);
             }
         });
 
-        bewerkButton.setText("Bewerken");
+        bewerkButton.setText("Rooster wijzigen");
+        bewerkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bewerkButtonActionPerformed(evt);
+            }
+        });
 
-        nieuwButton.setText("Nieuw");
+        nieuwButton.setText("Rooster Toevoegen");
+        nieuwButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nieuwButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,13 +130,13 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollTable, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                    .addComponent(scrollTable, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nieuwButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bewerkButton)
+                        .addComponent(terugButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(terugButton)))
+                        .addComponent(bewerkButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nieuwButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,6 +158,16 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
         parent.setPanel(new MedewerkerOverzichtPanel(medewerkerManager));
     }//GEN-LAST:event_terugButtonActionPerformed
 
+    private void bewerkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bewerkButtonActionPerformed
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
+        // TODO
+    }//GEN-LAST:event_bewerkButtonActionPerformed
+
+    private void nieuwButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nieuwButtonActionPerformed
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
+        // TODO
+    }//GEN-LAST:event_nieuwButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bewerkButton;
@@ -129,31 +176,5 @@ public class RoosterOverzichtPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollTable;
     private javax.swing.JButton terugButton;
     // End of variables declaration//GEN-END:variables
-
-    private void vulVelden() {
-        DefaultTableModel mdl = new DefaultTableModel(
-                new Object[]{"Start", "Eind"}, 0) {
-
-                    // Tabel Bewerken uit
-                    @Override
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM");
-
-        for (Rooster r : roosters) {
-            mdl.addRow(new Object[]{
-                dateFormat.format(r.getStart()),
-                dateFormat.format(r.getEind())
-            });
-        }
-        roosterTable.setModel(mdl);
-    }
-
-    private JFrame getParentFrame() {
-        return (JFrame) SwingUtilities.getRoot(this);
-    }
 
 }
