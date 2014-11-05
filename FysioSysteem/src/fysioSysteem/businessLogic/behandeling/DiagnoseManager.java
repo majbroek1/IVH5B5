@@ -42,7 +42,7 @@ public class DiagnoseManager implements IDiagnoseManager {
     
     @Override
     public ArrayList<Diagnose> getDiagnoses(Klant klant) {
-        return DiagnoseDAO.getDiagnose(klant);
+        return DiagnoseDAO.getDiagnoses(klant);
     }
 
 }

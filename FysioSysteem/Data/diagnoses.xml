@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagnoses>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><diagnoses>
 	<diagnose code="1">
 		<omschrijving>Hoop tekst</omschrijving>
 		<klantBsn>1</klantBsn>
@@ -16,4 +15,4 @@
             <omschrijving>Nieuwe diagnose lalalalala</omschrijving>
             <klantBsn>1</klantBsn>
         </diagnose>
-</diagnoses>
+<diagnose code="5"><omschrijving>testewstsetsets</omschrijving><klantBsn>1</klantBsn></diagnose><diagnose code="6"><omschrijving>testestsets</omschrijving><klantBsn>1</klantBsn></diagnose><diagnose code="7"><omschrijving>ioksdfjpasidjfposiajdfoiasdf</omschrijving><klantBsn>1</klantBsn></diagnose></diagnoses>

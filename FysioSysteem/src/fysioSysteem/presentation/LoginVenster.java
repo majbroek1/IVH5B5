@@ -56,6 +56,11 @@ public class LoginVenster extends javax.swing.JFrame {
         jLabel2.setText("Wachtwoord");
 
         btnAnnuleren.setText("Annuleren");
+        btnAnnuleren.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnnulerenActionPerformed(evt);
+            }
+        });
 
         btnInloggen.setText("Inloggen");
         btnInloggen.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +131,10 @@ public class LoginVenster extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnInloggenActionPerformed
+
+    private void btnAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulerenActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnAnnulerenActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnnuleren;

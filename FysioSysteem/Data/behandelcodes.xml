@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><behandelCodes>
-	<behandelCode code="1">
-		<behandelingNaam>Achillespeesblessure</behandelingNaam>
-		<aantalSessies>19</aantalSessies>
-		<sessieDuur>10</sessieDuur>
-		<tariefBehandeling>300.0</tariefBehandeling>
-	</behandelCode>
-	<behandelCode code="2">
-		<behandelingNaam>Artrose</behandelingNaam>
-		<aantalSessies>19</aantalSessies>
-		<sessieDuur>10</sessieDuur>
-		<tariefBehandeling>300.00</tariefBehandeling>
-	</behandelCode>
-	<behandelCode code="3">
-		<behandelingNaam>Bekkenbodem problematiek</behandelingNaam>
-		<aantalSessies>19</aantalSessies>
-		<sessieDuur>10</sessieDuur>
-		<tariefBehandeling>300.00</tariefBehandeling>
-	</behandelCode>
-</behandelCodes>
+    <behandelCode code="1">
+        <behandelingNaam>Achillespeesblessure</behandelingNaam>
+        <aantalSessies>19</aantalSessies>
+        <sessieDuur>10</sessieDuur>
+        <tariefBehandeling>300.0</tariefBehandeling>
+    </behandelCode>
+    <behandelCode code="2">
+        <behandelingNaam>Artrose</behandelingNaam>
+        <aantalSessies>19</aantalSessies>
+        <sessieDuur>10</sessieDuur>
+        <tariefBehandeling>300.00</tariefBehandeling>
+    </behandelCode>
+    <behandelCode code="3">
+        <behandelingNaam>Bekkenbodem problematiek</behandelingNaam>
+        <aantalSessies>19</aantalSessies>
+        <sessieDuur>10</sessieDuur>
+        <tariefBehandeling>300.00</tariefBehandeling>
+    </behandelCode>
+    <behandelCode code="4">
+        <behandelingNaam>Blabla</behandelingNaam>
+        <aantalSessies>19</aantalSessies>
+        <sessieDuur>10</sessieDuur>
+        <tariefBehandeling>300.0</tariefBehandeling>
+    </behandelCode>
+<behandelCode code="5"><behandelingNaam>testtesttest</behandelingNaam><aantalSessies>13</aantalSessies><sessieDuur>10</sessieDuur><tariefBehandeling>200.0</tariefBehandeling></behandelCode></behandelCodes>

@@ -15,7 +15,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 /**
@@ -91,9 +93,13 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
             txtCode.setText(Integer.toString(d.getCode()));
             txtOmschrijving.setText(d.getOmschrijving());
         } else {
-            txtCode.setText("");
+            txtCode.setText("Nieuwe diagnose");
             txtOmschrijving.setText("");
         }
+    }
+
+    private JFrame getParentFrame() {
+        return (JFrame) SwingUtilities.getRoot(this);
     }
 
     /**
@@ -128,6 +134,11 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
         });
 
         btnSluiten.setText("Sluiten");
+        btnSluiten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSluitenActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Diagnoses");
 
@@ -165,7 +176,7 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbDiagnose, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbDiagnose, 0, 356, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLaadDiagnose)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,17 +217,15 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNieuwActionPerformed
 
     private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
-        if (diagnose != null) {
-            if (controleerVelden()) {
+        if (controleerVelden()) {
+            if (diagnose != null) {
                 diagnose.setOmschrijving(txtOmschrijving.getText());
                 diagnose.setKlant(klant);
                 diagnoseManager.setDiagnose(diagnose);
 
                 JOptionPane.showMessageDialog(this,
                         "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } else {
-            if (controleerVelden()) {
+            } else {
                 diagnoseManager.addDiagnose(new Diagnose(
                         txtOmschrijving.getText(), klant
                 ));
@@ -224,8 +233,16 @@ public class DiagnoseOverzichtPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this,
                         "Opslaan van diagnose is succesvol", "Opslaan diagnose", JOptionPane.INFORMATION_MESSAGE);
             }
+
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            parent.setPanel(new KlantEditPanel(klant));
         }
     }//GEN-LAST:event_btnOpslaanActionPerformed
+
+    private void btnSluitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSluitenActionPerformed
+        HoofdVenster parent = (HoofdVenster) getParentFrame();
+        parent.setPanel(new KlantEditPanel(klant));
+    }//GEN-LAST:event_btnSluitenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

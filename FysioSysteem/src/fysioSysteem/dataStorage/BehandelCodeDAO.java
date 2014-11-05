@@ -65,7 +65,7 @@ public class BehandelCodeDAO {
         return behandelCode;
     }
 
-    public static void setBehandeling(BehandelCode behandelCode) {
+    public static void setBehandelingCode(BehandelCode behandelCode) {
         XmlDOMDocument domdocument = new XmlDOMDocument();
         Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
                 BehandelCodeDAO.FILE_XSD);
@@ -116,7 +116,7 @@ public class BehandelCodeDAO {
         }
     }
 
-    public static void addBehandeling(BehandelCode behandelCode) {
+    public static void addBehandelingCode(BehandelCode behandelCode) {
         XmlDOMDocument domdocument = new XmlDOMDocument();
         Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
                 BehandelCodeDAO.FILE_XSD);
@@ -141,7 +141,7 @@ public class BehandelCodeDAO {
             newbehandelCode.appendChild(aantalSessies);
 
             Element sessieDuur = document.createElement("sessieDuur");
-            sessieDuur.appendChild(document.createTextNode(Double
+            sessieDuur.appendChild(document.createTextNode(Integer
                     .toString(behandelCode.getSessieDuur())));
             newbehandelCode.appendChild(sessieDuur);
 
@@ -163,7 +163,7 @@ public class BehandelCodeDAO {
         Document document = domdocument.getDocument(BehandelCodeDAO.FILE_XML,
                 BehandelCodeDAO.FILE_XSD);
 
-        ArrayList<BehandelCode> behandelCodes = new ArrayList<BehandelCode>();
+        ArrayList<BehandelCode> behandelCodes = new ArrayList<>();
         if (document != null) {
             NodeList list = document.getElementsByTagName("behandelCode");
 

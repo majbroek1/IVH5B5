@@ -11,28 +11,27 @@ import fysioSysteem.domain.BehandelCode;
  * @author IVH5B5
  *
  */
-
 @Singleton
 public class BehandelCodeManager implements IBehandelCodeManager {
-	
-	@Override
-	public void addBehandelCode(BehandelCode behandelCode) {
-		BehandelCodeDAO.addBehandeling(behandelCode);
-	}
 
-	@Override
-	public void setBehandelCode(BehandelCode behandelCode) {
-		BehandelCodeDAO.setBehandeling(behandelCode);
-	}
+    @Override
+    public void addBehandelCode(BehandelCode behandelCode) {
+        BehandelCodeDAO.addBehandelingCode(behandelCode);
+    }
 
-	@Override
-	public BehandelCode getBehandelCode(int id) {
-		return BehandelCodeDAO.getBehandelCode(id);
-	}
+    @Override
+    public void setBehandelCode(BehandelCode behandelCode) {
+        BehandelCodeDAO.setBehandelingCode(behandelCode);
+    }
 
-	@Override
-	public ArrayList<BehandelCode> getBehandelCodes() {
-		return BehandelCodeDAO.getBehandelCodes();
-	}
+    @Override
+    public BehandelCode getBehandelCode(int id) {
+        return BehandelCodeDAO.getBehandelCode(id);
+    }
+
+    @Override
+    public ArrayList<BehandelCode> getBehandelCodes() {
+        return BehandelCodeDAO.getBehandelCodes();
+    }
 
 }

@@ -5,11 +5,9 @@
  */
 package fysioSysteem.presentation;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.Inject;
 import fysioSysteem.businessLogic.behandeling.IBehandelingManager;
 import fysioSysteem.domain.Behandeling;
-import general.AppInjector;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -29,12 +27,41 @@ public class BehandelingOverzichtPanel extends javax.swing.JPanel {
     /**
      * Creates new form BehandelOverzichtPanel
      */
-    public BehandelingOverzichtPanel() {
-        Injector injector = Guice.createInjector(new AppInjector());
-        this.behandelingManager = injector.getInstance(IBehandelingManager.class);
+    @Inject
+    public BehandelingOverzichtPanel(IBehandelingManager behandelingManager) {
+        this.behandelingManager = behandelingManager;
 
+        this.behandelingen = behandelingManager.getBehandelingen();
+        
         initComponents();
         laadData();
+    }
+
+    private void laadData() {
+        DefaultTableModel mdl = new DefaultTableModel(
+            new Object[]{"ID", "Klant BSN", "BehandelCode", "Status"}, 0) {
+
+                // Tabel Bewerken uit
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+        for (Behandeling b : behandelingen) {
+            mdl.addRow(new Object[]{
+                b.getId(),
+                b.getKlant().getBsn(),
+                b.getBehandelCode().getCode(),
+                b.getStatus()
+            });
+        }
+
+        tblBehandelingen.setModel(mdl);
+    }
+    
+    private JFrame getParentFrame() {
+        return (JFrame) SwingUtilities.getRoot(this);
     }
 
     /**
@@ -46,17 +73,9 @@ public class BehandelingOverzichtPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnToevoegen = new javax.swing.JButton();
         btnWijzigen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBehandelingen = new javax.swing.JTable();
-
-        btnToevoegen.setText("Behandeling Toevoegen");
-        btnToevoegen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnToevoegenActionPerformed(evt);
-            }
-        });
 
         btnWijzigen.setText("Behandeling Wijzigen");
         btnWijzigen.addActionListener(new java.awt.event.ActionListener() {
@@ -82,38 +101,29 @@ public class BehandelingOverzichtPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 648, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnWijzigen)
+                .addContainerGap(505, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnToevoegen)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnWijzigen)
-                            .addGap(338, 338, 338)))
+                    .addComponent(jScrollPane1)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(358, Short.MAX_VALUE)
+                .addComponent(btnWijzigen)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnToevoegen)
-                        .addComponent(btnWijzigen))
-                    .addContainerGap()))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                    .addGap(45, 45, 45)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToevoegenActionPerformed
-        HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new BehandelingEditPanel());
-    }//GEN-LAST:event_btnToevoegenActionPerformed
 
     private void btnWijzigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWijzigenActionPerformed
         try {
@@ -127,39 +137,9 @@ public class BehandelingOverzichtPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnWijzigenActionPerformed
 
-    private JFrame getParentFrame() {
-        return (JFrame) SwingUtilities.getRoot(this);
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnToevoegen;
     private javax.swing.JButton btnWijzigen;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBehandelingen;
     // End of variables declaration//GEN-END:variables
-
-    private void laadData() {
-        ArrayList<Behandeling> behandelingen = this.behandelingManager.getBehandelingen();
-
-        DefaultTableModel mdl = new DefaultTableModel(
-                new Object[]{"ID", "Klant BSN", "BehandelCode", "Status"}, 0) {
-
-                    // Tabel Bewerken uit
-                    @Override
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-
-        for (Behandeling b : behandelingen) {
-            mdl.addRow(new Object[]{
-                b.getId(),
-                b.getKlant().getBsn(),
-                b.getBehandelCode().getCode(),
-                b.getStatus()
-            });
-        }
-
-        tblBehandelingen.setModel(mdl);
-    }
 }

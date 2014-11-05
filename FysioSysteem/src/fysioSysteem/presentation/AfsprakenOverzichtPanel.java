@@ -25,29 +25,29 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
 
-    private ArrayList<Afspraak> afspraken;
     private AfspraakManager afspraakManager;
+    
+    private ArrayList<Afspraak> afspraken;
+    private ArrayList<Afspraak> valideAfspraken;
+
     /**
      * Creates new form AfsprakenOverzichtPanel
      */
     public AfsprakenOverzichtPanel() {
         //Injector injector = Guice.createInjector(new AppInjector());
         this.afspraakManager = new AfspraakManager(); //injector.getInstance(IAfspraakManager.class);
-        
-        initComponents();
-        
-        try
-        {
+
+        try {
             afspraken = afspraakManager.getAfspraken();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Afspraken ophalen is mislukt.");
         }
+
+        initComponents();
         setTable();
     }
 
-    private void setTable() {
+    private void setTable() {        
         DefaultTableModel tabelModel = new DefaultTableModel(
                 new Object[]{"Afspraak #", "Patient", "Datum", "Tijd", "Behandeling"}, 0) {
 
@@ -61,23 +61,34 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         Date today = new Date();
+        
+        valideAfspraken = new ArrayList<>();
+        
+        for (Afspraak a : afspraken) {
+            if (today.before(a.getDatumTijd())) {
+                valideAfspraken.add(a);
+            }
+        }
 
         try {
-            for (Afspraak a : afspraken) {
-                if (dateFormat.format(a.getDatumTijd()).equals(dateFormat.format(today)) || today.before(a.getDatumTijd())) {
-                    tabelModel.addRow(new Object[]{
-                        a.getId(),
-                        a.getBehandeling().getKlant().getNaam(),
-                        dateFormat.format(a.getDatumTijd()),
-                        timeFormat.format(a.getDatumTijd()),
-                        a.getBehandeling().getBehandelCode().getBehandelingNaam()
-                    });
-                }
+            for (Afspraak a : valideAfspraken) {
+                tabelModel.addRow(new Object[]{
+                    a.getId(),
+                    a.getBehandeling().getKlant().getNaam(),
+                    dateFormat.format(a.getDatumTijd()),
+                    timeFormat.format(a.getDatumTijd()),
+                    a.getBehandeling().getBehandelCode().getBehandelingNaam()
+                });
             }
         } catch (Exception e) {
 
         }
-        jTable1.setModel(tabelModel);
+
+        tblAfspraken.setModel(tabelModel);
+    }
+
+    private JFrame getParentFrame() {
+        return (JFrame) SwingUtilities.getRoot(this);
     }
 
     /**
@@ -90,13 +101,13 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAfspraken = new javax.swing.JTable();
         buttonAfspraakToevoegen = new javax.swing.JButton();
         buttonAfspraakVerwijderen = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(638, 436));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAfspraken.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,7 +118,7 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblAfspraken);
 
         buttonAfspraakToevoegen.setText("Afspraak Toevoegen");
         buttonAfspraakToevoegen.addActionListener(new java.awt.event.ActionListener() {
@@ -130,23 +141,24 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonAfspraakVerwijderen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonAfspraakToevoegen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonAfspraakVerwijderen)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonAfspraakToevoegen)
                     .addComponent(buttonAfspraakVerwijderen))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,42 +169,37 @@ public class AfsprakenOverzichtPanel extends javax.swing.JPanel {
 
     private void buttonAfspraakVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakVerwijderenActionPerformed
         try {
-            Afspraak a = afspraken.get(jTable1.convertRowIndexToModel(jTable1.getSelectedRow()));
+            Afspraak a = valideAfspraken.get(
+                    tblAfspraken.convertRowIndexToModel(tblAfspraken.getSelectedRow()));
 
-            Object[] options = {"nee", "Ja"};
+            Object[] options = {"Ja", "Nee"};
 
             JFrame frame = new JFrame();
 
             int n = JOptionPane.showOptionDialog(frame,
-                    "Weet je zeker dat u afspraak: " + a.getId() + "  wilt verwijderd?",
-                    "Verwijder afspraak: " + a.getId(),
+                    "Weet u zeker dat u afspraak #" + a.getId() + " wilt verwijderen?",
+                    "Verwijderen afspraak #" + a.getId(),
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     options,
                     options[0]);
- 
-                if (n == 1)
-                {
-                   afspraakManager.removeAfspraak(a);
-                
-                   HoofdVenster parent = (HoofdVenster)getParentFrame();
-                   parent.setPanel(new AfsprakenOverzichtPanel());
-                }
-	}
-	catch (Exception ex) {
-		JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
-	}
-    }//GEN-LAST:event_buttonAfspraakVerwijderenActionPerformed
 
-    private JFrame getParentFrame() {
-        return (JFrame) SwingUtilities.getRoot(this);
-    }
+            if (n == 0) {
+                afspraakManager.removeAfspraak(a);
+
+                HoofdVenster parent = (HoofdVenster) getParentFrame();
+                parent.setPanel(new AfsprakenOverzichtPanel());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+        }
+    }//GEN-LAST:event_buttonAfspraakVerwijderenActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAfspraakToevoegen;
     private javax.swing.JButton buttonAfspraakVerwijderen;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblAfspraken;
     // End of variables declaration//GEN-END:variables
 }

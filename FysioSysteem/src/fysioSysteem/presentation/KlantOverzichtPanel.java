@@ -10,6 +10,7 @@ import fysioSysteem.businessLogic.behandeling.IKlantManager;
 import fysioSysteem.domain.Klant;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,28 +21,29 @@ import javax.swing.table.DefaultTableModel;
 public class KlantOverzichtPanel extends javax.swing.JPanel {
 
     private IKlantManager klantenManager;
-    
+
     private ArrayList<Klant> klanten;
-    
+
     /**
      * Creates new form KlantOverzichtPanel
+     *
      * @param klantenManager
      */
     @Inject
     public KlantOverzichtPanel(IKlantManager klantenManager) {
         this.klantenManager = klantenManager;
-        
+
         klanten = klantenManager.getKlanten();
-        
+
         initComponents();
         laadData();
     }
-    
+
     private void laadData() {
         DefaultTableModel klantModel = new DefaultTableModel(
                 new Object[]{"BSN", "Naam"}, 0
         );
-        
+
         for (Klant k : klanten) {
             klantModel.addRow(new Object[]{
                 k.getBsn(), k.getNaam()
@@ -50,7 +52,7 @@ public class KlantOverzichtPanel extends javax.swing.JPanel {
 
         tblKlanten.setModel(klantModel);
     }
-    
+
     private JFrame getParentFrame() {
         return (JFrame) SwingUtilities.getRoot(this);
     }
@@ -105,19 +107,23 @@ public class KlantOverzichtPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addComponent(btnKlantgegevens)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKlantgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKlantgegevensActionPerformed
-        Klant k = klanten.get(
-            tblKlanten.convertRowIndexToModel(tblKlanten.getSelectedRow()));
-        
-        HoofdVenster parent = (HoofdVenster) getParentFrame();
-        parent.setPanel(new KlantEditPanel(k));
+        try {
+            Klant k = klanten.get(
+                    tblKlanten.convertRowIndexToModel(tblKlanten.getSelectedRow()));
+
+            HoofdVenster parent = (HoofdVenster) getParentFrame();
+            parent.setPanel(new KlantEditPanel(k));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Selecteer een rij, alstublieft.");
+        }
     }//GEN-LAST:event_btnKlantgegevensActionPerformed
 
 
