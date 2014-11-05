@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fysioSysteem.tests;
+package tests;
 
 import org.junit.Assert;
 import org.junit.Test;

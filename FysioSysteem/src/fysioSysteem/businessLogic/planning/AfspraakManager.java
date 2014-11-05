@@ -27,21 +27,26 @@ public class AfspraakManager implements IAfspraakManager {
     private boolean controleerBeschikbaarheid(Afspraak afspraak) {
         if (!afspraak.getDatumTijd().before(new Date())) {
 
-            Iterator<Afspraak> afspraken
-                    = getAfspraken().iterator();
+            Iterator<Afspraak> afspraken = getAfspraken().iterator();
 
+            boolean mogelijk = true;
             while (afspraken.hasNext()) {
                 Afspraak a = afspraken.next();
-                if (a.getDatumTijd().before(afspraak.getDatumTijd())
-                        && a.getEindTijd().before(afspraak.getDatumTijd())) {
-                    return true;
-                } else if (a.getDatumTijd().after(afspraak.getDatumTijd())
-                        && a.getDatumTijd().after(afspraak.getEindTijd())) {
-                    return true;
+                boolean check = true;
+                check = a.getDatumTijd().before(afspraak.getDatumTijd())
+                        && a.getEindTijd().before(afspraak.getDatumTijd());
+
+                if (!check) {
+                    mogelijk = a.getDatumTijd().after(afspraak.getDatumTijd())
+                            && a.getDatumTijd().after(afspraak.getEindTijd());
+                }
+
+                if (!mogelijk) {
+                    return false;
                 }
             }
+            return mogelijk;
         }
-
         return false;
     }
 

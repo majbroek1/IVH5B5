@@ -248,12 +248,16 @@ public class AfsprakenToevoegenPanel extends javax.swing.JPanel {
     private void buttonAfspraakOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfspraakOpslaanActionPerformed
         if (valideerVelden()) {
             Afspraak afspraak = new Afspraak(composeDate(), (Fysiotherapeut) cmbFysiotherapeut.getSelectedItem(), (Behandeling) cmbBehandeling.getSelectedItem());
-            afspraakManager.addAfspraak(afspraak);
 
-            JOptionPane.showMessageDialog(null, "De afspraak is opgeslagen");
-            Injector injector = Guice.createInjector(new AppInjector());
-            HoofdVenster parent = (HoofdVenster) getParentFrame();
-            parent.setPanel(injector.getInstance(AfsprakenOverzichtPanel.class));
+            if (afspraakManager.addAfspraak(afspraak)) {
+                JOptionPane.showMessageDialog(null, "De afspraak is opgeslagen");
+                Injector injector = Guice.createInjector(new AppInjector());
+                HoofdVenster parent = (HoofdVenster) getParentFrame();
+                parent.setPanel(injector.getInstance(AfsprakenOverzichtPanel.class));
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Er is een conflicterende afspraak");
+            }
         }
     }//GEN-LAST:event_buttonAfspraakOpslaanActionPerformed
 
