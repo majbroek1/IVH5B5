@@ -46,7 +46,7 @@ public interface IRoosterManager {
 	 * @param weekNr
 	 * @return Rooster
 	 */
-	public Rooster getWeekRooster(Fysiotherapeut fysio, int weekNr);
+	public ArrayList<Rooster> getWeekRooster(Fysiotherapeut fysio, int weekNr);
 	
 	/**
 	 * 

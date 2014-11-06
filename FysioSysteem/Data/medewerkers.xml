@@ -30,9 +30,9 @@
    <medewerker id="5">
       <naam>Pascal den Hooiberg</naam>
       <wachtwoord>demo</wachtwoord>
-      <status>INACTIEF</status>
+      <status>ACTIEF</status>
       <functie>fysiotherapeut</functie>
-      <praktijkId>2</praktijkId>
+      <praktijkId>1</praktijkId>
    </medewerker>
    <medewerker id="6">
       <naam>Jorick de Oude</naam>

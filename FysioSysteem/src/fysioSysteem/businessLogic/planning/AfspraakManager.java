@@ -10,6 +10,8 @@ import fysioSysteem.dataStorage.AfspraakDAO;
 import fysioSysteem.domain.Afspraak;
 import fysioSysteem.domain.Fysiotherapeut;
 import fysioSysteem.domain.Klant;
+import fysioSysteem.domain.Rooster;
+import java.util.Calendar;
 
 /**
  * @author IVH5B5
@@ -26,7 +28,6 @@ public class AfspraakManager implements IAfspraakManager {
      */
     private boolean controleerBeschikbaarheid(Afspraak afspraak) {
         if (!afspraak.getDatumTijd().before(new Date())) {
-
             Iterator<Afspraak> afspraken = getAfspraken().iterator();
 
             boolean mogelijk = true;
@@ -47,6 +48,29 @@ public class AfspraakManager implements IAfspraakManager {
             }
             return mogelijk;
         }
+        return false;
+    }
+
+    private boolean controleerBeschikbaarheidFysio(Afspraak afspraak) {
+        Fysiotherapeut therapeut = afspraak.getFysiotherapeut();
+
+        RoosterManager rManager = new RoosterManager();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(afspraak.getDatumTijd());
+        ArrayList<Rooster> roosters = rManager.getWeekRooster(therapeut, calendar.get(Calendar.WEEK_OF_YEAR));
+
+        Rooster rooster = null;
+        for (Rooster r : roosters) {
+            if (r.getStart().before(afspraak.getDatumTijd()) && r.getEind().after(afspraak.getEindTijd())) {
+                rooster = r;
+            }
+        }
+
+        if (rooster != null) {
+            return true;
+
+        }
+
         return false;
     }
 

@@ -78,7 +78,7 @@ public class RoosterManager implements IRoosterManager {
     }
 
     @Override
-    public Rooster getWeekRooster(Fysiotherapeut fysio, int weekNr) {
+    public ArrayList<Rooster> getWeekRooster(Fysiotherapeut fysio, int weekNr) {
         return RoosterDAO.getRooster(fysio, weekNr);
     }
 

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fysioSysteem.dataStorage;
 
@@ -21,235 +21,244 @@ import general.Settings;
  * @author IVH5B5
  *
  */
-
 public class RoosterDAO {
 
-	private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/roosters.xml";
-	private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/roosters.xsd";
+    private static final String FILE_XML = System.getProperty(Settings.DATADIR) + "/roosters.xml";
+    private static final String FILE_XSD = System.getProperty(Settings.DATADIR) + "/roosters.xsd";
 
-	private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss");
+    private static final SimpleDateFormat FORMAT = new SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ss");
 
-	public static Rooster getRooster(int id) {
-		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
-				RoosterDAO.FILE_XSD);
+    public static Rooster getRooster(int id) {
+        XmlDOMDocument domdocument = new XmlDOMDocument();
+        Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+                RoosterDAO.FILE_XSD);
 
-		Rooster rooster = null;
-		if (document != null) {
-			NodeList list = document.getElementsByTagName("rooster");
+        Rooster rooster = null;
+        if (document != null) {
+            NodeList list = document.getElementsByTagName("rooster");
 
-			for (int i = 0; i < list.getLength(); i++) {
-				Node node = list.item(i);
-				if (node instanceof Element) {
-					Element child = (Element) node;
-					String _id = child.getAttribute("id");
-					if (Integer.parseInt(_id) == id) {
-						Date start = null;
-						Date eind = null;
+            for (int i = 0; i < list.getLength(); i++) {
+                Node node = list.item(i);
+                if (node instanceof Element) {
+                    Element child = (Element) node;
+                    String _id = child.getAttribute("id");
+                    if (Integer.parseInt(_id) == id) {
+                        Date start = null;
+                        Date eind = null;
 
-						try {
-							start = FORMAT.parse(child
-									.getElementsByTagName("start").item(0)
-									.getTextContent());
-							eind = FORMAT.parse(child
-									.getElementsByTagName("eind").item(0)
-									.getTextContent());
-						} catch (Exception e) {
-							System.out.println("Kan datum niet parsen");
-							e.printStackTrace();
-						}
+                        try {
+                            start = FORMAT.parse(child
+                                    .getElementsByTagName("start").item(0)
+                                    .getTextContent());
+                            eind = FORMAT.parse(child
+                                    .getElementsByTagName("eind").item(0)
+                                    .getTextContent());
+                        } catch (Exception e) {
+                            System.out.println("Kan datum niet parsen");
+                            e.printStackTrace();
+                        }
 
-						int fysioId = Integer.parseInt(child
-								.getElementsByTagName("fysioId").item(0)
-								.getTextContent());
+                        int fysioId = Integer.parseInt(child
+                                .getElementsByTagName("fysioId").item(0)
+                                .getTextContent());
 
-						rooster = new Rooster(id, start, eind,
-								MedewerkerDAO.getFysio(fysioId));
-					}
-				}
-			}
-		} else
-			System.out.println("XML document is null");
+                        rooster = new Rooster(id, start, eind,
+                                MedewerkerDAO.getFysio(fysioId));
+                    }
+                }
+            }
+        } else {
+            System.out.println("XML document is null");
+        }
 
-		if (rooster == null)
-			System.out.println("rooster niet gevonden");
+        if (rooster == null) {
+            System.out.println("rooster niet gevonden");
+        }
 
-		return rooster;
-	}
+        return rooster;
+    }
 
-	public static ArrayList<Rooster> getRooster(Fysiotherapeut fysio) {
-		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
-		ArrayList<Rooster> rtnList = new ArrayList<>();
+    public static ArrayList<Rooster> getRooster(Fysiotherapeut fysio) {
+        ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
+        ArrayList<Rooster> rtnList = new ArrayList<>();
 
-		for (Rooster r : roosters) {
-			if (r.getFysiotherapeut().getId() == fysio.getId())
-				rtnList.add(r);
-		}
+        for (Rooster r : roosters) {
+            if (r.getFysiotherapeut().getId() == fysio.getId()) {
+                rtnList.add(r);
+            }
+        }
 
-		return rtnList;
-	}
+        return rtnList;
+    }
 
-	public static Rooster getRooster(Fysiotherapeut fysio, int weekNr) {
-		ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
-		Calendar cal = Calendar.getInstance();
+    public static ArrayList<Rooster> getRooster(Fysiotherapeut fysio, int weekNr) {
+        ArrayList<Rooster> roosters = RoosterDAO.getRoosters();
+        Calendar cal = Calendar.getInstance();
 
-		for (Rooster r : roosters) {
-			if (r.getFysiotherapeut().getId() == fysio.getId()) {
-				cal.setTime(r.getStart());
+        for (Rooster r : roosters) {
+            if (r.getFysiotherapeut().getId() == fysio.getId()) {
+                cal.setTime(r.getStart());
 
-				if (cal.get(Calendar.WEEK_OF_YEAR) == weekNr)
-					return r;
-			}
-		}
+                if (cal.get(Calendar.WEEK_OF_YEAR) == weekNr) {
+                    roosters.add(r);
+                }
+            }
+        }
 
-		return null;
-	}
+        return roosters;
+    }
 
-	public static void setRooster(Rooster rooster) {
-		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
-				RoosterDAO.FILE_XSD);
+    public static void setRooster(Rooster rooster) {
+        XmlDOMDocument domdocument = new XmlDOMDocument();
+        Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+                RoosterDAO.FILE_XSD);
 
-		boolean edited = false;
+        boolean edited = false;
 
-		if (document != null) {
-			NodeList list = document.getElementsByTagName("rooster");
-			for (int i = 0; i < list.getLength(); i++) {
-				Node node = list.item(i);
-				if (node instanceof Element) {
-					Element child = (Element) node;
-					String _id = child.getAttribute("id");
-					if (Integer.parseInt(_id) == rooster.getId()) {
-						Node start = child.getElementsByTagName("start")
-								.item(0).getFirstChild();
-						Node eind = child.getElementsByTagName("eind").item(0)
-								.getFirstChild();
-						Node fysioId = child.getElementsByTagName("fysioId")
-								.item(0).getFirstChild();
+        if (document != null) {
+            NodeList list = document.getElementsByTagName("rooster");
+            for (int i = 0; i < list.getLength(); i++) {
+                Node node = list.item(i);
+                if (node instanceof Element) {
+                    Element child = (Element) node;
+                    String _id = child.getAttribute("id");
+                    if (Integer.parseInt(_id) == rooster.getId()) {
+                        Node start = child.getElementsByTagName("start")
+                                .item(0).getFirstChild();
+                        Node eind = child.getElementsByTagName("eind").item(0)
+                                .getFirstChild();
+                        Node fysioId = child.getElementsByTagName("fysioId")
+                                .item(0).getFirstChild();
 
-						start.setNodeValue(FORMAT.format(rooster.getStart()));
-						eind.setNodeValue(FORMAT.format(rooster.getEind()));
-						fysioId.setNodeValue(Integer.toString(rooster
-								.getFysiotherapeut().getId()));
-						edited = true;
-					}
-				}
-			}
+                        start.setNodeValue(FORMAT.format(rooster.getStart()));
+                        eind.setNodeValue(FORMAT.format(rooster.getEind()));
+                        fysioId.setNodeValue(Integer.toString(rooster
+                                .getFysiotherapeut().getId()));
+                        edited = true;
+                    }
+                }
+            }
 
-			domdocument.writeDocument(RoosterDAO.FILE_XML, RoosterDAO.FILE_XSD,
-					document);
-		} else
-			System.out.println("XML document is null");
+            domdocument.writeDocument(RoosterDAO.FILE_XML, RoosterDAO.FILE_XSD,
+                    document);
+        } else {
+            System.out.println("XML document is null");
+        }
 
-		if (!edited)
-			System.out.println("rooster niet gevonden");
-	}
+        if (!edited) {
+            System.out.println("rooster niet gevonden");
+        }
+    }
 
-	public static void addRooster(Rooster rooster) {
-		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
-				RoosterDAO.FILE_XSD);
+    public static void addRooster(Rooster rooster) {
+        XmlDOMDocument domdocument = new XmlDOMDocument();
+        Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+                RoosterDAO.FILE_XSD);
 
-		if (getRooster(rooster.getId()) == null) {
-			Node rootElement = document.getElementsByTagName("roosters")
-					.item(0);
+        if (getRooster(rooster.getId()) == null) {
+            Node rootElement = document.getElementsByTagName("roosters")
+                    .item(0);
 
-			Element newrooster = document.createElement("rooster");
-			newrooster.setAttribute("id",
-					Integer.toString(IdManager.getId("Rooster")));
-			rootElement.appendChild(newrooster);
+            Element newrooster = document.createElement("rooster");
+            newrooster.setAttribute("id",
+                    Integer.toString(IdManager.getId("Rooster")));
+            rootElement.appendChild(newrooster);
 
-			Element start = document.createElement("start");
-			start.appendChild(document.createTextNode(FORMAT.format(rooster
-					.getStart())));
-			newrooster.appendChild(start);
+            Element start = document.createElement("start");
+            start.appendChild(document.createTextNode(FORMAT.format(rooster
+                    .getStart())));
+            newrooster.appendChild(start);
 
-			Element eind = document.createElement("eind");
-			eind.appendChild(document.createTextNode(FORMAT.format(rooster
-					.getEind())));
-			newrooster.appendChild(eind);
+            Element eind = document.createElement("eind");
+            eind.appendChild(document.createTextNode(FORMAT.format(rooster
+                    .getEind())));
+            newrooster.appendChild(eind);
 
-			Element fysioId = document.createElement("fysioId");
-			fysioId.appendChild(document.createTextNode(Integer
-					.toString(rooster.getFysiotherapeut().getId())));
-			newrooster.appendChild(fysioId);
+            Element fysioId = document.createElement("fysioId");
+            fysioId.appendChild(document.createTextNode(Integer
+                    .toString(rooster.getFysiotherapeut().getId())));
+            newrooster.appendChild(fysioId);
 
-			domdocument.writeDocument(RoosterDAO.FILE_XML, RoosterDAO.FILE_XSD,
-					document);
-		} else {
-			System.out.println("Rooster bestaat al");
-		}
-	}
+            domdocument.writeDocument(RoosterDAO.FILE_XML, RoosterDAO.FILE_XSD,
+                    document);
+        } else {
+            System.out.println("Rooster bestaat al");
+        }
+    }
 
-	public static void removeRooster(Rooster rooster) {
-		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
-				RoosterDAO.FILE_XSD);
+    public static void removeRooster(Rooster rooster) {
+        XmlDOMDocument domdocument = new XmlDOMDocument();
+        Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+                RoosterDAO.FILE_XSD);
 
-		if (document != null) {
-			NodeList list = document.getElementsByTagName("rooster");
+        if (document != null) {
+            NodeList list = document.getElementsByTagName("rooster");
 
-			for (int i = 0; i < list.getLength(); i++) {
-				Node node = list.item(i);
-				if (node instanceof Element) {
-					Element child = (Element) node;
-					String _id = child.getAttribute("id");
-					if (Integer.parseInt(_id) == rooster.getId()) {
-						child.getParentNode().removeChild(child);
+            for (int i = 0; i < list.getLength(); i++) {
+                Node node = list.item(i);
+                if (node instanceof Element) {
+                    Element child = (Element) node;
+                    String _id = child.getAttribute("id");
+                    if (Integer.parseInt(_id) == rooster.getId()) {
+                        child.getParentNode().removeChild(child);
 
-						domdocument.writeDocument(RoosterDAO.FILE_XML,
-								RoosterDAO.FILE_XSD, document);
-					}
-				}
-			}
-		} else
-			System.out.println("XML document is null");
+                        domdocument.writeDocument(RoosterDAO.FILE_XML,
+                                RoosterDAO.FILE_XSD, document);
+                    }
+                }
+            }
+        } else {
+            System.out.println("XML document is null");
+        }
 
-		if (rooster == null)
-			System.out.println("Rooster niet gevonden");
-	}
+        if (rooster == null) {
+            System.out.println("Rooster niet gevonden");
+        }
+    }
 
-	public static ArrayList<Rooster> getRoosters() {
-		XmlDOMDocument domdocument = new XmlDOMDocument();
-		Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
-				RoosterDAO.FILE_XSD);
+    public static ArrayList<Rooster> getRoosters() {
+        XmlDOMDocument domdocument = new XmlDOMDocument();
+        Document document = domdocument.getDocument(RoosterDAO.FILE_XML,
+                RoosterDAO.FILE_XSD);
 
-		ArrayList<Rooster> roosters = new ArrayList<Rooster>();
-		if (document != null) {
-			NodeList list = document.getElementsByTagName("rooster");
+        ArrayList<Rooster> roosters = new ArrayList<Rooster>();
+        if (document != null) {
+            NodeList list = document.getElementsByTagName("rooster");
 
-			for (int i = 0; i < list.getLength(); i++) {
-				Node node = list.item(i);
-				if (node instanceof Element) {
-					Element child = (Element) node;
-					int _id = Integer.parseInt(child.getAttribute("id"));
-					Date start = null;
-					Date eind = null;
-					try {
-						start = FORMAT.parse(child
-								.getElementsByTagName("start").item(0)
-								.getTextContent());
-						eind = FORMAT.parse(child.getElementsByTagName("eind")
-								.item(0).getTextContent());
-					} catch (Exception e) {
-						System.out.println("Kan datum niet parsen");
-						e.printStackTrace();
-					}
-					int fysioId = Integer.parseInt(child
-							.getElementsByTagName("fysioId").item(0)
-							.getTextContent());
-					roosters.add(new Rooster(_id, start, eind, MedewerkerDAO
-							.getFysio(fysioId)));
-				}
-			}
-		} else
-			System.out.println("XML document is null");
+            for (int i = 0; i < list.getLength(); i++) {
+                Node node = list.item(i);
+                if (node instanceof Element) {
+                    Element child = (Element) node;
+                    int _id = Integer.parseInt(child.getAttribute("id"));
+                    Date start = null;
+                    Date eind = null;
+                    try {
+                        start = FORMAT.parse(child
+                                .getElementsByTagName("start").item(0)
+                                .getTextContent());
+                        eind = FORMAT.parse(child.getElementsByTagName("eind")
+                                .item(0).getTextContent());
+                    } catch (Exception e) {
+                        System.out.println("Kan datum niet parsen");
+                        e.printStackTrace();
+                    }
+                    int fysioId = Integer.parseInt(child
+                            .getElementsByTagName("fysioId").item(0)
+                            .getTextContent());
+                    roosters.add(new Rooster(_id, start, eind, MedewerkerDAO
+                            .getFysio(fysioId)));
+                }
+            }
+        } else {
+            System.out.println("XML document is null");
+        }
 
-		if (roosters.size() < 1)
-			System.out.println("Geen roosters gevonden");
+        if (roosters.size() < 1) {
+            System.out.println("Geen roosters gevonden");
+        }
 
-		return roosters;
-	}
+        return roosters;
+    }
 
 }
